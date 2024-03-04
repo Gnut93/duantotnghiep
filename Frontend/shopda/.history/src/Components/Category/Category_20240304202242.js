@@ -1,0 +1,9 @@
+import React from "react";
+function Category() {
+  return (
+    <div>
+      <h2>Đây là Category</h2>
+    </div>
+  );
+}
+export default Category;

@@ -1,0 +1,17 @@
+.phone {
+  background-color: #002c3f;
+  height: 30px;
+}
+.phone span {
+  color: white;
+  font-size: 20px;
+  padding: 5px;
+}
+nav {
+    background-color: #002c3f;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}

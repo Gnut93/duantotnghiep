@@ -1,0 +1,9 @@
+.phone {
+  background-color: #002c3f;
+  height: 30px;
+}
+.phone span {
+  color: white;
+  font-size: 20px;
+  padding: 5px;
+}

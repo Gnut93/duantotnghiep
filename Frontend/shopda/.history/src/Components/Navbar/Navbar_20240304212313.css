@@ -1,0 +1,11 @@
+.phone {
+  background-color: #002c3f;
+  height: 30px;
+  color: #fff;
+}
+.phone p {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  padding-top: 5px;
+}
