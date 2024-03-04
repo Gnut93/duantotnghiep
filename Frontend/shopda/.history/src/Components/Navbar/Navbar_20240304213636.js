@@ -14,16 +14,14 @@ function Navbar() {
             <li>TRANG CHỦ</li>
             <li>SẢN PHẨM</li>
             <li>BỘ SƯU TẬP</li>
-            <li>BLOGS</li>
-            <li>KHUYẾN MÃI</li>
-            <li>ORDER THEO SỞ THÍCH</li>
-            <li>TIN TỨC</li>
+            <li>B</li>
+            <li>BỘ SƯU TẬP</li>
+            <li>BỘ SƯU TẬP</li>
           </ul>
         </div>
         <div className="icon">
           <i className="fas fa-search"></i>
           <i className="fas fa-shopping-cart"></i>
-          <span>(0)</span>
         </div>
       </nav>
     </div>

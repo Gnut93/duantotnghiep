@@ -24,7 +24,6 @@ Nav ul {
 nav ul li {
   margin: 0 10px;
   font-weight: 600;
-  transition: all 0.3s ease;
 }
 nav ul li:hover {
   color: #ff9f1c;

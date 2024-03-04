@@ -1,14 +1,12 @@
 .phone {
   background-color: #002c3f;
   height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .phone span {
   color: white;
   font-size: 18px;
-  padding: 10px;
+  padding: 5px;
+  margin-top: ;
 }
 nav {
   height: 60px;
@@ -23,10 +21,4 @@ Nav ul {
 }
 nav ul li {
   margin: 0 10px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-nav ul li:hover {
-  color: #ff9f1c;
-  cursor: pointer;
 }
