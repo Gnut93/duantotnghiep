@@ -1,0 +1,70 @@
+/* Footer.css */
+.footer {
+  background-color: #002c3f;
+  color: #fff;
+  padding-top: 30px;
+}
+/* Phần cộng đồng */
+.community {
+  display: flex;
+  align-items: center;
+  width: 400px;
+  height: auto;
+  flex-direction: column;
+}
+.community .b-title {
+  padding-top: 15px;
+  padding-bottom: 25px;
+  font-size: 16px;
+}
+.community .title {
+  font-size: 14px;
+}
+.community input[type="email"] {
+  width: 200px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-right: 10px;
+}
+
+.community button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.social-icons {
+  list-style: none;
+  margin: 15px 0 0 0;
+  padding: 0;
+}
+/* Thông tin liên hệ */
+.contact {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Các liên kết về chúng tôi */
+.about {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Các liên kết dịch vụ khách hàng */
+.customerService {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Biểu tượng phương thức thanh toán và vận chuyển */
+.paymentAndShipping {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+}

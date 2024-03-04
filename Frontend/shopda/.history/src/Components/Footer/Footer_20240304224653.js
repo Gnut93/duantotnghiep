@@ -1,9 +1,9 @@
-import "./style.css";
+import './style.css';
 function Footer() {
   return (
     <div className="footer">
-      <div className="community">
-        <div className="b-title">Tham gia cộng đồng #DACommunity</div>
+    <div className="community">
+      <div className="b-title">Tham gia cộng đồng #DACommunity</div>
         {/* Phần cộng đồng */}
         <input type="email" placeholder="Email của bạn..." />
         <button>→</button>
@@ -17,29 +17,30 @@ function Footer() {
           </li>
         </ul>
         {/* ... */}
-      </div>
-
-      <div className="contact">
+    </div>
+    
+    
+    <div className="contact">
         {/* Thông tin liên hệ */}
         <p>CÔNG TY TNHH DA VIỆT NAM</p>
         {/* ... */}
-      </div>
+    </div>
 
-      <div className="about">
+    <div className="about">
         {/* Các liên kết về chúng tôi */}
         {/* ... */}
-      </div>
-
-      <div className="customerService">
-        {/* Các liên kết dịch vụ khách hàng */}
-        {/* ... */}
-      </div>
-
-      <div className="paymentAndShipping">
-        {/* Biểu tượng phương thức thanh toán và vận chuyển */}
-        {/* ... */}
-      </div>
     </div>
-  );
+
+    <div className="customerService">
+       {/* Các liên kết dịch vụ khách hàng */}
+       {/* ... */} 
+    </div>
+
+    <div className="paymentAndShipping">
+       {/* Biểu tượng phương thức thanh toán và vận chuyển */}
+       {/* ... */} 
+   </div>
+</div>
+  )
 }
 export default Footer;
