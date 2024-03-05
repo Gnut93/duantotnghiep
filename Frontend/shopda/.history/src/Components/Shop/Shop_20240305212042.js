@@ -28,7 +28,7 @@ const Shop = () => {
                 <img src="https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png"></img>
               </div>
               <div className="title">
-                <a href="/">TÚI DU LỊCH</a>
+                <a href="/">Túi xách</a>
               </div>
             </div>
             <div className="danhmuc">
@@ -36,7 +36,7 @@ const Shop = () => {
                 <img src="https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png"></img>
               </div>
               <div className="title">
-                <a href="/">BALO</a>
+                <a href="/">Túi xách</a>
               </div>
             </div>
             <div className="danhmuc">
@@ -44,7 +44,7 @@ const Shop = () => {
                 <img src="https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png"></img>
               </div>
               <div className="title">
-                <a href="/">BÓP - VÍ</a>
+                <a href="/">Túi xách</a>
               </div>
             </div>
             <div className="danhmuc">
@@ -52,7 +52,7 @@ const Shop = () => {
                 <img src="https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png"></img>
               </div>
               <div className="title">
-                <a href="/">THẮT LƯNG</a>
+                <a href="/">Túi xách</a>
               </div>
             </div>
             <div className="danhmuc">
@@ -60,7 +60,7 @@ const Shop = () => {
                 <img src="https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png"></img>
               </div>
               <div className="title">
-                <a href="/">PHỤ KIỆN KHÁC</a>
+                <a href="/">Túi xách</a>
               </div>
             </div>
           </div>

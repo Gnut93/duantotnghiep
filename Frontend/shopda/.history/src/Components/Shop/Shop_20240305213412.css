@@ -35,5 +35,5 @@
 
 .danhmuc:hover img {
   transform: scale(1.05); /* Phóng to ảnh khi hover */
-  opacity: 0.85;
+  opacity: 0.9;
 }

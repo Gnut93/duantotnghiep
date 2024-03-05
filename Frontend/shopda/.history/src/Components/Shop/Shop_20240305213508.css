@@ -28,6 +28,7 @@
 }
 
 .danhmuc img {
+  
   width: 100%;
   height: auto;
   transition: transform 0.3s ease; /* Hiệu ứng chuyển đổi */
@@ -35,5 +36,5 @@
 
 .danhmuc:hover img {
   transform: scale(1.05); /* Phóng to ảnh khi hover */
-  opacity: 0.85;
+  opacity: 0.8;
 }
