@@ -16,8 +16,7 @@
   transition: all 0.3s ease;
   color: #425764;
 }
-.menu-link:hover,
-.menu-link i:hover {
+.menu-link:hover,.menu-link i: {
   color: #ff9f1c;
 }
 .menu-link i {
