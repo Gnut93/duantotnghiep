@@ -17,7 +17,8 @@ nav {
   align-items: center;
   padding: 0 20px;
   background: linear-gradient(to right, #f2bcbbdb, #dd8787d5);
-  box-shadow: -11px 17px 9px 1px #282929;
+  
+  box-shadow: ;
 }
 Nav ul {
   display: flex;

@@ -16,8 +16,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  background: linear-gradient(to right, #f2bcbbdb, #dd8787d5);
-  box-shadow: -11px 17px 9px 1px #282929;
+  background-color:  linear-gradient(#F2BCBB to right, , );
 }
 Nav ul {
   display: flex;
