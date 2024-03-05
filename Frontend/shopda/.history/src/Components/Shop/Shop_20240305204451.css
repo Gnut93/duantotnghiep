@@ -1,0 +1,23 @@
+.container {
+  margin-bottom: 70px;
+}
+.category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Set the container height to the full viewport height */
+}
+
+.list-category {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.list-category > div {
+  width: calc(100% / 3); /* Divide the available width into 6 equal parts */
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: center;
+}
