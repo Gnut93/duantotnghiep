@@ -1,0 +1,24 @@
+.container {
+  margin-bottom: 70px;
+ 
+}
+.category{
+    
+}
+
+.list-category {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.list-category > div {
+  width: 33.33%; /* 1/3 chiều rộng của parent container */
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.list-category > div img {
+  max-width: 100%;
+  height: auto;
+}

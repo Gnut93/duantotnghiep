@@ -1,0 +1,31 @@
+.container {
+  margin-bottom: 70px;
+}
+
+.category {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.list-category {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.list-category > div {
+  width: 33.33%; /* 1/3 chiều rộng của parent container */
+  padding: 30px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.list-category > div img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease; /* Hiệu ứng chuyển đổi */
+}
+
+.list-category > div:hover img {
+  transform: scale(0.95); /* Giảm kích thước của ảnh khi hover */
+}
