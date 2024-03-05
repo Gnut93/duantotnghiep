@@ -1,32 +1,74 @@
-import "./Navbar.css";
-function Navbar() {
+import React from 'react';
+import './Navbar.css';
+
+const Navbar = () => {
   return (
-    <div>
-      <div className="phone">
-        <span>HOTLINE : 0901.379.586</span>
-      </div>
-      <nav>
-        <div className="logo">
-          <a>LOGO</a>
-        </div>
-        <div>
-          <ul>
-            <li>TRANG CHỦ</li>
-            <li>SẢN PHẨM</li>
-            <li>BỘ SƯU TẬP</li>
-            <li>BLOGS</li>
-            <li>KHUYẾN MÃI</li>
-            <li>ORDER THEO SỞ THÍCH</li>
-            <li>TIN TỨC</li>
+    <div className="navbar">
+      <div className="container">
+        <nav className="menu">
+          <a
+            href="/"
+            className="menu-logo">
+            LOGO
+          </a>
+          <ul className="menu-list">
+            <li className="menu-item">
+              <a
+                href="/"
+                className="menu-link">
+                Trang chủ
+              </a>
+            </li>
+            <li className="menu-item">
+              <a
+                href="/"
+                className="menu-link">
+                Sản phẩm
+              </a>
+            </li>
+            <li className="menu-item">
+              <a
+                href="/"
+                className="menu-link">
+                Blogs
+              </a>
+            </li>
+            <li className="menu-item">
+              <a
+                href="/"
+                className="menu-link">
+                Order theo sở thích
+              </a>
+            </li>
+            <li className="menu-item">
+              <a
+                href="/"
+                className="menu-link">
+                Tin tức
+              </a>
+            </li>
           </ul>
-        </div>
-        <div className="icon">
-          <i className="fas fa-search"></i>
-          <i className="fas fa-shopping-cart"></i>
-          <span>(0)</span>
-        </div>
-      </nav>
+          <ul className="menu-list icon">
+            <li className="menu-item">
+              <a
+                href="/"
+                className="menu-link">
+                <i className="fas fa-search"></i>
+              </a>
+            </li>
+            <li className="menu-item">
+              <a
+                href="/"
+                className="menu-link">
+                <i className="fas fa-shopping-cart"></i>
+                (0)
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
   );
-}
+};
+
 export default Navbar;

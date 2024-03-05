@@ -1,17 +1,22 @@
-import "./style.css";
-function Footer() {
+import React from 'react';
+import './Footer.css';
+
+const Footer = () => {
   return (
     <div className="footer">
       <div className="community">
         <div className="b-title">Tham gia cộng đồng #DACommunity</div>
         {/* Phần cộng đồng */}
-        <input type="email" placeholder="Email của bạn..." />
+        <input
+          type="email"
+          placeholder="Email của bạn..."
+        />
         <button>→</button>
         <div className="title">Đồng hành cùng chúng tôi</div>
         {/* Các biểu tượng mạng xã hội */}
         <ul className="social-icons">
           <li>
-            <a>
+            <a href="/">
               <i className="fas fa-facebook"></i>
             </a>
           </li>
@@ -41,5 +46,6 @@ function Footer() {
       </div>
     </div>
   );
-}
+};
+
 export default Footer;
