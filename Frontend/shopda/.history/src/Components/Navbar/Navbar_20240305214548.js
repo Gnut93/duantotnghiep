@@ -22,7 +22,7 @@ const Navbar = () => {
             </li>
             <li className="menu-item">
               <a href="/shop" className="menu-link">
-                Bộ sưu tập
+                Sản phẩm
               </a>
             </li>
             <li className="menu-item">
