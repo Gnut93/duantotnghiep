@@ -1,6 +1,6 @@
-import React from "react";
-import Navbar from "../Navbar/Navbar";
-import "./Shop.css";
+import React from 'react';
+import Navbar from '../Navbar/Navbar';
+import './Shop.css';
 
 const Shop = () => {
   return (
@@ -11,13 +11,15 @@ const Shop = () => {
         </div>
         <div className="category">
           <div>
-            {" "}
+            {' '}
             <h2>Danh Mục Sản Phẩm</h2>
           </div>
           <div className="list-category">
             <div className="danhmuc">
               <div className="thumb">
-                <img src="https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png"></img>
+                <img
+                  src="https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png"
+                  alt=""></img>
               </div>
               <div className="title">
                 <a href="/">TÚI XÁCH</a>
@@ -25,7 +27,9 @@ const Shop = () => {
             </div>
             <div className="danhmuc">
               <div className="thumb">
-                <img src="https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png"></img>
+                <img
+                  src="https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png"
+                  alt=""></img>
               </div>
               <div className="title">
                 <a href="/">TÚI DU LỊCH</a>
@@ -33,7 +37,9 @@ const Shop = () => {
             </div>
             <div className="danhmuc">
               <div className="thumb">
-                <img src="https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png"></img>
+                <img
+                  src="https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png"
+                  alt=""></img>
               </div>
               <div className="title">
                 <a href="/">BALO</a>
@@ -41,7 +47,9 @@ const Shop = () => {
             </div>
             <div className="danhmuc">
               <div className="thumb">
-                <img src="https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png"></img>
+                <img
+                  src="https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png"
+                  alt=""></img>
               </div>
               <div className="title">
                 <a href="/">BÓP - VÍ</a>
@@ -49,7 +57,9 @@ const Shop = () => {
             </div>
             <div className="danhmuc">
               <div className="thumb">
-                <img src="https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png"></img>
+                <img
+                  src="https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png"
+                  alt=""></img>
               </div>
               <div className="title">
                 <a href="/">THẮT LƯNG</a>
@@ -57,7 +67,9 @@ const Shop = () => {
             </div>
             <div className="danhmuc">
               <div className="thumb">
-                <img src="https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png"></img>
+                <img
+                  src="https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png"
+                  alt=""></img>
               </div>
               <div className="title">
                 <a href="/">PHỤ KIỆN KHÁC</a>
