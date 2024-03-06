@@ -2,7 +2,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 24px 0;
 }
 .menu-list {
   display: flex;
@@ -24,4 +23,8 @@
 .menu-link i {
   font-size: 18px;
   transition: all 0.3s ease;
+  color: #000;
+}
+.navbar {
+  margin-top: 10px;
 }
