@@ -67,7 +67,7 @@ const Navbar = () => {
               href="/"
               className="menu-link">
               <i className="fas fa-shopping-cart"></i>
-              (0)
+              <sup>(0)</sup>
             </a>
           </li>
         </ul>

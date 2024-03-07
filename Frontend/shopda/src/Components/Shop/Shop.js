@@ -6,9 +6,9 @@ const Shop = () => {
   return (
     <>
       <div className="container">
-        <div className="navbar">
+        {/* <div className="navbar">
           <Navbar></Navbar>
-        </div>
+        </div> */}
         <div className="category">
           <div>
             {' '}
