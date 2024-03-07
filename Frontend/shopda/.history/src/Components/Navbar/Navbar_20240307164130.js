@@ -20,7 +20,7 @@ const Navbar = () => {
             </a>
           </li>
           <li className="menu-item">
-            <a href="/collection" className="menu-link">
+            <a href="/shop" className="menu-link">
               Bộ sưu tập
             </a>
           </li>
@@ -43,7 +43,7 @@ const Navbar = () => {
         <ul className="menu-list icon">
           <li className="menu-item">
             <a href="/" className="menu-link">
-              <i className="fas fa-user"></i>
+              <i className="fas fa-search"></i>
             </a>
           </li>
           <li className="menu-item">

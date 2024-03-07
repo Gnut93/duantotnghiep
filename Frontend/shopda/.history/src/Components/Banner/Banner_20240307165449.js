@@ -52,7 +52,7 @@ const Banner = () => {
         <div className="banner-main" style={getTransformStyle()}>
           {imageBanner.map((image, index) => (
             <div className="banner-item" key={index}>
-              <img src={image.image} alt="" />
+              <img src={image.image} alt="" height={} />
             </div>
           ))}
         </div>

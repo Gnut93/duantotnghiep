@@ -12,11 +12,11 @@ const imageBanner = [
   },
   {
     image:
-      "https://leeandtee.vn/image/1920/884/1/0/banners/chat-lieu%20cao-cap-banner-02.png",
+      "https://leeandtee.vn/image/1920/884/1/0/banners/happy-womens-day-nhan-qua-cuc-slay-banner-01.png",
   },
   {
     image:
-      "https://leeandtee.vn/image/1920/884/1/0/banners/that-lung-saff-banner-04.png",
+      "https://leeandtee.vn/image/1920/884/1/0/banners/happy-womens-day-nhan-qua-cuc-slay-banner-01.png",
   },
 ];
 
