@@ -5,12 +5,9 @@ const Shop = () => {
   return (
     <>
       <div className="container">
-<<<<<<< HEAD:Frontend/shopda/src/Components/Shop/Shop.js
         {/* <div className="navbar">
           <Navbar></Navbar>
         </div> */}
-=======
->>>>>>> 2a9ec8e270ee94a2c2791744b45fceab6f720612:Frontend/shopda/src/user/Components/Shop/Shop.js
         <div className="category">
           <div>
             {' '}
