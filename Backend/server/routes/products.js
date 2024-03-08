@@ -33,7 +33,7 @@ router.get('/list', (req, res) => {
 });
 
 //Lấy danh sách sản phẩm theo danh mục
-router.get('/category/:id', (req, res) => {
+router.get('/list/category/:id', (req, res) => {
   var id = parseInt(req.params.id);
   if (isNaN(id) || id < 1) {
     res.json({ error: "ID không hợp lệ" });
