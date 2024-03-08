@@ -1,26 +1,49 @@
-import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./Components/Home/Home";
-import Footer from "./Components/Footer/Footer";
-import Header from "./Components/Header/Header";
-import Shop from "./Components/Shop/Shop";
-import Collection from "./Components/Collection/Collection";
-function App() {
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from 'react-router-dom';
+import UserApp from './user/App';
+import AdminApp from './admin/App';
+import LoginPage from './LoginPage'; // Giả sử bạn có một trang đăng nhập chung
+
+// Giả sử bạn có một hàm để kiểm tra trạng thái đăng nhập và vai trò của người dùng
+// function isAuthenticated() {}
+// function getUserRole() {}
+
+const App = () => {
+  const userIsAuthenticated = true; // Kiểm tra xem người dùng có đăng nhập không
+  const userRole = '1'; // Lấy vai trò người dùng ('user' hoặc 'admin')
+
   return (
-    <BrowserRouter basename="/">
-      <div className="wapper">
-        <Header></Header>
-        <main className="main">
-          <Routes>
-            <Route path="/" exact element={<Home />} />
-            <Route path="/shop" exact element={<Shop />} />
-            <Route path="/collection" exact element={<Collection />} />
-          </Routes>
-        </main>
-        <Footer></Footer>
-      </div>
-    </BrowserRouter>
+    <Router>
+      <Routes>
+        <Route
+          path="/login"
+          element={<LoginPage />}
+        />
+        <Route
+          path="/admin/*"
+          element={
+            userIsAuthenticated && userRole === '1' ? (
+              <AdminApp />
+            ) : (
+              <Navigate
+                replace
+                to="/login"
+              />
+            )
+          }
+        />
+        <Route
+          path="/*"
+          element={<UserApp />}
+        />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
