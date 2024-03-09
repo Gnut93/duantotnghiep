@@ -1,6 +1,6 @@
 import React from "react";
 import "./Footer.css";
-
+import {Link} from "react-router-dom"
 const Footer = () => {
   return (
     <footer className="footer">
@@ -10,16 +10,16 @@ const Footer = () => {
             <h4>Về chúng tôi</h4>
             <ul>
               <li>
-                <a href="#">Giới thiệu</a>
+                <Link to="#">Giới thiệu</Link>
               </li>
               <li>
-                <a href="#">Dịch vụ</a>
+                <Link to="#">Dịch vụ</Link>
               </li>
               <li>
-                <a href="#">Liên hệ</a>
+                <Link to="#">Liên hệ</Link>
               </li>
               <li>
-                <a href="#">Tuyển dụng</a>
+                <Link to="#">Tuyển dụng</Link>
               </li>
             </ul>
           </div>
@@ -27,19 +27,19 @@ const Footer = () => {
             <h4>Dịch vụ khách hàng</h4>
             <ul>
               <li>
-                <a href="#">Hướng dẫn mua hàng</a>
+                <Link to="#">Hướng dẫn mua hàng</Link>
               </li>
               <li>
-                <a href="#">Hướng dẫn đổi trả hàng</a>
+                <Link to="#">Hướng dẫn đổi trả hàng</Link>
               </li>
               <li>
-                <a href="#">Chính sách đổi hàng và đổi </a>
+                <Link to="#">Chính sách đổi hàng và đổi </Link>
               </li>
               <li>
-                <a href="#">Chính sách vận chuyển</a>
+                <Link to="#">Chính sách vận chuyển</Link>
               </li>
               <li>
-                <a href="#">Câu hỏi thường gặp</a>
+                <Link to="#">Câu hỏi thường gặp</Link>
               </li>
             </ul>
           </div>
@@ -47,22 +47,22 @@ const Footer = () => {
             <h4>online shop</h4>
             <ul>
               <li>
-                <a href="#">Túi xách</a>
+                <Link to="#">Túi xách</Link>
               </li>
               <li>
-                <a href="#">Túi du lịch</a>
+                <Link to="#">Túi du lịch</Link>
               </li>
               <li>
-                <a href="#">Balo</a>
+                <Link to="#">Balo</Link>
               </li>
               <li>
-                <a href="#">Bóp-Ví</a>
+                <Link to="#">Bóp-Ví</Link>
               </li>
               <li>
-                <a href="#">Dây nịch</a>
+                <Link to="#">Dây nịch</Link>
               </li>
               <li>
-                <a href="#">Phụ kiện khác</a>
+                <Link to="#">Phụ kiện khác</Link>
               </li>
             </ul>
           </div>
@@ -72,18 +72,18 @@ const Footer = () => {
               <img src="/src/assets/images/logoSaleNoti.png" alt=""></img>
             </div>
             <div className="social-links">
-              <a href="#">
+              <Link to="#">
                 <i className="fab fa-facebook-f"></i>
-              </a>
-              <a href="#">
+              </Link>
+              <Link to="#">
                 <i className="fab fa-twitter"></i>
-              </a>
-              <a href="#">
+              </Link>
+              <Link to="#">
                 <i className="fab fa-instagram"></i>
-              </a>
-              <a href="#">
+              </Link>
+              <Link to="#">
                 <i className="fab fa-linkedin-in"></i>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

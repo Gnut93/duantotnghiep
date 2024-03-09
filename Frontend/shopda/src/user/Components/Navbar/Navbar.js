@@ -6,7 +6,7 @@ const Navbar = () => {
     <div className="navbar">
       <nav className="menu">
         <a href="/" className="menu-logo">
-          LOGO
+          <img src="https://cdn.discordapp.com/attachments/1127927838201368678/1215668041744908378/image_2-removebg-preview.png?ex=65fd9617&is=65eb2117&hm=fc619dbd537162f9634ebd036f42a1a572cbb838c7b0f3ec3802619a15c5884b&" height="50px" width="70px" alt=""></img>
         </a>
         <ul className="menu-list">
           <li className="menu-item">
