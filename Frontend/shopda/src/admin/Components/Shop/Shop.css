@@ -102,7 +102,7 @@
 }
 .content main .table-data .order table tbody tr:hover {
   background: var(--grey);
-}
+}*/
 .thanhphantrang1 {
   display: flex;
   justify-content: center;
@@ -125,4 +125,4 @@
 .thanhphantrang1 .active a {
   background-color: var(--blue);
   color: #fff;
-} */
+}

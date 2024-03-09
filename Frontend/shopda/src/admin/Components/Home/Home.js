@@ -84,6 +84,9 @@ const Home = () => {
                   <th>Người Dùng</th>
                   <th>Ngày Đặt</th>
                   <th>Trạng Thái</th>
+                  <th>Tổng tiền</th>
+                  <th>Thanh toán</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -95,6 +98,17 @@ const Home = () => {
                   <td>
                     <span className="status waiting">Chờ</span>
                   </td>
+                  <td>
+                    <span>
+                      {(10000).toLocaleString('vi-VN', {
+                        style: 'currency',
+                        currency: 'VND',
+                      })}
+                    </span>
+                  </td>
+                  <td>
+                    <span className="status waiting">Khi nhận hàng</span>
+                  </td>
                 </tr>
                 <tr>
                   <td>
@@ -103,6 +117,17 @@ const Home = () => {
                   <td>12/05/2023</td>
                   <td>
                     <span className="status success">Hoàn Thành</span>
+                  </td>
+                  <td>
+                    <span>
+                      {(10000).toLocaleString('vi-VN', {
+                        style: 'currency',
+                        currency: 'VND',
+                      })}
+                    </span>
+                  </td>
+                  <td>
+                    <span className="status waiting">Khi nhận hàng</span>
                   </td>
                 </tr>
                 <tr>
@@ -113,6 +138,17 @@ const Home = () => {
                   <td>
                     <span className="status preparing">Chuẩn Bị</span>
                   </td>
+                  <td>
+                    <span>
+                      {(10000).toLocaleString('vi-VN', {
+                        style: 'currency',
+                        currency: 'VND',
+                      })}
+                    </span>
+                  </td>
+                  <td>
+                    <span className="status waiting">Khi nhận hàng</span>
+                  </td>
                 </tr>
                 <tr>
                   <td>
@@ -122,6 +158,17 @@ const Home = () => {
                   <td>
                     <span className="status delivering">Đang giao</span>
                   </td>
+                  <td>
+                    <span>
+                      {(10000).toLocaleString('vi-VN', {
+                        style: 'currency',
+                        currency: 'VND',
+                      })}
+                    </span>
+                  </td>
+                  <td>
+                    <span className="status waiting">Khi nhận hàng</span>
+                  </td>
                 </tr>
                 <tr>
                   <td>
@@ -130,6 +177,17 @@ const Home = () => {
                   <td>12/05/2023</td>
                   <td>
                     <span className="status cancelled">Đã Hủy</span>
+                  </td>
+                  <td>
+                    <span>
+                      {(10000).toLocaleString('vi-VN', {
+                        style: 'currency',
+                        currency: 'VND',
+                      })}
+                    </span>
+                  </td>
+                  <td>
+                    <span className="status waiting">Khi nhận hàng</span>
                   </td>
                 </tr>
               </tbody>

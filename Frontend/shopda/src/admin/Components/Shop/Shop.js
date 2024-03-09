@@ -10,14 +10,14 @@ const Shop = () => {
   // const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:4000/product/list')
-      .then((res) => res.json())
-      .then(setListSP);
     fetch('http://localhost:4000/category/list')
       .then((res) => res.json())
       .then(setListLoai);
+    fetch('http://localhost:4000/products/list')
+      .then((res) => res.json())
+      .then(setListSP);
   }, []);
-
+  console.log(listsp);
   const xoaSP = (id) => {
     if (window.confirm('Xóa sản phẩm không?')) {
       fetch(`http://localhost:4000/adminsp/${id}`, {
@@ -46,7 +46,7 @@ const Shop = () => {
     selectedLoai === ''
       ? listsp
       : // eslint-disable-next-line eqeqeq
-        listsp.filter((item) => item.id_loai == selectedLoai);
+        listsp.filter((item) => item.id_cate == selectedLoai);
 
   function HienSPTrongMotTrang({ spTrongTrang }) {
     return (
@@ -71,35 +71,34 @@ const Shop = () => {
           {spTrongTrang.map((sp, i) => (
             <tr key={i}>
               <td>
-                <p>{sp.id_sp}</p>
+                <p>{sp.id_pd}</p>
               </td>
               <td>
                 <img
-                  src={sp.hinh}
+                  src={sp.image}
                   alt="#"
                 />
               </td>
               <td>
-                <p>{sp.ten_sp}</p>
+                <p>{sp.name}</p>
               </td>
-              <td>{new Date(sp.ngay).toLocaleDateString('vi')}</td>
+              <td>{new Date(sp.update_date).toLocaleDateString('vi')}</td>
               <td>
-                {parseInt(sp.gia).toLocaleString('vi-VN', {
+                {parseInt(sp.price).toLocaleString('vi-VN', {
                   style: 'currency',
                   currency: 'VND',
                 })}
               </td>
               <td>
-                {parseInt(sp.gia_km).toLocaleString('vi-VN', {
+                {parseInt(sp.price_sale).toLocaleString('vi-VN', {
                   style: 'currency',
                   currency: 'VND',
                 })}
               </td>
-              <td>{sp.soluotxem}</td>
-              <td>{sp.anhien}</td>
-              <td>{sp.hot}</td>
+              <td>{sp.view}</td>
+              <td>{sp.quantity}</td>
               <td>
-                <Link to={`/edit/${sp.id_sp}`}>
+                <Link to={`/edit/${sp.id_pd}`}>
                   <span className="btn--show-modal">
                     <i className="fas fa-tools"></i>
                   </span>
@@ -108,7 +107,7 @@ const Shop = () => {
               <td>
                 <span
                   className="edit delete-living"
-                  onClick={() => xoaSP(sp.id_sp)}>
+                  onClick={() => xoaSP(sp.id_pd)}>
                   <i className="fas fa-trash-alt"></i>
                 </span>
               </td>
@@ -161,8 +160,8 @@ const Shop = () => {
               {listLoai.map((loai, i) => (
                 <option
                   key={i}
-                  value={loai.id_loai}>
-                  {loai.ten_loai}
+                  value={loai.id_cate}>
+                  {loai.name}
                 </option>
               ))}
             </select>
