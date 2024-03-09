@@ -187,11 +187,14 @@
   font-size: 13px;
   border-bottom: 1px solid var(--grey);
   text-align: center;
+  vertical-align: middle;
 }
 .content main .table-data .order table td {
   padding: 16px 0;
   text-align: center;
+  vertical-align: middle;
 }
+
 .content main .table-data .order table td a {
   color: var(--blue);
   font-size: 20px;
@@ -204,17 +207,13 @@
 .content main .table-data .order table td a:hover {
   color: var(--dark);
 }
-/* .content main .table-data .order table tr td:first-child {
-    display: flex;
-    align-items: center;
-    grid-gap: 12px;
-    padding-left: 6px;
-  } */
+
 .content main .table-data .order table td img {
   width: 80px;
   height: 80px;
   border-radius: 50%;
   object-fit: cover;
+  margin: 0 auto;
 }
 .content main .table-data .order table tbody tr:hover {
   background: var(--grey);
