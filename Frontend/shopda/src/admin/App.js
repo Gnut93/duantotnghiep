@@ -3,7 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./Components/Home/Home";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import Navbar from "./Components/Navbar/Navbar";
-
+import LoaiHang from "./Components/LoaiHang/LoaiHang";
+import Shop from "./Components/Shop/Shop";
+import NhapLieu from "./Components/NhapLieu/NhapLieu";
 function AppAdmin() {
     return (
         <div className="wapper">
@@ -12,11 +14,11 @@ function AppAdmin() {
             <main className="main">
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/admin/loaihang" element={<Home />} />
-                    <Route path="/admin/donhang" element={<Home />} />
-                    <Route path="/admin/nguoidung" element={<Home />} />
-                    <Route path="/admin/khohang" element={<Home />} />
-                    <Route path="/admin/nhaplieu" element={<Home />} />
+                    <Route path="/loaihang" element={<LoaiHang />} />
+                    <Route path="/donhang" element={<Home />} />
+                    <Route path="/nguoidung" element={<Home />} />
+                    <Route path="/khohang" element={<Shop />} />
+                    <Route path="/nhaplieu" element={<NhapLieu />} />
                     {/* Thêm các Route khác dành riêng cho phần quản trị ở đây */}
                 </Routes>
             </main>
