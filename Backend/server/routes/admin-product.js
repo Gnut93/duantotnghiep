@@ -31,9 +31,14 @@ router.post("/add", async (req, res) => {
 });
 
 //Sửa thông tin sản phẩm
-router.post("/edit", async (req, res) => {
+router.put("/edit/:id", async (req, res) => {
+    var id_pd = parseInt(req.params.id);
+    if (isNaN(id_pd) || id_pd < 1) {
+        res.json({ error: "ID không hợp lệ" });
+        return;
+    }
     try {
-        var { id_pd, name, description, price, price_sale, image1, image2, image3, quantity, id_cate } = req.body;
+        var { name, description, price, price_sale, image1, image2, image3, quantity, id_cate } = req.body;
         var sql = `UPDATE product SET name='${name}', description='${description}', price='${price}', price_sale='${price_sale}', image='${image1}', quantity='${quantity}', id_cate='${id_cate}' WHERE id_pd='${id_pd}'`;
         await queryDB(sql);
         await queryDB(`DELETE FROM image WHERE id_pd='${id_pd}'`);
@@ -47,9 +52,13 @@ router.post("/edit", async (req, res) => {
 });
 
 //Xóa sản phẩm
-router.post("/delete", async (req, res) => {
+router.delete("/delete/:id", async (req, res) => {
+    var id_pd = parseInt(req.params.id);
+    if (isNaN(id_pd) || id_pd < 1) {
+        res.json({ error: "ID không hợp lệ" });
+        return;
+    }
     try {
-        var id_pd = req.body.id_pd;
         await queryDB(`DELETE FROM product WHERE id_pd='${id_pd}'`);
         await queryDB(`DELETE FROM image WHERE id_pd='${id_pd}'`);
         res.json({ success: "Xóa sản phẩm thành công" });
