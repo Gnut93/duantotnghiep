@@ -12,6 +12,7 @@ var categoryRouter = require('./routes/category');
 var favoriteRouter = require('./routes/favorite');
 var billRouter = require('./routes/bill');
 var postRouter = require('./routes/post');
+var adminProductRouter = require('./routes/admin-product');
 
 var app = express();
 
@@ -33,6 +34,7 @@ app.use('/category', categoryRouter);
 app.use('/favorite', favoriteRouter);
 app.use('/bill', billRouter);
 app.use('/post', postRouter);
+app.use('/admin-products', adminProductRouter);
 
 
 // catch 404 and forward to error handler
