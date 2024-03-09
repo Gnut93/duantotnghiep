@@ -1,4 +1,4 @@
-.content main {
+/* .content main {
   width: 100%;
   padding: 36px 24px;
   font-family: var(--poppins);
@@ -94,12 +94,6 @@
 .content main .table-data .order table td span:hover {
   color: var(--dark);
 }
-/* .content main .table-data .order table tr td:first-child {
-    display: flex;
-    align-items: center;
-    grid-gap: 12px;
-    padding-left: 6px;
-  } */
 .content main .table-data .order table td img {
   width: 100px;
   height: 80px;
@@ -131,4 +125,4 @@
 .thanhphantrang1 .active a {
   background-color: var(--blue);
   color: #fff;
-}
+} */

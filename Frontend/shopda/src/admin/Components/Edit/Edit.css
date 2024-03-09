@@ -1,4 +1,4 @@
-.content main {
+/* .content main {
   width: 100%;
   padding: 36px 24px;
   font-family: var(--poppins);
@@ -34,7 +34,6 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 2.5rem;
-  /* margin-top: 20px; */
 }
 .tab-item {
   cursor: pointer;
@@ -150,12 +149,10 @@
   border: none;
   background-color: #eff1f9;
   border-radius: 5px;
-  /* font-family: "JetBrains Mono", sans-serif; */
 }
 .checkout-address-input input::placeholder,
 .checkout-address-input textarea::placeholder,
 .checkout-address-input select::placeholder {
-  /* font-family: "JetBrains Mono", sans-serif; */
   font-weight: 300;
   font-size: 14px;
   color: #aaabb8;
@@ -225,4 +222,4 @@
 .checkout-address-input #switch-loai:checked + .switch-form::before {
   left: calc(100% - (25px - 4px) - 2px);
   background: var(--blue);
-}
+} */
