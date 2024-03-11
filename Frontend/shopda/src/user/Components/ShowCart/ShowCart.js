@@ -96,6 +96,7 @@ const ShowCar = () => {
                       name="total-item"
                       className="input-number"
                       defaultValue={sp.soluong}
+                      min={0}
                       onClick={handleChangeQuantity(sp.id_pd)}
                     />
                   </td>

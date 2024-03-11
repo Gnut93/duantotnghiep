@@ -72,8 +72,9 @@ router.delete("/delete/:id", async (req, res) => {
         return;
     }
     try {
-        await queryDB(`DELETE FROM product WHERE id_pd='${id_pd}'`);
+        await queryDB(`DELETE FROM color WHERE id_pd='${id_pd}'`);
         await queryDB(`DELETE FROM image WHERE id_pd='${id_pd}'`);
+        await queryDB(`DELETE FROM product WHERE id_pd='${id_pd}'`);
         res.json({ success: "Xóa sản phẩm thành công" });
     } catch (err) {
         res.json({ error: err.message });

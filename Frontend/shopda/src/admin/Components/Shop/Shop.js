@@ -19,12 +19,12 @@ const Shop = () => {
     }, []);
     const xoaSP = (id) => {
         if (window.confirm("Xóa sản phẩm không?")) {
-            fetch(`http://localhost:4000/delete/${id}`, {
+            fetch(`http://localhost:4000/admin-products/delete/${id}`, {
                 method: "DELETE",
             })
                 .then((res) => res.json())
-                .then(() => {
-                    alert("Đã xóa sản phẩm thành công");
+                .then((data) => {
+                    // console.log(`Server response: ${JSON.stringify(data)}`);
                     fetch("http://localhost:4000/products/list")
                         .then((res) => res.json())
                         .then((data) => setListSP(data))
@@ -38,6 +38,7 @@ const Shop = () => {
                 .catch((error) => console.error("Lỗi xóa sản phẩm:", error));
         }
     };
+    
 
     const handleLoaiChange = useCallback((event) => {
         setSelectedLoai(event.target.value);

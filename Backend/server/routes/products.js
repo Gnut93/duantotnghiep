@@ -40,15 +40,32 @@ router.get('/list/view/:sosp?', (req, res) => {
     else res.json(data);
   });
 });
-//Lấy danh sách loại sản phẩm
-router.get('/listcategory', (req, res) => {
-  var sql = `SELECT * FROM category`;
+
+//Tăng view sau mỗi lượt nhấp vô sản phẩm
+router.put('/view/:id', (req, res) => {
+  var id = parseInt(req.params.id);
+  if (isNaN(id) || id < 1) {
+    res.json({ error: 'ID không hợp lệ' });
+    return;
+  }
+
+  var sql = `UPDATE product SET view = view + 1 WHERE id_pd = '${id}'`;
   db.query(sql, (err, result) => {
     if (err) {
-      res.json({ error: 'Khong tim thay san pham' });
+      res.json({ error: 'Lỗi tăng view' });
     } else {
-      res.json(result);
+      res.json({ success: 'Tăng view thành công' });
     }
+  });
+});
+
+//Tìm sản phẩm theo tên
+router.get("/search/:keyword", (req, res) => {
+  var keyword = req.params.keyword;
+  var sql = `SELECT * FROM product WHERE name LIKE ?`;
+  db.query(sql, `%${keyword}%`, (err, result) => {
+      if (err) res.json({ "thongbao" : "Lỗi truy vấn CSDL", error: err.message });
+      else res.json(result);
   });
 });
 
