@@ -63,5 +63,33 @@ router.delete("/delete/:id", async (req, res) => {
     }
 });
 
+//Thêm ảnh sản phẩm
+router.post("/add-image", async (req, res) => {
+    try {
+        var { id_pd, names } = req.body; // 'names' là một mảng các màu
+        for (let name of names) {
+            var sql = `INSERT INTO image (id_pd, name) VALUES ('${id_pd}', '${name}')`;
+            await queryDB(sql);
+        }
+        res.json({ success: "Thêm ảnh sản phẩm thành công" });
+    } catch (err) {
+        res.json({ error: err.message });
+    }
+});
+
+//Thêm màu sản phẩm
+router.post("/add-color", async (req, res) => {
+    try {
+        var { id_pd, colors } = req.body; // 'colors' là một mảng các đối tượng, mỗi đối tượng chứa một màu và mã màu
+        for (let color of colors) {
+            var sql = `INSERT INTO color (id_pd, name, code) VALUES ('${id_pd}', '${color.name}', '${color.code}')`;
+            await queryDB(sql);
+        }
+        res.json({ success: "Thêm màu sản phẩm thành công" });
+    } catch (err) {
+        res.json({ error: err.message });
+    }
+});
+
 
 module.exports = router;
