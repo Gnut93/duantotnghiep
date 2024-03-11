@@ -10,23 +10,21 @@ const ShowCar = () => {
 
   const handleRemoveItem = useCallback(
     (id) => () => {
-      dispatch(xoaSP([id]));
+      dispatch(xoaSP(id));
     },
     [dispatch]
   );
 
   const handleChangeQuantity = useCallback(
     (id) => (e) => {
-      dispatch(suaSL([id, e.target.value]));
+      const newQuantity = parseInt(e.target.value, 10) || 0;
+      dispatch(suaSL([id, newQuantity]));
     },
     [dispatch]
   );
 
   const subTotal = useMemo(() => {
-    return cart.reduce(
-      (total, sp) => total + parseInt(sp.price_sale * sp.soluong),
-      0
-    );
+    return cart.reduce((total, sp) => total + sp.price_sale * sp.soluong, 0);
   }, [cart]);
 
   if (cart.length === 0) {
