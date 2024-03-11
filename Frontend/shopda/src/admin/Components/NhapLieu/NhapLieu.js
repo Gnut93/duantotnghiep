@@ -1,74 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './NhapLieu.css';
+import NhapSP from './NhapSP/NhapSP';
+import NhapLoai from './NhapLoai/NhapLoai';
+import NhapMau from './NhapMau/NhapMau';
+import NhapHinh from './NhapHinh/NhapHinh';
+import NhapDiscout from './NhapDiscout/NhapDiscout';
 
 const NhapLieu = () => {
-  let sp = {};
-  let spct = {};
-  let loai = {};
-  const submitSanPham = async () => {
-    try {
-      const url = 'http://localhost:4000/adminsp';
-      const opt = {
-        method: 'post',
-        body: JSON.stringify(sp),
-        headers: { 'Content-Type': 'application/json' },
-      };
-      const res = await fetch(url, opt);
-      const data = await res.json();
-      const id_sp = data.id_sp;
-      await luuChiTietSanPham(id_sp);
-      document.getElementById('laptop-name').value = '';
-      document.getElementById('laptop-gia').value = '';
-      document.getElementById('laptop-km').value = '';
-      document.getElementById('avatar').value = '';
-      document.getElementById('laptop-ram').value = '';
-      document.getElementById('laptop-cpu').value = '';
-      document.getElementById('laptop-rom').value = '';
-      document.getElementById('laptop-kg').value = '';
-      document.getElementById('laptop-mau').value = '';
-      alert('Đã thêm sản phẩm');
-    } catch (error) {
-      console.error('Lỗi khi thêm sản phẩm: ', error);
-    }
-  };
-  const luuChiTietSanPham = async (id_sp) => {
-    try {
-      const url = 'http://localhost:4000/adminsp/spct';
-      const t = { id_sp: id_sp };
-      const chiTiet = { ...t, ...spct };
-      console.log(chiTiet);
-      const res = await fetch(url, {
-        method: 'post',
-        body: JSON.stringify(chiTiet),
-        headers: { 'Content-Type': 'application/json' },
-      });
-      const data = await res.json();
-      return data;
-    } catch (error) {
-      console.error('Lỗi khi lưu chi tiết sản phẩm: ', error);
-    }
-  };
-  const themLoai = async () => {
-    try {
-      const url = 'http://localhost:4000/adminsp/loai';
-      const opt = {
-        method: 'post',
-        body: JSON.stringify(loai),
-        headers: { 'Content-Type': 'application/json' },
-      };
-      const res = await fetch(url, opt);
-      const data = await res.json();
-      alert('Đã thêm Loại', data);
-    } catch (error) {
-      console.error('Lỗi khi thêm sản phẩm: ', error);
-    }
-  };
-  const [listLoai, ganListLoai] = useState([]);
-  useEffect(() => {
-    fetch('http://localhost:4000/adminsp/loai/sp')
-      .then((res) => res.json())
-      .then((data) => ganListLoai(data));
-  }, []);
   useEffect(() => {
     const tabBlock = document.querySelectorAll('.tab-block');
     const handleTabClick = (e) => {
@@ -112,162 +50,48 @@ const NhapLieu = () => {
                 data-tab="2">
                 Thêm loại hàng
               </div>
+              <div
+                className="tab-block"
+                data-tab="3">
+                Hình ảnh chi tiết
+              </div>
+              <div
+                className="tab-block"
+                data-tab="4">
+                Mã màu
+              </div>
+              <div
+                className="tab-block"
+                data-tab="5">
+                Mã giảm giá
+              </div>
             </div>
           </div>
         </div>
         <div
           className="tab-additional active"
           data-tab="1">
-          <div className="checkout-address">
-            <h3 className="checkout-address-title">
-              <span>Thêm sản phẩm</span>
-            </h3>
-            <div className="checkout-address-box">
-              <form className="product">
-                <div className="checkout-address-list">
-                  <div className="checkout-address-item">
-                    <div className="checkout-address-input">
-                      <label>Tên sản phẩm</label> <br />
-                      <input
-                        type="text"
-                        placeholder="Tên Sản Phẩm"
-                        name="name"
-                        id="laptop-name"
-                        onChange={(e) => (sp.ten_sp = e.target.value)}
-                      />
-                    </div>
-                    <div className="checkout-address-input">
-                      <label>Giá gốc</label> <br />
-                      <input
-                        type="number"
-                        placeholder="VNĐ"
-                        name="sale"
-                        id="laptop-gia"
-                        onChange={(e) => (sp.gia = e.target.value)}
-                      />
-                    </div>
-                    <div className="checkout-address-input">
-                      <label>Giá khuyến mãi</label> <br />
-                      <input
-                        type="number"
-                        placeholder="VNĐ"
-                        name="price"
-                        id="laptop-km"
-                        onChange={(e) => (sp.gia_km = e.target.value)}
-                      />
-                    </div>
-                    <div className="checkout-address-input">
-                      <label>Loại Hàng</label> <br />
-                      <select
-                        name="cate"
-                        className="option-cate"
-                        onChange={(e) => (sp.id_loai = e.target.value)}>
-                        {listLoai.map((loai, i) => (
-                          <option
-                            key={i}
-                            value={loai.id_loai}>
-                            {loai.ten_loai}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-                  <div className="checkout-address-item">
-                    <div className="checkout-address-input">
-                      <label>Số lượng</label> <br />
-                      <input
-                        type="text"
-                        placeholder="Ram"
-                        name="ram"
-                        id="laptop-ram"
-                        onChange={(e) => (spct.RAM = e.target.value)}
-                      />
-                    </div>
-                    <div className="checkout-address-input">
-                      <label>Hình Ảnh</label> <br />
-                      <input
-                        type="text"
-                        name="image"
-                        id="avatar"
-                        accept="image/*"
-                        onChange={(e) => (sp.hinh = e.target.value)}
-                      />
-                    </div>
-                    <div className="checkout-address-input">
-                      <label>Mô tả</label> <br />
-                      <input
-                        type="text"
-                        placeholder="i5,i7,i9"
-                        name="cpu"
-                        id="laptop-cpu"
-                        onChange={(e) => (spct.CPU = e.target.value)}
-                      />
-                    </div>
-                    <div className="checkout-address-input">
-                      <input
-                        type="button"
-                        value="Thêm"
-                        className="submit"
-                        name="insert"
-                        onClick={() => submitSanPham()}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
+          <NhapSP></NhapSP>
         </div>
         <div
           className="tab-additional"
           data-tab="2">
-          <div className="checkout-address">
-            <h3 className="checkout-address-title">
-              <span>Thêm loại</span>
-            </h3>
-            <div className="checkout-address-box">
-              <form
-                className="category"
-                autocomplete="off">
-                <div className="checkout-address-list">
-                  <div className="checkout-address-item">
-                    <div className="checkout-address-input">
-                      <label>Tên loại</label> <br />
-                      <input
-                        type="text"
-                        placeholder="Name"
-                        name="name_cate"
-                        onChange={(e) => (loai.ten_loai = e.target.value)}
-                      />
-                      <p className="err"></p>
-                    </div>
-                    <div className="checkout-address-input">
-                      <label>Ẩn/Hiện</label> <br />
-                      <input
-                        type="checkbox"
-                        id="switch-loai"
-                        hidden
-                        onChange={(e) =>
-                          (loai.anhien = e.target.checked ? 1 : 0)
-                        }
-                      />
-                      <label
-                        for="switch-loai"
-                        className="switch-form"></label>
-                    </div>
-                    <div className="checkout-address-input">
-                      <button
-                        type="button"
-                        className="submit"
-                        onClick={() => themLoai()}>
-                        Thêm
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
+          <NhapLoai></NhapLoai>
+        </div>
+        <div
+          className="tab-additional"
+          data-tab="4">
+          <NhapMau></NhapMau>
+        </div>
+        <div
+          className="tab-additional"
+          data-tab="3">
+          <NhapHinh></NhapHinh>
+        </div>
+        <div
+          className="tab-additional"
+          data-tab="5">
+          <NhapDiscout></NhapDiscout>
         </div>
       </main>
     </section>
