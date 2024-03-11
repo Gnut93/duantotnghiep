@@ -11,8 +11,8 @@ const nodemailer = require('nodemailer');
 router.get('/info', (req, res) => {
   var email = req.body.email;
 
-  var sql = `SELECT * FROM user where email = '${email}'`;
-  db.query(sql, (err, result) => {
+  var sql = `SELECT * FROM user WHERE email = ?`;
+  db.query(sql, [email], (err, result) => {
     if (err) {
       res.json({ error: 'Khong tim thay user' });
     } else {
@@ -112,7 +112,8 @@ async function checkUserPass(email, password) {
 getUserInfo = async (email) => {
   return new Promise((resolve, reject) => {
     db.query(
-      `SELECT * FROM user WHERE email='${email}'`,
+      `SELECT * FROM user WHERE email=?`,
+      [email],
       function (err, result) {
         if (err) {
           reject(err);
@@ -126,6 +127,7 @@ getUserInfo = async (email) => {
     return { error: 'Lỗi lấy thông tin user' };
   });
 };
+
 
 //Đổi mật khẩu
 router.post('/change-password', async (req, res) => {

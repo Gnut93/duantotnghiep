@@ -16,7 +16,7 @@ const ViewProduct = () => {
   return (
     <section className="view">
       <div className="container">
-        <h3 className="related-heading">Sản Phẩm Được Nem Nhiều</h3>
+        <h3 className="related-heading">Sản Phẩm Được Xem Nhiều</h3>
         <div className="related-product">
           {sp.map((item, i) => (
             <div
