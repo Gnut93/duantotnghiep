@@ -59,15 +59,13 @@ router.put('/view/:id', (req, res) => {
   });
 });
 
-//Lấy danh sách loại sản phẩm
-router.get('/listcategory', (req, res) => {
-  var sql = `SELECT * FROM category`;
-  db.query(sql, (err, result) => {
-    if (err) {
-      res.json({ error: 'Khong tim thay san pham' });
-    } else {
-      res.json(result);
-    }
+//Tìm sản phẩm theo tên
+router.get("/search/:keyword", (req, res) => {
+  var keyword = req.params.keyword;
+  var sql = `SELECT * FROM product WHERE name LIKE ?`;
+  db.query(sql, `%${keyword}%`, (err, result) => {
+      if (err) res.json({ "thongbao" : "Lỗi truy vấn CSDL", error: err.message });
+      else res.json(result);
   });
 });
 
