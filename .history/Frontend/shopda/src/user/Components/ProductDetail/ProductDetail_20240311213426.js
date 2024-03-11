@@ -3,8 +3,7 @@ import "./ProductDetail.css";
 import RelatedProduct from "../RelatedProduct/RelatedProduct";
 import { useParams } from "react-router-dom";
 import ViewProduct from "../ViewProduct/ViewProduct";
-import { useDispatch } from "react-redux";
-import { themSP } from "../cartSlice";
+
 
 const ProductDetail = () => {
   let { id_pd } = useParams();
@@ -23,7 +22,6 @@ const ProductDetail = () => {
       .then((data) => setSPLQ(data));
   }, [id_pd]);
   console.log(sp.id_cate);
-  const dispatch = useDispatch();
 
   return (
     <section className="detail">
@@ -84,8 +82,14 @@ const ProductDetail = () => {
                 </button>
               </div>
             </div>
-            <button className="detail-add" onClick={() => dispatch(themSP(sp))}>
-              Thêm vào giỏ hàng
+            <button className="detail-add">
+              {" "}
+              <span
+                className="products-social-link cart"
+                onClick={() => dispatch(themSP(item))}
+              >
+                <i className="fas fa-cart-plus">Thêm vào giỏ hàng</i>
+              </span>
             </button>
             <p className="detail-desc">{sp.description}</p>
           </div>

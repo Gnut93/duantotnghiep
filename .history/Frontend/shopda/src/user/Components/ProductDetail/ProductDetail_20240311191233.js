@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
-import "./ProductDetail.css";
-import RelatedProduct from "../RelatedProduct/RelatedProduct";
-import { useParams } from "react-router-dom";
-import ViewProduct from "../ViewProduct/ViewProduct";
-import { useDispatch } from "react-redux";
-import { themSP } from "../cartSlice";
+import React, { useEffect, useState } from 'react';
+import './ProductDetail.css';
+import RelatedProduct from '../RelatedProduct/RelatedProduct';
+import { useParams } from 'react-router-dom';
+import ViewProduct from '../ViewProduct/ViewProduct';
 
 const ProductDetail = () => {
   let { id_pd } = useParams();
@@ -15,15 +13,14 @@ const ProductDetail = () => {
     fetch(`http://localhost:4000/products/info/${id_pd}`)
       .then((res) => res.json())
       .then((data) => setSP(data));
-    fetch("http://localhost:4000/products/image/" + id_pd)
+    fetch('http://localhost:4000/products/image/' + id_pd)
       .then((res) => res.json())
       .then((data) => setHinhSPCT(data));
-    fetch("http://localhost:4000/products/color/" + id_pd)
+    fetch('http://localhost:4000/products/color/' + id_pd)
       .then((res) => res.json())
       .then((data) => setSPLQ(data));
   }, [id_pd]);
   console.log(sp.id_cate);
-  const dispatch = useDispatch();
 
   return (
     <section className="detail">
@@ -31,7 +28,11 @@ const ProductDetail = () => {
         <div className="detail-content">
           <div className="detael-image">
             {image.map((item, i) => (
-              <img key={i} src={item.name} alt="" />
+              <img
+                key={i}
+                src={item.name}
+                alt=""
+              />
             ))}
           </div>
           <div className="detail-info">
@@ -39,20 +40,20 @@ const ProductDetail = () => {
             <div className="detail-price">
               <div className="detail-price-item">
                 <span>
-                  {parseInt(sp.price_sale).toLocaleString("vi-VN", {
-                    style: "currency",
-                    currency: "VND",
+                  {parseInt(sp.price_sale).toLocaleString('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND',
                   })}
                 </span>
                 <del>
-                  {parseInt(sp.price).toLocaleString("vi-VN", {
-                    style: "currency",
-                    currency: "VND",
+                  {parseInt(sp.price).toLocaleString('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND',
                   })}
                 </del>
               </div>
               <p className="detail-status">
-                {(sp.quantity = 0 ? "Hết hàng" : "Còn hàng")}
+                {(sp.quantity = 0 ? 'Hết hàng' : 'Còn hàng')}
               </p>
             </div>
             <div className="detail-color">
@@ -62,8 +63,7 @@ const ProductDetail = () => {
                   <div
                     key={i}
                     className="detail-color-item"
-                    style={{ backgroundColor: `${item.code}` }}
-                  ></div>
+                    style={{ backgroundColor: `${item.code}` }}></div>
                 ))}
               </div>
             </div>
@@ -84,9 +84,7 @@ const ProductDetail = () => {
                 </button>
               </div>
             </div>
-            <button className="detail-add" onClick={() => dispatch(themSP(sp))}>
-              Thêm vào giỏ hàng
-            </button>
+            <button className="detail-add">Thêm vào giỏ hàng</button>
             <p className="detail-desc">{sp.description}</p>
           </div>
         </div>

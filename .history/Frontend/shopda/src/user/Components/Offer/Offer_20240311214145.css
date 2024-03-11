@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 70px;
+  margin-bottom: 50px;
 }
 
 .wrapper .right {
@@ -26,7 +26,7 @@
   width: 40%;
   padding: 10px 20px;
   border: none;
-  background-color: #ee6436ea;
+  background-color: ##A0DAB4;
   color: white;
   font-size: 20px;
   cursor: pointer;
@@ -54,9 +54,4 @@
 .wrapper .left img:hover {
   transform: scale(1.05); /* Phóng to hình ảnh khi hover */
   opacity: 0.8; /* Điều chỉnh độ mờ */
-}
-.video {
-  width: 100%;
-
-  margin-bottom: 50px;
 }

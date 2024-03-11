@@ -26,7 +26,7 @@
   width: 40%;
   padding: 10px 20px;
   border: none;
-  background-color: #ee6436ea;
+  background-color: #a0dab4;
   color: white;
   font-size: 20px;
   cursor: pointer;
@@ -56,7 +56,5 @@
   opacity: 0.8; /* Điều chỉnh độ mờ */
 }
 .video {
-  width: 100%;
-
-  margin-bottom: 50px;
+    
 }

@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 70px;
+  margin-bottom: 50px;
 }
 
 .wrapper .right {
@@ -26,15 +26,13 @@
   width: 40%;
   padding: 10px 20px;
   border: none;
-  background-color: #ee6436ea;
+  background-color: #ff523b;
   color: white;
   font-size: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out; /* Hiệu ứng chuyển đổi */
 }
-.wrapper .right button:hover {
-  background-color: #ffffff; /* Đổi màu nền khi hover */
-}
+.wrapper .right button
 
 .wrapper .left {
   width: 50%;
@@ -54,9 +52,4 @@
 .wrapper .left img:hover {
   transform: scale(1.05); /* Phóng to hình ảnh khi hover */
   opacity: 0.8; /* Điều chỉnh độ mờ */
-}
-.video {
-  width: 100%;
-
-  margin-bottom: 50px;
 }

@@ -84,8 +84,19 @@ const ProductDetail = () => {
                 </button>
               </div>
             </div>
-            <button className="detail-add" onClick={() => dispatch(themSP(sp))}>
-              Thêm vào giỏ hàng
+            <button className="detail-add">
+              <button className="detail-add">
+                <span
+                  className="products-social-link cart"
+                  onClick={() => dispatch(themSP(sp))}
+                >
+                  <i className="fas fa-cart-plus"></i> Thêm vào giỏ hàng
+                </span>
+              </button>
+              ...
+              <p className="detail-status">
+                {sp.quantity === 0 ? "Hết hàng" : "Còn hàng"}
+              </p>
             </button>
             <p className="detail-desc">{sp.description}</p>
           </div>
