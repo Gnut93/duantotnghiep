@@ -1,29 +1,71 @@
-import React from 'react';
-// import { GoogleLogin } from 'react-google-login';
+import React, {useRef} from 'react';
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { dalogin } from "./authSlice";
 import './LoginPage.css';
 
-const LoginPage = () => {
-  // const hàmChạyKhiThànhCông = (response) => {};
-  // const hàmChạyKhiThấtBại = (response) => {};
+const LoginPage = () => { 
+  const email = useRef();
+    const password = useRef();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-  // const [dangNhapChua, ganTrangThaiDangNhap] = useState(false);
-  // const [userInfo, ganuserInfo] = useState({
-  //   tokenId: '',
-  //   hoten: '',
-  //   email: '',
-  // });
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const data = {
+            email: email.current.value,
+            password: password.current.value,
+        };
+        if (data.email === "") {
+            alert("Vui lòng nhập email");
+            return;
+        }
+        if (data.password === "") {
+            alert("Vui lòng nhập password");
+            return;
+        }
+        console.log(data);
+        try {
+            const response = await fetch('http://localhost:4000/users/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+            const result = await response.json();
+            console.log(result);
+            if (response.ok) {
+                // The login request was successful
+                dispatch(dalogin(result));
+                // alert(result.userInfo.role)
+                // navigate("/");
+                if (parseInt(result.userInfo.role) === 1) {
+                    navigate("/admin");
+                } else {
+                    navigate("/");
+                }
+            } else {
+                // The login request failed
+                alert(result.thongbao);
+            }
+        } catch (error) {
+            console.log(error);
+            alert(error.message);
+        }
+    }
 
   return (
     <div className="login-wrapper">
       <div className="form-container">
         <p className="title">Chào mừng</p>
-        <form className="form">
+        <form className="form" onSubmit={handleSubmit}>
           <input
+            ref={email}
             type="email"
             className="input"
             placeholder="Email"
           />
           <input
+            ref={password}
             type="password"
             className="input"
             placeholder="Password"
