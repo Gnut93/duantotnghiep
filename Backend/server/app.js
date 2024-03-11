@@ -16,6 +16,7 @@ var adminProductRouter = require('./routes/admin-product');
 var adminPost = require('./routes/admin-post');
 var adminCategory = require('./routes/admin-category');
 var adminGiftCode = require('./routes/admin-giftcode');
+var customRouter = require('./routes/custom');
 
 var app = express();
 
@@ -41,6 +42,7 @@ app.use('/admin-products', adminProductRouter);
 app.use('/admin-post', adminPost);
 app.use('/admin-category', adminCategory);
 app.use('/admin-giftcode', adminGiftCode);
+app.use('/custom', customRouter);
 
 
 // catch 404 and forward to error handler
