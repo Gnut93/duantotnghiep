@@ -40,6 +40,25 @@ router.get('/list/view/:sosp?', (req, res) => {
     else res.json(data);
   });
 });
+
+//Tăng view sau mỗi lượt nhấp vô sản phẩm
+router.put('/view/:id', (req, res) => {
+  var id = parseInt(req.params.id);
+  if (isNaN(id) || id < 1) {
+    res.json({ error: 'ID không hợp lệ' });
+    return;
+  }
+
+  var sql = `UPDATE product SET view = view + 1 WHERE id_pd = '${id}'`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      res.json({ error: 'Lỗi tăng view' });
+    } else {
+      res.json({ success: 'Tăng view thành công' });
+    }
+  });
+});
+
 //Lấy danh sách loại sản phẩm
 router.get('/listcategory', (req, res) => {
   var sql = `SELECT * FROM category`;
