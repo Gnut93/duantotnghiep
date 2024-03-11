@@ -57,13 +57,6 @@ const Navbar = () => {
                 Order theo sở thích
               </Link>
             </li>
-            <li className="menu-item">
-              <Link
-                href="/"
-                className="menu-link">
-                Tin tức
-              </Link>
-            </li>
           </ul>
           <ul className="menu-list icon">
             <li className="menu-item">

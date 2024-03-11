@@ -18,6 +18,10 @@
   padding: 25px 20px;
   border: 1px solid #000000;
 }
+
+.checkout-address-heding {
+  margin-bottom: 20px;
+}
 .checkout-address-form {
   display: grid;
   grid-template-columns: repeat(3, 2fr);

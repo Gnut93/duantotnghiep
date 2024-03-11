@@ -1,13 +1,47 @@
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { suaSL, xoaSP } from '../cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { suaSL, xoaSP } from '../cartSlice';
 import './Showcart.css';
 
 const ShowCar = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.listSP);
-  let subTotal = 0;
+
+  const handleRemoveItem = useCallback(
+    (id) => () => {
+      dispatch(xoaSP([id]));
+    },
+    [dispatch]
+  );
+
+  const handleChangeQuantity = useCallback(
+    (id) => (e) => {
+      dispatch(suaSL([id, e.target.value]));
+    },
+    [dispatch]
+  );
+
+  const subTotal = useMemo(() => {
+    return cart.reduce(
+      (total, sp) => total + parseInt(sp.price_sale * sp.soluong),
+      0
+    );
+  }, [cart]);
+
+  if (cart.length === 0) {
+    return (
+      <div className="container">
+        <h3 className="cart-heading">Giỏ Hàng Trống</h3>
+        <Link
+          to="/shop"
+          className="cart-comback">
+          Mua hàng
+        </Link>
+      </div>
+    );
+  }
+
   return (
     <section className="cart">
       <div className="container">
@@ -30,63 +64,58 @@ const ShowCar = () => {
               </tr>
             </thead>
             <tbody className="cart-product">
-              {cart.map((sp, index) => {
-                subTotal += parseInt(sp.price_sale * sp.soluong);
-                return (
-                  <tr
-                    className="item"
-                    key={index}>
-                    <td onClick={() => dispatch(xoaSP([sp.id_pd]))}>
-                      <span className="cart-remove">
-                        <i className="fas fa-times icon"></i>
+              {cart.map((sp, index) => (
+                <tr
+                  className="item"
+                  key={index}>
+                  <td onClick={handleRemoveItem(sp.id_pd)}>
+                    <span className="cart-remove">
+                      <i className="fas fa-times icon"></i>
+                    </span>
+                  </td>
+                  <td>
+                    <img
+                      src={sp.image}
+                      alt={sp.name}
+                    />
+                  </td>
+                  <td>
+                    <h5>{sp.name}</h5>
+                  </td>
+                  <td>
+                    <h5>
+                      <span>
+                        {parseInt(sp.price_sale).toLocaleString('vi-VN', {
+                          style: 'currency',
+                          currency: 'VND',
+                        })}
                       </span>
-                    </td>
-                    <td>
-                      <img
-                        src={sp.image}
-                        alt={sp.name}
-                      />
-                    </td>
-                    <td>
-                      <h5>{sp.name}</h5>
-                    </td>
-                    <td>
-                      <h5>
-                        <span>
-                          {parseInt(sp.price_sale).toLocaleString('vi-VN', {
+                    </h5>
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      name="total-item"
+                      className="input-number"
+                      defaultValue={sp.soluong}
+                      onClick={handleChangeQuantity(sp.id_pd)}
+                    />
+                  </td>
+                  <td>
+                    <h5>
+                      <span>
+                        {parseInt(sp.price_sale * sp.soluong).toLocaleString(
+                          'vi-VN',
+                          {
                             style: 'currency',
                             currency: 'VND',
-                          })}
-                        </span>
-                      </h5>
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        name="total-item"
-                        className="input-number"
-                        defaultValue={sp.soluong}
-                        onClick={(e) =>
-                          dispatch(suaSL([sp.id_pd, e.target.value]))
-                        }
-                      />
-                    </td>
-                    <td>
-                      <h5>
-                        <span>
-                          {parseInt(sp.price_sale * sp.soluong).toLocaleString(
-                            'vi-VN',
-                            {
-                              style: 'currency',
-                              currency: 'VND',
-                            }
-                          )}
-                        </span>
-                      </h5>
-                    </td>
-                  </tr>
-                );
-              })}
+                          }
+                        )}
+                      </span>
+                    </h5>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
           <div className="cart-pay">

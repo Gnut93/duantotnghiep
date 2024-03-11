@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './RelatedProduct.css';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { themSP } from '../cartSlice';
 
 const RelatedProduct = ({ id = '' }) => {
   const [sp, setSP] = useState([]);
+  const dispatch = useDispatch();
   useEffect(() => {
     fetch(`http://localhost:4000/products/list/category/${id}`)
       .then((res) => res.json())
@@ -34,7 +37,9 @@ const RelatedProduct = ({ id = '' }) => {
                       </Link>
                     </li>
                     <li className="products-social-item">
-                      <span className="products-social-link cart">
+                      <span
+                        className="products-social-link cart"
+                        onClick={() => dispatch(themSP(item))}>
                         <i className="fas fa-cart-plus"></i>
                       </span>
                     </li>

@@ -83,7 +83,7 @@ const Checkout = () => {
               <Link
                 to="/checkout"
                 className="cart-pay-next">
-                Tiếp tục
+                Đặt hàng
               </Link>
             </div>
           </div>

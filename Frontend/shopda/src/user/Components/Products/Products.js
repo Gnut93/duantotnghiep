@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { Link, useParams } from 'react-router-dom';
 import './Products.css';
+import { themSP } from '../cartSlice';
+import { useDispatch } from 'react-redux';
 
 const Products = () => {
   let { id_cate } = useParams();
-
+  const dispatch = useDispatch();
   const [sp, setSP] = useState([]);
   const [loai, setLoai] = useState([]);
   useEffect(() => {
@@ -39,7 +41,9 @@ const Products = () => {
                     </Link>
                   </li>
                   <li className="products-social-item">
-                    <span className="products-social-link cart">
+                    <span
+                      className="products-social-link cart"
+                      onClick={() => dispatch(themSP(sp))}>
                       <i className="fas fa-cart-plus"></i>
                     </span>
                   </li>
