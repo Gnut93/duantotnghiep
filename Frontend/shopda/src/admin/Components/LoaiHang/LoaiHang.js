@@ -8,6 +8,24 @@ const LoaiHang = () => {
             .then((res) => res.json())
             .then(setListLoai);
     }, []);
+    const xoaLoai = (id) => {
+        if (window.confirm("Xóa Loại không?")) {
+            fetch(`http://localhost:4000/admin-category/delete/${id}`, {
+                method: "DELETE",
+            })
+                .then((res) => res.json())
+                .then(() => {
+                    alert("Đã xóa Loại thành công");
+                    fetch("http://localhost:4000/category/list")
+                        .then((res) => res.json())
+                        .then((data) => setListLoai(data))
+                        .catch((error) =>
+                            console.error("Lỗi cập nhật danh sách Loại:", error)
+                        );
+                })
+                .catch((error) => console.error("Lỗi xóa loại:", error));
+        }
+    };
     return (
         <section className="content">
             <main>
@@ -47,7 +65,12 @@ const LoaiHang = () => {
                                             </span>
                                         </td>
                                         <td>
-                                            <span class="edit delete-cate">
+                                            <span
+                                                class="edit delete-cate"
+                                                onClick={() =>
+                                                    xoaLoai(loai.id_cate)
+                                                }
+                                            >
                                                 <i class="fas fa-trash-alt"></i>
                                             </span>
                                         </td>
