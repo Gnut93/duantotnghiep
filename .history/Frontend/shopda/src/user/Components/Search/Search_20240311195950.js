@@ -9,12 +9,11 @@ import "../Products/Products.css";
 function Search() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [showResults, setShowResults] = useState(false); // Thêm state để kiểm soát việc hiển thị kết quả
+  const [showResults, setShowResults] = useState(false);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // Fetch danh sách sản phẩm từ API khi component được render
     fetch("http://localhost:4000/products/list")
       .then((res) => res.json())
       .then((data) => {
@@ -22,24 +21,27 @@ function Search() {
       });
   }, []);
 
-  // Hàm xử lý khi người dùng thay đổi giá trị tìm kiếm
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
-    // Nếu giá trị tìm kiếm không rỗng, hiển thị kết quả tìm kiếm
     setShowResults(event.target.value !== "");
   };
 
-  // Hàm xử lý khi người dùng nhấn nút tìm kiếm
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Lọc danh sách sản phẩm dựa trên giá trị tìm kiếm
     const filteredResults = searchResults.filter((product) =>
       product.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    // Hiển thị danh sách sản phẩm phù hợp
     setSearchResults(filteredResults);
-    setShowResults(true); // Hiển thị kết quả tìm kiếm
+    setShowResults(true);
   };
+
+  // Đưa việc cập nhật `searchResults` vào useEffect để nó được thực hiện mỗi khi `searchTerm` thay đổi
+  useEffect(() => {
+    const filteredResults = searchResults.filter((product) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setSearchResults(filteredResults);
+  }, [searchTerm]);
 
   return (
     <div className="search">
@@ -55,7 +57,6 @@ function Search() {
           <i className="fa fa-search"></i>
         </button>
       </form>
-      {/* Hiển thị kết quả tìm kiếm chỉ khi showResults là true */}
       {showResults && (
         <div className="search-results">
           {searchResults.map((product, index) => (

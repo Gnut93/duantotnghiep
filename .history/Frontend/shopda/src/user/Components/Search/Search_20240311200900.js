@@ -29,9 +29,22 @@ function Search() {
     setShowResults(event.target.value !== "");
   };
 
-  // Hàm xử lý khi người dùng nhấn nút tìm kiếm
-  const handleSubmit = (event) => {
-    event.preventDefault();
+// Hàm xử lý khi người dùng nhấn nút tìm kiếm
+const handleSubmit = (event) => {
+  event.preventDefault();
+  // Fetch lại danh sách sản phẩm từ API dựa trên giá trị tìm kiếm
+  fetch(`http://localhost:4000/products/search?term=${searchTerm}`)
+    .then((res) => res.json())
+    .then((data) => {
+      // Cập nhật danh sách sản phẩm phù hợp với kết quả tìm kiếm
+      setSearchResults(data);
+      // Hiển thị kết quả tìm kiếm
+      setShowResults(true);
+    })
+    .catch((error) => {
+      console.error("Error fetching search results:", error);
+    });
+};
     // Lọc danh sách sản phẩm dựa trên giá trị tìm kiếm
     const filteredResults = searchResults.filter((product) =>
       product.name.toLowerCase().includes(searchTerm.toLowerCase())
