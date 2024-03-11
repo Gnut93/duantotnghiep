@@ -48,22 +48,22 @@ const Footer = () => {
             <h4>online shop</h4>
             <ul>
               <li>
-                <Link to="#">Túi xách</Link>
+                <Link to="/cate/2">Túi xách</Link>
               </li>
               <li>
-                <Link to="#">Túi du lịch</Link>
+                <Link to="/cate/3">Túi du lịch</Link>
               </li>
               <li>
-                <Link to="#">Balo</Link>
+                <Link to="/cate/5">Balo</Link>
               </li>
               <li>
-                <Link to="#">Bóp-Ví</Link>
+                <Link to="/cate/1">Bóp-Ví</Link>
               </li>
               <li>
-                <Link to="#">Dây nịch</Link>
+                <Link to="/cate/4">Dây nịt / Thắt lưng</Link>
               </li>
               <li>
-                <Link to="#">Phụ kiện khác</Link>
+                <Link to="/cate/6">Phụ kiện khác</Link>
               </li>
             </ul>
           </div>
