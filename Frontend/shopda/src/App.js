@@ -8,6 +8,7 @@ import {
 import UserApp from './user/App';
 import AdminApp from './admin/App';
 import LoginPage from './LoginPage'; // Giả sử bạn có một trang đăng nhập chung
+// import { ProtectedRoute } from './ProtectedRoute';
 
 // Giả sử bạn có một hàm để kiểm tra trạng thái đăng nhập và vai trò của người dùng
 // function isAuthenticated() {}

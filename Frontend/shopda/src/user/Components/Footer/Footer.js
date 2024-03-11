@@ -1,6 +1,7 @@
-import React from "react";
-import "./Footer.css";
-import {Link} from "react-router-dom"
+import React from 'react';
+import './Footer.css';
+import { Link } from 'react-router-dom';
+import logoSaleNoti from '../../../assets/images/logoSaleNoti.png';
 const Footer = () => {
   return (
     <footer className="footer">
@@ -68,9 +69,6 @@ const Footer = () => {
           </div>
           <div className="footer-col">
             <h4>Theo dõi chúng tôi</h4>
-            <div>
-              <img src="/src/assets/images/logoSaleNoti.png" alt=""></img>
-            </div>
             <div className="social-links">
               <Link to="#">
                 <i className="fab fa-facebook-f"></i>
@@ -84,6 +82,11 @@ const Footer = () => {
               <Link to="#">
                 <i className="fab fa-linkedin-in"></i>
               </Link>
+            </div>
+            <div>
+              <img
+                src={logoSaleNoti}
+                alt=""></img>
             </div>
           </div>
         </div>

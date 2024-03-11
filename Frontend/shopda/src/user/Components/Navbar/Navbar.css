@@ -17,6 +17,11 @@
   transition: all 0.3s ease;
   color: #425764;
 }
+.menu-logo img {
+  width: 100px;
+  height: 40px;
+  object-fit: cover;
+}
 .menu-link:hover,
 .menu-link i:hover {
   color: #ff9f1c;

@@ -4,11 +4,15 @@ import Home from './Components/Home/Home';
 import Footer from './Components/Footer/Footer';
 import Header from './Components/Header/Header';
 import Shop from './Components/Shop/Shop';
-import Collection from './Components/Collection/Collection';
+import Products from './Components/Products/Products';
+import ProductDetail from './Components/ProductDetail/ProductDetail';
+import ScrollToTop from './Components/ScrollToTop/ScrollToTop';
+import ShowCar from './Components/ShowCart/ShowCart';
 function App() {
   return (
     <div className="wapper">
       <Header></Header>
+      <ScrollToTop></ScrollToTop>
       <main className="main">
         <Routes>
           <Route
@@ -22,9 +26,19 @@ function App() {
             element={<Shop />}
           />
           <Route
-            path="/collection"
+            path="/cate/:id_cate"
             exact
-            element={<Collection />}
+            element={<Products />}
+          />
+          <Route
+            path="/showcart"
+            exact
+            element={<ShowCar />}
+          />
+          <Route
+            path="/product/:id_pd"
+            exact
+            element={<ProductDetail />}
           />
         </Routes>
       </main>

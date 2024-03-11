@@ -1,83 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Shop.css';
+import { Link } from 'react-router-dom';
 
 const Shop = () => {
+  const [listLoai, setListLoai] = useState([]);
+  useEffect(() => {
+    fetch('http://localhost:4000/category/list')
+      .then((res) => res.json())
+      .then(setListLoai);
+  }, []);
   return (
-    <>
+    <section className="category">
       <div className="container">
         {/* <div className="navbar">
           <Navbar></Navbar>
         </div> */}
         <div className="category">
-          <div>
-            {' '}
-            <h2>Danh Mục Sản Phẩm</h2>
-          </div>
-          <div className="list-category">
-            <div className="danhmuc">
-              <div className="thumb">
-                <img
-                  src="https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png"
-                  alt=""></img>
-              </div>
-              <div className="title">
-                <a href="/">TÚI XÁCH</a>
-              </div>
-            </div>
-            <div className="danhmuc">
-              <div className="thumb">
-                <img
-                  src="https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png"
-                  alt=""></img>
-              </div>
-              <div className="title">
-                <a href="/">TÚI DU LỊCH</a>
-              </div>
-            </div>
-            <div className="danhmuc">
-              <div className="thumb">
-                <img
-                  src="https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png"
-                  alt=""></img>
-              </div>
-              <div className="title">
-                <a href="/">BALO</a>
-              </div>
-            </div>
-            <div className="danhmuc">
-              <div className="thumb">
-                <img
-                  src="https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png"
-                  alt=""></img>
-              </div>
-              <div className="title">
-                <a href="/">BÓP - VÍ</a>
-              </div>
-            </div>
-            <div className="danhmuc">
-              <div className="thumb">
-                <img
-                  src="https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png"
-                  alt=""></img>
-              </div>
-              <div className="title">
-                <a href="/">THẮT LƯNG</a>
-              </div>
-            </div>
-            <div className="danhmuc">
-              <div className="thumb">
-                <img
-                  src="https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png"
-                  alt=""></img>
-              </div>
-              <div className="title">
-                <a href="/">PHỤ KIỆN KHÁC</a>
-              </div>
-            </div>
+          <h2 className="category-heading">Danh Mục Sản Phẩm</h2>
+          <div className="category-list">
+            {listLoai.map((item, i) => (
+              <Link to={`/cate/${item.id_cate}`}>
+                <div
+                  className="category-item"
+                  key={i}>
+                  <div className="category-img">
+                    <img
+                      src="https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png"
+                      alt=""></img>
+                  </div>
+                  <div className="category-title">
+                    <span>{item.name}</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 
