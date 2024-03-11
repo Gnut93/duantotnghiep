@@ -10,7 +10,6 @@ import ScrollToTop from "./Components/ScrollToTop/ScrollToTop";
 import ShowCar from "./Components/ShowCart/ShowCart";
 import Contact from "./Components/Contact/Contact";
 import Checkout from "./Components/Checkout/Checkout";
-import Search from "./Components/Search/Search";
 function App() {
   return (
     <div className="wapper">
@@ -21,7 +20,7 @@ function App() {
           <Route path="/" exact element={<Home />} />
           <Route path="/shop" exact element={<Shop />} />
           <Route path="/cate/:id_cate" exact element={<Products />} />
-          <Route path="/search" exact element={<Search />} />
+          <Route path="/search" exact element={<ShowCar />} />
           <Route path="/showcart" exact element={<ShowCar />} />
           <Route path="/product/:id_pd" exact element={<ProductDetail />} />
           <Route path="/contact" exact element={<Contact />} />
