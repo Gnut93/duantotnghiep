@@ -20,6 +20,8 @@ router.get('/info', (req, res) => {
     }
   });
 });
+
+//Lấy toàn bộ user
 router.get('/list', (req, res) => {
   var sql = `SELECT * FROM user`;
   db.query(sql, (err, result) => {
@@ -27,6 +29,21 @@ router.get('/list', (req, res) => {
       res.json({ error: 'Khong tim thay user' });
     } else {
       res.json(result);
+    }
+  });
+});
+
+//set role user
+router.put('/set-role/:id', (req, res) => {
+  var id = req.params.id;
+  var role = req.body.role;
+  var sql = `UPDATE user SET role = '${role}' WHERE id_user = '${id}'`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      res.json({ error: err.message });
+    } else {
+      console.log(result);
+      res.json({ success: 'Set role thành công' });
     }
   });
 });
@@ -92,7 +109,6 @@ async function checkUserPass(email, password) {
   const match = bcrypt.compareSync(password, user.password);
   return match;
 }
-
 getUserInfo = async (email) => {
   return new Promise((resolve, reject) => {
     db.query(
