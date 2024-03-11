@@ -7,6 +7,7 @@ import LoaiHang from './Components/LoaiHang/LoaiHang';
 import Shop from './Components/Shop/Shop';
 import NhapLieu from './Components/NhapLieu/NhapLieu';
 import User from './Components/User/User';
+import DonHang from './Components/DonHang/DonHang';
 function AppAdmin() {
   return (
     <div className="wapper">
@@ -24,7 +25,7 @@ function AppAdmin() {
           />
           <Route
             path="/donhang"
-            element={<Home />}
+            element={<DonHang />}
           />
           <Route
             path="/nguoidung"

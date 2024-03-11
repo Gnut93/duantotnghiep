@@ -8,6 +8,8 @@ import Products from './Components/Products/Products';
 import ProductDetail from './Components/ProductDetail/ProductDetail';
 import ScrollToTop from './Components/ScrollToTop/ScrollToTop';
 import ShowCar from './Components/ShowCart/ShowCart';
+import Contact from './Components/Contact/Contact';
+import Checkout from './Components/Checkout/Checkout';
 function App() {
   return (
     <div className="wapper">
@@ -39,6 +41,16 @@ function App() {
             path="/product/:id_pd"
             exact
             element={<ProductDetail />}
+          />
+          <Route
+            path="/contact"
+            exact
+            element={<Contact />}
+          />
+          <Route
+            path="/checkout"
+            exact
+            element={<Checkout />}
           />
         </Routes>
       </main>

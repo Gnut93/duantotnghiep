@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './NhapLieu.css';
 import NhapSP from './NhapSP/NhapSP';
 import NhapLoai from './NhapLoai/NhapLoai';

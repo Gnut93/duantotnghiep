@@ -55,7 +55,7 @@ const Shop = () => {
           <tr>
             <th>ID</th>
             <th>Hình</th>
-            <th className="name">
+            <th>
               <p>Tên</p>
             </th>
             <th>Ngày nhập</th>

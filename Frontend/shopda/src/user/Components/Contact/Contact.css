@@ -1,0 +1,121 @@
+.contact-heading {
+  font-size: 36px;
+  text-align: center;
+  margin: 20px 0;
+}
+.contact-center {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px 0 50px 0;
+}
+
+.contact-form {
+  display: grid;
+  gap: 20px 20px;
+  padding-right: 30px;
+  position: relative;
+}
+
+.contact-form::after {
+  content: '';
+  width: 4px;
+  height: 500px;
+  background-color: #7b88a8;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.name,
+.subject {
+  grid-column: 1;
+  width: 360px;
+  padding: 17px 20px;
+  background-color: rgba(231, 231, 231, 0.2);
+  border: 1px solid #7b88a8;
+  border-radius: 10px;
+  color: #000000;
+}
+
+.email,
+.phone {
+  grid-column: 2;
+  width: 360px;
+  background-color: rgba(231, 231, 231, 0.2);
+  border: 1px solid #7b88a8;
+  border-radius: 10px;
+  padding: 17px 20px;
+  color: #000000;
+}
+
+.message,
+button {
+  grid-column: 1 / span 2;
+}
+
+.message {
+  height: 275px;
+  background-color: rgba(231, 231, 231, 0.2);
+  border: 1px solid #7b88a8;
+  border-radius: 10px;
+  padding: 20px;
+  color: #000000;
+}
+
+.contact-form button {
+  border-radius: 10px;
+  background-color: #002c3f;
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+  padding: 12px 0;
+  border: none;
+}
+
+.contact-form button:hover {
+  background-color: #002c3f;
+  border: none;
+}
+
+.message::placeholder {
+  color: #d9d9d9;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.contact-detail {
+  padding-left: 30px;
+}
+
+.contact-detail h4 {
+  font-weight: 500;
+  font-size: 22px;
+  color: #000000;
+}
+
+.contact-detail p {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 21px;
+  color: #000000;
+  padding-top: 10px;
+}
+
+.contact-detail i {
+  color: #002c3f;
+  vertical-align: middle;
+  background-color: #cbd5e1;
+  padding: 22px 15px;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.contact-item {
+  max-width: 406px;
+  padding-top: 70px;
+  display: flex;
+  align-items: center;
+}
