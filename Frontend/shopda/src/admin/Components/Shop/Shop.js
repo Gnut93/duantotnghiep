@@ -17,26 +17,26 @@ const Shop = () => {
             .then((res) => res.json())
             .then(setListSP);
     }, []);
-
+    console.log(listsp);
     const xoaSP = (id) => {
-        if (window.confirm("Xóa Loại không?")) {
-            fetch(`http://localhost:4000/admin-product/delete/${id}`, {
+        if (window.confirm("Xóa sản phẩm không?")) {
+            fetch(`http://localhost:4000/delete/${id}`, {
                 method: "DELETE",
             })
                 .then((res) => res.json())
                 .then(() => {
-                    alert("Đã xóa Sản Phẩm thành công");
+                    alert("Đã xóa sản phẩm thành công");
                     fetch("http://localhost:4000/products/list")
                         .then((res) => res.json())
                         .then((data) => setListSP(data))
                         .catch((error) =>
                             console.error(
-                                "Lỗi cập nhật danh sách Sản Phẩm:",
+                                "Lỗi cập nhật danh sách sản phẩm:",
                                 error
                             )
                         );
                 })
-                .catch((error) => console.error("Lỗi xóa Sản Phẩm:", error));
+                .catch((error) => console.error("Lỗi xóa sản phẩm:", error));
         }
     };
 

@@ -14,64 +14,64 @@ const Navbar = () => {
     <div className="navbar">
       <div className="container">
         <nav className="menu">
-          <a
-            href="/"
+          <Link
+            to="/"
             className="menu-logo">
             <img
               src={logo}
               alt=""></img>
-          </a>
+          </Link>
           <ul className="menu-list">
             <li className="menu-item">
-              <a
-                href="/"
+              <Link
+                to="/"
                 className="menu-link">
                 Trang chủ
-              </a>
+              </Link>
             </li>
             <li className="menu-item">
-              <a
-                href="/shop"
+              <Link
+                to="/shop"
                 className="menu-link">
                 Sản phẩm
-              </a>
+              </Link>
             </li>
             <li className="menu-item">
-              <a
-                href="/collection"
+              <Link
+                to="/collection"
                 className="menu-link">
                 Bộ sưu tập
-              </a>
+              </Link>
             </li>
             <li className="menu-item">
-              <a
-                href="/"
+              <Link
+                to="/bogs"
                 className="menu-link">
                 Blogs
-              </a>
+              </Link>
             </li>
             <li className="menu-item">
-              <a
-                href="/"
+              <Link
+                to="/contact"
                 className="menu-link">
                 Order theo sở thích
-              </a>
+              </Link>
             </li>
             <li className="menu-item">
-              <a
+              <Link
                 href="/"
                 className="menu-link">
                 Tin tức
-              </a>
+              </Link>
             </li>
           </ul>
           <ul className="menu-list icon">
             <li className="menu-item">
-              <a
-                href="/"
+              <Link
+                to="/login"
                 className="menu-link">
                 <i className="fas fa-user"></i>
-              </a>
+              </Link>
             </li>
             <li className="menu-item">
               <a
