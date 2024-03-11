@@ -17,7 +17,6 @@ const Shop = () => {
             .then((res) => res.json())
             .then(setListSP);
     }, []);
-    console.log(listsp);
     const xoaSP = (id) => {
         if (window.confirm("Xóa sản phẩm không?")) {
             fetch(`http://localhost:4000/delete/${id}`, {
@@ -58,9 +57,7 @@ const Shop = () => {
                     <tr>
                         <th>ID</th>
                         <th>Hình</th>
-                        <th className="name">
-                            <p>Tên</p>
-                        </th>
+                        <th>Tên</th>
                         <th>Ngày nhập</th>
                         <th>Giá gốc</th>
                         <th>Giá KM</th>
