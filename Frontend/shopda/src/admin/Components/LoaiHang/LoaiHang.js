@@ -31,7 +31,7 @@ const LoaiHang = () => {
             <main>
                 <div className="head-title">
                     <div className="left">
-                        <h1>Loai hàng</h1>
+                        <h1>Loại hàng</h1>
                     </div>
                 </div>
                 <div className="table-data">

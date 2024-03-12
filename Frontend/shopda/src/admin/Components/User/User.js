@@ -47,7 +47,7 @@ const User = () => {
                       <p>{user.email}</p>
                     </td>
                     <td>
-                      <p>{user.role}</p>
+                      <p>{parseInt(user.role) === 1 ? "Quản trị viên" : "Người dùng"}</p>
                     </td>
                     <td>
                       <span className="btn--show-modal">
