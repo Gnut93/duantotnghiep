@@ -72,34 +72,37 @@ import videoSrc from "../../../assets/images/Lauriel Leather Video.mp4";
 
 const Banner = () => {
   return (
-    <div>
-      <header>
-        <div className="logo">
-          <img src={logo} alt="" />
+    <div class="hero">
+      <video autoplay muted loop plays-inline class="bgvideo">
+        <source src={videoSrc} type="video/mp4"></source>
+      </video>
+      <nav>
+        <img src="./logo.png" class="logo" />
+        <ul>
+          <li><a href="">HOME</a></li>
+          <li><a href="">HOME</a></li>
+          <li><a href="">HOME</a></li>
+          <li><a href="">HOME</a></li>
+          <li><a href="">HOME</a></li>
+          <li><a href="">HOME</a></li>
+          <li><a href="">HOME</a></li>
+          <li><a href="">HOME</a></li>
+        </ul>
+        <div class="icon">
+            <i class="fa-solid fa-user"></i>
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-bag-shopping"></i>
         </div>
-        <nav>
-          <ul>
-            <li>Home</li>
-            <li>Home</li>
-            <li>Home</li>
-            <li>Home</li>
-            <li>Home</li>
-          </ul>
-        </nav>
-        <div>Icon</div>
-      </header>
-      <div className="banner">
-        <video autoPlay muted loop className="bgvideo">
-          <source src={videoSrc} type="video/mp4" />
-        </video>
-        <div className="content">
-          <div className="title">abcasdfkjhdskf</div>
-          <div className="desc">
-            lódfsdfgdsfsdfdsfsègsdfgfdgdfgdgsd
-            <br />
-            Sdfsdfsdfsdfsdfsdfdsfsdf
-          </div>
-        </div>
+      </nav>
+      <div class="content">
+        <h1>What's your passion?</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
+          aspernatur laborum quibusdam provident ab quidem dolorum inventore,
+          consectetur dolore molestias maxime in quae, a voluptatem saepe velit
+          eveniet quod sunt.
+        </p>
+        <a href="#">SHOP NOW</a>
       </div>
     </div>
   );

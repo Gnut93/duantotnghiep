@@ -1,62 +1,59 @@
+* {
+  box-sizing: border-box;
+}
+
 .wrapper {
-  background-color: #002c3f;
   width: 80%;
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 70px;
-}
-
-.wrapper .right {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: white; /* Thêm màu chữ trắng */
-}
-.wrapper .right h3 {
-  margin: 20px 0;
-  font-size: 50px;
-  font-weight: 300;
-}
-.wrapper .right button {
-  border-radius: 10px;
-  width: 40%;
-  padding: 10px 20px;
-  border: none;
-  background-color: #ee6436ea;
-  color: white;
-  font-size: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out; /* Hiệu ứng chuyển đổi */
-}
-.wrapper .right button:hover {
-  background-color: #ffffff; /* Đổi màu nền khi hover */
+  justify-content: space-between;
+  height: 600px;
+  background-color: rgba(247, 238, 227, 0.825);
 }
 
 .wrapper .left {
   width: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 50px;
 }
 
-.offer-image {
-  max-width: 100%; /* Đảm bảo hình ảnh không vượt quá phần tử cha */
-}
 .wrapper .left img {
-  transition: transform 0.3s ease-in-out; /* Hiệu ứng chuyển đổi */
-}
-
-.wrapper .left img:hover {
-  transform: scale(1.05); /* Phóng to hình ảnh khi hover */
-  opacity: 0.8; /* Điều chỉnh độ mờ */
-}
-.video {
   width: 100%;
+}
 
-  margin-bottom: 50px;
+.wrapper .right {
+  width: 50%;
+}
+
+.wrapper .right h1,
+.wrapper .right p,
+.wrapper .right a {
+  margin-left: 60px;
+}
+.wrapper .right h1 {
+  font-size: 90px;
+  color: #000;
+  margin-bottom: 20px;
+  font-weight: 400;
+  transition: 0.5s;
+}
+.wrapper .right p {
+  color: #000;
+  font-size: 18px;
+  margin-top: 20px;
+  padding: 20px 0px;
+  margin-bottom: 20px;
+}
+.wrapper .right a {
+  text-decoration: none;
+  display: inline-block;
+  color: #fff;
+  font-size: 24px;
+  border: 2px solid #fff;
+  padding: 14px 70px;
+  background-color: #000;
+  transition: all 0.3s ease;
+}
+.wrapper .right a:hover {
+  background-color: #fff;
+  color: #000;
 }
