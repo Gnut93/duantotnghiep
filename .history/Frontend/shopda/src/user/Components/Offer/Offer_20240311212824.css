@@ -1,0 +1,43 @@
+.wrapper {
+  background-color: #002c3f;
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.wrapper .right {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white; /* Thêm màu chữ trắng */
+}
+.wrapper .right h3 {
+  margin: 20px 0;
+  font-size: 50px;
+  font-weight: 300;
+}
+
+.wrapper .left {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+}
+
+.offer-image {
+  max-width: 100%; /* Đảm bảo hình ảnh không vượt quá phần tử cha */
+}
+.wrapper .left img {
+  transition: transform 0.3s ease-in-out; /* Hiệu ứng chuyển đổi */
+}
+
+.wrapper .left img:hover {
+  transform: scale(1.05); /* Phóng to hình ảnh khi hover */
+  opacity: 0.8; /* Điều chỉnh độ mờ */
+}

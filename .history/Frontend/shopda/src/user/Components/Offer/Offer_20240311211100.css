@@ -1,0 +1,13 @@
+.wrapper {
+  background-color: #002c3f;
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: ;
+}
+
+.wrapper .right {
+  width: 50%;
+}

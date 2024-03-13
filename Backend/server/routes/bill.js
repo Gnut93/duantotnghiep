@@ -43,12 +43,12 @@ router.post('/add', (req, res) => {
   var name = req.body.name;
   var address = req.body.address;
   var phone = req.body.phone;
-  var note = req.body.note;
+  var note = req.body.note || null;
   var total_price = req.body.total_price;
   var status = req.body.status;
   var payment_type = req.body.payment_type;
   var id_user = req.body.id_user;
-  var id_gc = req.body.id_gc;
+  var id_gc = req.body.id_gc | null;
 
   var sql = `INSERT INTO bill (name, address, phone, note, total_price, status, payment_type, id_user, id_gc) VALUES ('${name}', '${address}', '${phone}', '${note}', '${total_price}', '${status}', '${payment_type}', '${id_user}', '${id_gc}')`;
   db.query(sql, (err, result) => {

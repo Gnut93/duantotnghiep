@@ -15,12 +15,12 @@ function Search() {
 
   useEffect(() => {
     // Fetch danh sách sản phẩm từ API khi component được render
-    fetch("http://localhost:4000/products/list")
+    fetch("http://localhost:4000/products/search/" + searchTerm)
       .then((res) => res.json())
       .then((data) => {
         setSearchResults(data);
       });
-  }, []);
+  }, [searchTerm]);
 
   // Hàm xử lý khi người dùng thay đổi giá trị tìm kiếm
   const handleChange = (event) => {
