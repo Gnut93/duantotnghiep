@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./LoaiHang.css";
-
+import { Link } from "react-router-dom";
 const LoaiHang = () => {
     const [listLoai, setListLoai] = useState([]);
     useEffect(() => {
@@ -62,9 +62,13 @@ const LoaiHang = () => {
                                             <p>{loai.name}</p>
                                         </td>
                                         <td>
-                                            <span class="btn--show-modal">
-                                                <i class="fas fa-tools"></i>
-                                            </span>
+                                            <Link
+                                                to={`/admin/EditLoai/${loai.id_cate}`}
+                                            >
+                                                <span className="btn--show-modal">
+                                                    <i className="fas fa-tools"></i>
+                                                </span>
+                                            </Link>
                                         </td>
                                         <td>
                                             <span

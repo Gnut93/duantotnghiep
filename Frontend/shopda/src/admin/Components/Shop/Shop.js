@@ -38,7 +38,6 @@ const Shop = () => {
                 .catch((error) => console.error("Lỗi xóa sản phẩm:", error));
         }
     };
-    
 
     const handleLoaiChange = useCallback((event) => {
         setSelectedLoai(event.target.value);
@@ -103,7 +102,7 @@ const Shop = () => {
                             <td>{sp.view}</td>
                             <td>{sp.quantity}</td>
                             <td>
-                                <Link to={`/edit/${sp.id_pd}`}>
+                                <Link to={`/admin/EditSP/${sp.id_pd}`}>
                                     <span className="btn--show-modal">
                                         <i className="fas fa-tools"></i>
                                     </span>
