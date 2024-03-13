@@ -13,13 +13,13 @@
   margin-bottom: 20px;
 }
 
-.search input[type="text"] {
+.search input[type='text'] {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-.search button[type="submit"] {
+.search button[type='submit'] {
   background-color: #4caf50;
   color: white;
   border: none;
@@ -61,7 +61,7 @@
 }
 
 .products-social-link {
-  color: #333;
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -81,7 +81,7 @@
 }
 
 .products-price span {
-  color: #4caf50;
+  color: #9e5534;
 }
 
 .products-price del {

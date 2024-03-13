@@ -64,45 +64,43 @@
 
 // export default Banner;
 
-import React from "react";
-import "./Banner.css";
-import logo from "../../../assets/images/logo.png"; // Thay đổi đường dẫn import
+import React from 'react';
+import './Banner.css';
 
-import videoSrc from "../../../assets/images/Lauriel Leather Video.mp4";
+import videoSrc from '../../../assets/images/Lauriel Leather Video.mp4';
+import Navbar from '../Navbar/Navbar';
+import { Link } from 'react-router-dom';
 
 const Banner = () => {
   return (
-    <div class="hero">
-      <video autoplay muted loop plays-inline class="bgvideo">
-        <source src={videoSrc} type="video/mp4"></source>
+    <div className="banner">
+      <Navbar></Navbar>
+      <video
+        autoplay
+        muted
+        loop
+        plays-inline
+        preload="metadata"
+        className="bgvideo">
+        <source
+          src={videoSrc}
+          type="video/mp4"></source>
       </video>
-      <nav>
-        <img src="./logo.png" class="logo" />
-        <ul>
-          <li><a href="">HOME</a></li>
-          <li><a href="">HOME</a></li>
-          <li><a href="">HOME</a></li>
-          <li><a href="">HOME</a></li>
-          <li><a href="">HOME</a></li>
-          <li><a href="">HOME</a></li>
-          <li><a href="">HOME</a></li>
-          <li><a href="">HOME</a></li>
-        </ul>
-        <div class="icon">
-            <i class="fa-solid fa-user"></i>
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <i class="fa-solid fa-bag-shopping"></i>
-        </div>
-      </nav>
-      <div class="content">
-        <h1>What's your passion?</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
-          aspernatur laborum quibusdam provident ab quidem dolorum inventore,
-          consectetur dolore molestias maxime in quae, a voluptatem saepe velit
-          eveniet quod sunt.
+      <div className="banner-content">
+        <h1 className="banner-heading">Đam Mê Của Bạn Là Gì?</h1>
+        <p className="banner-desc">
+          Đam mê của chúng tôi là tạo ra nhiều sản phẩm độc đáo từ da thủ công
+          để phục vụ những nhu cầu đặc biệt của các bạn. Chúng tôi không chỉ xem
+          việc làm ra các sản phẩm từ da như một nhiệm vụ kỹ thuật, mà còn là
+          một cơ hội để thể hiện sự tinh tế. Chúng tôi tin rằng mỗi món đồ là
+          một tác phẩm nghệ thuật, mang trong đó sự chăm sóc tỉ mỉ và đam mê
+          sáng tạo.
         </p>
-        <a href="#">SHOP NOW</a>
+        <Link
+          to="/shop"
+          className="banner-button">
+          SHOP NOW
+        </Link>
       </div>
     </div>
   );

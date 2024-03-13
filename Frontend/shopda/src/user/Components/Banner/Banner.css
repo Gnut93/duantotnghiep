@@ -93,7 +93,7 @@ header nav ul li {
 .banner .content {
   text-align: center;
   color: red;
-  text-shadow: 0 10px 50px #630707;
+  text-shadow: 0 10px 50px #63y0707;
 }
 .banner .title {
   font-size: 6em;
@@ -127,72 +127,36 @@ header nav ul li {
   rotate: -5deg;
 } */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-.hero {
+.banner {
   width: 100%;
   height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
   position: relative;
   padding: 0 5%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
-nav {
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 20px 8%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-nav .logo {
-  width: 100px;
-}
-nav ul li {
-  list-style: none;
-  display: inline-block;
-  margin-left: 40px;
-}
-nav ul li a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 17px;
-}
-.content {
+.banner-content {
   text-align: center;
+  margin: 100px auto;
 }
-.content h1 {
-  font-size: 100px;
-  color: #fff;
-  margin-bottom: 20px;
-  font-weight: 400;
-  transition: 0.5s;
+.banner-desc {
+  margin: 0 auto;
+  max-width: 800px;
+  color: #ffffff;
+  margin-bottom: 30px;
 }
-.content h1:hover {
-  -webkit-text-stroke: 2px #fff;
-  color: transparent;
+.banner-button {
+  color: #ffffff;
+  padding: 12px 24px;
+  border: 1px solid #ffffff;
+  transition: all 0.2s linear;
 }
-.content a {
-  text-decoration: none;
-  display: inline-block;
-  color: #fff;
-  font-size: 24px;
-  border: 2px solid #fff;
-  padding: 14px 70px;
+.banner-heading {
+  font-size: 79px;
+  color: #ffffff;
 }
-.content p {
-  color: #fff;
-  font-size: 18px;
-  margin-top: 20px;
-  padding: 20px 140px;
-  margin-bottom: 20px;
+.banner-button:hover {
+  background-color: #ffffff;
+  color: #000000;
 }
 .bgvideo {
   position: absolute;
