@@ -70,7 +70,7 @@
   border-radius: 20px;
   border: 0 !important;
   outline: 0 !important;
-  background: teal;
+  background: #4a1f18;
   color: white;
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -92,8 +92,8 @@
   margin-left: 1px;
   font-size: 11px;
   text-decoration: underline;
-  text-decoration-color: teal;
-  color: teal;
+  text-decoration-color: #4a1f18;
+  color: #4a1f18;
   cursor: pointer;
   font-weight: 800;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",

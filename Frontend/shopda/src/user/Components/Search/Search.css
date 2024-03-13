@@ -20,12 +20,16 @@
 }
 
 .search button[type='submit'] {
-  background-color: #4caf50;
+  background-color: #4a1f18;
   color: white;
   border: none;
   padding: 8px 12px;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.search button[type='submit']:hover {
+  background-color: #9e5534;
 }
 
 .search-results {
