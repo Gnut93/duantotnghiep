@@ -8,6 +8,7 @@ const LoaiHang = () => {
             .then((res) => res.json())
             .then(setListLoai);
     }, []);
+
     const xoaLoai = (id) => {
         if (window.confirm("Xóa Loại không?")) {
             fetch(`http://localhost:4000/admin-category/delete/${id}`, {
@@ -26,6 +27,7 @@ const LoaiHang = () => {
                 .catch((error) => console.error("Lỗi xóa loại:", error));
         }
     };
+
     return (
         <section className="content">
             <main>

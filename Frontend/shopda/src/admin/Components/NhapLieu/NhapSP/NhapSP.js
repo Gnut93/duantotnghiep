@@ -1,49 +1,80 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { DevTool } from "@hookform/devtools";
+import { useEffect } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schema = yup.object({
+    name: yup
+        .string()
+        .trim()
+        .required("Không được bỏ trống")
+        .min(2, "Tên sản phẩm có tối thiểu 2 ký tự")
+        .max(20, "Tên  sản phẩm có tối đa 20 ký tự"),
+    price: yup
+        .number()
+        .typeError("Vui lòng nhập một số")
+        .min(1, "Chưa đạt số lượng tối thiểu")
+        .required("Không được bỏ trống"),
+
+    price_sale: yup
+        .number()
+        .typeError("Vui lòng nhập một số")
+        .min(1, "Chưa đạt số lượng tối thiểu")
+        .required("Không được bỏ trống"),
+    quantity: yup
+        .number()
+        .typeError("Vui lòng nhập một số")
+        .required("Không được bỏ trống")
+        .min(1, "Chưa đạt số lượng tối thiểu")
+        .integer("Phải là số nguyên"),
+
+    image: yup
+        .string()
+        .url("link ảnh không hợp lệ")
+        .required("Không được bỏ trống"),
+    description: yup
+        .string()
+        .trim()
+        .required("Không được bỏ trống")
+        .min(2, "Mô tả có tối thiểu 10 ký tự")
+        .max(200, " Mô tả có tối đa 200 ký tự"),
+});
 
 const NhapSP = () => {
-    const [form, setForm] = useState({
-        name: "",
-        description: "",
-        price: "",
-        price_sale: "",
-        image: "",
-        quantity: "",
-        id_cate: 0,
+    const form = useForm({
+        defaultValues: {
+            id_cate: "",
+            name: "",
+            price: "",
+            price_sale: "",
+            quantity: "",
+            image: "",
+            description: "",
+        },
+        resolver: yupResolver(schema),
     });
+    const { register, handleSubmit, reset, formState, control } = form;
+    const { errors, isSubmitSuccessful } = formState;
 
-    const handleChange = (event) => {
-        const { target } = event;
-        const value = target.value;
-        const { name } = target;
-        if (name === "id_cate") {
-            setForm((prevForm) => ({
-                ...prevForm,
-                [name]: parseInt(value),
-            }));
-            return;
-        }
-        setForm((prevForm) => ({
-            ...prevForm,
-            [name]: value,
-        }));
-    };
-
-    const handleSubmitSanPham = async () => {
+    const handleSubmitSanPham = async (data) => {
+        data.id_pd = parseInt(data.id_pd);
         try {
             const url = "http://localhost:4000/admin-products/add-product";
             const opt = {
                 method: "post",
-                body: JSON.stringify(form),
+                body: JSON.stringify(data),
                 headers: { "Content-Type": "application/json" },
             };
             const res = await fetch(url, opt);
-            const data = await res.json();
-            alert("Đã thêm sản phẩm,", data);
+            const reponseData = await res.json();
+            alert("Đã thêm sản phẩm,", reponseData);
             console.log(data);
         } catch (error) {
             console.error("Lỗi khi thêm sản phẩm: ", error);
         }
-        console.log(form);
     };
 
     const [listLoai, setListLoai] = useState([]);
@@ -52,14 +83,22 @@ const NhapSP = () => {
             .then((res) => res.json())
             .then(setListLoai);
     }, []);
-
+    useEffect(() => {
+        if (isSubmitSuccessful) {
+            reset();
+        }
+    }, [isSubmitSuccessful, reset]);
     return (
         <div className="checkout-address">
             <h3 className="checkout-address-title">
                 <span>Thêm sản phẩm</span>
             </h3>
             <div className="checkout-address-box">
-                <form className="product">
+                <form
+                    className="product"
+                    onSubmit={handleSubmit(handleSubmitSanPham)}
+                    noValidate
+                >
                     <div className="checkout-address-list">
                         <div className="checkout-address-item">
                             <div className="checkout-address-input">
@@ -67,41 +106,38 @@ const NhapSP = () => {
                                 <input
                                     type="text"
                                     placeholder="Tên Sản Phẩm"
-                                    name="name"
                                     id="laptop-name"
-                                    value={form.name}
-                                    onChange={handleChange}
+                                    {...register("name")}
                                 />
+                                <p className="err">{errors.name?.message}</p>
                             </div>
                             <div className="checkout-address-input">
                                 <label>Giá gốc</label> <br />
                                 <input
                                     type="number"
                                     placeholder="VNĐ"
-                                    name="price"
                                     id="laptop-gia"
-                                    value={form.price}
-                                    onChange={handleChange}
+                                    {...register("price")}
                                 />
+                                <p className="err">{errors.price?.message}</p>
                             </div>
                             <div className="checkout-address-input">
                                 <label>Giá khuyến mãi</label> <br />
                                 <input
                                     type="number"
                                     placeholder="VNĐ"
-                                    name="price_sale"
                                     id="laptop-km"
-                                    value={form.price_sale}
-                                    onChange={handleChange}
+                                    {...register("price_sale")}
                                 />
+                                <p className="err">
+                                    {errors.price_sale?.message}
+                                </p>
                             </div>
                             <div className="checkout-address-input">
                                 <label>Loại Hàng</label> <br />
                                 <select
-                                    name="id_cate"
                                     className="option-cate"
-                                    value={form.id_cate}
-                                    onChange={handleChange}
+                                    {...register("id_cate")}
                                 >
                                     {listLoai.map((loai, i) => (
                                         <option key={i} value={loai.id_cate}>
@@ -117,48 +153,44 @@ const NhapSP = () => {
                                 <input
                                     type="text"
                                     placeholder="10"
-                                    name="quantity"
                                     id="laptop-ram"
-                                    value={form.quantity}
-                                    onChange={handleChange}
+                                    {...register("quantity")}
                                 />
+                                <p className="err">
+                                    {errors.quantity?.message}
+                                </p>
                             </div>
                             <div className="checkout-address-input">
                                 <label>Hình Ảnh</label> <br />
                                 <input
                                     type="text"
-                                    name="image"
                                     id="avatar"
                                     accept="image/*"
-                                    value={form.image}
-                                    onChange={handleChange}
+                                    {...register("image")}
                                 />
+                                <p className="err">{errors.image?.message}</p>
                             </div>
                             <div className="checkout-address-input">
                                 <label>Mô tả</label> <br />
                                 <textarea
                                     class="message"
                                     type="text"
-                                    name="description"
                                     id=""
                                     placeholder="Message..."
                                     rows="7"
-                                    value={form.des}
-                                    onChange={handleChange}
+                                    {...register("description")}
                                 ></textarea>
+                                <p className="err">
+                                    {errors.description?.message}
+                                </p>
                             </div>
                             <div className="checkout-address-input">
-                                <input
-                                    type="button"
-                                    value="Thêm"
-                                    className="submit"
-                                    name="insert"
-                                    onClick={() => handleSubmitSanPham()}
-                                />
+                                <button className="submit">Thêm</button>
                             </div>
                         </div>
                     </div>
                 </form>
+                <DevTool control={control} />
             </div>
         </div>
     );
