@@ -64,27 +64,18 @@
 
 // export default Banner;
 
-import React from 'react';
-import './Banner.css';
+import React from "react";
+import "./Banner.css";
 
-import videoSrc from '../../../assets/images/Lauriel Leather Video.mp4';
-import Navbar from '../Navbar/Navbar';
-import { Link } from 'react-router-dom';
+import Navbar from "../Navbar/Navbar";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
     <div className="banner">
       <Navbar></Navbar>
-      <video
-        autoplay
-        muted
-        loop
-        plays-inline
-        preload="metadata"
-        className="bgvideo">
-        <source
-          src={videoSrc}
-          type="video/mp4"></source>
+      <video autoPlay muted loop plays-inline className="bgvideo">
+        <source src="video.mp4" type="video/mp4"></source>
       </video>
       <div className="banner-content">
         <h1 className="banner-heading">Đam Mê Của Bạn Là Gì?</h1>
@@ -96,9 +87,7 @@ const Banner = () => {
           một tác phẩm nghệ thuật, mang trong đó sự chăm sóc tỉ mỉ và đam mê
           sáng tạo.
         </p>
-        <Link
-          to="/shop"
-          className="banner-button">
+        <Link to="/shop" className="banner-button">
           SHOP NOW
         </Link>
       </div>

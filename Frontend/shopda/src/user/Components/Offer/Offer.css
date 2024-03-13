@@ -1,6 +1,9 @@
 .offer-content {
+  width: 80%;
+  margin: 50px auto;
   display: flex;
-  background-color: #f5f1ed;
+  background-color: #f3e5d7;
+  height: 591px;
 }
 .offer-item {
   width: 50%;
@@ -19,7 +22,7 @@
   margin-bottom: 50px;
 }
 .offer-desc {
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.5;
   padding-right: 50px;
   margin-bottom: 50px;

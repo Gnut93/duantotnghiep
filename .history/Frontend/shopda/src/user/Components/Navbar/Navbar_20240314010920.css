@@ -1,0 +1,32 @@
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+}
+.menu-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.menu-link {
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  color: #ffffff;
+}
+.menu-logo img {
+  width: 100px;
+  height: 0px;
+  object-fit: cover;
+}
+.menu-link:hover,
+.menu-link i:hover {
+  color: #ff9f1c;
+}
+.menu-link i {
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
