@@ -60,12 +60,12 @@ router.put('/view/:id', (req, res) => {
 });
 
 //Tìm sản phẩm theo tên
-router.get("/search/:keyword", (req, res) => {
+router.get('/search/:keyword', (req, res) => {
   var keyword = req.params.keyword;
   var sql = `SELECT * FROM product WHERE name LIKE ?`;
   db.query(sql, `%${keyword}%`, (err, result) => {
-      if (err) res.json({ "thongbao" : "Lỗi truy vấn CSDL", error: err.message });
-      else res.json(result);
+    if (err) res.json({ thongbao: 'Lỗi truy vấn CSDL', error: err.message });
+    else res.json(result);
   });
 });
 
@@ -117,6 +117,26 @@ router.get('/image/:id', (req, res) => {
   db.query(sql, (err, result) => {
     if (err) {
       res.json({ error: 'Khong tim thay hinh san pham' });
+    } else {
+      res.json(result);
+    }
+  });
+});
+router.get('/img/list', (req, res) => {
+  var sql = `SELECT * FROM image`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      res.json({ error: 'Khong tim thay san pham' });
+    } else {
+      res.json(result);
+    }
+  });
+});
+router.get('/col/list', (req, res) => {
+  var sql = `SELECT * FROM color`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      res.json({ error: 'Khong tim thay san pham' });
     } else {
       res.json(result);
     }

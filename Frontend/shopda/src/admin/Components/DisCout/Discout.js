@@ -1,69 +1,76 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const User = () => {
-  const [listUser, setListUser] = useState([]);
+const Discout = () => {
+  const [listDis, setListDis] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:4000/users/list')
+    fetch('http://localhost:4000/admin-giftcode/list')
       .then((res) => res.json())
-      .then(setListUser);
+      .then(setListDis);
   }, []);
-  console.log(listUser);
   return (
     <section className="content">
       <main>
         <div className="head-title">
           <div className="left">
-            <h1>Người dùng</h1>
+            <h1>Mã Giảm Giá</h1>
           </div>
         </div>
         <div className="table-data">
           <div className="order">
             <div className="head">
-              <h3>Thành Viên</h3>
+              <h3>Loại</h3>
               <i className="bx bx-search"></i>
               <i className="bx bx-filter"></i>
             </div>
-            <table>
+            <table class="tab-content active">
               <thead>
                 <tr>
-                  <th>Tên</th>
-                  <th>Sđt</th>
-                  <th>Email</th>
-                  <th>Role</th>
-                  <th>Phân quyền</th>
-                  <th>Xóa</th>
+                  <th>ID</th>
+                  <th>Code</th>
+                  <th>Quantity</th>
+                  <th>Giá Trị</th>
+                  <th>Ngày Tạo</th>
+                  <th>Ngày Hết Hạng</th>
+                  <th>Edit</th>
+                  <th>Remove</th>
                 </tr>
               </thead>
-              <tbody>
-                {listUser.map((user, i) => (
+              <tbody class="categories">
+                {listDis.map((dis, i) => (
                   <tr key={i}>
                     <td>
-                      <p>{user.name}</p>
+                      <p>{dis.id_gc}</p>
                     </td>
                     <td>
-                      <p>{user.phone}</p>
+                      <p>{dis.code}</p>
                     </td>
                     <td>
-                      <p>{user.email}</p>
+                      <p>{dis.quantity}</p>
+                    </td>
+                    <td>
+                      <p>{dis.price}</p>
                     </td>
                     <td>
                       <p>
-                        {parseInt(user.role) === 1
-                          ? 'Quản trị viên'
-                          : 'Người dùng'}
+                        {new Date(dis.created_date).toLocaleDateString('vi')}
                       </p>
                     </td>
                     <td>
-                      <Link>
+                      <p>
+                        {new Date(dis.expiration_date).toLocaleDateString('vi')}
+                      </p>
+                    </td>
+                    <td>
+                      <Link to={`/admin/EditLoai/${dis.id_gc}`}>
                         <span className="btn--show-modal">
                           <i className="fas fa-tools"></i>
                         </span>
                       </Link>
                     </td>
                     <td>
-                      <span className="delete-cate">
-                        <i className="fas fa-trash-alt"></i>
+                      <span class="delete-cate">
+                        <i class="fas fa-trash-alt"></i>
                       </span>
                     </td>
                   </tr>
@@ -77,4 +84,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default Discout;

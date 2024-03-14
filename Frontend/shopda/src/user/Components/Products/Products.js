@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import './Products.css';
 import { themSP } from '../cartSlice';
 import { useDispatch } from 'react-redux';
+import Navbar from '../Navbar/Navbar';
 
 const Products = () => {
   let { id_cate } = useParams();
@@ -98,7 +99,7 @@ const Products = () => {
           marginPagesDisplayed={2}
           onPageChange={chuyenTrang}
           renderOnZeroPageCount={null}
-          className="thanhphantrang1"
+          className="phantrang1"
           activeClassName="active"
         />
       </>
@@ -106,6 +107,7 @@ const Products = () => {
   }
   return (
     <section className="product">
+      <Navbar></Navbar>
       <div className="container">
         <h2 className="product-heading">{loai.name}</h2>
         <PhanTrang pageSize={9} />

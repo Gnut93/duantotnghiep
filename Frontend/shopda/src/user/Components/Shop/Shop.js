@@ -1,32 +1,56 @@
 import React, { useEffect, useState } from 'react';
 import './Shop.css';
 import { Link } from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
+const imgList = [
+  {
+    img: 'https://leeandtee.vn/image/358/263/1/0/product/category/bop-vi-da-leeandtee-banner-2.png',
+  },
+  {
+    img: 'https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png',
+  },
+  {
+    img: 'https://leeandtee.vn/image/358/263/1/0/product/category/tui-du-lich-leeandtee-banner-1.png',
+  },
+  {
+    img: 'https://leeandtee.vn/image/358/263/1/0/product/category/that-lung-leeandtee-1.jpg',
+  },
+  {
+    img: 'https://leeandtee.vn/image/358/263/1/0/product/category/balo-leeandtee-banner-3.png',
+  },
+  {
+    img: 'https://leeandtee.vn/image/358/263/1/0/product/category/phu-kien-moc-khoa-leeandtee-2.png',
+  },
+];
 
 const Shop = () => {
   const [listLoai, setListLoai] = useState([]);
+
   useEffect(() => {
-    fetch('http://localhost:4000/category/list')
-      .then((res) => res.json())
-      .then(setListLoai);
+    const fetchCategories = async () => {
+      const response = await fetch('http://localhost:4000/category/list');
+      const data = await response.json();
+      setListLoai(data);
+    };
+    fetchCategories();
   }, []);
+
   return (
     <section className="category">
+      <Navbar></Navbar>
       <div className="container">
-        {/* <div className="navbar">
-          <Navbar></Navbar>
-        </div> */}
         <div className="category">
           <h2 className="category-heading">Danh Mục Sản Phẩm</h2>
           <div className="category-list">
-            {listLoai.map((item, i) => (
-              <Link to={`/cate/${item.id_cate}`}>
-                <div
-                  className="category-item"
-                  key={i}>
+            {listLoai.map((item, index) => (
+              <Link
+                to={`/cate/${item.id_cate}`}
+                key={item.id_cate}>
+                <div className="category-item">
                   <div className="category-img">
                     <img
-                      src="https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png"
-                      alt=""></img>
+                      src={imgList[index % imgList.length].img}
+                      alt={item.name}></img>
                   </div>
                   <div className="category-title">
                     <span>{item.name}</span>

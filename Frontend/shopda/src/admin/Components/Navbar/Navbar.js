@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -32,9 +31,7 @@ const Navbar = () => {
             <i className="bx bxs-bell"></i>
             <span className="num">8</span>
           </span>
-          <Link to={'/login'}>
-            <span className="profile">Đăng nhập</span>
-          </Link>
+          <span className="profile">Admin</span>
         </nav>
       </section>
     </div>

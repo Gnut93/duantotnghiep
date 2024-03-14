@@ -1,51 +1,32 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import ReactPaginate from 'react-paginate';
-import './Shop.css';
 import { Link } from 'react-router-dom';
 
-const Shop = () => {
+const ColorDetail = () => {
   const [listsp, setListSP] = useState([]);
-  const [listLoai, setListLoai] = useState([]);
-  const [selectedLoai, setSelectedLoai] = useState('');
+  const [listColor, setListColor] = useState([]);
+  const [selectedSP, setSelectedSP] = useState('');
   // const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:4000/category/list')
-      .then((res) => res.json())
-      .then(setListLoai);
     fetch('http://localhost:4000/products/list')
       .then((res) => res.json())
       .then(setListSP);
+    fetch('http://localhost:4000/products/col/list')
+      .then((res) => res.json())
+      .then(setListColor);
   }, []);
-  const xoaSP = (id) => {
-    if (window.confirm('Xóa sản phẩm không?')) {
-      fetch(`http://localhost:4000/admin-products/delete/${id}`, {
-        method: 'DELETE',
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          // console.log(`Server response: ${JSON.stringify(data)}`);
-          fetch('http://localhost:4000/products/list')
-            .then((res) => res.json())
-            .then((data) => setListSP(data))
-            .catch((error) =>
-              console.error('Lỗi cập nhật danh sách sản phẩm:', error)
-            );
-        })
-        .catch((error) => console.error('Lỗi xóa sản phẩm:', error));
-    }
-  };
 
   const handleLoaiChange = useCallback((event) => {
-    setSelectedLoai(event.target.value);
+    setSelectedSP(event.target.value);
   }, []);
 
   // Lọc danh sách sản phẩm theo loại sản phẩm đã chọn
   const filteredProducts =
-    selectedLoai === ''
-      ? listsp
+    selectedSP === ''
+      ? listColor
       : // eslint-disable-next-line eqeqeq
-        listsp.filter((item) => item.id_cate == selectedLoai);
+        listColor.filter((item) => item.id_pd == selectedSP);
 
   function HienSPTrongMotTrang({ spTrongTrang }) {
     return (
@@ -53,13 +34,9 @@ const Shop = () => {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Hình</th>
-            <th>Tên</th>
-            <th>Ngày nhập</th>
-            <th>Giá gốc</th>
-            <th>Giá KM</th>
-            <th>Xem</th>
-            <th>Số lượng</th>
+            <th>Màu</th>
+            <th>Code</th>
+            <th>Id_pd</th>
             <th>Edit</th>
             <th>Remove</th>
           </tr>
@@ -68,43 +45,24 @@ const Shop = () => {
           {spTrongTrang.map((sp, i) => (
             <tr key={i}>
               <td>
-                <p>{sp.id_pd}</p>
-              </td>
-              <td>
-                <img
-                  src={sp.image}
-                  alt="#"
-                />
+                <p>{sp.id_color}</p>
               </td>
               <td>
                 <p>{sp.name}</p>
               </td>
+              <td>
+                <p>{sp.code}</p>
+              </td>
               <td>{new Date(sp.update_date).toLocaleDateString('vi')}</td>
               <td>
-                {parseInt(sp.price).toLocaleString('vi-VN', {
-                  style: 'currency',
-                  currency: 'VND',
-                })}
-              </td>
-              <td>
-                {parseInt(sp.price_sale).toLocaleString('vi-VN', {
-                  style: 'currency',
-                  currency: 'VND',
-                })}
-              </td>
-              <td>{sp.view}</td>
-              <td>{sp.quantity}</td>
-              <td>
-                <Link to={`/admin/EditSP/${sp.id_pd}`}>
+                <Link to={`/admin/EditSP/${sp.id_color}`}>
                   <span className="btn--show-modal">
                     <i className="fas fa-tools"></i>
                   </span>
                 </Link>
               </td>
               <td>
-                <span
-                  className="delete-cate"
-                  onClick={() => xoaSP(sp.id_pd)}>
+                <span className="delete-cate">
                   <i className="fas fa-trash-alt"></i>
                 </span>
               </td>
@@ -146,7 +104,7 @@ const Shop = () => {
       <main>
         <div className="head-title">
           <div className="left">
-            <h1>Kho hàng</h1>
+            <h1>Màu Sản Phẩm</h1>
           </div>
           <div className="checkout-address-input">
             <select
@@ -154,11 +112,11 @@ const Shop = () => {
               className="option-cate"
               onChange={handleLoaiChange}>
               <option value="">Tất cả</option>
-              {listLoai.map((loai, i) => (
+              {listsp.map((products, i) => (
                 <option
                   key={i}
-                  value={loai.id_cate}>
-                  {loai.name}
+                  value={products.id_pd}>
+                  {products.name}
                 </option>
               ))}
             </select>
@@ -179,4 +137,4 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export default ColorDetail;

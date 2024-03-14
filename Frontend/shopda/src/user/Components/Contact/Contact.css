@@ -65,19 +65,20 @@ button {
 
 .contact-form button {
   border-radius: 10px;
-  background-color: #002c3f;
+  background-color: #4a1f18;
   color: white;
   font-weight: 700;
   font-size: 18px;
   transition: 0.3s ease-in-out;
   cursor: pointer;
   padding: 12px 0;
-  border: none;
+  border: 1px solid transparent;
 }
 
 .contact-form button:hover {
-  background-color: #002c3f;
-  border: none;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  color: #000000;
 }
 
 .message::placeholder {
@@ -105,7 +106,7 @@ button {
 }
 
 .contact-detail i {
-  color: #002c3f;
+  color: #4a1f18;
   vertical-align: middle;
   background-color: #cbd5e1;
   padding: 22px 15px;

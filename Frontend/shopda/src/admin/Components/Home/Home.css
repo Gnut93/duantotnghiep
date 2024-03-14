@@ -207,12 +207,25 @@
 .content main .table-data .order table td a:hover {
   color: var(--dark);
 }
+.content main .table-data .order table td .delete-cate {
+  color: var(--blue);
+  font-size: 20px;
+  transition: 0.3s linear;
+  cursor: pointer;
+}
+.content main .table-data .order table td .delete-cate:hover {
+  color: var(--dark);
+}
 
 .content main .table-data .order table td img {
   width: 80px;
   height: 80px;
   border-radius: 50%;
   object-fit: cover;
+  margin: 0 auto;
+}
+.content main .table-data .order table td p {
+  max-width: 350px;
   margin: 0 auto;
 }
 .content main .table-data .order table tbody tr:hover {

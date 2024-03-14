@@ -20,14 +20,14 @@ const Sidebar = () => {
   return (
     <section className="sidebar">
       <Link to={'/admin'}>
-        <h4 className="brand">D/A Admin</h4>
+        <h4 className="brand">D/A</h4>
       </Link>
       <ul className="side-menu top">
         <li className="toggle-nav active">
           <Link to={'/admin'}>
             <span>
               <i className="bx bxs-dashboard"></i>
-              <span className="text">Tổng quan</span>
+              <span className="text">Tổng Quan</span>
             </span>
           </Link>
         </li>
@@ -35,7 +35,7 @@ const Sidebar = () => {
           <Link to={'/admin/khohang'}>
             <span>
               <i className="bx bxs-shopping-bag-alt"></i>
-              <span className="text">Kho hàng</span>
+              <span className="text">Kho Hàng</span>
             </span>
           </Link>
         </li>
@@ -43,7 +43,7 @@ const Sidebar = () => {
           <Link to={'/admin/loaihang'}>
             <span>
               <i className="bx bxs-doughnut-chart"></i>
-              <span className="text">Loại hàng</span>
+              <span className="text">Loại Hàng</span>
             </span>
           </Link>
         </li>
@@ -51,7 +51,7 @@ const Sidebar = () => {
           <Link to={'/admin/donhang'}>
             <span>
               <i className="bx bxs-add-to-queue"></i>
-              <span className="text">Đơn hàng</span>
+              <span className="text">Đơn Hàng</span>
             </span>
           </Link>
         </li>
@@ -67,7 +67,31 @@ const Sidebar = () => {
           <Link to={'/admin/nhaplieu'}>
             <span>
               <i class="bx bxs-cylinder"></i>
-              <span className="text">Nhập liệu</span>
+              <span className="text">Nhập Liệu</span>
+            </span>
+          </Link>
+        </li>
+        <li className="toggle-nav">
+          <Link to={'/admin/color'}>
+            <span>
+              <i class="bx bxs-cylinder"></i>
+              <span className="text">Màu Sản Phẩm</span>
+            </span>
+          </Link>
+        </li>
+        <li className="toggle-nav">
+          <Link to={'/admin/image'}>
+            <span>
+              <i class="bx bxs-cylinder"></i>
+              <span className="text">Hình Ảnh Sản Phẩm</span>
+            </span>
+          </Link>
+        </li>
+        <li className="toggle-nav">
+          <Link to={'/admin/discout'}>
+            <span>
+              <i class="bx bxs-cylinder"></i>
+              <span className="text">Mã Giảm Giá</span>
             </span>
           </Link>
         </li>
@@ -77,7 +101,7 @@ const Sidebar = () => {
         <li className="toggle-nav">
           <span className="logout">
             <i className="bx bxs-log-out-circle"></i>
-            <span className="text">Logout</span>
+            <span className="text">Đăng xuất</span>
           </span>
         </li>
       </ul>

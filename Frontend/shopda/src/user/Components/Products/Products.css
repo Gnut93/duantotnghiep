@@ -11,6 +11,8 @@
   text-align: center;
   font-weight: bold;
   line-height: 1.5em;
+  padding-top: 50px;
+  color: #4a1f18;
 }
 .products-image {
   border-radius: 10px;
@@ -116,4 +118,29 @@
 .products-main:hover .products-content {
   opacity: 1;
   visibility: visible;
+}
+
+.phantrang1 {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0 60px 0;
+}
+
+.phantrang1 li {
+  list-style: none;
+}
+
+.phantrang1 a {
+  margin: 0 5px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  color: #333;
+  text-decoration: none;
+}
+
+.phantrang1 a:hover,
+.phantrang1 .active a {
+  background-color: #4a1f18;
+  color: #fff;
 }

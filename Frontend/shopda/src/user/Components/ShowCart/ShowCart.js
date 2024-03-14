@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { suaSL, xoaSP } from '../cartSlice';
 import './Showcart.css';
+import Navbar from '../Navbar/Navbar';
 
 const ShowCar = () => {
   const dispatch = useDispatch();
@@ -29,19 +30,23 @@ const ShowCar = () => {
 
   if (cart.length === 0) {
     return (
-      <div className="container">
-        <h3 className="cart-heading">Giỏ Hàng Trống</h3>
-        <Link
-          to="/shop"
-          className="cart-comback">
-          Mua hàng
-        </Link>
-      </div>
+      <section className="cart">
+        <Navbar></Navbar>
+        <div className="container">
+          <h3 className="cart-heading">Giỏ Hàng Trống</h3>
+          <Link
+            to="/shop"
+            className="cart-comback">
+            Mua hàng
+          </Link>
+        </div>
+      </section>
     );
   }
 
   return (
     <section className="cart">
+      <Navbar></Navbar>
       <div className="container">
         <h3 className="cart-heading">Giỏ Hàng</h3>
         <Link

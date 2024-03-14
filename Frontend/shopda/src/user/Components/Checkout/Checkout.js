@@ -1,10 +1,12 @@
 import React from 'react';
 import './Checkout.css';
 import { Link } from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
 
 const Checkout = () => {
   return (
     <section className="checkout">
+      <Navbar></Navbar>
       <div className="container">
         <h2 className="checkout-headng">Thông tinh đơn hàng và thanh toán</h2>
         <form>

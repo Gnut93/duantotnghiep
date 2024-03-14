@@ -1,9 +1,11 @@
 import React from 'react';
 import './Contact.css';
+import Navbar from '../Navbar/Navbar';
 
 const Contact = () => {
   return (
     <section className="contact">
+      <Navbar></Navbar>
       <div className="container">
         <h2 className="contact-heading">Dịch vụ theo yêu cầu</h2>
         <p className="contact-desc">
