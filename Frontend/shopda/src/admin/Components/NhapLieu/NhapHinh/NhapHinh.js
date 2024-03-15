@@ -5,6 +5,7 @@ import { DevTool } from "@hookform/devtools";
 import { useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import cloudinaryUpload from "../../../../service/uploads";
 
 const schema = yup.object({
     name: yup
@@ -23,6 +24,18 @@ const NhapHinh = () => {
     });
     const { register, handleSubmit, reset, formState, control } = form;
     const { errors, isSubmitSuccessful } = formState;
+
+    const handleFileUpload = (e) => {
+        const uploadData = new FormData();
+        uploadData.append("file", e.target.files[0], "file");
+        console.log(e.target.files[0]);
+        cloudinaryUpload(uploadData)
+            .then((res) => {
+                console.log(res.secure_url);
+                form.setValue("name", res.secure_url);
+            })
+            .catch((err) => console.error(err));
+      }
 
     const handleSubmitHinh = async (data) => {
         data.id_pd = parseInt(data.id_pd);
@@ -63,11 +76,12 @@ const NhapHinh = () => {
                 <form
                     className="category"
                     autocomplete="off"
+                    encType="multipart/form-data"
                     onSubmit={handleSubmit(handleSubmitHinh)}
                 >
                     <div className="checkout-address-list">
                         <div className="checkout-address-item">
-                            <div className="checkout-address-input">
+                            {/* <div className="checkout-address-input">
                                 <label>Link Hình</label> <br />
                                 <input
                                     type="text"
@@ -76,9 +90,18 @@ const NhapHinh = () => {
                                     {...register("name")}
                                 />
                                 <p className="err">{errors.name?.message}</p>
+                            </div> */}
+                            <div className="checkout-address-input">
+                                <label>Hình Ảnh</label> <br />
+                                <input
+                                    type="file"
+                                    id="avatar"
+                                    onChange={(e) => handleFileUpload(e)}
+                                />
+                                <p className="err">{errors.name?.message}</p>
                             </div>
                             <div className="checkout-address-input">
-                                <label>Mã Sản phẩm</label> <br />
+                                <label>Mã Sản Phẩm</label> <br />
                                 <select
                                     {...register("id_pd")}
                                     className="option-cate"
