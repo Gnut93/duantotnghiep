@@ -24,6 +24,22 @@ router.get('/list', (req, res) => {
   });
 });
 
+router.get('/detail/:id', (req, res) => {
+  var id = parseInt(req.params.id);
+  if (isNaN(id) || id < 1) {
+    res.json({ error: 'ID không hợp lệ' });
+    return;
+  }
+  var sql = `SELECT * FROM gif_code WHERE id_gc=?`;
+  db.query(sql, [id], (err, result) => {
+    if (err) {
+      res.json({ error: 'Khong tim thay giftcode' });
+    } else {
+      res.json(result[0]);
+    }
+  });
+});
+
 //Thêm giftcode
 router.post('/add', async (req, res) => {
   try {
