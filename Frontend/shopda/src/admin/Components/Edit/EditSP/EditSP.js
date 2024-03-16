@@ -6,7 +6,7 @@ import { DevTool } from "@hookform/devtools";
 import { useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 const schema = yup.object({
     name: yup
         .string()
@@ -46,6 +46,7 @@ const schema = yup.object({
 
 const EditSP = () => {
     let { id } = useParams();
+    const navigate = useNavigate();
     const form = useForm({
         defaultValues: async () => {
             const reponse = await fetch(
@@ -70,6 +71,12 @@ const EditSP = () => {
     const handleSubmitSanPham = async (data) => {
         data.id_pd = parseInt(data.id_pd);
         try {
+            const confirmation = window.confirm(
+                "Bạn có chắc chắn muốn sửa sản phẩm  này?"
+            );
+            if (!confirmation) {
+                return;
+            }
             const url = `http://localhost:4000/admin-products/edit/${id}`;
             const opt = {
                 method: "put",
@@ -79,7 +86,7 @@ const EditSP = () => {
             const res = await fetch(url, opt);
             const reponseData = await res.json();
             alert("Đã sửa sản phẩm,", reponseData);
-            console.log(data);
+            navigate("/admin/khohang");
         } catch (error) {
             console.error("Lỗi khi sửa sản phẩm: ", error);
         }

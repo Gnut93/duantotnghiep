@@ -8,11 +8,11 @@ import * as yup from "yup";
 import cloudinaryUpload from "../../../../service/uploads";
 
 const schema = yup.object({
-    name: yup
-        .string()
-        .trim()
-        .required("Không được bỏ trống")
-        .url("link hình ảnh không hợp lệ"),
+    name: yup.string().trim().required("Không được bỏ trống"),
+    avatar: yup.mixed().test("size", "Kích thước file quá lớn", (value) => {
+        if (!value) return true; // Trường hợp không có file được chọn
+        return value.size <= 5242880; // Kích thước file không vượt quá 5MB (5242880 bytes)
+    }),
 });
 const NhapHinh = () => {
     const form = useForm({
@@ -35,7 +35,7 @@ const NhapHinh = () => {
                 form.setValue("name", res.secure_url);
             })
             .catch((err) => console.error(err));
-      }
+    };
 
     const handleSubmitHinh = async (data) => {
         data.id_pd = parseInt(data.id_pd);
