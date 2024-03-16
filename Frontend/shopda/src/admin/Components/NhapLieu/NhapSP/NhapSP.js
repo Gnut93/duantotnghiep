@@ -163,7 +163,7 @@ const NhapSP = () => {
                             <div className="checkout-address-input">
                                 <label>Hình Ảnh</label> <br />
                                 <input
-                                    type="text"
+                                    type="file"
                                     id="avatar"
                                     accept="image/*"
                                     {...register("image")}
