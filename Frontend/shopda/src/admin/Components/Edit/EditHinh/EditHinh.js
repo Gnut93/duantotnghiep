@@ -6,7 +6,7 @@ import { DevTool } from "@hookform/devtools";
 import { useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-
+import { useParams, useNavigate } from "react-router-dom";
 const schema = yup.object({
     name: yup
         .string()
@@ -15,10 +15,18 @@ const schema = yup.object({
         .url("link hình ảnh không hợp lệ"),
 });
 const EditHinh = () => {
+    let { id } = useParams();
+    const navigate = useNavigate();
     const form = useForm({
-        defaultValues: {
-            id_pd: "",
-            name: "",
+        defaultValues: async () => {
+            const reponse = await fetch(
+                `http://localhost:4000/products/image/${id}`
+            );
+            const data = await reponse.json();
+            return {
+                name: data.name,
+                id_pd: data.id_pd,
+            };
         },
         resolver: yupResolver(schema),
     });
@@ -29,17 +37,24 @@ const EditHinh = () => {
         data.id_pd = parseInt(data.id_pd);
 
         try {
-            const url = "http://localhost:4000/admin-products/add-image";
+            const confirmation = window.confirm(
+                "Bạn có chắc chắn muốn sửa Hình này?"
+            );
+            if (!confirmation) {
+                return;
+            }
+            const url = `http://localhost:4000/admin-products/edit-image/${id}`;
             const opt = {
-                method: "post",
+                method: "put",
                 body: JSON.stringify(data),
                 headers: { "Content-Type": "application/json" },
             };
             const res = await fetch(url, opt);
             const responseData = await res.json();
-            alert("Đã thêm hình Thành Công,", responseData);
+            alert("Đã sửa hình Thành Công,", responseData);
+            navigate("/admin/image");
         } catch (error) {
-            console.error("Lỗi khi thêm hình: ", error);
+            console.error("Lỗi khi sửa hình: ", error);
         }
     };
     useEffect(() => {

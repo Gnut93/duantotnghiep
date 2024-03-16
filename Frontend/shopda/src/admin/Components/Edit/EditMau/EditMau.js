@@ -6,7 +6,7 @@ import { DevTool } from "@hookform/devtools";
 import { useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-
+import { useParams, useNavigate } from "react-router-dom";
 const schema = yup.object({
     name: yup
         .string()
@@ -26,11 +26,19 @@ const schema = yup.object({
 });
 
 const EditMau = () => {
+    let { id } = useParams();
+    const navigate = useNavigate();
     const form = useForm({
-        defaultValues: {
-            id_pd: "",
-            name: "",
-            code: "",
+        defaultValues: async () => {
+            const reponse = await fetch(
+                `http://localhost:4000/products/color/${id}`
+            );
+            const data = await reponse.json();
+            return {
+                name: data.name,
+                code: data.code,
+                id_pd: data.id_pd,
+            };
         },
         resolver: yupResolver(schema),
     });
@@ -40,15 +48,22 @@ const EditMau = () => {
         data.id_pd = parseInt(data.id_pd);
 
         try {
-            const url = "http://localhost:4000/admin-products/add-color";
+            const confirmation = window.confirm(
+                "Bạn có chắc chắn muốn sửa Màu này?"
+            );
+            if (!confirmation) {
+                return;
+            }
+            const url = `http://localhost:4000/admin-products/edit-color/${id}`;
             const opt = {
-                method: "post",
+                method: "PUT",
                 body: JSON.stringify(data),
                 headers: { "Content-Type": "application/json" },
             };
             const res = await fetch(url, opt);
             const responseData = await res.json();
-            alert("Đã thêm Màu Thành Công,", responseData);
+            alert("Đã Sửa Màu Thành Công,", responseData);
+            navigate("/admin/color");
         } catch (error) {
             console.error("Lỗi khi thêm Màu: ", error);
         }
