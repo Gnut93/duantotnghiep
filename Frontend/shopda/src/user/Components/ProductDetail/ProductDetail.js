@@ -16,10 +16,10 @@ const ProductDetail = () => {
     fetch(`http://localhost:4000/products/info/${id_pd}`)
       .then((res) => res.json())
       .then((data) => setSP(data));
-    fetch('http://localhost:4000/products/image/' + id_pd)
+    fetch('http://localhost:4000/products/image/list/' + id_pd)
       .then((res) => res.json())
       .then((data) => setHinhSPCT(data));
-    fetch('http://localhost:4000/products/color/' + id_pd)
+    fetch('http://localhost:4000/products/color/list/' + id_pd)
       .then((res) => res.json())
       .then((data) => setSPLQ(data));
   }, [id_pd]);

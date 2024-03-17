@@ -39,36 +39,74 @@ router.get("/detail/:id", (req, res) => {
 });
 
 //Thêm đơn hàng
-router.post("/add", async (req, res) => {
-  try {
-    const {
-      name,
-      address,
-      phone,
-      note = null,
-      total_price,
-      status,
-      payment_type,
-      id_user,
-      id_gc = null,
-      id_pd,
-      quantity,
-      price,
-      pd_name,
-    } = req.body;
+// router.post("/add", async (req, res) => {
+//   try {
+//     const {
+//       name,
+//       address,
+//       phone,
+//       note = '',
+//       total_price,
+//       status,
+//       payment_type,
+//       id_user,
+//       id_gc = null,
+//       id_pd,
+//       quantity,
+//       price,
+//       pd_name,
+//     } = req.body;
 
-    const sql = `INSERT INTO bill (name, address, phone, note, total_price, status, payment_type, id_user, id_gc) VALUES ('${name}', '${address}', '${phone}', '${note}', '${total_price}', '${status}', '${payment_type}', '${id_user}', '${id_gc}')`;
-    const result = await db.query(sql);
+//     // Sử dụng prepared statements để tránh SQL injection
+//     const sql = `INSERT INTO bill (name, address, phone, note, total_price, status, payment_type, id_user, id_gc) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+//     const values = [name, address, phone, note, total_price, status, payment_type, id_user, id_gc];
+//     const result = await db.query(sql, values);
+//     console.log(result);
 
-    const id_bill = result.insertId;
-    const sql2 = `INSERT INTO bill_detail (name, price, quantity, total_price, id_pd, id_bill) VALUES ('${pd_name}', '${price}', '${quantity}', '${total_price}', '${id_pd}', '${id_bill}')`;
-    await db.query(sql2);
+//     if (result && 'insertId' in result) {
+//       const id_bill = result.insertId;
+//       console.log(id_bill);
 
-    res.json({ success: "Them don hang thanh cong" });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ error: "Them don hang that bai" });
-  }
+//       // Sử dụng prepared statements cho câu lệnh SQL thứ hai
+//       const sql2 = `INSERT INTO bill_detail (name, price, quantity, total_price, id_pd, id_bill) VALUES (?, ?, ?, ?, ?, ?)`;
+//       const values2 = [pd_name, price, quantity, total_price, id_pd, id_bill];
+//       await db.query(sql2, values2);
+
+//       res.json({ success: "Thêm đơn hàng thành công" });
+//     } else {
+//       throw new Error('Không thể lấy insertId');
+//     }
+//   } catch (err) {
+//     console.log(err);
+//     if (err.code === "ER_NO_REFERENCED_ROW_2") {
+//       res.status(400).json({ error: "id_user không tồn tại trong bảng user" });
+//     } else {
+//       res.status(500).json({ error: "Thêm đơn hàng thất bại" });
+//     }
+//   }
+// });
+
+//Thêm đơn hàng
+router.post("/add", (req, res) => {
+  var data = req.body;
+  var sql = `INSERT INTO bill SET ?`;
+  db.query(sql, data, (err, result) => {
+      if (err) res.json({ "thongbao" : "Lỗi truy vấn CSDL", error: err.message });
+      else {
+          id_dh = result.insertId;
+          res.json({ "thongbao" : "Đặt hàng thành công", "id_dh" : id_dh });
+      }
+  });
+});
+
+//Thêm chi tiết đơn hàng
+router.post("/add-detail", (req, res) => {
+  var data = req.body;
+  var sql = `INSERT INTO bill_detail SET ?`;
+  db.query(sql, data, (err, result) => {
+      if (err) res.json({ "thongbao" : "Lỗi truy vấn CSDL", error: err.message });
+      else res.json({ "thongbao" : "Thêm chi tiết đơn hàng thành công" });
+  });
 });
 
 module.exports = router;
