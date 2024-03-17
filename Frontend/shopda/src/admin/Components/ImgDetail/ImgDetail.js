@@ -17,6 +17,25 @@ const ImgDetail = () => {
             .then(setListImg);
     }, []);
 
+    const xoaHinh = (id) => {
+        if (window.confirm("Xóa sản phẩm không?")) {
+            fetch(`http://localhost:4000/admin-products/delete/${id}`, {
+                method: "DELETE",
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    alert("Đã xóa Màu thành công");
+                    fetch("http://localhost:4000/products/img/list")
+                        .then((res) => res.json())
+                        .then((data) => setListSP(data))
+                        .catch((error) =>
+                            console.error("Lỗi cập nhật danh sách Màu:", error)
+                        );
+                })
+                .catch((error) => console.error("Lỗi xóa Màu:", error));
+        }
+    };
+
     const handleLoaiChange = useCallback((event) => {
         setSelectedSP(event.target.value);
     }, []);
@@ -58,7 +77,10 @@ const ImgDetail = () => {
                                 </Link>
                             </td>
                             <td>
-                                <span className="delete-cate">
+                                <span
+                                    className="delete-cate"
+                                    onClick={() => xoaHinh(sp.id_pd)}
+                                >
                                     <i className="fas fa-trash-alt"></i>
                                 </span>
                             </td>
@@ -121,7 +143,7 @@ const ImgDetail = () => {
                 <div className="table-data">
                     <div className="order">
                         <div className="head">
-                            <h3>Sản phẩm</h3>
+                            <h3>Hình Ảnh</h3>
                             <i className="bx bx-search"></i>
                             <i className="bx bx-filter"></i>
                         </div>

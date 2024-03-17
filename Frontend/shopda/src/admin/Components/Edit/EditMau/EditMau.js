@@ -23,6 +23,12 @@ const schema = yup.object({
         .required("Không được bỏ trống")
         .min(2, "Tên màu có tối thiểu 5 ký tự")
         .max(20, "Tên  màu có tối đa 20 ký tự"),
+    quantity: yup
+        .number()
+        .typeError("Vui lòng nhập một số")
+        .required("Không được bỏ trống")
+        .min(1, "Chưa đạt số lượng tối thiểu")
+        .integer("Phải là số nguyên"),
 });
 
 const EditMau = () => {
@@ -34,9 +40,11 @@ const EditMau = () => {
                 `http://localhost:4000/products/color/${id}`
             );
             const data = await reponse.json();
+            console.log(data);
             return {
                 name: data.name,
                 code: data.code,
+                quantity: data.Quantity,
                 id_pd: data.id_pd,
             };
         },
@@ -128,6 +136,18 @@ const EditMau = () => {
                                             </p>
                                         </div>
                                         <div className="checkout-address-input">
+                                            <label>Số lượng</label> <br />
+                                            <input
+                                                type="number"
+                                                placeholder="10"
+                                                id="laptop-ram"
+                                                {...register("quantity")}
+                                            />
+                                            <p className="err">
+                                                {errors.quantity?.message}
+                                            </p>
+                                        </div>
+                                        <div className="checkout-address-input">
                                             <label>Mã Sản phẩm</label> <br />
                                             <select
                                                 {...register("id_pd")}
@@ -148,7 +168,7 @@ const EditMau = () => {
                                         </div>
                                         <div className="checkout-address-input">
                                             <button className="submit">
-                                                Thêm
+                                                Sửa
                                             </button>
                                         </div>
                                     </div>

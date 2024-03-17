@@ -17,8 +17,7 @@ function queryDB(sql) {
 //Thêm sản phẩm
 router.post("/add-product", async (req, res) => {
     try {
-        var { name, description, price, price_sale, image, id_cate } =
-            req.body;
+        var { name, description, price, price_sale, image, id_cate } = req.body;
         var sql = `INSERT INTO product (name, description, price, price_sale, image, id_cate) VALUES ('${name}', '${description}', '${price}', '${price_sale}', '${image}', '${id_cate}')`;
         await queryDB(sql);
         res.json({ success: "Thêm sản phẩm thành công" });
@@ -35,14 +34,7 @@ router.put("/edit/:id", async (req, res) => {
         return;
     }
     try {
-        var {
-            name,
-            description,
-            price,
-            price_sale,
-            image,
-            id_cate,
-        } = req.body;
+        var { name, description, price, price_sale, image, id_cate } = req.body;
         var sql = `UPDATE product SET name='${name}', description='${description}', price='${price}', price_sale='${price_sale}', image='${image}', id_cate='${id_cate}' WHERE id_pd='${id_pd}'`;
         await queryDB(sql);
         res.json({ success: "Sửa sản phẩm thành công" });
@@ -72,7 +64,7 @@ router.delete("/delete/:id", async (req, res) => {
 router.post("/add-image", async (req, res) => {
     try {
         const { name, id_pd } = req.body;
-        const sql = `INSERT INTO image (id_pd,name ) VALUES ('${id_pd}', '${name}')`;
+        const sql = `INSERT INTO image (name,id_pd ) VALUES ( '${name}','${id_pd}')`;
         await queryDB(sql);
         res.json({ success: "Thêm hình sản phẩm thành công" });
     } catch (err) {
@@ -100,8 +92,8 @@ router.put("/edit-image/:id", async (req, res) => {
 //Thêm màu sản phẩm
 router.post("/add-color", async (req, res) => {
     try {
-        const { name, code, id_pd, quantity } = req.body;
-        const sql = `INSERT INTO color (id_pd,name,code,quantity ) VALUES ('${id_pd}', '${name}','${code}'), '${quantity}'`;
+        const { name, code, quantity, id_pd } = req.body;
+        const sql = `INSERT INTO color ( name, code, quantity,id_pd) VALUES ( '${name}', '${code}', '${quantity}','${id_pd}')`;
         await queryDB(sql);
         res.json({ success: "Thêm màu sản phẩm thành công" });
     } catch (err) {

@@ -6,8 +6,6 @@ const ColorDetail = () => {
     const [listsp, setListSP] = useState([]);
     const [listColor, setListColor] = useState([]);
     const [selectedSP, setSelectedSP] = useState("");
-    // const navigate = useNavigate();
-
     useEffect(() => {
         fetch("http://localhost:4000/products/list")
             .then((res) => res.json())
@@ -16,6 +14,24 @@ const ColorDetail = () => {
             .then((res) => res.json())
             .then(setListColor);
     }, []);
+    const xoaMau = (id) => {
+        if (window.confirm("Xóa sản phẩm không?")) {
+            fetch(`http://localhost:4000/admin-products/delete/${id}`, {
+                method: "DELETE",
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    alert("Đã xóa Màu thành công");
+                    fetch("http://localhost:4000/products/col/list")
+                        .then((res) => res.json())
+                        .then((data) => setListSP(data))
+                        .catch((error) =>
+                            console.error("Lỗi cập nhật danh sách Màu:", error)
+                        );
+                })
+                .catch((error) => console.error("Lỗi xóa Màu:", error));
+        }
+    };
 
     const handleLoaiChange = useCallback((event) => {
         setSelectedSP(event.target.value);
@@ -36,6 +52,7 @@ const ColorDetail = () => {
                         <th>ID</th>
                         <th>Màu</th>
                         <th>Id_pd</th>
+                        <th>Quantity</th>
                         <th>Edit</th>
                         <th>Remove</th>
                     </tr>
@@ -50,6 +67,7 @@ const ColorDetail = () => {
                                 <p>{sp.name}</p>
                             </td>
                             <td>{sp.id_pd}</td>
+                            <td>{sp.Quantity}</td>
                             <td>
                                 <Link to={`/admin/EditMau/${sp.id_color}`}>
                                     <span className="btn--show-modal">
@@ -58,7 +76,10 @@ const ColorDetail = () => {
                                 </Link>
                             </td>
                             <td>
-                                <span className="delete-cate">
+                                <span
+                                    className="delete-cate"
+                                    onClick={() => xoaMau(sp.id_pd)}
+                                >
                                     <i className="fas fa-trash-alt"></i>
                                 </span>
                             </td>

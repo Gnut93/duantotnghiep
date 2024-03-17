@@ -72,23 +72,23 @@ const EditSP = () => {
         data.id_pd = parseInt(data.id_pd);
         try {
             const confirmation = window.confirm(
-                "Bạn có chắc chắn muốn sửa sản phẩm  này?"
+                "Bạn có chắc chắn muốn sửa Sản Phẩm này?"
             );
             if (!confirmation) {
                 return;
             }
             const url = `http://localhost:4000/admin-products/edit/${id}`;
             const opt = {
-                method: "put",
+                method: "PUT",
                 body: JSON.stringify(data),
                 headers: { "Content-Type": "application/json" },
             };
             const res = await fetch(url, opt);
-            const reponseData = await res.json();
-            alert("Đã sửa sản phẩm,", reponseData);
+            const responseData = await res.json();
+            alert("Đã Sửa Sản Phẩm Thành Công,", responseData);
             navigate("/admin/khohang");
         } catch (error) {
-            console.error("Lỗi khi sửa sản phẩm: ", error);
+            console.error("Lỗi khi thêm Sản Ph: ", error);
         }
     };
 
@@ -176,18 +176,6 @@ const EditSP = () => {
                                         </div>
                                     </div>
                                     <div className="checkout-address-item">
-                                        <div className="checkout-address-input">
-                                            <label>Số lượng</label> <br />
-                                            <input
-                                                type="text"
-                                                placeholder="10"
-                                                id="laptop-ram"
-                                                {...register("quantity")}
-                                            />
-                                            <p className="err">
-                                                {errors.quantity?.message}
-                                            </p>
-                                        </div>
                                         <div className="checkout-address-input">
                                             <label>Hình Ảnh</label> <br />
                                             <input

@@ -22,12 +22,17 @@ const schema = yup.object({
         .required("Không được bỏ trống")
         .min(2, "Tên màu có tối thiểu 5 ký tự")
         .max(20, "Tên  màu có tối đa 20 ký tự"),
+    quantity: yup
+        .number()
+        .typeError("Vui lòng nhập một số")
+        .required("Không được bỏ trống")
+        .min(1, "Chưa đạt số lượng tối thiểu")
+        .integer("Phải là số nguyên"),
 });
 
 const NhapMau = () => {
     const form = useForm({
         defaultValues: {
-            id_pd: "",
             name: "",
             code: "",
         },
@@ -98,6 +103,18 @@ const NhapMau = () => {
                                     {...register("code")}
                                 />
                                 <p className="err">{errors.code?.message}</p>
+                            </div>
+                            <div className="checkout-address-input">
+                                <label>Số lượng</label> <br />
+                                <input
+                                    type="text"
+                                    placeholder="10"
+                                    id="laptop-ram"
+                                    {...register("quantity")}
+                                />
+                                <p className="err">
+                                    {errors.quantity?.message}
+                                </p>
                             </div>
                             <div className="checkout-address-input">
                                 <label>Mã Sản phẩm</label> <br />
