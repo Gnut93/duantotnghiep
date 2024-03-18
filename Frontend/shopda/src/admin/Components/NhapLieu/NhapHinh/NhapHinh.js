@@ -30,7 +30,6 @@ const NhapHinh = () => {
         console.log(e.target.files[0]);
         cloudinaryUpload(uploadData)
             .then((res) => {
-                console.log(res.secure_url);
                 form.setValue("name", res.secure_url);
             })
             .catch((err) => console.error(err));
@@ -47,7 +46,6 @@ const NhapHinh = () => {
             };
             const res = await fetch(url, opt);
             const responseData = await res.json();
-            console.log(responseData);
             alert("Đã thêm hình Thành Công,", responseData);
         } catch (error) {
             console.error("Lỗi khi thêm hình: ", error);
@@ -106,6 +104,15 @@ const NhapHinh = () => {
                             </div>
                             <div className="checkout-address-input">
                                 <button className="submit">Thêm</button>
+                            </div>
+                            <div className="checkout-address-input">
+                                <button
+                                    type="button"
+                                    className="submit"
+                                    onClick={() => reset()}
+                                >
+                                    reset
+                                </button>
                             </div>
                         </div>
                     </div>

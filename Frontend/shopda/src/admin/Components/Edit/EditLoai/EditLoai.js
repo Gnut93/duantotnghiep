@@ -27,7 +27,7 @@ const EditLoai = () => {
         },
         resolver: yupResolver(schema),
     });
-    const { register, handleSubmit, formState, control } = form;
+    const { register, handleSubmit, reset, formState, control } = form;
     const { errors } = formState;
     const handleSubmitLoai = async (data) => {
         try {
@@ -88,6 +88,15 @@ const EditLoai = () => {
                                         <div className="checkout-address-input">
                                             <button className="submit">
                                                 Sửa
+                                            </button>
+                                        </div>
+                                        <div className="checkout-address-input">
+                                            <button
+                                                type="button"
+                                                className="submit"
+                                                onClick={() => reset()}
+                                            >
+                                                Khôi Phục Dữ Liệu
                                             </button>
                                         </div>
                                     </div>

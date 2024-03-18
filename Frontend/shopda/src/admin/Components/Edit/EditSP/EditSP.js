@@ -88,7 +88,7 @@ const EditSP = () => {
             alert("Đã Sửa Sản Phẩm Thành Công,", responseData);
             navigate("/admin/khohang");
         } catch (error) {
-            console.error("Lỗi khi thêm Sản Ph: ", error);
+            console.error("Lỗi khi thêm Sản Phẩm: ", error);
         }
     };
 
@@ -205,6 +205,15 @@ const EditSP = () => {
                                         <div className="checkout-address-input">
                                             <button className="submit">
                                                 Sửa
+                                            </button>
+                                        </div>
+                                        <div className="checkout-address-input">
+                                            <button
+                                                type="button"
+                                                className="submit"
+                                                onClick={() => reset()}
+                                            >
+                                                Khôi Phục Dữ Liệu
                                             </button>
                                         </div>
                                     </div>

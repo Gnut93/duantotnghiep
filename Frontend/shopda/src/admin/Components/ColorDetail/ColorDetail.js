@@ -14,6 +14,7 @@ const ColorDetail = () => {
             .then((res) => res.json())
             .then(setListColor);
     }, []);
+
     const xoaMau = (id) => {
         if (window.confirm("Xóa sản phẩm không?")) {
             fetch(`http://localhost:4000/admin-products/delete-color/${id}`, {
@@ -22,9 +23,10 @@ const ColorDetail = () => {
                 .then((res) => res.json())
                 .then((data) => {
                     alert("Đã xóa Màu thành công");
+
                     fetch("http://localhost:4000/products/col/list")
                         .then((res) => res.json())
-                        .then((data) => setListSP(data))
+                        .then((data) => setListColor(data))
                         .catch((error) =>
                             console.error("Lỗi cập nhật danh sách Màu:", error)
                         );
@@ -78,7 +80,7 @@ const ColorDetail = () => {
                             <td>
                                 <span
                                     className="delete-cate"
-                                    onClick={() => xoaMau(sp.id_pd)}
+                                    onClick={() => xoaMau(sp.id_color)}
                                 >
                                     <i className="fas fa-trash-alt"></i>
                                 </span>

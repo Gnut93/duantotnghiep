@@ -178,6 +178,15 @@ const NhapSP = () => {
                             <div className="checkout-address-input">
                                 <button className="submit">Thêm</button>
                             </div>
+                            <div className="checkout-address-input">
+                                <button
+                                    type="button"
+                                    className="submit"
+                                    onClick={() => reset()}
+                                >
+                                    reset
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </form>

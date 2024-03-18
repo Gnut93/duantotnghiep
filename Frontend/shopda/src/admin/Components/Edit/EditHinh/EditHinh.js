@@ -20,7 +20,7 @@ const EditHinh = () => {
     const form = useForm({
         defaultValues: async () => {
             const reponse = await fetch(
-                `http://localhost:4000/products/image/${id}`
+                `http://localhost:4000/products/image/detail/${id}`
             );
             const data = await reponse.json();
             console.log(data);
@@ -117,6 +117,15 @@ const EditHinh = () => {
                             </div>
                             <div className="checkout-address-input">
                                 <button className="submit">Sửa</button>
+                            </div>
+                            <div className="checkout-address-input">
+                                <button
+                                    type="button"
+                                    className="submit"
+                                    onClick={() => reset()}
+                                >
+                                    Khôi Phục Dữ Liệu
+                                </button>
                             </div>
                         </div>
                     </div>

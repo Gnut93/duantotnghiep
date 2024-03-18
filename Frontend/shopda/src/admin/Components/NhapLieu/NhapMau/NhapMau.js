@@ -107,7 +107,7 @@ const NhapMau = () => {
                             <div className="checkout-address-input">
                                 <label>Số lượng</label> <br />
                                 <input
-                                    type="text"
+                                    type="number"
                                     placeholder="10"
                                     id="laptop-ram"
                                     {...register("quantity")}
@@ -132,6 +132,15 @@ const NhapMau = () => {
                             </div>
                             <div className="checkout-address-input">
                                 <button className="submit">Thêm</button>
+                            </div>
+                            <div className="checkout-address-input">
+                                <button
+                                    type="button"
+                                    className="submit"
+                                    onClick={() => reset()}
+                                >
+                                    reset
+                                </button>
                             </div>
                         </div>
                     </div>
