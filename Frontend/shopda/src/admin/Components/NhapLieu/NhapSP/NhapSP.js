@@ -143,8 +143,11 @@ const NhapSP = () => {
                                     className="option-cate"
                                     {...register("id_cate")}
                                 >
+                                    <option value="" disabled selected>
+                                        Vui lòng chọn loại sản phẩm
+                                    </option>
                                     {listLoai.map((loai, i) => (
-                                        <option key={i} Value={loai.id_cate}>
+                                        <option key={i} value={loai.id_cate}>
                                             {loai.name}
                                         </option>
                                     ))}

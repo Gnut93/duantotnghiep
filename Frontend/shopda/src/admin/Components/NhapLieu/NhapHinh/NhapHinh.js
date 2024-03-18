@@ -89,11 +89,14 @@ const NhapHinh = () => {
                                 <p className="err">{errors.name?.message}</p>
                             </div>
                             <div className="checkout-address-input">
-                                <label>Mã Sản Phẩm</label> <br />
+                                <label>Mã Sản phẩm</label> <br />
                                 <select
                                     {...register("id_pd")}
                                     className="option-cate"
                                 >
+                                    <option value="" disabled selected>
+                                        Vui lòng chọn sản phẩm
+                                    </option>
                                     {listSanPham.map((sp, i) => (
                                         <option key={i} value={sp.id_pd}>
                                             {sp.name}

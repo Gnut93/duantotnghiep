@@ -52,6 +52,7 @@ const EditMau = () => {
     });
     const { register, handleSubmit, reset, formState, control } = form;
     const { errors, isSubmitSuccessful } = formState;
+
     const handleSubmitMau = async (data) => {
         data.id_pd = parseInt(data.id_pd);
 

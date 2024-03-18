@@ -122,6 +122,9 @@ const NhapMau = () => {
                                     {...register("id_pd")}
                                     className="option-cate"
                                 >
+                                    <option value="" disabled selected>
+                                        Vui lòng chọn loại sản phẩm
+                                    </option>
                                     {listSanPham.map((sp, i) => (
                                         <option key={i} value={sp.id_pd}>
                                             {sp.name}
@@ -130,6 +133,7 @@ const NhapMau = () => {
                                 </select>
                                 <p className="err">{errors.id_pd?.message}</p>
                             </div>
+
                             <div className="checkout-address-input">
                                 <button className="submit">Thêm</button>
                             </div>
