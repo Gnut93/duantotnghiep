@@ -1,9 +1,9 @@
-.offer-content {
-  width: 80%;
-  margin: 50px auto;
-  display: flex;
+.offer {
   background-color: #f3e5d7;
-  height: 591px;
+  padding: 100px 0;
+}
+.offer-content {
+  display: flex;
 }
 .offer-item {
   width: 50%;

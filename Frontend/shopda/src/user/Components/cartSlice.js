@@ -4,28 +4,38 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState: { listSP: [] },
   reducers: {
-    themSP: (state, { payload }) => {
-      const index = state.listSP.findIndex((s) => s.id_pd === payload.id_pd);
-      if (index === -1) {
-        state.listSP.push({ ...payload, soluong: 1 });
+    themSP: (state, action) => {
+      const { id_pd, id_color, soluong } = action.payload;
+      const existingProductIndex = state.listSP.findIndex(
+        (sp) => sp.id_pd === id_pd && sp.id_color === id_color
+      );
+
+      if (existingProductIndex >= 0) {
+        state.listSP[existingProductIndex].soluong += soluong;
       } else {
-        state.listSP[index].soluong += 1;
+        state.listSP.push(action.payload);
       }
     },
-    suaSL: (state, { payload: [id_pd, soluong] }) => {
-      const index = state.listSP.findIndex((s) => s.id_pd === id_pd);
-      const quantity = parseInt(soluong, 10); // Đảm bảo rằng soluong là một số nguyên
+    suaSL: (state, { payload }) => {
+      const { id_pd, id_color, soluong } = payload;
+      const index = state.listSP.findIndex(
+        (s) => s.id_pd === id_pd && s.id_color === id_color
+      );
+      const quantity = parseInt(soluong, 10);
+
       if (index !== -1) {
         if (!isNaN(quantity) && quantity > 0) {
           state.listSP[index].soluong = quantity;
         } else if (quantity === 0) {
-          // Xóa sản phẩm khỏi giỏ hàng nếu số lượng là 0
           state.listSP.splice(index, 1);
         }
       }
     },
     xoaSP: (state, { payload }) => {
-      state.listSP = state.listSP.filter((s) => s.id_pd !== payload);
+      // Giả sử payload là { id_color: xxx }
+      state.listSP = state.listSP.filter(
+        (s) => s.id_color !== payload.id_color
+      );
     },
     xoaGH: (state) => {
       state.listSP = [];

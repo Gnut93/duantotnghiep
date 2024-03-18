@@ -48,7 +48,7 @@
 }
 
 .cart-table tbody tr td {
-  padding: 30px;
+  padding: 10px;
   max-height: 50px;
   vertical-align: middle;
   text-align: center;
@@ -61,10 +61,13 @@
 }
 
 .cart-table tbody tr td img {
-  max-width: 100px;
+  max-width: 80px;
   background-color: #000000;
   border-radius: 10px;
   margin: 0 auto;
+}
+.cart-table tbody tr td p {
+  width: 100px;
 }
 
 .cart-table tbody tr td .icon {
@@ -95,6 +98,7 @@
 
 .cart-info {
   display: flex;
+  justify-content: space-between;
   gap: 30px;
   padding: 20px 0 50px;
 }
@@ -103,6 +107,8 @@
 }
 .cart-pay {
   width: calc(30% - 15px);
+}
+.cart-pay-item {
   padding: 16px;
   border: 1px solid #7b88a8;
 }

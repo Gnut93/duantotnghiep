@@ -2,24 +2,30 @@ import React, { useEffect, useState } from 'react';
 import './Shop.css';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
+import img1 from '../../../assets/images/vi-img.webp';
+import img2 from '../../../assets/images/tui-xach-img.webp';
+import img3 from '../../../assets/images/tui-du-lịch-img.webp';
+import img4 from '../../../assets/images/that-lung-img.webp';
+import img5 from '../../../assets/images/balo-img.webp';
+import img6 from '../../../assets/images/phu-kien-khac.webp';
 const imgList = [
   {
-    img: 'https://leeandtee.vn/image/358/263/1/0/product/category/bop-vi-da-leeandtee-banner-2.png',
+    img: img1,
   },
   {
-    img: 'https://leeandtee.vn/image/358/263/1/0/product/category/tui-xach-leeandtee-banner-1.png',
+    img: img2,
   },
   {
-    img: 'https://leeandtee.vn/image/358/263/1/0/product/category/tui-du-lich-leeandtee-banner-1.png',
+    img: img3,
   },
   {
-    img: 'https://leeandtee.vn/image/358/263/1/0/product/category/that-lung-leeandtee-1.jpg',
+    img: img4,
   },
   {
-    img: 'https://leeandtee.vn/image/358/263/1/0/product/category/balo-leeandtee-banner-3.png',
+    img: img5,
   },
   {
-    img: 'https://leeandtee.vn/image/358/263/1/0/product/category/phu-kien-moc-khoa-leeandtee-2.png',
+    img: img6,
   },
 ];
 

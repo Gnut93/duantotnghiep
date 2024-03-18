@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../Navbar/Navbar';
 import './About.css';
+import aboutImg from './about-img.webp';
 
 const About = () => {
   return (
@@ -55,7 +56,7 @@ const About = () => {
           <div className="about-image">
             <div className="about-image-item">
               <img
-                src="https://files.oaiusercontent.com/file-nrkWHG6JpT9TeK24xmvsv8Vz?se=2024-03-15T15%3A24%3A25Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3D078cf32b-4fd9-49a0-88f8-e52362ba5b40.webp&sig=MR90mDmHfKXxK9KedkWSxsWPYrQqPV1wch4KTNO91eE%3D"
+                src={aboutImg}
                 alt=""
               />
             </div>

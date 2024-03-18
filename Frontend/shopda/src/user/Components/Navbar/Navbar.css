@@ -21,6 +21,7 @@
   width: 100px;
   height: 65px;
   object-fit: cover;
+  filter: invert(100%);
 }
 .menu-link:hover,
 .menu-link i:hover {

@@ -48,6 +48,11 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
+  cursor: pointer;
+}
+.detail-color-item.active {
+  padding: 15px;
+  border: 5px solid #000000;
 }
 .detail-quantity {
   display: flex;
@@ -59,7 +64,7 @@
 .detail-quantity-next {
   display: inline-block;
   padding: 8px 10px;
-  background-color: #002c3f;
+  background-color: #4a1f18;
   border: 1px solid #7b88a8;
   transition: 0.3s linear;
 }
@@ -96,6 +101,12 @@
   margin-bottom: 30px;
   padding: 8px 14px;
   width: 100%;
-  background-color: #002c3f;
+  border-radius: 6px;
+  background-color: #4a1f18;
   color: #fff;
+  transition: 0.3s all linear;
+}
+.detail-add:hover {
+  background-color: #ffffff;
+  color: #000000;
 }
