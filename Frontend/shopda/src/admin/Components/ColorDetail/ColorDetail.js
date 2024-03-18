@@ -16,7 +16,7 @@ const ColorDetail = () => {
     }, []);
     const xoaMau = (id) => {
         if (window.confirm("Xóa sản phẩm không?")) {
-            fetch(`http://localhost:4000/admin-products/delete/${id}`, {
+            fetch(`http://localhost:4000/admin-products/delete-color/${id}`, {
                 method: "DELETE",
             })
                 .then((res) => res.json())

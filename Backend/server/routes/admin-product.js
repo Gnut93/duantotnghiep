@@ -118,4 +118,19 @@ router.put("/edit-color/:id", async (req, res) => {
     }
 });
 
+//Xóa màu sản phẩm
+router.delete("/delete-color/:id", async (req, res) => {
+    var id_color = parseInt(req.params.id);
+    if (isNaN(id_color) || id_color < 1) {
+        res.json({ error: "ID không hợp lệ" });
+        return;
+    }
+    try {
+        await queryDB(`DELETE FROM color WHERE id_color='${id_color}'`);
+        res.json({ success: "Xóa màu sản phẩm thành công" });
+    } catch (err) {
+        res.json({ error: err.message });
+    }
+});
+
 module.exports = router;
