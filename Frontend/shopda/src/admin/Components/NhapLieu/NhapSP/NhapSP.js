@@ -5,7 +5,7 @@ import { DevTool } from "@hookform/devtools";
 import { useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-
+import cloudinaryUpload from "../../../../service/uploads";
 const schema = yup.object({
     name: yup
         .string()
@@ -24,17 +24,12 @@ const schema = yup.object({
         .typeError("Vui lòng nhập một số")
         .min(1, "Chưa đạt số lượng tối thiểu")
         .required("Không được bỏ trống"),
-    quantity: yup
-        .number()
-        .typeError("Vui lòng nhập một số")
-        .required("Không được bỏ trống")
-        .min(1, "Chưa đạt số lượng tối thiểu")
-        .integer("Phải là số nguyên"),
 
-    image: yup
-        .string()
-        .url("link ảnh không hợp lệ")
-        .required("Không được bỏ trống"),
+    image: yup.string().required("Không được bỏ trống"),
+    avatar: yup.mixed().test("size", "Kích thước file quá lớn", (value) => {
+        if (!value) return true; // Trường hợp không có file được chọn
+        return value.size <= 5242880; // Kích thước file không vượt quá 5MB (5242880 bytes)
+    }),
     description: yup
         .string()
         .trim()
@@ -46,11 +41,9 @@ const schema = yup.object({
 const NhapSP = () => {
     const form = useForm({
         defaultValues: {
-            id_cate: "",
             name: "",
             price: "",
             price_sale: "",
-            quantity: "",
             image: "",
             description: "",
         },
@@ -58,6 +51,18 @@ const NhapSP = () => {
     });
     const { register, handleSubmit, reset, formState, control } = form;
     const { errors, isSubmitSuccessful } = formState;
+
+    const handleFileUpload = (e) => {
+        const uploadData = new FormData();
+        uploadData.append("file", e.target.files[0], "file");
+        console.log(e.target.files[0]);
+        cloudinaryUpload(uploadData)
+            .then((res) => {
+                console.log(res.secure_url);
+                form.setValue("image", res.secure_url);
+            })
+            .catch((err) => console.error(err));
+    };
 
     const handleSubmitSanPham = async (data) => {
         data.id_pd = parseInt(data.id_pd);
@@ -71,7 +76,6 @@ const NhapSP = () => {
             const res = await fetch(url, opt);
             const reponseData = await res.json();
             alert("Đã thêm sản phẩm,", reponseData);
-            console.log(data);
         } catch (error) {
             console.error("Lỗi khi thêm sản phẩm: ", error);
         }
@@ -140,7 +144,7 @@ const NhapSP = () => {
                                     {...register("id_cate")}
                                 >
                                     {listLoai.map((loai, i) => (
-                                        <option key={i} value={loai.id_cate}>
+                                        <option key={i} Value={loai.id_cate}>
                                             {loai.name}
                                         </option>
                                     ))}
@@ -149,24 +153,11 @@ const NhapSP = () => {
                         </div>
                         <div className="checkout-address-item">
                             <div className="checkout-address-input">
-                                <label>Số lượng</label> <br />
-                                <input
-                                    type="text"
-                                    placeholder="10"
-                                    id="laptop-ram"
-                                    {...register("quantity")}
-                                />
-                                <p className="err">
-                                    {errors.quantity?.message}
-                                </p>
-                            </div>
-                            <div className="checkout-address-input">
                                 <label>Hình Ảnh</label> <br />
                                 <input
                                     type="file"
                                     id="avatar"
-                                    accept="image/*"
-                                    {...register("image")}
+                                    onChange={(e) => handleFileUpload(e)}
                                 />
                                 <p className="err">{errors.image?.message}</p>
                             </div>

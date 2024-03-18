@@ -5,10 +5,9 @@ import { DevTool } from "@hookform/devtools";
 import { useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-
+import { useParams, useNavigate } from "react-router-dom";
 const today = new Date();
 const minDate = today.toISOString();
-
 const schema = yup.object({
     code: yup
         .string()
@@ -35,12 +34,28 @@ const schema = yup.object({
         .min(minDate, "Ngày không được nhỏ hơn ngày hiện tại"),
 });
 const EditDiscout = () => {
+    let { id } = useParams();
+    const navigate = useNavigate();
     const form = useForm({
-        defaultValues: {
-            code: "",
-            quantity: 0,
-            price: 0,
-            expiration_date: new Date(),
+        defaultValues: async () => {
+            const reponse = await fetch(
+                `http://localhost:4000/admin-giftcode/detail/${id}`
+            );
+            const data = await reponse.json();
+            const expirationDate = new Date(data.expiration_date);
+            const day = String(expirationDate.getDate()).padStart(2, "0");
+            const month = String(expirationDate.getMonth() + 1).padStart(
+                2,
+                "0"
+            );
+            const year = expirationDate.getFullYear();
+            const formattedDate = `${year}-${month}-${day}`;
+            return {
+                code: data.code,
+                quantity: data.quantity,
+                price: data.price,
+                expiration_date: formattedDate,
+            };
         },
         resolver: yupResolver(schema),
     });
@@ -49,17 +64,24 @@ const EditDiscout = () => {
 
     const handleSubmitDiscout = async (data) => {
         try {
-            const url = "http://localhost:4000/admin-giftcode/add";
+            const confirmation = window.confirm(
+                "Bạn có chắc chắn muốn sửa Discout này?"
+            );
+            if (!confirmation) {
+                return;
+            }
+            const url = `http://localhost:4000/admin-giftcode/edit/${id}`;
             const opt = {
-                method: "post",
+                method: "put",
                 body: JSON.stringify(data),
                 headers: { "Content-Type": "application/json" },
             };
             const res = await fetch(url, opt);
             const responseData = await res.json();
-            alert("Đã thêm Discout Thành Công,", responseData);
+            alert("Đã sửa Discout Thành Công,", responseData);
+            navigate("/admin/discout");
         } catch (error) {
-            console.error("Lỗi khi thêm Discout: ", error);
+            console.error("Lỗi khi Sửa Discout: ", error);
         }
     };
     useEffect(() => {
@@ -78,7 +100,7 @@ const EditDiscout = () => {
                 <div className="tab-additional active" data-tab="1">
                     <div className="checkout-address">
                         <h3 className="checkout-address-title">
-                            <span>Thêm Mã giảm giá</span>
+                            <span>Sửa Mã giảm giá</span>
                         </h3>
                         <div className="checkout-address-box">
                             <form
@@ -105,8 +127,6 @@ const EditDiscout = () => {
                                             <label>Số lượng</label> <br />
                                             <input
                                                 type="number"
-                                                id="avatar"
-                                                accept="image/*"
                                                 {...register("quantity")}
                                             />
                                             <p className="err">
@@ -117,8 +137,6 @@ const EditDiscout = () => {
                                             <label>Giá</label> <br />
                                             <input
                                                 type="number"
-                                                id="avatar"
-                                                accept="image/*"
                                                 {...register("price")}
                                             />
                                             <p className="err">
@@ -129,8 +147,6 @@ const EditDiscout = () => {
                                             <label>Ngày hết hạn</label> <br />
                                             <input
                                                 type="date"
-                                                id="avatar"
-                                                accept="image/*"
                                                 {...register("expiration_date")}
                                             />
                                             <p className="err">
@@ -142,7 +158,7 @@ const EditDiscout = () => {
                                         </div>
                                         <div className="checkout-address-input">
                                             <button className="submit">
-                                                Thêm
+                                                Sửa
                                             </button>
                                         </div>
                                     </div>

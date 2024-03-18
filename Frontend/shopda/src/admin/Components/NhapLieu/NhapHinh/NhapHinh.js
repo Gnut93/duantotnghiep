@@ -17,7 +17,6 @@ const schema = yup.object({
 const NhapHinh = () => {
     const form = useForm({
         defaultValues: {
-            id_pd: "",
             name: "",
         },
         resolver: yupResolver(schema),
@@ -39,7 +38,6 @@ const NhapHinh = () => {
 
     const handleSubmitHinh = async (data) => {
         data.id_pd = parseInt(data.id_pd);
-
         try {
             const url = "http://localhost:4000/admin-products/add-image";
             const opt = {
@@ -49,6 +47,7 @@ const NhapHinh = () => {
             };
             const res = await fetch(url, opt);
             const responseData = await res.json();
+            console.log(responseData);
             alert("Đã thêm hình Thành Công,", responseData);
         } catch (error) {
             console.error("Lỗi khi thêm hình: ", error);
@@ -81,22 +80,13 @@ const NhapHinh = () => {
                 >
                     <div className="checkout-address-list">
                         <div className="checkout-address-item">
-                            {/* <div className="checkout-address-input">
-                                <label>Link Hình</label> <br />
-                                <input
-                                    type="text"
-                                    id="avatar"
-                                    accept="image/*"
-                                    {...register("name")}
-                                />
-                                <p className="err">{errors.name?.message}</p>
-                            </div> */}
                             <div className="checkout-address-input">
                                 <label>Hình Ảnh</label> <br />
                                 <input
                                     type="file"
                                     id="avatar"
                                     onChange={(e) => handleFileUpload(e)}
+                                    {...register("name")}
                                 />
                                 <p className="err">{errors.name?.message}</p>
                             </div>
