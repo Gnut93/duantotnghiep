@@ -49,6 +49,12 @@ const RelatedProduct = ({ id = '' }) => {
 
   const handleAddToCart = (product) => {
     const id_color = selectedColorIds[product.id_pd];
+    const nameColor = colors[product.id_pd].find(
+      (color) => color.id_color === id_color
+    ).name;
+    const maxQuantity = colors[product.id_pd].find(
+      (color) => color.id_color === id_color
+    ).quantity;
     const colorInfo = colors[product.id_pd].find(
       (color) => color.id_color === id_color
     );
@@ -72,6 +78,8 @@ const RelatedProduct = ({ id = '' }) => {
         themSP({
           ...product,
           id_color,
+          nameColor,
+          maxQuantity,
           soluong: currentProductInCart ? currentProductInCart.soluong + 1 : 1,
         })
       );

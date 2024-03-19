@@ -5,6 +5,18 @@ export const cartSlice = createSlice({
   initialState: { listSP: [] },
   reducers: {
     themSP: (state, action) => {
+      const { id_pd, id_color } = action.payload;
+      const existingProductIndex = state.listSP.findIndex(
+        (sp) => sp.id_pd === id_pd && sp.id_color === id_color
+      );
+
+      if (existingProductIndex >= 0) {
+        state.listSP[existingProductIndex].soluong += 1;
+      } else {
+        state.listSP.push(action.payload);
+      }
+    },
+    themSPDetail: (state, action) => {
       const { id_pd, id_color, soluong } = action.payload;
       const existingProductIndex = state.listSP.findIndex(
         (sp) => sp.id_pd === id_pd && sp.id_color === id_color
@@ -43,5 +55,5 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { themSP, suaSL, xoaGH, xoaSP } = cartSlice.actions;
+export const { themSP, themSPDetail, suaSL, xoaGH, xoaSP } = cartSlice.actions;
 export default cartSlice.reducer;

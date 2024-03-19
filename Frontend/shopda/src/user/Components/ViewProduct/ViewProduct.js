@@ -24,7 +24,7 @@ const ViewProduct = () => {
                 ...prevColors,
                 [product.id_pd]: colorData.map((color) => ({
                   ...color,
-                  maxQuantity: color.quantity, // Lưu trữ số lượng tối đa cho mỗi màu
+                  maxQuantity: color.quantity,
                 })),
               }));
               if (colorData.length > 0) {
@@ -41,6 +41,12 @@ const ViewProduct = () => {
 
   const handleAddToCart = (product) => {
     const id_color = selectedColorIds[product.id_pd];
+    const nameColor = colors[product.id_pd].find(
+      (color) => color.id_color === id_color
+    ).name;
+    const maxQuantity = colors[product.id_pd].find(
+      (color) => color.id_color === id_color
+    ).quantity;
     const colorInfo = colors[product.id_pd].find(
       (color) => color.id_color === id_color
     );
@@ -64,6 +70,8 @@ const ViewProduct = () => {
         themSP({
           ...product,
           id_color,
+          nameColor,
+          maxQuantity,
           soluong: currentProductInCart ? currentProductInCart.soluong + 1 : 1,
         })
       );

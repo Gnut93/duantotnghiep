@@ -4,7 +4,7 @@ import RelatedProduct from '../RelatedProduct/RelatedProduct';
 import { useParams } from 'react-router-dom';
 import ViewProduct from '../ViewProduct/ViewProduct';
 import { useDispatch, useSelector } from 'react-redux';
-import { themSP } from '../cartSlice';
+import { themSPDetail } from '../cartSlice';
 import Navbar from '../Navbar/Navbar';
 
 const ProductDetail = () => {
@@ -24,10 +24,7 @@ const ProductDetail = () => {
       .then((data) => {
         setSP(data);
       });
-    fetch('http://localhost:4000/products/image/' + id_pd).then((data) =>
-      setSP(data)
-    );
-    fetch('http://localhost:4000/products/image/list/' + id_pd)
+    fetch('http://localhost:4000/products/image/' + id_pd)
       .then((res) => res.json())
       .then((data) => setHinhSPCT(data));
     fetch('http://localhost:4000/products/color/list/' + id_pd)
@@ -87,7 +84,10 @@ const ProductDetail = () => {
         } sản phẩm.`
       );
     } else {
-      dispatch(themSP({ ...sp, id_color: selectedColorId, soluong: quantity }));
+      dispatch(
+        themSPDetail({ ...sp, id_color: selectedColorId, soluong: quantity })
+      );
+      setQuantity(1);
     }
   };
   return (

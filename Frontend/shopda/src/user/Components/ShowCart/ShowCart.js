@@ -11,25 +11,13 @@ const ShowCar = () => {
   const [productColors, setProductColors] = useState([]);
 
   useEffect(() => {
-    const fetchColors = async () => {
-      const tempData = await Promise.all(
-        cart.map(async (product) => {
-          const response = await fetch(
-            `http://localhost:4000/products/color/detail/${product.id_color}`
-          );
-          const data = await response.json();
-          return {
-            ...data[0],
-            id_pd: product.id_pd,
-            maxQuantity: data[0].quantity,
-          };
-        })
-      );
-
-      setProductColors(tempData);
-    };
-
-    fetchColors();
+    cart.forEach((product) => {
+      fetch(`http://localhost:4000/products/color/list/${product.id_pd}`)
+        .then((res) => res.json())
+        .then((colorData) => {
+          setProductColors(colorData);
+        });
+    });
   }, [cart]);
   const handleRemoveItem = useCallback(
     (id_color) => () => {
@@ -37,19 +25,20 @@ const ShowCar = () => {
     },
     [dispatch]
   );
+
   const handleChangeQuantity = useCallback(
     (id, id_color, e) => {
       const newQuantity = parseInt(e.target.value, 10) || 0;
       const colorInfo = productColors.find(
         (color) => color.id_color === id_color && color.id_pd === id
-      );
-
+      ).quantity;
+      console.log(newQuantity);
       if (newQuantity < 1) {
         dispatch(xoaSP({ id_color }));
-      } else if (colorInfo && newQuantity <= colorInfo.maxQuantity) {
+      } else if (colorInfo && newQuantity <= colorInfo) {
         dispatch(suaSL({ id_pd: id, id_color, soluong: newQuantity }));
       } else {
-        alert(`Số lượng tối đa là ${colorInfo?.maxQuantity}`);
+        alert(`Số lượng tối đa là ${colorInfo}`);
       }
     },
     [dispatch, productColors]
@@ -74,7 +63,7 @@ const ShowCar = () => {
       </section>
     );
   }
-
+  console.log(cart);
   return (
     <section className="cart">
       <Navbar></Navbar>
@@ -118,13 +107,7 @@ const ShowCar = () => {
                     <h5>{sp.name}</h5>
                   </td>
                   <td>
-                    <p>
-                      {productColors.find(
-                        (color) =>
-                          color.id_color === sp.id_color &&
-                          color.id_pd === sp.id_pd
-                      )?.name || 'Màu mặc định'}
-                    </p>
+                    <p>{sp.nameColor}</p>
                   </td>
                   <td>
                     <h5>
@@ -140,11 +123,9 @@ const ShowCar = () => {
                     <input
                       type="number"
                       className="input-number"
-                      value={sp.soluong.toString()}
+                      value={sp.soluong ? sp.soluong.toString() : '0'}
                       min="0"
-                      max={productColors
-                        .find((color) => color.id_color === sp.id_color)
-                        ?.maxQuantity.toString()}
+                      max={sp.maxQuantity}
                       onChange={(e) =>
                         handleChangeQuantity(sp.id_pd, sp.id_color, e)
                       }
