@@ -89,6 +89,21 @@ router.put("/edit-image/:id", async (req, res) => {
     }
 });
 
+//Xóa hình sản phẩm
+router.delete("/delete-image/:id", async (req, res) => {
+    var id_image = parseInt(req.params.id);
+    if (isNaN(id_image) || id_image < 1) {
+        res.json({ error: "ID không hợp lệ" });
+        return;
+    }
+    try {
+        await queryDB(`DELETE FROM image WHERE id_img='${id_image}'`);
+        res.json({ success: "Xóa hình sản phẩm thành công" });
+    } catch (err) {
+        res.json({ error: err.message });
+    }
+});
+
 //Thêm màu sản phẩm
 router.post("/add-color", async (req, res) => {
     try {

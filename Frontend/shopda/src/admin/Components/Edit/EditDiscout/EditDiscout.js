@@ -161,6 +161,15 @@ const EditDiscout = () => {
                                                 Sửa
                                             </button>
                                         </div>
+                                        <div className="checkout-address-input">
+                                            <button
+                                                type="button"
+                                                className="submit"
+                                                onClick={() => reset()}
+                                            >
+                                                Khôi Phục Dữ Liệu
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </form>

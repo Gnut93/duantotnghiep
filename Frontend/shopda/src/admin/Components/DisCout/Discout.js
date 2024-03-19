@@ -52,7 +52,7 @@ const Discout = () => {
                                     <th>Quantity</th>
                                     <th>Giá Trị</th>
                                     <th>Ngày Tạo</th>
-                                    <th>Ngày Hết Hạng</th>
+                                    <th>Ngày Hết Hạn</th>
                                     <th>Edit</th>
                                     <th>Remove</th>
                                 </tr>

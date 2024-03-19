@@ -30,7 +30,6 @@ const NhapHinh = () => {
         console.log(e.target.files[0]);
         cloudinaryUpload(uploadData)
             .then((res) => {
-                console.log(res.secure_url);
                 form.setValue("name", res.secure_url);
             })
             .catch((err) => console.error(err));
@@ -47,7 +46,6 @@ const NhapHinh = () => {
             };
             const res = await fetch(url, opt);
             const responseData = await res.json();
-            console.log(responseData);
             alert("Đã thêm hình Thành Công,", responseData);
         } catch (error) {
             console.error("Lỗi khi thêm hình: ", error);
@@ -91,11 +89,14 @@ const NhapHinh = () => {
                                 <p className="err">{errors.name?.message}</p>
                             </div>
                             <div className="checkout-address-input">
-                                <label>Mã Sản Phẩm</label> <br />
+                                <label>Mã Sản phẩm</label> <br />
                                 <select
                                     {...register("id_pd")}
                                     className="option-cate"
                                 >
+                                    <option value="" disabled selected>
+                                        Vui lòng chọn sản phẩm
+                                    </option>
                                     {listSanPham.map((sp, i) => (
                                         <option key={i} value={sp.id_pd}>
                                             {sp.name}
@@ -106,6 +107,15 @@ const NhapHinh = () => {
                             </div>
                             <div className="checkout-address-input">
                                 <button className="submit">Thêm</button>
+                            </div>
+                            <div className="checkout-address-input">
+                                <button
+                                    type="button"
+                                    className="submit"
+                                    onClick={() => reset()}
+                                >
+                                    reset
+                                </button>
                             </div>
                         </div>
                     </div>

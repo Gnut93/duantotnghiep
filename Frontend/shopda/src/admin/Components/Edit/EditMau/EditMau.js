@@ -37,7 +37,7 @@ const EditMau = () => {
     const form = useForm({
         defaultValues: async () => {
             const reponse = await fetch(
-                `http://localhost:4000/products/color/${id}`
+                `http://localhost:4000/products/color/detail/${id}`
             );
             const data = await reponse.json();
             console.log(data);
@@ -52,6 +52,7 @@ const EditMau = () => {
     });
     const { register, handleSubmit, reset, formState, control } = form;
     const { errors, isSubmitSuccessful } = formState;
+
     const handleSubmitMau = async (data) => {
         data.id_pd = parseInt(data.id_pd);
 
@@ -169,6 +170,15 @@ const EditMau = () => {
                                         <div className="checkout-address-input">
                                             <button className="submit">
                                                 Sửa
+                                            </button>
+                                        </div>
+                                        <div className="checkout-address-input">
+                                            <button
+                                                type="button"
+                                                className="submit"
+                                                onClick={() => reset()}
+                                            >
+                                                Khôi Phục Dữ Liệu
                                             </button>
                                         </div>
                                     </div>

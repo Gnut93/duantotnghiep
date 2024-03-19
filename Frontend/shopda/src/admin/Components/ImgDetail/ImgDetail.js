@@ -18,16 +18,16 @@ const ImgDetail = () => {
     }, []);
 
     const xoaHinh = (id) => {
-        if (window.confirm("Xóa sản phẩm không?")) {
-            fetch(`http://localhost:4000/admin-products/delete/${id}`, {
+        if (window.confirm("Xóa hình sản phẩm không?")) {
+            fetch(`http://localhost:4000/admin-products/delete-image/${id}`, {
                 method: "DELETE",
             })
                 .then((res) => res.json())
                 .then((data) => {
-                    alert("Đã xóa Màu thành công");
+                    alert("Đã xóa  hình thành công");
                     fetch("http://localhost:4000/products/img/list")
                         .then((res) => res.json())
-                        .then((data) => setListSP(data))
+                        .then((data) => setListImg(data))
                         .catch((error) =>
                             console.error("Lỗi cập nhật danh sách Màu:", error)
                         );
@@ -79,7 +79,7 @@ const ImgDetail = () => {
                             <td>
                                 <span
                                     className="delete-cate"
-                                    onClick={() => xoaHinh(sp.id_pd)}
+                                    onClick={() => xoaHinh(sp.id_img)}
                                 >
                                     <i className="fas fa-trash-alt"></i>
                                 </span>

@@ -47,6 +47,7 @@ const schema = yup.object({
 const EditSP = () => {
     let { id } = useParams();
     const navigate = useNavigate();
+    const [listLoai, setListLoai] = useState([]);
     const form = useForm({
         defaultValues: async () => {
             const reponse = await fetch(
@@ -68,8 +69,9 @@ const EditSP = () => {
     const { register, handleSubmit, reset, formState, control } = form;
     const { errors, isSubmitSuccessful } = formState;
 
-    const handleSubmitSanPham = async (data) => {
+    const handleSubmitSP = async (data) => {
         data.id_pd = parseInt(data.id_pd);
+
         try {
             const confirmation = window.confirm(
                 "Bạn có chắc chắn muốn sửa Sản Phẩm này?"
@@ -88,11 +90,10 @@ const EditSP = () => {
             alert("Đã Sửa Sản Phẩm Thành Công,", responseData);
             navigate("/admin/khohang");
         } catch (error) {
-            console.error("Lỗi khi thêm Sản Ph: ", error);
+            console.error("Lỗi khi thêm Sản Phẩm: ", error);
         }
     };
 
-    const [listLoai, setListLoai] = useState([]);
     useEffect(() => {
         fetch("http://localhost:4000/category/list")
             .then((res) => res.json())
@@ -117,7 +118,7 @@ const EditSP = () => {
                         <div className="checkout-address-box">
                             <form
                                 className="product"
-                                onSubmit={handleSubmit(handleSubmitSanPham)}
+                                onSubmit={handleSubmit(handleSubmitSP)}
                                 noValidate
                             >
                                 <div className="checkout-address-list">
@@ -205,6 +206,15 @@ const EditSP = () => {
                                         <div className="checkout-address-input">
                                             <button className="submit">
                                                 Sửa
+                                            </button>
+                                        </div>
+                                        <div className="checkout-address-input">
+                                            <button
+                                                type="button"
+                                                className="submit"
+                                                onClick={() => reset()}
+                                            >
+                                                Khôi Phục Dữ Liệu
                                             </button>
                                         </div>
                                     </div>
