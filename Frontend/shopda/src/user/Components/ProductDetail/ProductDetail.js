@@ -33,10 +33,14 @@ const ProductDetail = () => {
         setSPLQ(data);
         if (data.length > 0) {
           setSelectedColorId(data[0].id_color);
-          setMaxQuantity(data[0].quantity);
+          const a = cart.find(
+            (item) => item.id_pd === id_pd && item.id_color === data[0].id_color
+          );
+          console.log(a);
+          setMaxQuantity(data[0].quantity - a?.soluong);
         }
       });
-  }, [id_pd]);
+  }, [cart, id_pd]);
 
   const increaseQuantity = () => {
     if (quantity < maxQuantity) {
@@ -51,12 +55,9 @@ const ProductDetail = () => {
       setQuantity(quantity - 1);
     }
   };
-  const currentProductQuantity = cart.reduce((total, item) => {
-    return item.id_pd === id_pd && item.id_color === selectedColorId
-      ? total + item.soluong
-      : total;
-  }, 0);
-
+  const currentProductQuantity = cart.find(
+    (p) => p.id_pd === sp.id_pd && p.id_color === selectedColorId
+  )?.soluong;
   const selectColor = (id) => {
     setSelectedColorId(id);
     const selectedColor = color.find((item) => item.id_color === id);
@@ -70,13 +71,12 @@ const ProductDetail = () => {
       setQuantity(1);
     }
   };
-  console.log(maxQuantity);
+
   const handleAddToCart = () => {
     const selectedColor = color.find(
       (item) => item.id_color === selectedColorId
     );
     const totalQuantityAfterAdding = currentProductQuantity + quantity;
-
     if (selectedColor && totalQuantityAfterAdding > selectedColor.quantity) {
       alert(
         `Không thể thêm, số lượng vượt quá tồn kho. Chỉ còn lại ${
@@ -90,6 +90,7 @@ const ProductDetail = () => {
       setQuantity(1);
     }
   };
+
   return (
     <section className="detail">
       <Navbar></Navbar>
