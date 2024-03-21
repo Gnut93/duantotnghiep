@@ -33,14 +33,10 @@ const ProductDetail = () => {
         setSPLQ(data);
         if (data.length > 0) {
           setSelectedColorId(data[0].id_color);
-          const a = cart.find(
-            (item) => item.id_pd === id_pd && item.id_color === data[0].id_color
-          );
-          console.log(a);
-          setMaxQuantity(data[0].quantity - a?.soluong);
+          setMaxQuantity(data[0].quantity);
         }
       });
-  }, [cart, id_pd]);
+  }, [id_pd]);
 
   const increaseQuantity = () => {
     if (quantity < maxQuantity) {

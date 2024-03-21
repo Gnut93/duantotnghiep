@@ -2,6 +2,9 @@ import React from 'react';
 import './Checkout.css';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
+import momo from '../../../assets/images/logo-momo-png-1.png';
+import zalo from '../../../assets/images/zalo-pay-logo-png-2.png';
+import cod from '../../../assets/images/cod.png';
 
 const Checkout = () => {
   return (
@@ -42,13 +45,53 @@ const Checkout = () => {
                     placeholder="Địa chỉ giao hàng"
                   />
                 </div>
-                <textarea
-                  className="checkout-address-note"
-                  type="text"
-                  name=""
-                  id=""
-                  placeholder="Ghi chú"
-                  rows="7"></textarea>
+                <div className="checkout-pay">
+                  <textarea
+                    className="checkout-pay-note"
+                    type="text"
+                    name=""
+                    id=""
+                    placeholder="Ghi chú"
+                    rows="8"></textarea>
+                  <div className="checkout-pay-list">
+                    <h3 className="checkout-pay-heading">
+                      Hình thức thanh toán
+                    </h3>
+                    <div className="checkout-pay-item">
+                      <img
+                        src={momo}
+                        alt=""
+                        className="checkout-pay-icon"
+                      />
+                      <input
+                        name="pay"
+                        type="radio"
+                      />
+                    </div>
+                    <div className="checkout-pay-item">
+                      <img
+                        src={zalo}
+                        alt=""
+                        className="checkout-pay-icon"
+                      />
+                      <input
+                        name="pay"
+                        type="radio"
+                      />
+                    </div>
+                    <div className="checkout-pay-item">
+                      <img
+                        src={cod}
+                        alt=""
+                        className="checkout-pay-icon"
+                      />
+                      <input
+                        name="pay"
+                        type="radio"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="checkout-right">

@@ -1,9 +1,10 @@
 .checkout {
-  padding: 30px 0;
+  padding: 0 0 30px 0;
 }
 .checkout-headng {
   font-size: 36px;
   font-weight: 500;
+  padding-top: 50px;
 }
 .checkout-list {
   display: flex;
@@ -32,13 +33,33 @@
 .checkout-address-form input {
   padding: 8px 20px 8px 10px;
 }
-.checkout-address-note {
-  width: 510px;
-  height: 100px;
-  padding: 8px 0 0 10px;
-}
 .checkout-right {
   width: calc(30% - 10px);
   padding: 25px 20px;
   border: 1px solid #000000;
+}
+.checkout-pay {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+.checkout-pay-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+}
+.checkout-pay-note {
+  width: 510px;
+  height: 180px;
+  padding: 8px 0 0 10px;
+}
+.checkout-pay-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.checkout-pay-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
