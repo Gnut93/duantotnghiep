@@ -69,7 +69,7 @@ const ColorDetail = () => {
                                 <p>{sp.name}</p>
                             </td>
                             <td>{sp.id_pd}</td>
-                            <td>{sp.Quantity}</td>
+                            <td>{sp.quantity}</td>
                             <td>
                                 <Link to={`/admin/EditMau/${sp.id_color}`}>
                                     <span className="btn--show-modal">
@@ -144,9 +144,7 @@ const ColorDetail = () => {
                 <div className="table-data">
                     <div className="order">
                         <div className="head">
-                            <h3>Sản phẩm</h3>
-                            <i className="bx bx-search"></i>
-                            <i className="bx bx-filter"></i>
+                            <h3>Màu Sản Phẩm</h3>
                         </div>
                         <PhanTrang pageSize={16} />
                     </div>

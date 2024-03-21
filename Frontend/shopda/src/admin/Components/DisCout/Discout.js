@@ -40,9 +40,7 @@ const Discout = () => {
                 <div className="table-data">
                     <div className="order">
                         <div className="head">
-                            <h3>Loại</h3>
-                            <i className="bx bx-search"></i>
-                            <i className="bx bx-filter"></i>
+                            <h3>Mã Giảm Giá</h3>
                         </div>
                         <table class="tab-content active">
                             <thead>

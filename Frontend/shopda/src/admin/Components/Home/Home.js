@@ -2,16 +2,25 @@ import React, { useEffect, useState } from "react";
 import "./Home.css";
 
 const Home = () => {
-    const [listsp, setListSP] = useState([]);
+    const [listSp, setListSP] = useState([]);
     const [listColor, setListColor] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:4000/category/list")
+        fetch("http://localhost:4000/products/col/list")
             .then((res) => res.json())
             .then(setListColor);
         fetch("http://localhost:4000/products/list")
             .then((res) => res.json())
             .then(setListSP);
     }, []);
+
+    const newListColor = listColor.map((color) => {
+        const { name, ...rest } = color;
+        return { name_color: name, ...rest };
+    });
+    const listProduct = newListColor.map((color) => {
+        const sp = listSp.find((sp) => sp.id_pd === color.id_pd);
+        return { ...color, ...sp };
+    });
 
     return (
         <section className="content">
@@ -92,8 +101,6 @@ const Home = () => {
                     <div className="order">
                         <div className="head">
                             <h3>Những Đơn Đặt Hàng Gần Đây</h3>
-                            <i className="bx bx-search"></i>
-                            <i className="bx bx-filter"></i>
                         </div>
                         <table>
                             <thead>
@@ -235,36 +242,40 @@ const Home = () => {
                     <div className="order">
                         <div className="head">
                             <h3>Những Mặt Hàng Đã Và Sắp Hết</h3>
-                            <i className="bx bx-search"></i>
-                            <i className="bx bx-filter"></i>
                         </div>
                         <table>
                             <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>Tên Hàng</th>
-                                    <th>Hình Ảnh</th>
+                                    <th>Màu</th>
                                     <th>Số Lượng</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <p>1</p>
-                                    </td>
-                                    <td>
-                                        <p>Mặt hàng 1</p>
-                                    </td>
-                                    <td>
-                                        <img
-                                            src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                            alt=""
-                                        ></img>
-                                    </td>
-                                    <td>
-                                        <p>0</p>
-                                    </td>
-                                </tr>
+                                {listProduct
+                                    .sort(
+                                        (product, sp) =>
+                                            product.quantity - sp.quantity
+                                    )
+                                    .slice(0, 10)
+
+                                    .map((product, i) => (
+                                        <tr key={i}>
+                                            <td>
+                                                <p>{i + 1}</p>
+                                            </td>
+                                            <td>
+                                                <p>{product.name}</p>
+                                            </td>
+                                            <td>
+                                                <p>{product.name_color}</p>
+                                            </td>
+                                            <td>
+                                                <p>{product.quantity}</p>
+                                            </td>
+                                        </tr>
+                                    ))}
                             </tbody>
                         </table>
                     </div>

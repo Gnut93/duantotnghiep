@@ -144,8 +144,6 @@ const ImgDetail = () => {
                     <div className="order">
                         <div className="head">
                             <h3>Hình Ảnh</h3>
-                            <i className="bx bx-search"></i>
-                            <i className="bx bx-filter"></i>
                         </div>
                         <PhanTrang pageSize={16} />
                     </div>
