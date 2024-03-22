@@ -30,6 +30,7 @@ const NhapHinh = () => {
         console.log(e.target.files[0]);
         cloudinaryUpload(uploadData)
             .then((res) => {
+                console.log(res.secure_url);
                 form.setValue("name", res.secure_url);
             })
             .catch((err) => console.error(err));
@@ -72,7 +73,7 @@ const NhapHinh = () => {
             <div className="checkout-address-box">
                 <form
                     className="category"
-                    autocomplete="off"
+                    autoComplete="off"
                     encType="multipart/form-data"
                     onSubmit={handleSubmit(handleSubmitHinh)}
                 >
@@ -84,7 +85,6 @@ const NhapHinh = () => {
                                     type="file"
                                     id="avatar"
                                     onChange={(e) => handleFileUpload(e)}
-                                    {...register("name")}
                                 />
                                 <p className="err">{errors.name?.message}</p>
                             </div>

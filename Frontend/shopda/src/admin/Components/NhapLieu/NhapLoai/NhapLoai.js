@@ -53,7 +53,7 @@ const NhapLoai = () => {
             <div className="checkout-address-box">
                 <form
                     className="category"
-                    autocomplete="off"
+                    autoComplete="off"
                     onSubmit={handleSubmit(handleSubmitLoai)}
                     noValidate
                 >

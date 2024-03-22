@@ -39,54 +39,6 @@ router.get("/detail/:id", (req, res) => {
 });
 
 //Thêm đơn hàng
-// router.post("/add", async (req, res) => {
-//   try {
-//     const {
-//       name,
-//       address,
-//       phone,
-//       note = '',
-//       total_price,
-//       status,
-//       payment_type,
-//       id_user,
-//       id_gc = null,
-//       id_pd,
-//       quantity,
-//       price,
-//       pd_name,
-//     } = req.body;
-
-//     // Sử dụng prepared statements để tránh SQL injection
-//     const sql = `INSERT INTO bill (name, address, phone, note, total_price, status, payment_type, id_user, id_gc) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-//     const values = [name, address, phone, note, total_price, status, payment_type, id_user, id_gc];
-//     const result = await db.query(sql, values);
-//     console.log(result);
-
-//     if (result && 'insertId' in result) {
-//       const id_bill = result.insertId;
-//       console.log(id_bill);
-
-//       // Sử dụng prepared statements cho câu lệnh SQL thứ hai
-//       const sql2 = `INSERT INTO bill_detail (name, price, quantity, total_price, id_pd, id_bill) VALUES (?, ?, ?, ?, ?, ?)`;
-//       const values2 = [pd_name, price, quantity, total_price, id_pd, id_bill];
-//       await db.query(sql2, values2);
-
-//       res.json({ success: "Thêm đơn hàng thành công" });
-//     } else {
-//       throw new Error('Không thể lấy insertId');
-//     }
-//   } catch (err) {
-//     console.log(err);
-//     if (err.code === "ER_NO_REFERENCED_ROW_2") {
-//       res.status(400).json({ error: "id_user không tồn tại trong bảng user" });
-//     } else {
-//       res.status(500).json({ error: "Thêm đơn hàng thất bại" });
-//     }
-//   }
-// });
-
-//Thêm đơn hàng
 router.post("/add", (req, res) => {
   var data = req.body;
   var sql = `INSERT INTO bill SET ?`;
@@ -106,6 +58,32 @@ router.post("/add-detail", (req, res) => {
   db.query(sql, data, (err, result) => {
       if (err) res.json({ "thongbao" : "Lỗi truy vấn CSDL", error: err.message });
       else res.json({ "thongbao" : "Thêm chi tiết đơn hàng thành công" });
+  });
+});
+
+//Danh sách đơn hàng
+router.get("/list", (req, res) => {
+  var sql = `SELECT * FROM bill`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      res.json({ error: "Khong tim thay don hang" });
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+//Set trạng thái đơn hàng
+router.put("/set-status/:id", (req, res) => {
+  var id = req.params.id;
+  var status = req.body.status;
+  var sql = `UPDATE bill SET status = '${status}' WHERE id_bill = '${id}'`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      res.json({ error: err.message });
+    } else {
+      res.json({ success: "Set trạng thái đơn hàng thành công" });
+    }
   });
 });
 
