@@ -66,7 +66,7 @@ const Sidebar = () => {
         <li className="toggle-nav">
           <Link to={'/admin/nhaplieu'}>
             <span>
-              <i class="bx bxs-cylinder"></i>
+              <i className="bx bxs-cylinder"></i>
               <span className="text">Nhập Liệu</span>
             </span>
           </Link>
@@ -74,7 +74,7 @@ const Sidebar = () => {
         <li className="toggle-nav">
           <Link to={'/admin/color'}>
             <span>
-              <i class="bx bxs-cylinder"></i>
+              <i className="bx bxs-cylinder"></i>
               <span className="text">Màu Sản Phẩm</span>
             </span>
           </Link>
@@ -82,7 +82,7 @@ const Sidebar = () => {
         <li className="toggle-nav">
           <Link to={'/admin/image'}>
             <span>
-              <i class="bx bxs-cylinder"></i>
+              <i className="bx bxs-cylinder"></i>
               <span className="text">Hình Ảnh Sản Phẩm</span>
             </span>
           </Link>
@@ -90,7 +90,7 @@ const Sidebar = () => {
         <li className="toggle-nav">
           <Link to={'/admin/discout'}>
             <span>
-              <i class="bx bxs-cylinder"></i>
+              <i className="bx bxs-cylinder"></i>
               <span className="text">Mã Giảm Giá</span>
             </span>
           </Link>
