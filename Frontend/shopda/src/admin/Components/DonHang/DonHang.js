@@ -1,6 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const DonHang = () => {
+    const [listBill, setListBill] = useState([]);
+    useEffect(() => {
+        fetch("http://localhost:4000/bill/list")
+            .then((res) => res.json())
+            .then(setListBill);
+    }, []);
+    const BillStatus = ({ status }) => {
+        switch (status) {
+            case "chờ":
+                return <span className="status waiting">Chờ</span>;
+            case "hoàn thành":
+                return <span className="status success">Hoàn Thành</span>;
+            case "chuẩn bị":
+                return <span className="status preparing">Chuẩn Bị</span>;
+            case "đang giao":
+                return <span className="status delivering">Đang giao</span>;
+            case "đã hủy":
+                return <span className="status cancelled">Đã Hủy</span>;
+            default:
+                return <span className="status">Không xác định</span>;
+        }
+    };
     return (
         <section className="content">
             <main>
@@ -71,166 +94,54 @@ const DonHang = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <p>Name1</p>
-                                    </td>
-                                    <td>12/05/2023</td>
-                                    <td>
-                                        <span className="status waiting">
-                                            Chờ
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span>
-                                            {(10000).toLocaleString("vi-VN", {
-                                                style: "currency",
-                                                currency: "VND",
-                                            })}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span className="status waiting">
-                                            Khi nhận hàng
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span class="btn--show-modal">Xem</span>
-                                    </td>
-                                    <td>
-                                        <span class="edit delete-cate">
-                                            <i class="fas fa-tools"></i>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p>Name2</p>
-                                    </td>
-                                    <td>12/05/2023</td>
-                                    <td>
-                                        <span className="status success">
-                                            Hoàn Thành
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span>
-                                            {(10000).toLocaleString("vi-VN", {
-                                                style: "currency",
-                                                currency: "VND",
-                                            })}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span className="status waiting">
-                                            Khi nhận hàng
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span class="btn--show-modal">Xem</span>
-                                    </td>
-                                    <td>
-                                        <span class="edit delete-cate">
-                                            <i class="fas fa-tools"></i>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p>Name3</p>
-                                    </td>
-                                    <td>12/05/2023</td>
-                                    <td>
-                                        <span className="status preparing">
-                                            Chuẩn Bị
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span>
-                                            {(10000).toLocaleString("vi-VN", {
-                                                style: "currency",
-                                                currency: "VND",
-                                            })}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span className="status waiting">
-                                            Khi nhận hàng
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span class="btn--show-modal">Xem</span>
-                                    </td>
-                                    <td>
-                                        <span class="edit delete-cate">
-                                            <i class="fas fa-tools"></i>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p>Name4</p>
-                                    </td>
-                                    <td>12/05/2023</td>
-                                    <td>
-                                        <span className="status delivering">
-                                            Đang giao
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span>
-                                            {(10000).toLocaleString("vi-VN", {
-                                                style: "currency",
-                                                currency: "VND",
-                                            })}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span className="status waiting">
-                                            Khi nhận hàng
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span class="btn--show-modal">Xem</span>
-                                    </td>
-                                    <td>
-                                        <span class="edit delete-cate">
-                                            <i class="fas fa-tools"></i>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p>Name5</p>
-                                    </td>
-                                    <td>12/05/2023</td>
-                                    <td>
-                                        <span className="status cancelled">
-                                            Đã Hủy
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span>
-                                            {(10000).toLocaleString("vi-VN", {
-                                                style: "currency",
-                                                currency: "VND",
-                                            })}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span className="status waiting">
-                                            Khi nhận hàng
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span class="btn--show-modal">Xem</span>
-                                    </td>
-                                    <td>
-                                        <span class="edit delete-cate">
-                                            <i class="fas fa-tools"></i>
-                                        </span>
-                                    </td>
-                                </tr>
+                                {listBill.map((bill, i) => (
+                                    <tr key={i}>
+                                        <td>
+                                            <p>{bill.name}</p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                {new Date(
+                                                    bill.created_date
+                                                ).toLocaleDateString("vi")}
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <BillStatus
+                                                status={bill.status.toLowerCase()}
+                                            />
+                                        </td>
+                                        <td>
+                                            <span>
+                                                {parseInt(
+                                                    bill.total_price
+                                                ).toLocaleString("vi-VN", {
+                                                    style: "currency",
+                                                    currency: "VND",
+                                                })}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span className="status waiting">
+                                                {bill.payment_type}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="btn--show-modal">
+                                                Xem
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <Link
+                                                to={`/admin/EditStatus/${bill.id_bill}`}
+                                            >
+                                                <span className="btn--show-modal">
+                                                    <i className="fas fa-tools"></i>
+                                                </span>
+                                            </Link>
+                                        </td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>
