@@ -30,6 +30,7 @@ const schema = yup.object({
     street: yup.string().required("Địa chỉ không được bỏ trống"),
     district: yup.string().required("Địa chỉ không được bỏ trống"),
     city: yup.string().required("Địa chỉ không được bỏ trống"),
+    pay: yup.string().required(" không được bỏ trống phương thức thanh toán"),
 });
 const Checkout = () => {
     const form = useForm({
@@ -159,6 +160,9 @@ const Checkout = () => {
                                                 value="momo"
                                                 {...register("pay")}
                                             />
+                                            <p className="err">
+                                                {errors.pay?.message}
+                                            </p>
                                         </label>
                                         <label className="checkout-pay-item">
                                             <img
