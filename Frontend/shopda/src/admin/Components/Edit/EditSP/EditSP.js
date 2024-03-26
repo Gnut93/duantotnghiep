@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useParams, useNavigate } from "react-router-dom";
+import cloudinaryUpload from "../../../../service/uploads";
 const schema = yup.object({
     name: yup
         .string()
@@ -25,17 +26,11 @@ const schema = yup.object({
         .typeError("Vui lòng nhập một số")
         .min(1, "Chưa đạt số lượng tối thiểu")
         .required("Không được bỏ trống"),
-    quantity: yup
-        .number()
-        .typeError("Vui lòng nhập một số")
-        .required("Không được bỏ trống")
-        .min(1, "Chưa đạt số lượng tối thiểu")
-        .integer("Phải là số nguyên"),
-
-    image: yup
-        .string()
-        .url("link ảnh không hợp lệ")
-        .required("Không được bỏ trống"),
+    image: yup.string().trim().required("Không được bỏ trống"),
+    avatar: yup.mixed().test("size", "Kích thước file quá lớn", (value) => {
+        if (!value) return true;
+        return value.size <= 5242880;
+    }),
     description: yup
         .string()
         .trim()
@@ -55,11 +50,10 @@ const EditSP = () => {
             );
             const data = await reponse.json();
             return {
-                id_cate: data.id_cate,
                 name: data.name,
                 price: data.price,
                 price_sale: data.price_sale,
-                quantity: data.quantity,
+                id_cate: data.id_cate,
                 image: data.image,
                 description: data.description,
             };
@@ -69,9 +63,20 @@ const EditSP = () => {
     const { register, handleSubmit, reset, formState, control } = form;
     const { errors, isSubmitSuccessful } = formState;
 
+    const handleFileUpload = (e) => {
+        const uploadData = new FormData();
+        uploadData.append("file", e.target.files[0], "file");
+        cloudinaryUpload(uploadData)
+            .then((res) => {
+                console.log(res.secure_url);
+                form.setValue("image", res.secure_url);
+            })
+            .catch((err) => console.error(err));
+    };
+
     const handleSubmitSP = async (data) => {
         data.id_pd = parseInt(data.id_pd);
-
+        console.log(data);
         try {
             const confirmation = window.confirm(
                 "Bạn có chắc chắn muốn sửa Sản Phẩm này?"
@@ -180,10 +185,11 @@ const EditSP = () => {
                                         <div className="checkout-address-input">
                                             <label>Hình Ảnh</label> <br />
                                             <input
-                                                type="text"
+                                                type="file"
                                                 id="avatar"
-                                                accept="image/*"
-                                                {...register("image")}
+                                                onChange={(e) =>
+                                                    handleFileUpload(e)
+                                                }
                                             />
                                             <p className="err">
                                                 {errors.image?.message}

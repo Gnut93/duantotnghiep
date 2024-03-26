@@ -20,13 +20,13 @@ const EditHinh = () => {
     const form = useForm({
         defaultValues: async () => {
             const reponse = await fetch(
-                `http://localhost:4000/products/image/detail/${id}`
+                `http://localhost:4000/products/image/${id}`
             );
             const data = await reponse.json();
             console.log(data);
             return {
-                name: data.name,
                 id_pd: data.id_pd,
+                name: data.name,
             };
         },
         resolver: yupResolver(schema),
@@ -37,7 +37,6 @@ const EditHinh = () => {
     const handleFileUpload = (e) => {
         const uploadData = new FormData();
         uploadData.append("file", e.target.files[0], "file");
-        console.log(e.target.files[0]);
         cloudinaryUpload(uploadData)
             .then((res) => {
                 console.log(res.secure_url);
@@ -97,7 +96,6 @@ const EditHinh = () => {
                                     type="file"
                                     id="avatar"
                                     onChange={(e) => handleFileUpload(e)}
-                                    {...register("name")}
                                 />
                                 <p className="err">{errors.name?.message}</p>
                             </div>

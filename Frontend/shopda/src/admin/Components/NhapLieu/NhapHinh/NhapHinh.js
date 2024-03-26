@@ -27,10 +27,8 @@ const NhapHinh = () => {
     const handleFileUpload = (e) => {
         const uploadData = new FormData();
         uploadData.append("file", e.target.files[0], "file");
-        console.log(e.target.files[0]);
         cloudinaryUpload(uploadData)
             .then((res) => {
-                console.log(res.secure_url);
                 form.setValue("name", res.secure_url);
             })
             .catch((err) => console.error(err));
