@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import './Checkout.css';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import momo from '../../../assets/images/logo-momo-png-1.png';
 import zalo from '../../../assets/images/zalo-pay-logo-png-2.png';
 import cod from '../../../assets/images/cod.png';
+import { useSelector } from 'react-redux';
 
 const Checkout = () => {
+  const cart = useSelector((state) => state.cart.listSP);
+
+  const subTotal = useMemo(() => {
+    return cart.reduce((total, sp) => total + sp.price_sale * sp.soluong, 0);
+  }, [cart]);
+  let shipping = 50000;
+  let TotalPrice = subTotal ? subTotal + shipping : 0;
   return (
     <section className="checkout">
       <Navbar></Navbar>
@@ -48,48 +56,48 @@ const Checkout = () => {
                 <div className="checkout-pay">
                   <textarea
                     className="checkout-pay-note"
-                    type="text"
-                    name=""
-                    id=""
                     placeholder="Ghi chú"
                     rows="8"></textarea>
                   <div className="checkout-pay-list">
                     <h3 className="checkout-pay-heading">
                       Hình thức thanh toán
                     </h3>
-                    <div className="checkout-pay-item">
+                    <label className="checkout-pay-item">
                       <img
                         src={momo}
-                        alt=""
+                        alt="Momo Payment"
                         className="checkout-pay-icon"
                       />
                       <input
                         name="pay"
                         type="radio"
+                        value="momo"
                       />
-                    </div>
-                    <div className="checkout-pay-item">
+                    </label>
+                    <label className="checkout-pay-item">
                       <img
                         src={zalo}
-                        alt=""
+                        alt="Zalo Pay Payment"
                         className="checkout-pay-icon"
                       />
                       <input
                         name="pay"
                         type="radio"
+                        value="zalo"
                       />
-                    </div>
-                    <div className="checkout-pay-item">
+                    </label>
+                    <label className="checkout-pay-item">
                       <img
                         src={cod}
-                        alt=""
+                        alt="Cash on Delivery"
                         className="checkout-pay-icon"
                       />
                       <input
                         name="pay"
                         type="radio"
+                        value="cod"
                       />
-                    </div>
+                    </label>
                   </div>
                 </div>
               </div>
@@ -98,7 +106,12 @@ const Checkout = () => {
               <h3 className="cart-pay-title">Đơn hàng</h3>
               <div className="cart-pay-total">
                 <p className="cart-pay-info">Tổng cộng</p>
-                <p className="cart-pay-price">0</p>
+                <p className="cart-pay-price">
+                  {subTotal.toLocaleString('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND',
+                  })}
+                </p>
               </div>
               <div className="cart-pay-discout">
                 <p className="cart-pay-info">Giảm giá</p>
@@ -106,11 +119,21 @@ const Checkout = () => {
               </div>
               <div className="cart-pay-ship">
                 <p className="cart-pay-info">Phí vận chuyển</p>
-                <p className="cart-pay-price">Chưa có</p>
+                <p className="cart-pay-price">
+                  {shipping.toLocaleString('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND',
+                  })}
+                </p>
               </div>
               <div className="cart-pay-sub">
                 <p className="cart-pay-info">Thành tiền</p>
-                <p className="cart-pay-price">0</p>
+                <p className="cart-pay-price">
+                  {TotalPrice.toLocaleString('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND',
+                  })}
+                </p>
               </div>
               <p className="cart-discout">Bạn có mã giảm giá?</p>
               <form>
