@@ -1,14 +1,10 @@
 import React, {useRef} from 'react';
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { dalogin } from "./authSlice";
 import './LoginPage.css';
 
 const RegisterPage = () => { 
-  const email = useRef();
+    const hoten = useRef();
+    const email = useRef();
     const password = useRef();
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,31 +22,18 @@ const RegisterPage = () => {
         }
         console.log(data);
         try {
-            const response = await fetch('http://localhost:4000/users/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data),
-            });
-            const result = await response.json();
-            console.log(result);
-            if (response.ok) {
-                // The login request was successful
-                dispatch(dalogin(result));
-                // alert(result.userInfo.role)
-                // navigate("/");
-                if (parseInt(result.userInfo.role) === 1) {
-                    navigate("/admin");
-                } else {
-                    navigate("/");
-                }
-            } else {
-                // The login request failed
-                alert(result.thongbao);
-            }
-        } catch (error) {
-            console.log(error);
-            alert(error.message);
-        }
+          const response = await fetch('http://localhost:4000/users/register', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data),
+          });
+          const result = await response.json();
+          console.log(result);
+          alert(result.success);
+          window.location.href = '/';
+      } catch (error) {
+          console.log(error);
+      }
     }
 
   return (
@@ -59,8 +42,8 @@ const RegisterPage = () => {
         <p className="title">Xin chào</p>
         <form className="form" onSubmit={handleSubmit} enctype="multipart/form-data">
           <input
-            ref={email}
-            type="email"
+            ref={hoten}
+            type="text"
             className="input"
             placeholder="Họ tên"
           />
@@ -76,13 +59,10 @@ const RegisterPage = () => {
             className="input"
             placeholder="Password"
           />
-          {/* <p className="page-link">
-            <span className="page-link-label">Quên mật khẩu?</span>
-          </p> */}
-          <button className="form-btn">Đăng nhặp</button>
+          <button className="form-btn">Đăng ký</button>
         </form>
         <p className="sign-up-label">
-          Bạn không có tài khoản? <span className="sign-up-link">Đăng ký</span>
+          Bạn đã có tài khoản? <span className="sign-up-link">Đăng nhập</span>
         </p>
         <div className="buttons-container">
         </div>

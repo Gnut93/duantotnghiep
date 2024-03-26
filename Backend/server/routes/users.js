@@ -53,13 +53,11 @@ router.post('/register', (req, res) => {
   var name = req.body.name;
   var password = req.body.password;
   var email = req.body.email;
-  var phone = req.body.phone;
-  var avatar = req.body.avatar;
 
   const salt = bcrypt.genSaltSync(10);
   const hashPassword = bcrypt.hashSync(password, salt);
 
-  var sql = `INSERT INTO user (name, phone, email, password, avatar) VALUES ('${name}', '${phone}', '${email}', '${hashPassword}', '${avatar}')`;
+  var sql = `INSERT INTO user (name, email, password) VALUES ('${name}', '${email}', '${hashPassword}')`;
   db.query(sql, (err, result) => {
     if (err) {
       res.json({ error: err.message });
