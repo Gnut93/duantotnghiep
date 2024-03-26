@@ -128,35 +128,27 @@ router.get("/color/list/:id", (req, res) => {
     });
 });
 
-//Lấy hình sản phẩm
-router.get('/image/:id', (req, res) => {
-  var id = parseInt(req.params.id);
-  if (isNaN(id) || id < 1) {
-    res.json({ error: 'ID không hợp lệ' });
-    return;
-  }
+//Lấy hình  1sản phẩm
+router.get("/image/:id", (req, res) => {
+    var id = parseInt(req.params.id);
+    if (isNaN(id) || id < 1) {
+        res.json({ error: "ID không hợp lệ" });
+        return;
+    }
 
-  var sql = `SELECT * FROM image where id_pd = '${id}'`;
-  db.query(sql, (err, result) => {
-    if (err) {
-      res.json({ error: 'Khong tim thay hinh san pham' });
-    } else {
-      res.json(result);
-    }
-  });
+    var sql = `SELECT * FROM image where id_img = '${id}'`;
+    db.query(sql, (err, result) => {
+        if (err) {
+            res.json({ error: "Khong tim thay hinh san pham" });
+        } else {
+            res.json(result[0]);
+        }
+    });
 });
-router.get('/img/list', (req, res) => {
-  var sql = `SELECT * FROM image`;
-  db.query(sql, (err, result) => {
-    if (err) {
-      res.json({ error: 'Khong tim thay san pham' });
-    } else {
-      res.json(result);
-    }
-  });
-});
-router.get("/col/list", (req, res) => {
-    var sql = `SELECT * FROM color`;
+
+//  lấy list hình chi tiết
+router.get("/img/list", (req, res) => {
+    var sql = `SELECT * FROM image`;
     db.query(sql, (err, result) => {
         if (err) {
             res.json({ error: "Khong tim thay san pham" });
@@ -165,7 +157,18 @@ router.get("/col/list", (req, res) => {
         }
     });
 });
-
+// Lấy list màu
+router.get("/col/list", (req, res) => {
+    var sql = `SELECT * FROM color`;
+    db.query(sql, (err, result) => {
+        if (err) {
+            res.json({ error: "Khong tim thay color" });
+        } else {
+            res.json(result);
+        }
+    });
+});
+// lấy màu chi tiết sản phẩm
 router.get("/color/detail/:id", (req, res) => {
     var id = parseInt(req.params.id);
     if (isNaN(id) || id < 1) {

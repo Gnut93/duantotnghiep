@@ -23,7 +23,6 @@ const EditStatus = () => {
                 `http://localhost:4000/bill/detail/${id}`
             );
             const data = await reponse.json();
-            console.log(data);
             return {
                 name: data.status,
             };
@@ -40,7 +39,6 @@ const EditStatus = () => {
         { status: "Đã Hủy" },
     ];
     const handleSubmitStatus = async (data) => {
-        console.log(data);
         try {
             const confirmation = window.confirm(
                 "Bạn có chắc chắn muốn sửa Trạng Thái  này?"
