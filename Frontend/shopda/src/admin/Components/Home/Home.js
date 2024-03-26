@@ -8,6 +8,7 @@ Chart.register(...registerables);
 const Home = () => {
     const [listSp, setListSP] = useState([]);
     const [listColor, setListColor] = useState([]);
+    const [listBill, setListBill] = useState([]);
     useEffect(() => {
         fetch("http://localhost:4000/products/col/list")
             .then((res) => res.json())
@@ -15,6 +16,9 @@ const Home = () => {
         fetch("http://localhost:4000/products/list")
             .then((res) => res.json())
             .then(setListSP);
+        fetch("http://localhost:4000/bill/list")
+            .then((res) => res.json())
+            .then(setListBill);
     }, []);
 
     const newListColor = listColor.map((color) => {
@@ -25,6 +29,22 @@ const Home = () => {
         const sp = listSp.find((sp) => sp.id_pd === color.id_pd);
         return { ...color, ...sp };
     });
+    const BillStatus = ({ status }) => {
+        switch (status) {
+            case "chờ":
+                return <span className="status waiting">Chờ</span>;
+            case "hoàn thành":
+                return <span className="status success">Hoàn Thành</span>;
+            case "chuẩn bị":
+                return <span className="status preparing">Chuẩn Bị</span>;
+            case "đang giao":
+                return <span className="status delivering">Đang giao</span>;
+            case "đã hủy":
+                return <span className="status cancelled">Đã Hủy</span>;
+            default:
+                return <span className="status">Không xác định</span>;
+        }
+    };
 
     return (
         <section className="content">
@@ -82,7 +102,7 @@ const Home = () => {
                     <div className="box-info-item">
                         <i className="bx bxs-calendar-check"></i>
                         <span className="text">
-                            <h3>0</h3>
+                            <h3>{listBill.length}</h3>
                             <p>Đơn hàng</p>
                         </span>
                     </div>
@@ -116,136 +136,33 @@ const Home = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <p>Name1</p>
-                                        </td>
-                                        <td>
-                                            <span className="status waiting">
-                                                Chờ
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span>
-                                                {(10000).toLocaleString(
-                                                    "vi-VN",
-                                                    {
+                                    {listBill.map((bill, i) => (
+                                        <tr key={i}>
+                                            <td>
+                                                <p>{bill.name}</p>
+                                            </td>
+                                            <td>
+                                                <BillStatus
+                                                    status={bill.status.toLowerCase()}
+                                                />
+                                            </td>
+                                            <td>
+                                                <span>
+                                                    {parseInt(
+                                                        bill.total_price
+                                                    ).toLocaleString("vi-VN", {
                                                         style: "currency",
                                                         currency: "VND",
-                                                    }
-                                                )}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span className="status waiting">
-                                                Khi nhận hàng
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>Name2</p>
-                                        </td>
-                                        <td>
-                                            <span className="status success">
-                                                Hoàn Thành
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span>
-                                                {(10000).toLocaleString(
-                                                    "vi-VN",
-                                                    {
-                                                        style: "currency",
-                                                        currency: "VND",
-                                                    }
-                                                )}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span className="status waiting">
-                                                Khi nhận hàng
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>Name3</p>
-                                        </td>
-                                        <td>
-                                            <span className="status preparing">
-                                                Chuẩn Bị
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span>
-                                                {(10000).toLocaleString(
-                                                    "vi-VN",
-                                                    {
-                                                        style: "currency",
-                                                        currency: "VND",
-                                                    }
-                                                )}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span className="status waiting">
-                                                Khi nhận hàng
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>Name4</p>
-                                        </td>
-                                        <td>
-                                            <span className="status delivering">
-                                                Đang giao
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span>
-                                                {(10000).toLocaleString(
-                                                    "vi-VN",
-                                                    {
-                                                        style: "currency",
-                                                        currency: "VND",
-                                                    }
-                                                )}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span className="status waiting">
-                                                Khi nhận hàng
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>Name5</p>
-                                        </td>
-                                        <td>
-                                            <span className="status cancelled">
-                                                Đã Hủy
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span>
-                                                {(10000).toLocaleString(
-                                                    "vi-VN",
-                                                    {
-                                                        style: "currency",
-                                                        currency: "VND",
-                                                    }
-                                                )}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span className="status waiting">
-                                                Khi nhận hàng
-                                            </span>
-                                        </td>
-                                    </tr>
+                                                    })}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span className="status waiting">
+                                                    {bill.payment_type}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    ))}
                                 </tbody>
                             </table>
                         </div>
@@ -335,25 +252,92 @@ const Home = () => {
 
                     <div className="chart__box">
                         <Bar
+                            className="box1"
                             data={{
                                 labels: [
-                                    "Africa",
-                                    "Asia",
-                                    "Europe",
-                                    "Latin America",
-                                    "North America",
+                                    "Tháng 1",
+                                    "Tháng 2",
+                                    "Tháng 3",
+                                    "Tháng 4",
+                                    "Tháng 5",
+                                    "Tháng 6",
+                                    "Tháng 7",
+                                    "Tháng 8",
+                                    "Tháng 9",
+                                    "Tháng 10",
+                                    "Tháng 11",
+                                    "Tháng 12",
                                 ],
                                 datasets: [
                                     {
-                                        label: "Population (millions)",
+                                        label: "Doanh Thu (Triệu VND)",
                                         backgroundColor: [
                                             "#3e95cd",
                                             "#8e5ea2",
                                             "#3cba9f",
                                             "#e8c3b9",
                                             "#c45850",
+                                            "#3e95cd",
+                                            "#8e5ea2",
+                                            "#3cba9f",
+                                            "#e8c3b9",
+                                            "#c45850",
+                                            "#3e95cd",
+                                            "#8e5ea2",
                                         ],
-                                        data: [2478, 5267, 734, 784, 433],
+                                        data: [
+                                            2478, 5267, 734, 784, 433, 10000,
+                                            5000, 4000, 3000, 2500, 50, 500,
+                                        ],
+                                    },
+                                ],
+                            }}
+                            options={{
+                                legend: { display: false },
+                                title: {
+                                    display: true,
+                                    text: "Predicted world population (millions) in 2050",
+                                },
+                            }}
+                        />
+                        <Bar
+                            className="box2"
+                            data={{
+                                labels: [
+                                    "Tháng 1",
+                                    "Tháng 2",
+                                    "Tháng 3",
+                                    "Tháng 4",
+                                    "Tháng 5",
+                                    "Tháng 6",
+                                    "Tháng 7",
+                                    "Tháng 8",
+                                    "Tháng 9",
+                                    "Tháng 10",
+                                    "Tháng 11",
+                                    "Tháng 12",
+                                ],
+                                datasets: [
+                                    {
+                                        label: " Nguời Dùng ",
+                                        backgroundColor: [
+                                            "#3e95cd",
+                                            "#8e5ea2",
+                                            "#3cba9f",
+                                            "#e8c3b9",
+                                            "#c45850",
+                                            "#3e95cd",
+                                            "#8e5ea2",
+                                            "#3cba9f",
+                                            "#e8c3b9",
+                                            "#c45850",
+                                            "#3e95cd",
+                                            "#8e5ea2",
+                                        ],
+                                        data: [
+                                            50, 10, 100, 1, 5, 25, 100, 125, 30,
+                                            80, 90, 100,
+                                        ],
                                     },
                                 ],
                             }}

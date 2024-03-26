@@ -127,10 +127,15 @@ const DonHang = () => {
                                             </span>
                                         </td>
                                         <td>
-                                            <span class="btn--show-modal">
-                                                Xem
-                                            </span>
+                                            <Link
+                                                to={`/admin/EditStatus/${bill.id_bill}`}
+                                            >
+                                                <span className="btn--show-modal">
+                                                    <i className="fas fa-search"></i>
+                                                </span>
+                                            </Link>
                                         </td>
+
                                         <td>
                                             <Link
                                                 to={`/admin/EditStatus/${bill.id_bill}`}
