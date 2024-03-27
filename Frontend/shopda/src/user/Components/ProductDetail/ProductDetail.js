@@ -24,7 +24,7 @@ const ProductDetail = () => {
       .then((data) => {
         setSP(data);
       });
-    fetch('http://localhost:4000/products/image/' + id_pd)
+    fetch('http://localhost:4000/products/image/detail/' + id_pd)
       .then((res) => res.json())
       .then((data) => setHinhSPCT(data));
     fetch('http://localhost:4000/products/color/list/' + id_pd)
@@ -37,7 +37,6 @@ const ProductDetail = () => {
         }
       });
   }, [id_pd]);
-
   const increaseQuantity = () => {
     if (quantity < maxQuantity) {
       setQuantity(quantity + 1);

@@ -177,19 +177,6 @@ const ShowCar = () => {
                   })}
                 </p>
               </div>
-              <p className="cart-discout">Bạn có mã giảm giá?</p>
-              <form>
-                <input
-                  type="text"
-                  placeholder="Nhặp mã giảm giá tại đây"
-                  className="pay-code"
-                />
-                <button
-                  type="button"
-                  className="pay-add">
-                  Thêm
-                </button>
-              </form>
               <Link
                 to="/checkout"
                 className="cart-pay-next">

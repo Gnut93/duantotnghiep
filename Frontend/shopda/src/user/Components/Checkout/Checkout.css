@@ -25,13 +25,17 @@
 }
 .checkout-address-form {
   display: grid;
-  grid-template-columns: repeat(3, 2fr);
+  grid-template-columns: repeat(3, 3fr);
   grid-column-gap: 20px;
   grid-row-gap: 20px;
   margin-bottom: 20px;
 }
-.checkout-address-form input {
+.checkout-address-form-item input {
   padding: 8px 20px 8px 10px;
+  width: 100%;
+}
+.checkout-address-form-item.textarea {
+  grid-column: 1 / 3;
 }
 .checkout-right {
   width: calc(30% - 10px);
