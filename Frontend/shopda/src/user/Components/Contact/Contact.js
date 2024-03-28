@@ -101,50 +101,66 @@ const Contact = () => {
             class="contact-form"
             onSubmit={handleSubmit(handleSubmitForm)}>
             <div className="contact-form-gid">
-              <input
-                class="name"
-                type="text"
-                id=""
-                placeholder="Tên"
-                {...register('name')}
-              />
-
-              <input
-                class="email"
-                type="text"
-                id=""
-                placeholder="Size"
-                {...register('size')}
-              />
-
-              <input
-                class="name"
-                type="text"
-                id=""
-                placeholder="Màu da"
-                {...register('color')}
-              />
-              <input
-                class="email"
-                type="text"
-                id=""
-                placeholder="Hình mẫu"
-                {...register('image')}
-              />
-              <input
-                class="subject"
-                type="text"
-                id=""
-                placeholder="email"
-                {...register('email')}
-              />
-              <input
-                class="phone"
-                type="phone"
-                id=""
-                placeholder="Số điện thoại"
-                {...register('phone')}
-              />
+              <div className="contact-form-gid-item">
+                <input
+                  class="name"
+                  type="text"
+                  id=""
+                  placeholder="Tên"
+                  {...register('name')}
+                />
+                <p className="err">{errors.name?.message}</p>
+              </div>
+              <div className="contact-form-gid-item">
+                <input
+                  class="email"
+                  type="text"
+                  id=""
+                  placeholder="Size"
+                  {...register('size')}
+                />
+                <p className="err">{errors.size?.message}</p>
+              </div>
+              <div className="contact-form-gid-item">
+                <input
+                  class="name"
+                  type="text"
+                  id=""
+                  placeholder="Màu da"
+                  {...register('color')}
+                />
+                <p className="err">{errors.color?.message}</p>
+              </div>
+              <div className="contact-form-gid-item">
+                <input
+                  class="email"
+                  type="text"
+                  id=""
+                  placeholder="Hình mẫu"
+                  {...register('image')}
+                />
+                <p className="err">{errors.image?.message}</p>
+              </div>
+              <div className="contact-form-gid-item">
+                <input
+                  class="subject"
+                  type="text"
+                  id=""
+                  placeholder="email"
+                  {...register('email')}
+                />
+                <p className="err">{errors.email?.message}</p>
+              </div>
+              <div className="contact-form-gid-item">
+                <input
+                  class="phone"
+                  type="phone"
+                  id=""
+                  placeholder="Số điện thoại"
+                  {...register('phone')}
+                />
+                <p className="err">{errors.phone?.message}</p>
+              </div>
             </div>
             <textarea
               class="message"
@@ -153,7 +169,7 @@ const Contact = () => {
               placeholder="mỗ tả chi tiết"
               rows="7"
               {...register('description')}></textarea>
-            {/* <p className="err">{errors.description?.message}</p> */}
+            <p className="err">{errors.description?.message}</p>
             <button type="submit">Send message</button>
           </form>
           <DevTool control={control} />

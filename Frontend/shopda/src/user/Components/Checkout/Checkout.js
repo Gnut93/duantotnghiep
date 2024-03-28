@@ -65,6 +65,7 @@ const Checkout = () => {
   }, [cart]);
   let shipping = 50000;
   let TotalPrice = subTotal ? subTotal + shipping : 0;
+
   return (
     <section className="checkout">
       <Navbar></Navbar>
@@ -223,7 +224,7 @@ const Checkout = () => {
                   type="text"
                   placeholder="Nhặp mã giảm giá tại đây"
                   className="pay-code"
-                  name="gif-code"
+                  {...register('gif-code')}
                 />
                 <button
                   type="button"
