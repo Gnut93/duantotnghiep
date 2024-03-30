@@ -1,13 +1,12 @@
 import React from "react";
 import "../Edit.css";
 import { useForm } from "react-hook-form";
-import { useEffect } from "react";
 import { DevTool } from "@hookform/devtools";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useParams, useNavigate } from "react-router-dom";
 const schema = yup.object({
-    status: yup
+    name: yup
         .string()
         .trim()
         .required("Không được bỏ trống")
@@ -15,32 +14,34 @@ const schema = yup.object({
         .max(20, "Tên loại hàng có tối đa 20 ký tự"),
 });
 
-const EditStatus = () => {
+const EditRole = () => {
     let { id } = useParams();
     const navigate = useNavigate();
     const form = useForm({
         defaultValues: async () => {
             const reponse = await fetch(
-                `http://localhost:4000/bill/detail/${id}`
+                `http://localhost:4000/users/role/${id}`
             );
             const data = await reponse.json();
+            console.log(data);
             return {
-                status: data.status,
+                name: data.role,
             };
         },
         resolver: yupResolver(schema),
     });
-    const { register, handleSubmit, reset, formState, control } = form;
-    const { isSubmitSuccessful } = formState;
-    const handleSubmitStatus = async (data) => {
+    const { register, handleSubmit, reset, control } = form;
+
+    const listRole = [{ role: "admin" }, { role: "Người Dùng" }];
+    const handleSubmitRole = async (data) => {
         try {
             const confirmation = window.confirm(
-                "Bạn có chắc chắn muốn sửa Trạng Thái  này?"
+                "Bạn có chắc chắn muốn phần quyền này?"
             );
             if (!confirmation) {
                 return;
             }
-            const url = `http://localhost:4000/bill/set-status/${id}`;
+            const url = `http://localhost:4000/users/set-role/${id}`;
             const opt = {
                 method: "PUT",
                 body: JSON.stringify(data),
@@ -48,17 +49,13 @@ const EditStatus = () => {
             };
             const res = await fetch(url, opt);
             const responseData = await res.json();
-            alert("Đã Sửa Trạng Thái Thành Công,", responseData);
-            navigate("/admin/donhang");
+            alert(" Phân quyền thành công Thành Công,", responseData);
+            navigate("/admin/nguoidung");
         } catch (error) {
-            console.error("Lỗi khi Sửa Trạng Thái: ", error);
+            console.error("Lỗi khi phân quyền: ", error);
         }
     };
-    useEffect(() => {
-        if (isSubmitSuccessful) {
-            reset();
-        }
-    }, [isSubmitSuccessful, reset]);
+
     return (
         <section className="content">
             <main>
@@ -70,13 +67,13 @@ const EditStatus = () => {
                 <div className="tab-additional active" data-tab="1">
                     <div className="checkout-address">
                         <h3 className="checkout-address-title">
-                            <span>Sửa Trạng Thái Đơn Hàng</span>
+                            <span>Phân Quyền</span>
                         </h3>
                         <div className="checkout-address-box">
                             <form
                                 className="category"
                                 autocomplete="off"
-                                onSubmit={handleSubmit(handleSubmitStatus)}
+                                onSubmit={handleSubmit(handleSubmitRole)}
                                 noValidate
                             >
                                 <div className="checkout-address-list">
@@ -84,22 +81,17 @@ const EditStatus = () => {
                                         <div className="checkout-address-input">
                                             <label>Trạng Thái</label> <br />
                                             <select
-                                                {...register("status")}
                                                 className="option-cate"
+                                                {...register("name")}
                                             >
-                                                <option value="Hoàn Thành">
-                                                    Hoàn Thành
-                                                </option>
-                                                <option value="Chờ">Chờ</option>
-                                                <option value="Đang Giao">
-                                                    Đang Giao
-                                                </option>
-                                                <option value="Chuẩn Bị">
-                                                    Chuẩn Bị
-                                                </option>
-                                                <option value="Đã Hủy">
-                                                    Đã Hủy
-                                                </option>
+                                                {listRole.map((role, i) => (
+                                                    <option
+                                                        key={i}
+                                                        value={role.status}
+                                                    >
+                                                        {role.status}
+                                                    </option>
+                                                ))}
                                             </select>
                                         </div>
                                         <div className="checkout-address-input">
@@ -128,4 +120,4 @@ const EditStatus = () => {
     );
 };
 
-export default EditStatus;
+export default EditRole;

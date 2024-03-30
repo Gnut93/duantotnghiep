@@ -52,7 +52,9 @@ const User = () => {
                                             </p>
                                         </td>
                                         <td>
-                                            <Link>
+                                            <Link
+                                                to={`/admin/EditRole/${user.id_user}`}
+                                            >
                                                 <span className="btn--show-modal">
                                                     <i className="fas fa-tools"></i>
                                                 </span>

@@ -33,7 +33,7 @@ router.get("/detailbill/:id", (req, res) => {
         if (err) {
             res.json({ error: "Khong tim thay chi tiet don hang" });
         } else {
-            res.json(result[0]);
+            res.json(result);
         }
     });
 });
@@ -95,7 +95,8 @@ router.get("/detail/:id", (req, res) => {
 //Set trạng thái đơn hàng
 router.put("/set-status/:id", (req, res) => {
     var id = req.params.id;
-    var status = req.body.name;
+    var status = req.body.status;
+    console.log(status);
     var sql = `UPDATE bill SET status = '${status}' WHERE id_bill = '${id}'`;
     db.query(sql, (err, result) => {
         if (err) {

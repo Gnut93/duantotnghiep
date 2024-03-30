@@ -1,6 +1,13 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 const ChiTietDonHang = () => {
+    let { id } = useParams();
+    const [listBillDetail, setListBillDetail] = useState([]);
+    useEffect(() => {
+        fetch(`http://localhost:4000/bill/detailbill/${id}`)
+            .then((res) => res.json())
+            .then(setListBillDetail);
+    }, [id]);
     return (
         <section className="content">
             <main>
@@ -19,20 +26,23 @@ const ChiTietDonHang = () => {
                                 <tr>
                                     <th>ID sản phẩm</th>
                                     <th>Tên sản phẩm</th>
-                                    <th>Tiền sản phẩm</th>
+                                    <th>Giá sản phẩm</th>
                                     <th>Màu Sản Phẩm</th>
                                     <th>Số lượng</th>
                                     <th>Tổng tiền</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>19</td>
-                                    <td>TÚI ĐEO NGỰC JEA</td>
-                                    <td>300</td>
-                                    <td>10</td>
-                                    <td>3000000</td>
-                                </tr>
+                                {listBillDetail.map((billDetail, i) => (
+                                    <tr key={i}>
+                                        <td>{billDetail.id_pd}</td>
+                                        <td>{billDetail.name}</td>
+                                        <td>{billDetail.price}</td>
+                                        <td>{billDetail.color}</td>
+                                        <td>{billDetail.quantity}</td>
+                                        <td>{billDetail.total_price}</td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>
