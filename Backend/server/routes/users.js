@@ -201,4 +201,21 @@ router.post('/forgot-password', async (req, res) => {
   });
 });
 
+//Check email tồn tại
+router.get('/check-email/:email', (req, res) => {
+  var email = req.params.email;
+  var sql = `SELECT * FROM user WHERE email LIKE ?`;
+  db.query(sql, `%${email}%`, (err, result) => {
+    if (err) {
+      res.json({ error: 'Lỗi truy vấn CSDL', error: err.message });
+    } else {
+      if (result.length > 0) {
+        res.json(true);
+      } else {
+        res.json(false);
+      }
+    }
+  });
+});
+
 module.exports = router;
