@@ -132,6 +132,22 @@ router.put("/edit-color/:id", async (req, res) => {
         res.json({ error: err.message });
     }
 });
+// cập nhật số lượng sản phẩm
+router.put("/edit-quantity/:id", async (req, res) => {
+    var id_color = parseInt(req.params.id);
+    if (isNaN(id_color) || id_color < 1) {
+        res.json({ error: "ID không hợp lệ" });
+        return;
+    }
+    try {
+        const { quantity } = req.body;
+        const sql = `UPDATE color SET  quantity='${quantity}' WHERE id_color='${id_color}'`;
+        await queryDB(sql);
+        res.json({ success: "Cập nhật số lượng  sản phẩm thành công" });
+    } catch (err) {
+        res.json({ error: err.message });
+    }
+});
 
 //Xóa màu sản phẩm
 router.delete("/delete-color/:id", async (req, res) => {
