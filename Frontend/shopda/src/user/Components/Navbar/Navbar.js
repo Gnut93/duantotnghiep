@@ -60,6 +60,13 @@ const Navbar = (props) => {
                 Order theo sở thích
               </Link>
             </li>
+            <li className="menu-item">
+              <Link
+                to="/follow-order"
+                className="menu-link">
+                Theo dõi đơn hàng
+              </Link>
+            </li>
           </ul>
           <ul className="menu-list icon">
             <li className="menu-item">

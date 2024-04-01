@@ -71,12 +71,13 @@ const Checkout = () => {
       <Navbar></Navbar>
       <div className="container">
         <h2 className="checkout-headng">Thông tinh đơn hàng và thanh toán</h2>
-        <form
-          onSubmit={handleSubmit(handleCheckOut)}
-          noValidate>
-          <div className="checkout-list">
+        <div className="checkout-list">
+          <form
+            className="checkout-wrapper"
+            onSubmit={handleSubmit(handleCheckOut)}
+            noValidate>
             <div className="checkout-left">
-              <div className="checkout-address">
+              <div className="checkout-address-info">
                 <h3 className="checkout-address-heding">
                   Thông tin đăng ký mua hàng
                 </h3>
@@ -218,24 +219,26 @@ const Checkout = () => {
                   })}
                 </p>
               </div>
-              <p className="cart-discout">Bạn có mã giảm giá?</p>
-              <form>
-                <input
-                  type="text"
-                  placeholder="Nhặp mã giảm giá tại đây"
-                  className="pay-code"
-                  {...register('gif-code')}
-                />
-                <button
-                  type="button"
-                  className="pay-add">
-                  Thêm
-                </button>
-              </form>
-              <button className="cart-pay-next submit">Thêm</button>
+              <button className="cart-pay-next submit">Đặt hàng</button>
             </div>
+          </form>
+          <div className="checkout-form-discout">
+            <p className="form-discout-text">Bạn có mã giảm giá?</p>
+            <form>
+              <input
+                type="text"
+                placeholder="Nhặp mã giảm giá tại đây"
+                className="pay-code"
+                {...register('gif-code')}
+              />
+              <button
+                type="button"
+                className="pay-add">
+                Thêm
+              </button>
+            </form>
           </div>
-        </form>
+        </div>
         <DevTool control={control} />
       </div>
     </section>

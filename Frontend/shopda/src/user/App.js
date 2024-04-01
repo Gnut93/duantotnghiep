@@ -13,6 +13,8 @@ import Checkout from './Components/Checkout/Checkout';
 import Search from './Components/Search/Search';
 import About from './Components/About/About';
 import Blog from './Components/Blog/Blog';
+import FollowOrder from './Components/FollowOrder/FollowOrder';
+import InforUser from './Components/InforUser/InforUser';
 function App() {
   return (
     <div className="wapper">
@@ -69,6 +71,16 @@ function App() {
             path="/checkout"
             exact
             element={<Checkout />}
+          />
+          <Route
+            path="/follow-order"
+            exact
+            element={<FollowOrder />}
+          />
+          <Route
+            path="/info-user"
+            exact
+            element={<InforUser />}
           />
         </Routes>
       </main>
