@@ -40,7 +40,6 @@ const EditMau = () => {
                 `http://localhost:4000/products/color/detail/${id}`
             );
             const data = await reponse.json();
-            console.log(data);
             return {
                 name: data.name,
                 code: data.code,

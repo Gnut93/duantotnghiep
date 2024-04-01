@@ -32,12 +32,9 @@ const LoginPage = () => {
                 body: JSON.stringify(data),
             });
             const result = await response.json();
-            console.log(result);
             if (response.ok) {
                 // The login request was successful
                 dispatch(dalogin(result));
-                // alert(result.userInfo.role)
-                // navigate("/");
                 if (parseInt(result.userInfo.role) === 1) {
                     navigate("/admin");
                 } else {
