@@ -10,7 +10,7 @@ const Blog = () => {
         <Navbar />
       </div>
       <div className="title">
-        <h3>Blogs</h3>
+        <h3>Blog</h3>
       </div>
       <div className="tong">
         <div className="main">
@@ -24,7 +24,9 @@ const Blog = () => {
             <h1>Bạn muốn chăm sóc đồ da tốt nhất?</h1>
           </div>
           <div className="main__button">
-            <Link to="/shop">READ MORE</Link>
+            {/* <Link to="/shop" style={{ color: "#ffffff" }}> */}
+              READ MORE
+            </Link>
           </div>
         </div>
         <div className="blog">

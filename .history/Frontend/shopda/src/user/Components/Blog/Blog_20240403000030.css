@@ -41,19 +41,16 @@
   color: #ffffff;
   /* Thêm padding cho title */
 }
-.main__button > a {
+.main__button {
   padding: 12px 24px;
   border: 1px solid #ffffff;
   transition: all 0.2s linear;
   color: #ffffff;
-  text-decoration: none; /* Loại bỏ gạch chân của link */
 }
-
-.main__button > a:hover {
+.main__button:hover {
   background-color: #ffffff;
-  color: #090909;
+  
 }
-
 .title {
   display: flex;
   justify-content: center;
@@ -66,7 +63,7 @@
   font-size: 16px;
   color: #090909; /* Màu chữ */
   cursor: pointer; /* Biến con trỏ chuột thành hình bàn tay khi hover */
-  transition: all 0.3s; /* Thêm hiệu ứng transition cho thuộc tính text-decoration */
+  transition: text-decoration 0.2s; /* Thêm hiệu ứng transition cho thuộc tính text-decoration */
 }
 
 .blog__button button:hover {
