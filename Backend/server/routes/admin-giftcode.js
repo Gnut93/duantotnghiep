@@ -77,7 +77,6 @@ router.put("/edit-quantity/:id", async (req, res) => {
     }
     try {
         const { quantity } = req.body;
-        console.log(quantity);
         const sql = `UPDATE gif_code SET  quantity='${quantity}' WHERE id_gc='${id_gc}'`;
         await queryDB(sql);
         res.json({ success: "Cập nhật số lượng  sản phẩm thành công" });
@@ -103,7 +102,6 @@ router.delete("/delete/:id", async (req, res) => {
 // Route để kiểm tra mã giảm giá và trả về giá giảm
 router.post("/check-discount", (req, res) => {
     const { discount } = req.body;
-
     const sql = `SELECT id_gc, price, quantity FROM gif_code WHERE code = ?`;
     db.query(sql, [discount], (err, result) => {
         if (err) {
