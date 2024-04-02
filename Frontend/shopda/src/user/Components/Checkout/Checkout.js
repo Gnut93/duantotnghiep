@@ -10,7 +10,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import { DevTool } from "@hookform/devtools";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 const schema = yup.object({
     name: yup
         .string()
@@ -38,7 +38,7 @@ const Checkout = () => {
     const [idGc, setIdGc] = useState(null);
     const [quantityDiscount, setQuantityDiscount] = useState(0);
     const [userId, setUserId] = useState(null);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const form = useForm({
         resolver: yupResolver(schema),
     });
@@ -60,14 +60,10 @@ const Checkout = () => {
     const { errors, isSubmitSuccessful } = formState;
     const cart = useSelector((state) => state.cart.listSP);
     const user = useSelector((state) => state.auth.user);
-    const idUser = user.id_user;
+    const idUser = user ? user.id_user : null;
     useEffect(() => {
-        if (idUser) {
-            setUserId(idUser);
-        } else {
-            setUserId(null);
-        }
-    }, [idUser]);
+        setUserId(idUser);
+    }, [idUser, user]);
     useEffect(() => {
         if (user) {
             setValue("name", user.name);
@@ -90,7 +86,6 @@ const Checkout = () => {
                 selectedProducts,
                 id_bd
             );
-
             const firstCartItem = cart[0];
             const id_color = firstCartItem.id_color;
             const formQuantity = updateQuantityProduct(quantity, id_color);
@@ -109,7 +104,7 @@ const Checkout = () => {
             );
 
             alert("Thanh Toán thành công,", billResponse);
-            navigate("/");
+            // navigate("/");
         } catch (error) {
             handleError(error);
         }
@@ -135,7 +130,10 @@ const Checkout = () => {
 
         return billData;
     };
-
+    const selectedProducts = cart.map((item) => {
+        const { name, nameColor, price, soluong, id_pd } = item;
+        return { name, nameColor, price, soluong, id_pd };
+    });
     const generateBillDetailData = (selectedProducts, id_bd) => {
         return selectedProducts.map((product) => ({
             id_bill: id_bd,
@@ -147,6 +145,14 @@ const Checkout = () => {
             id_pd: product.id_pd,
         }));
     };
+    const quantity = useMemo(() => {
+        return cart.reduce(
+            (total, sp) => total + (sp.maxQuantity - sp.soluong),
+            0
+        );
+    }, [cart]);
+    console.log(quantity);
+
     const updateQuantityProduct = (quantity, id_color) => {
         return {
             id_color: id_color,
@@ -175,6 +181,7 @@ const Checkout = () => {
     };
 
     const addBillDetail = async (url, data) => {
+        console.log(data);
         const options = {
             method: "post",
             body: JSON.stringify(data),
@@ -237,17 +244,6 @@ const Checkout = () => {
             reset();
         }
     }, [isSubmitSuccessful, reset]);
-
-    const selectedProducts = cart.map((item) => {
-        const { name, nameColor, price, soluong, id_pd } = item;
-        return { name, nameColor, price, soluong, id_pd };
-    });
-    const quantity = useMemo(() => {
-        return cart.reduce(
-            (total, sp) => total + (sp.maxQuantity - sp.soluong),
-            0
-        );
-    }, [cart]);
 
     const subTotal = useMemo(() => {
         return cart.reduce(
