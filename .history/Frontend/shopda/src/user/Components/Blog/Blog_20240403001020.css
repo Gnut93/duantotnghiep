@@ -66,7 +66,7 @@
   font-size: 16px;
   color: #090909; /* Màu chữ */
   cursor: pointer; /* Biến con trỏ chuột thành hình bàn tay khi hover */
-  transition: all 0.3s; /* Thêm hiệu ứng transition cho thuộc tính text-decoration */
+  transition:  0.3s; /* Thêm hiệu ứng transition cho thuộc tính text-decoration */
 }
 
 .blog__button button:hover {
