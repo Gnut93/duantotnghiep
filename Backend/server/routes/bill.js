@@ -106,5 +106,26 @@ router.put("/set-status/:id", (req, res) => {
         }
     });
 });
+// Route để kiểm tra đơn hàng và trả về đơn hàng
+router.post("/check-bill", (req, res) => {
+    const { phone } = req.body;
+    const sql = `SELECT * FROM bill WHERE phone = ?`;
+    db.query(sql, [phone], (err, result) => {
+        if (err) {
+            console.error("Lỗi khi truy vấn cơ sở dữ liệu:", err);
+            res.status(500).send({ error: "Lỗi khi truy vấn cơ sở dữ liệu." });
+            return;
+        }
+
+        if (result.length > 0) {
+            res.send({ validDiscount: true, bills: result });
+        } else {
+            res.send({
+                validDiscount: false,
+                error: "Không tìm thấy đơn hàng nào cho số điện thoại này",
+            });
+        }
+    });
+});
 
 module.exports = router;
