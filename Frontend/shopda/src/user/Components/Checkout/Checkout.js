@@ -37,12 +37,20 @@ const Checkout = () => {
     const [discountAmount, setDiscountAmount] = useState(0);
     const [idGc, setIdGc] = useState(null);
     const [quantityDiscount, setQuantityDiscount] = useState(0);
+    const [userId, setUserId] = useState(null);
     const navigate = useNavigate();
     const form = useForm({
         resolver: yupResolver(schema),
     });
-    const { register, handleSubmit, reset, formState, control, getValues } =
-        form;
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState,
+        control,
+        getValues,
+        setValue,
+    } = form;
     const {
         register: registerDiscount,
         handleSubmit: handleSubmitDiscount,
@@ -51,7 +59,22 @@ const Checkout = () => {
 
     const { errors, isSubmitSuccessful } = formState;
     const cart = useSelector((state) => state.cart.listSP);
-
+    const user = useSelector((state) => state.auth.user);
+    const idUser = user.id_user;
+    useEffect(() => {
+        if (idUser) {
+            setUserId(idUser);
+        } else {
+            setUserId(null);
+        }
+    }, [idUser]);
+    useEffect(() => {
+        if (user) {
+            setValue("name", user.name);
+            setValue("email", user.email);
+            setValue("phone", user.phone);
+        }
+    }, [user, setValue]);
     const handleCheckOut = async (data) => {
         try {
             const selectedPayment = getValues("pay");
@@ -105,6 +128,9 @@ const Checkout = () => {
         };
         if (idGc) {
             billData.id_gc = idGc;
+        }
+        if (userId) {
+            billData.id_user = userId;
         }
 
         return billData;

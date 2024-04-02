@@ -14,7 +14,6 @@ const schema = yup.object({
 });
 const FollowOrder = () => {
     const [listBill, setBill] = useState([]);
-    console.log(listBill);
     const form = useForm({
         resolver: yupResolver(schema),
     });
