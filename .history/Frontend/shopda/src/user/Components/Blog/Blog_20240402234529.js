@@ -24,9 +24,7 @@ const Blog = () => {
             <h1>Bạn muốn chăm sóc đồ da tốt nhất?</h1>
           </div>
           <div className="main__button">
-            <Link to="/shop" style={{ color: "#ffffff" }}>
-              READ MORE
-            </Link>
+            <Link to="/shop">READ MORE</Link>
           </div>
         </div>
         <div className="blog">
@@ -90,7 +88,6 @@ const Blog = () => {
       </div>
       <div className="title">
         <h3>Sản phẩm mới nhất</h3>
-      </div>
     </>
   );
 };

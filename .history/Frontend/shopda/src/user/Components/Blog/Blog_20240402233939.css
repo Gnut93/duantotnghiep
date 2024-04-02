@@ -1,0 +1,57 @@
+.tong {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+}
+.blog {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Cho phép các item xuống dòng khi không đủ không gian */
+}
+
+.item {
+  flex: 0 0 calc(33.33% - 30px); /* Chiếm 33.33% của không gian và trừ đi padding */
+  padding: 17px; /* Giảm khoảng cách giữa các item */
+  margin-bottom: 20px; /* Khoảng cách giữa các hàng */
+}
+
+.main {
+  position: relative; /* Thiết lập vị trí tương đối cho div main */
+}
+
+.main__img {
+  width: 100%;
+  position: relative;
+  /* Thiết lập vị trí tương đối cho ảnh */
+}
+
+.main__button,
+.main__title {
+  position: absolute; /* Thiết lập vị trí tuyệt đối cho title và button */
+  bottom: 50px; /* Đặt chúng ở phía dưới của div chứa ảnh */
+  left: 50px; /* Đặt chúng ở phía trái của div chứa ảnh */
+}
+
+.main__title {
+  padding-bottom: 60px;
+  color: #ffffff;
+  /* Thêm padding cho title */
+}
+.main__button {
+  padding: 12px 24px;
+  border: 1px solid #ffffff;
+  transition: all 0.2s linear;
+  color: #ffffff;
+}
+.main__button:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

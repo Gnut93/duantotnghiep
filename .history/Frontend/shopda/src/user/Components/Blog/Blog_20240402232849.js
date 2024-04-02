@@ -10,7 +10,7 @@ const Blog = () => {
         <Navbar />
       </div>
       <div className="title">
-        <h3>Blog</h3>
+        <h1>Blog</h1>
       </div>
       <div className="tong">
         <div className="main">
@@ -24,9 +24,7 @@ const Blog = () => {
             <h1>Bạn muốn chăm sóc đồ da tốt nhất?</h1>
           </div>
           <div className="main__button">
-            <Link to="/shop" style={{ color: "#ffffff" }}>
-              READ MORE
-            </Link>
+            <Link to="/shop"></Link>
           </div>
         </div>
         <div className="blog">
@@ -72,24 +70,7 @@ const Blog = () => {
               <button>Read More</button>
             </div>
           </div>
-          <div className="item">
-            <div className="blog__img">
-              <img
-                src="https://cdn.pixabay.com/photo/2018/10/06/14/48/leather-craft-3727997_1280.jpg"
-                alt=""
-              />
-            </div>
-            <div className="blog__title">
-              <h1>title</h1>
-            </div>
-            <div className="blog__button">
-              <button>Read More</button>
-            </div>
-          </div>
         </div>
-      </div>
-      <div className="title">
-        <h3>Sản phẩm mới nhất</h3>
       </div>
     </>
   );

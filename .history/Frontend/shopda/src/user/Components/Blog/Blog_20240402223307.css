@@ -1,0 +1,22 @@
+.grid-container {
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: repeat(
+    3,
+    1fr
+  ); /* Defines three columns of equal width */
+  grid-gap: 32px; /* Add spacing between grid items */
+}
+.item {
+  position: relative;
+}
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.main .img img {
+  width: 100%;
+}
