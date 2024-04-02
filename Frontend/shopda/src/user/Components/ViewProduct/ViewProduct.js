@@ -64,6 +64,8 @@ const ViewProduct = () => {
       currentProductInCart.soluong + 1 > colorInfo.maxQuantity
     ) {
       alert(`Số lượng tối đa cho màu này là ${colorInfo.maxQuantity}.`);
+    } else if (colorInfo.maxQuantity < 1) {
+      alert(`Sản phẩm này đã hết.`);
     } else {
       // Logic để thêm sản phẩm vào giỏ hàng hoặc tăng số lượng
       dispatch(
