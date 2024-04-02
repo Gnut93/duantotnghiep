@@ -34,7 +34,7 @@ const Footer = () => {
                 <Link to="#">Hướng dẫn đổi trả hàng</Link>
               </li>
               <li>
-                <Link to="#">Chính sách đổi hàng và đổi </Link>
+                <Link to="/policy">Chính sách đổi hàng và đổi </Link>
               </li>
               <li>
                 <Link to="#">Chính sách vận chuyển</Link>

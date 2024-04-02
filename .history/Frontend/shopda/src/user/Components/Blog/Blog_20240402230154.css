@@ -1,0 +1,18 @@
+.tong {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+}
+.blog {
+  display: flex;
+  justify-content: space-between; /* Các item sẽ được căn đều theo chiều ngang và căn cách nhau một khoảng đều */
+}
+
+.item {
+  flex: 1; /* Mỗi item sẽ chiếm đủ không gian trên hàng */
+  border: 1px solid #ccc; /* Đường viền để phân biệt các item */
+  padding: 10px; /* Thêm padding để tạo khoảng cách giữa các item */
+}
