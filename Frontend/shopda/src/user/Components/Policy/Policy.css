@@ -1,0 +1,39 @@
+.policy-heading {
+    font-size: 42px;
+    text-align: left;
+    padding: 40px 0;
+  }
+  .policy-list {
+    display: flex;
+    gap: 100px;
+  }
+  .policy-item {
+    width: calc(100% - 50px);
+  }
+  .policy-title {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  .policy-title-24 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .policy-desc {
+    margin-bottom: 20px;
+  }
+  .policy-desc-min {
+    margin-left: 20px;
+  }
+  .policy-font-18 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .policy-color-black{
+    color: black;
+  }
+  .policy-content {
+    margin-bottom: 10px;
+  }
+  

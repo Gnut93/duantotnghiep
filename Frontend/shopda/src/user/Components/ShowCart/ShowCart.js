@@ -77,7 +77,7 @@ const ShowCar = () => {
                         <thead>
                             <tr>
                                 <td></td>
-                                <td></td>
+                                <td>Hình ảnh</td>
                                 <td>Sản phẩm</td>
                                 <td>Màu</td>
                                 <td>Giá</td>

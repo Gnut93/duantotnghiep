@@ -15,6 +15,7 @@ import About from './Components/About/About';
 import Blog from './Components/Blog/Blog';
 import FollowOrder from './Components/FollowOrder/FollowOrder';
 import InforUser from './Components/InforUser/InforUser';
+import Policy from './Components/Policy/Policy';
 function App() {
   return (
     <div className="wapper">
@@ -81,6 +82,11 @@ function App() {
             path="/info-user"
             exact
             element={<InforUser />}
+          />
+            <Route
+            path="/policy"
+            exact
+            element={<Policy />}
           />
         </Routes>
       </main>
