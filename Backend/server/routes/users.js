@@ -236,5 +236,23 @@ router.get("/check-email/:email", (req, res) => {
         }
     });
 });
+//Xóa người dùng
+router.delete("/delete/:id", async (req, res) => {
+    var id_user = parseInt(req.params.id);
+    if (isNaN(id_user) || id_user < 1) {
+        res.json({ error: "ID không hợp lệ" });
+        return;
+    }
+
+    var sql = `DELETE FROM user WHERE id_user='${id_user}'`;
+    db.query(sql, (err, result) => {
+        if (err) {
+            res.json({ error: err.message });
+        } else {
+            // console.log(result);
+            res.json({ success: "xóa người dùng thành công" });
+        }
+    });
+});
 
 module.exports = router;
