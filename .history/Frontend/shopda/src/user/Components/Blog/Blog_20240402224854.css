@@ -1,0 +1,25 @@
+.blog {
+  display: grid;
+  grid-template-columns: 1fr 3fr; /* Chiều rộng của cột đầu tiên là 1 phần và của cột thứ hai là 3 phần */
+  grid-gap: 20px; /* Khoảng cách giữa các item */
+}
+
+.item {
+  border: 1px solid #ccc; /* Đường viền để phân biệt các item */
+}
+
+.blog__img img {
+  width: 100%; /* Ảnh điền vào toàn bộ kích thước của div cha */
+}
+
+.blog__title {
+  margin-top: 10px; /* Khoảng cách giữa tiêu đề và ảnh */
+}
+
+.blog__button {
+  margin-top: 10px; /* Khoảng cách giữa nút và tiêu đề */
+}
+
+.nav {
+  margin-bottom: 20px; /* Khoảng cách giữa Navbar và phần content */
+}

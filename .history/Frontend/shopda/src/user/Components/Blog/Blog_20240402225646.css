@@ -1,0 +1,34 @@
+.blog-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  display: flex;
+}
+
+.blog {
+  display: flex;
+}
+
+.item {
+  flex: 1;
+  border: 1px solid #ccc;
+  margin: 0 10px;
+}
+
+.blog__img img {
+  width: 100%;
+}
+
+.blog__title {
+  margin-top: 10px;
+}
+
+.blog__button {
+  margin-top: 10px;
+}
+
+.nav {
+  margin-bottom: 20px;
+}

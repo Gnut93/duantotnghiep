@@ -32,7 +32,6 @@ const ShowCar = () => {
             const colorInfo = productColors.find(
                 (color) => color.id_color === id_color && color.id_pd === id
             ).quantity;
-            console.log(newQuantity);
             if (newQuantity < 1) {
                 dispatch(xoaSP({ id_color }));
             } else if (colorInfo && newQuantity <= colorInfo) {
