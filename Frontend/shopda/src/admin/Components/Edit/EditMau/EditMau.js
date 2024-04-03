@@ -43,7 +43,7 @@ const EditMau = () => {
             return {
                 name: data.name,
                 code: data.code,
-                quantity: data.Quantity,
+                quantity: data.quantity,
                 id_pd: data.id_pd,
             };
         },
