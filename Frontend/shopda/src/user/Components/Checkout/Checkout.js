@@ -10,7 +10,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import { DevTool } from "@hookform/devtools";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const schema = yup.object({
     name: yup
         .string()
@@ -71,6 +71,7 @@ const Checkout = () => {
             setValue("phone", user.phone);
         }
     }, [user, setValue]);
+
     const handleCheckOut = async (data) => {
         try {
             const selectedPayment = getValues("pay");
@@ -113,7 +114,6 @@ const Checkout = () => {
             handleError(error);
         }
     };
-
     const generateBillData = (data, selectedPayment) => {
         let billData = {
             name: data.name,
@@ -138,6 +138,7 @@ const Checkout = () => {
         const { name, nameColor, price, soluong, id_pd } = item;
         return { name, nameColor, price, soluong, id_pd };
     });
+
     const generateBillDetailData = (selectedProducts, id_bd) => {
         return selectedProducts.map((product) => ({
             id_bill: id_bd,
@@ -148,6 +149,15 @@ const Checkout = () => {
             total_price: TotalPrice,
             id_pd: product.id_pd,
         }));
+    };
+    const updateQuantityDiscount = (id_gc) => {
+        const updatedQuantity = quantityDiscount - 1;
+        setQuantityDiscount(updatedQuantity);
+
+        return {
+            id_gc: id_gc,
+            quantity: updatedQuantity,
+        };
     };
     const quantityData = useMemo(() => {
         const quantityMap = {};
@@ -164,8 +174,6 @@ const Checkout = () => {
         return quantityMap;
     }, [cart]);
 
-    console.log(quantityData);
-
     const updateQuantityProduct = (quantityData) => {
         if (!quantityData) return [];
 
@@ -174,17 +182,6 @@ const Checkout = () => {
             quantity,
         }));
     };
-
-    const updateQuantityDiscount = (id_gc) => {
-        const updatedQuantity = quantityDiscount - 1;
-        setQuantityDiscount(updatedQuantity);
-
-        return {
-            id_gc: id_gc,
-            quantity: updatedQuantity,
-        };
-    };
-
     const addBill = async (url, data) => {
         const options = {
             method: "post",
@@ -211,6 +208,7 @@ const Checkout = () => {
             body: JSON.stringify(data),
             headers: { "Content-Type": "application/json" },
         };
+
         const response = await fetch(url, options);
         return await response.json();
     };
@@ -265,6 +263,7 @@ const Checkout = () => {
             0
         );
     }, [cart]);
+
     let shipping = 50000;
     let TotalPrice = subTotal ? subTotal + shipping - discountAmount : 0;
 
