@@ -13,10 +13,8 @@ const BlogsDetails = () => {
       </div>
       <div className="blog__details">
         <div className="blog__details__icon">
-          <i class="fa-solid fa-calendar"></i>
-          <span>Ngày 15/09/2024</span>
-          <i class="fa-solid fa-house"></i>
-          <span>Da Shop</span>
+          <i class="fa-solid fa-calendar"></i><span>Ngày 15/09/2024</span>
+          <i class="fa-solid fa-house"></i><spanDa Shop
         </div>
         <hr />
 
@@ -59,9 +57,6 @@ const BlogsDetails = () => {
             </form>
           </div>
         </div>
-      </div>
-      <div className="baivietlienquan">
-        <h1>Bài viết liên quan</h1>
       </div>
     </>
   );

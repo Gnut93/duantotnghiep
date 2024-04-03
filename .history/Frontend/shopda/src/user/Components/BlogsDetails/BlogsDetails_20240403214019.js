@@ -13,10 +13,8 @@ const BlogsDetails = () => {
       </div>
       <div className="blog__details">
         <div className="blog__details__icon">
-          <i class="fa-solid fa-calendar"></i>
-          <span>Ngày 15/09/2024</span>
-          <i class="fa-solid fa-house"></i>
-          <span>Da Shop</span>
+          <i class="fa-solid fa-calendar"></i>Ngày 15/09/2021
+          <i class="fa-solid fa-house"></i>Da Shop
         </div>
         <hr />
 
@@ -45,7 +43,14 @@ const BlogsDetails = () => {
           <h1>Viết bình luận của bạn:</h1>
 
           <div className="blog__details__post__form">
-            <form action="">
+            <div className="default-comment">
+              <p>
+                <strong>John Doe:</strong> Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit. Nullam ac quam eu ligula fermentum
+                semper.
+              </p>
+            </div>
+            <form action="" className="comment-form" style="display: none;">
               <input type="text" placeholder="Họ và tên" />
               <input type="email" placeholder="Email" />
               <textarea
@@ -57,11 +62,9 @@ const BlogsDetails = () => {
               ></textarea>
               <button>Post</button>
             </form>
+            <button class="show-comment-form">Viết bình luận của bạn</button>
           </div>
         </div>
-      </div>
-      <div className="baivietlienquan">
-        <h1>Bài viết liên quan</h1>
       </div>
     </>
   );

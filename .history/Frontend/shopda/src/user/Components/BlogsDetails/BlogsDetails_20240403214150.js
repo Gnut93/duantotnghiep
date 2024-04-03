@@ -13,10 +13,8 @@ const BlogsDetails = () => {
       </div>
       <div className="blog__details">
         <div className="blog__details__icon">
-          <i class="fa-solid fa-calendar"></i>
-          <span>Ngày 15/09/2024</span>
-          <i class="fa-solid fa-house"></i>
-          <span>Da Shop</span>
+          <i class="fa-solid fa-calendar"></i>Ngày 15/09/2021
+          <i class="fa-solid fa-house"></i>Da Shop
         </div>
         <hr />
 
@@ -43,7 +41,7 @@ const BlogsDetails = () => {
         </div>
         <div className="blog__details__post">
           <h1>Viết bình luận của bạn:</h1>
-
+          
           <div className="blog__details__post__form">
             <form action="">
               <input type="text" placeholder="Họ và tên" />
@@ -59,9 +57,6 @@ const BlogsDetails = () => {
             </form>
           </div>
         </div>
-      </div>
-      <div className="baivietlienquan">
-        <h1>Bài viết liên quan</h1>
       </div>
     </>
   );

@@ -61,8 +61,7 @@ const BlogsDetails = () => {
         </div>
       </div>
       <div className="baivietlienquan">
-        <h1>Bài viết liên quan</h1>
-      </div>
+      </
     </>
   );
 };

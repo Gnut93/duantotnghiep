@@ -13,10 +13,8 @@ const BlogsDetails = () => {
       </div>
       <div className="blog__details">
         <div className="blog__details__icon">
-          <i class="fa-solid fa-calendar"></i>
-          <span>Ngày 15/09/2024</span>
-          <i class="fa-solid fa-house"></i>
-          <span>Da Shop</span>
+          <i class="fa-solid fa-calendar"></i>Ngày 15/09/2021
+          <i class="fa-solid fa-house"></i>Da Shop
         </div>
         <hr />
 
@@ -42,26 +40,10 @@ const BlogsDetails = () => {
           </p>
         </div>
         <div className="blog__details__post">
-          <h1>Viết bình luận của bạn:</h1>
-
-          <div className="blog__details__post__form">
-            <form action="">
-              <input type="text" placeholder="Họ và tên" />
-              <input type="email" placeholder="Email" />
-              <textarea
-                name=""
-                id=""
-                cols="30"
-                rows="10"
-                placeholder="Nội dung bình luận của bạn"
-              ></textarea>
-              <button>Post</button>
-            </form>
-          </div>
+            <div className="blog__details__post__title">
+                <h1>Viết bình luận của bạn:</h1>
         </div>
-      </div>
-      <div className="baivietlienquan">
-        <h1>Bài viết liên quan</h1>
+
       </div>
     </>
   );

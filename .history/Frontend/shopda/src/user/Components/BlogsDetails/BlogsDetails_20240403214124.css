@@ -54,8 +54,13 @@
   margin-bottom: 15px;
 }
 
-.blog__details__post__form input,
-.blog__details__post__form textarea {
+.blog__details__post__form .default-comment {
+  margin-bottom: 15px;
+}
+
+.blog__details__post__form .comment-form input[type="text"],
+.blog__details__post__form .comment-form input[type="email"],
+.blog__details__post__form .comment-form textarea {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
@@ -64,11 +69,11 @@
   box-sizing: border-box;
 }
 
-.blog__details__post__form textarea {
+.blog__details__post__form .comment-form textarea {
   resize: vertical;
 }
 
-.blog__details__post__form button {
+.blog__details__post__form .comment-form button {
   background-color: #007bff;
   color: #fff;
   padding: 10px 20px;
@@ -77,6 +82,6 @@
   cursor: pointer;
 }
 
-.blog__details__post__form button:hover {
+.blog__details__post__form .comment-form button:hover {
   background-color: #0056b3;
 }
