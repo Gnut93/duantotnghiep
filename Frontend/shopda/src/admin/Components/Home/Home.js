@@ -10,6 +10,7 @@ const Home = () => {
     const [listSp, setListSP] = useState([]);
     const [listColor, setListColor] = useState([]);
     const [listBill, setListBill] = useState([]);
+    const [listUser, setListUser] = useState([]);
     useEffect(() => {
         fetch("http://localhost:4000/products/col/list")
             .then((res) => res.json())
@@ -20,6 +21,9 @@ const Home = () => {
         fetch("http://localhost:4000/bill/list")
             .then((res) => res.json())
             .then(setListBill);
+        fetch("http://localhost:4000/users/list")
+            .then((res) => res.json())
+            .then(setListUser);
     }, []);
 
     const newListColor = listColor.map((color) => {
@@ -141,7 +145,7 @@ const Home = () => {
                         <div className="box-info-item">
                             <i className="bx bxs-group"></i>
                             <span className="text">
-                                <h3>0</h3>
+                                <h3>{listUser.length}</h3>
                                 <p>Người dùng</p>
                             </span>
                         </div>
@@ -246,38 +250,44 @@ const Home = () => {
                         </div>
                         <div className="order order-product">
                             <div className="head">
-                                <h3> Hàng Bán Chạy</h3>
+                                <h3> Người Dùng Mới Đăng Ký</h3>
                             </div>
                             <table>
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Tên Hàng</th>
-                                        <th>Màu</th>
-                                        <th>Số Lượng</th>
+                                        <th>Tên Khách Hàng</th>
+                                        <th>Chức Năng</th>
+                                        <th>Ngày Đăng Ký</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {listProduct
+                                    {listUser
                                         .sort(
-                                            (product, sp) =>
-                                                product.quantity - sp.quantity
+                                            (a, b) =>
+                                                new Date(b.created_date) -
+                                                new Date(a.created_date)
                                         )
-                                        .slice(0, 10)
-
-                                        .map((product, i) => (
+                                        .map((user, i) => (
                                             <tr key={i}>
                                                 <td>
                                                     <p>{i + 1}</p>
                                                 </td>
                                                 <td>
-                                                    <p>{product.name}</p>
+                                                    <p>{user.name}</p>
                                                 </td>
                                                 <td>
-                                                    <p>{product.name_color}</p>
+                                                    <p>
+                                                        {parseInt(user.role) ===
+                                                        1
+                                                            ? "Quản trị viên"
+                                                            : "Người dùng"}
+                                                    </p>
                                                 </td>
                                                 <td>
-                                                    <p>{product.quantity}</p>
+                                                    {new Date(
+                                                        user.created_date
+                                                    ).toLocaleDateString("vi")}
                                                 </td>
                                             </tr>
                                         ))}
