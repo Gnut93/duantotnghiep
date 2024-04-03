@@ -88,8 +88,12 @@ const Checkout = () => {
             );
             const firstCartItem = cart[0];
             const id_color = firstCartItem.id_color;
-            const formQuantity = updateQuantityProduct(quantity, id_color);
-            const formQuantityDiscount = updateQuantityDiscount(quantity, idGc);
+            const formQuantity = updateQuantityProduct(quantityData, id_color);
+            console.log(formQuantity);
+            const formQuantityDiscount = updateQuantityDiscount(
+                quantityData,
+                idGc
+            );
             await addBillDetail(
                 "http://localhost:4000/bill/add-detail",
                 formBillDetail
@@ -145,19 +149,30 @@ const Checkout = () => {
             id_pd: product.id_pd,
         }));
     };
-    const quantity = useMemo(() => {
-        return cart.reduce(
-            (total, sp) => total + (sp.maxQuantity - sp.soluong),
-            0
-        );
-    }, [cart]);
-    console.log(quantity);
+    const quantityData = useMemo(() => {
+        const quantityMap = {};
 
-    const updateQuantityProduct = (quantity, id_color) => {
-        return {
-            id_color: id_color,
-            quantity: quantity,
-        };
+        cart.forEach((sp) => {
+            const { id_color, maxQuantity, soluong } = sp;
+            if (!quantityMap[id_color]) {
+                quantityMap[id_color] = maxQuantity - soluong;
+            } else {
+                quantityMap[id_color] += maxQuantity - soluong;
+            }
+        });
+
+        return quantityMap;
+    }, [cart]);
+
+    console.log(quantityData);
+
+    const updateQuantityProduct = (quantityData) => {
+        if (!quantityData) return [];
+
+        return Object.entries(quantityData).map(([id_color, quantity]) => ({
+            id_color,
+            quantity,
+        }));
     };
 
     const updateQuantityDiscount = (id_gc) => {
@@ -181,7 +196,6 @@ const Checkout = () => {
     };
 
     const addBillDetail = async (url, data) => {
-        console.log(data);
         const options = {
             method: "post",
             body: JSON.stringify(data),
