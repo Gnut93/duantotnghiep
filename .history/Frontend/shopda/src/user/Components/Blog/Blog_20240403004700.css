@@ -32,8 +32,8 @@
 .main__button,
 .main__title {
   position: absolute; /* Thiết lập vị trí tuyệt đối cho title và button */
-  bottom: 80px; /* Đặt chúng ở phía dưới của div chứa ảnh */
-  left: 80px; /* Đặt chúng ở phía trái của div chứa ảnh */
+  bottom: 50px; /* Đặt chúng ở phía dưới của div chứa ảnh */
+  left: 50px; /* Đặt chúng ở phía trái của div chứa ảnh */
 }
 
 .main__title {

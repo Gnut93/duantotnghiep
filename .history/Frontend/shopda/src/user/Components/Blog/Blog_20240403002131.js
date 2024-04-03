@@ -10,7 +10,7 @@ const Blog = () => {
         <Navbar />
       </div>
       <div className="title">
-        <h2>Blogs</h2>
+        <h3>Blogs</h3>
       </div>
       <div className="tong">
         <div className="main">
