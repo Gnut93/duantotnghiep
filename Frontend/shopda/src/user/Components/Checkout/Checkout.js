@@ -225,6 +225,7 @@ const Checkout = () => {
     const handleError = (error) => {
         console.error("lỗi khi thanh toán: ", error);
     };
+
     const handleCheckDiscount = async (data) => {
         try {
             const url = "http://localhost:4000/admin-giftcode/check-discount";
