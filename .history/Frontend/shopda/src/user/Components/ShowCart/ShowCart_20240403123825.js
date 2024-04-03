@@ -26,7 +26,7 @@ const ShowCar = () => {
     [dispatch]
   );
 
-
+<<<<<<< HEAD
   const handleChangeQuantity = useCallback(
     (id, id_color, e) => {
       const newQuantity = parseInt(e.target.value, 10) || 0;
@@ -44,7 +44,7 @@ const ShowCar = () => {
     },
     [dispatch, productColors]
   );
-
+=
 
   const subTotal = useMemo(() => {
     return cart.reduce((total, sp) => total + sp.price_sale * sp.soluong, 0);

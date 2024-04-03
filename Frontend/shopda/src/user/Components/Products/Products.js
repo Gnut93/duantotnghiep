@@ -71,11 +71,14 @@ const Products = () => {
     const currentProductInCart = cart.find(
       (p) => p.id_pd === product.id_pd && p.id_color === id_color
     );
+    console.log(currentProductInCart);
     if (
       currentProductInCart &&
-      currentProductInCart.soluong + 1 > colorInfo.maxQuantity
+      currentProductInCart.soluong + 1 >= colorInfo.maxQuantity
     ) {
       alert(`Số lượng tối đa cho màu này là ${colorInfo.maxQuantity}.`);
+    } else if (colorInfo.maxQuantity < 1) {
+      alert(`Sản phẩm này đã hết.`);
     } else {
       // Logic để thêm sản phẩm vào giỏ hàng hoặc tăng số lượng
       dispatch(

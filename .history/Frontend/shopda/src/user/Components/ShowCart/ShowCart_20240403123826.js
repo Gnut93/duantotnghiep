@@ -26,7 +26,7 @@ const ShowCar = () => {
     [dispatch]
   );
 
-
+<<<<<<< HEAD
   const handleChangeQuantity = useCallback(
     (id, id_color, e) => {
       const newQuantity = parseInt(e.target.value, 10) || 0;
