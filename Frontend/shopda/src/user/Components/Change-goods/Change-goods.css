@@ -1,43 +1,46 @@
-.policy-heading {
+.cg-heading {
     font-size: 42px;
     text-align: left;
     padding: 40px 0;
   }
-  .policy-list {
+  .cg-list {
     display: flex;
     gap: 100px;
   }
-  .policy-item {
+  .cg-item {
     width: calc(100% - 50px);
   }
-  .policy-title {
+  .cg-title {
     font-size: 32px;
     margin-bottom: 10px;
   }
-  .policy-title-24 {
+  .cg-title-24 {
     font-size: 24px;
     margin-bottom: 10px;
     font-weight: 500;
   }
-  .policy-desc {
+  .cg-desc {
     margin-bottom: 20px;
   }
-  .policy-desc-min {
+  .cg-desc-min {
     margin-left: 20px;
   }
-  .policy-ul{
+  .cg-ul{
     margin-bottom: 20px;
     margin-left: 20px;
   }
-  .policy-font-18 {
+  .cg-font-18 {
     font-size: 18px;
     margin-bottom: 10px;
     font-weight: 500;
   }
-  .policy-color-black{
+  .cg-desc-strong{
+    font-weight: 500;
+  }
+  .cg-color-black{
     color: black;
   }
-  .policy-content {
+  .cg-content {
     margin-bottom: 10px;
   }
   

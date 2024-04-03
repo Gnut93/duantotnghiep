@@ -16,6 +16,10 @@ import Blog from './Components/Blog/Blog';
 import FollowOrder from './Components/FollowOrder/FollowOrder';
 import InforUser from './Components/InforUser/InforUser';
 import Policy from './Components/Policy/Policy';
+import Questions from './Components/Questions/Questions';
+import Trans from './Components/Policy-trans/Policy-trans';
+import ChangeGoods from './Components/Change-goods/Change-goods';
+import ShopGuide from './Components/Shopping-guide/Shopping-guide';
 function App() {
   return (
     <div className="wapper">
@@ -87,8 +91,34 @@ function App() {
             path="/policy"
             exact
             element={<Policy />}
-          />
+            
+          /> 
+           <Route
+          path="/quest"
+          exact
+          element={<Questions />}
+          
+        />
+         <Route
+          path="/trans"
+          exact
+          element={<Trans />}
+          
+        />
+        <Route
+          path="/shopguide"
+          exact
+          element={<ShopGuide />}
+          
+        />
+        <Route
+          path="/changegoods"
+          exact
+          element={<ChangeGoods />}
+          
+        />
         </Routes>
+        
       </main>
       <Footer></Footer>
     </div>

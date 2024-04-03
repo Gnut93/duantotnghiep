@@ -28,19 +28,19 @@ const Footer = () => {
             <h4>Dịch vụ khách hàng</h4>
             <ul>
               <li>
-                <Link to="#">Hướng dẫn mua hàng</Link>
+                <Link to="/shopguide">Hướng dẫn mua hàng</Link>
               </li>
               <li>
-                <Link to="#">Hướng dẫn đổi trả hàng</Link>
+                <Link to="/changegoods">Hướng dẫn đổi trả hàng</Link>
               </li>
               <li>
                 <Link to="/policy">Chính sách đổi hàng và đổi </Link>
               </li>
               <li>
-                <Link to="#">Chính sách vận chuyển</Link>
+                <Link to="/trans">Chính sách vận chuyển</Link>
               </li>
               <li>
-                <Link to="#">Câu hỏi thường gặp</Link>
+                <Link to="/quest">Câu hỏi thường gặp</Link>
               </li>
             </ul>
           </div>
