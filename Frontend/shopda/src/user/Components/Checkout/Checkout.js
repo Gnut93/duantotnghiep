@@ -10,7 +10,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import { DevTool } from "@hookform/devtools";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 const schema = yup.object({
     name: yup
         .string()
