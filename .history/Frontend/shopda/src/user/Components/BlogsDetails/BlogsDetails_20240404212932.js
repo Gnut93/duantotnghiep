@@ -63,9 +63,8 @@ const BlogsDetails = () => {
       <div className="baivietlienquan">
         <h1>Bài viết liên quan</h1>
       </div>
-      <div className="blog_list_main">
-      <div className="blog_list">
-        <div className="item_blog">
+      <div className="blog">
+        <div className="item">
           <div className="blog__img">
             <img
               src="https://cdn.pixabay.com/photo/2018/10/06/14/48/leather-craft-3727997_1280.jpg"
@@ -75,7 +74,7 @@ const BlogsDetails = () => {
           <div className="blog__title">
             <h1>title</h1>
           </div>
-          <div className="blog_button">
+          <div className="blog__button">
             <button>Read More</button>
           </div>
         </div>
@@ -89,7 +88,7 @@ const BlogsDetails = () => {
           <div className="blog__title">
             <h1>title</h1>
           </div>
-          <div className="blog_button">
+          <div className="blog__button">
             <button>Read More</button>
           </div>
         </div>
@@ -108,7 +107,7 @@ const BlogsDetails = () => {
           </div>
         </div>
         <div className="item_blog">
-          <div className="blog__img">
+          <div className="blog__mg">
             <img
               src="https://cdn.pixabay.com/photo/2018/10/06/14/48/leather-craft-3727997_1280.jpg"
               alt=""
@@ -121,7 +120,6 @@ const BlogsDetails = () => {
             <button>Read More</button>
           </div>
         </div>
-      </div>
       </div>
     </>
   );

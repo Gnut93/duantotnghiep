@@ -85,20 +85,11 @@
   margin: 20px 0;
   text-align: center;
 }
-.blog_list_main {
-  width: 90%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 0 auto;
-}
 
 .blog_list {
-  width: 100%;
+  margin-top: 30px;
   display: flex;
   justify-content: space-between;
-
   flex-wrap: wrap;
 }
 .item_blog {
@@ -106,7 +97,7 @@
   padding: 24px; /* Giảm khoảng cách giữa các item */
   margin-bottom: 20px;
 }
-.blog_button button {
+.blog_button {
   border: none; /* Loại bỏ viền của button */
   text-decoration: none; /* Loại bỏ gạch chân mặc định */
   background: transparent; /* Đặt màu nền của button là trong suốt */
@@ -115,7 +106,7 @@
   cursor: pointer; /* Biến con trỏ chuột thành hình bàn tay khi hover */
   transition: all 0.3s;
 }
-.blog_button button:hover {
-  text-decoration: underline; /* Thêm gạch chân khi hover vào button */
-  color: blue;
+Blog_button button:hover {
+  background-color: #007bff;
+  color: #fff;
 }

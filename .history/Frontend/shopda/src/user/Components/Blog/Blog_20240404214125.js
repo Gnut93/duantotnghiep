@@ -86,8 +86,11 @@ const Blog = () => {
             </div>
           </div>
         </div>
-        <ViewProduct />
       </div>
+      <div className="title">
+        <h3>Sản phẩm mới nhất</h3>
+      </div>
+      <ViewProduct></ViewProduct>
     </>
   );
 };

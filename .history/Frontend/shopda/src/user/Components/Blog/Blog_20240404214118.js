@@ -2,7 +2,6 @@ import React from "react";
 import Navbar from "../Navbar/Navbar";
 import "./Blog.css";
 import { Link } from "react-router-dom";
-import ViewProduct from "../ViewProduct/ViewProduct";
 
 const Blog = () => {
   return (
@@ -86,8 +85,11 @@ const Blog = () => {
             </div>
           </div>
         </div>
-        <ViewProduct />
       </div>
+      <div className="title">
+        <h3>Sản phẩm mới nhất</h3>
+      </div>
+      <ViewProduct></ViewProduct>
     </>
   );
 };

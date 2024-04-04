@@ -63,7 +63,6 @@ const BlogsDetails = () => {
       <div className="baivietlienquan">
         <h1>Bài viết liên quan</h1>
       </div>
-      <div className="blog_list_main">
       <div className="blog_list">
         <div className="item_blog">
           <div className="blog__img">
@@ -121,7 +120,6 @@ const BlogsDetails = () => {
             <button>Read More</button>
           </div>
         </div>
-      </div>
       </div>
     </>
   );

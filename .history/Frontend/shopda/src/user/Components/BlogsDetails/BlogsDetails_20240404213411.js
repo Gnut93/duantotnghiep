@@ -63,7 +63,6 @@ const BlogsDetails = () => {
       <div className="baivietlienquan">
         <h1>Bài viết liên quan</h1>
       </div>
-      <div className="blog_list_main">
       <div className="blog_list">
         <div className="item_blog">
           <div className="blog__img">
@@ -75,7 +74,7 @@ const BlogsDetails = () => {
           <div className="blog__title">
             <h1>title</h1>
           </div>
-          <div className="blog_button">
+          <div className="blog__button">
             <button>Read More</button>
           </div>
         </div>
@@ -89,7 +88,7 @@ const BlogsDetails = () => {
           <div className="blog__title">
             <h1>title</h1>
           </div>
-          <div className="blog_button">
+          <div className="blog__button">
             <button>Read More</button>
           </div>
         </div>
@@ -121,7 +120,6 @@ const BlogsDetails = () => {
             <button>Read More</button>
           </div>
         </div>
-      </div>
       </div>
     </>
   );

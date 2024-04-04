@@ -86,8 +86,9 @@ const Blog = () => {
             </div>
           </div>
         </div>
-        <ViewProduct />
       </div>
+      
+      <ViewProduct/>
     </>
   );
 };

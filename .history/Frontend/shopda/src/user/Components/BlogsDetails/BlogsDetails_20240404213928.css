@@ -85,17 +85,13 @@
   margin: 20px 0;
   text-align: center;
 }
-.blog_list_main {
-  width: 90%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 0 auto;
+.blog_list_main{
+ width: 90%; 
 }
 
 .blog_list {
   width: 100%;
+  margin-top: 30px;
   display: flex;
   justify-content: space-between;
 

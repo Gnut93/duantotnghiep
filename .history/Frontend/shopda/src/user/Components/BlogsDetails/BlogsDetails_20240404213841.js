@@ -122,7 +122,6 @@ const BlogsDetails = () => {
           </div>
         </div>
       </div>
-      </div>
     </>
   );
 };
