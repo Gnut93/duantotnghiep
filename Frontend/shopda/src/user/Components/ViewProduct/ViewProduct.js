@@ -114,6 +114,22 @@ const ViewProduct = () => {
             alert("Vui lòng đăng nhập để thực hiện thao tác này");
         }
     };
+    const HandleOnCLickView = async (item) => {
+        const id_pd = item.id_pd;
+        try {
+            const url = `http://localhost:4000/products/view/${id_pd}`;
+            const opt = {
+                method: "put",
+                body: JSON.stringify({ id_pd: id_pd }),
+                headers: { "Content-Type": "application/json" },
+            };
+            const res = await fetch(url, opt);
+            const responseData = await res.json();
+            console.log(responseData);
+        } catch (error) {
+            console.error("Lỗi khi thêm yêu thích sản phẩm: ", error);
+        }
+    };
     return (
         <section className="view">
             <div className="container">
@@ -134,6 +150,9 @@ const ViewProduct = () => {
                                                 <Link
                                                     to={`/product/${item.id_pd}`}
                                                     className="products-social-link"
+                                                    onClick={() =>
+                                                        HandleOnCLickView(item)
+                                                    }
                                                 >
                                                     <i className="fas fa-search"></i>
                                                 </Link>

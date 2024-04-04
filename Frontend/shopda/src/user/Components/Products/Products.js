@@ -119,6 +119,22 @@ const Products = () => {
             alert("Vui lòng đăng nhập để thực hiện thao tác này");
         }
     };
+    const HandleOnCLickView = async (sp) => {
+        const id = sp.id_pd;
+        try {
+            const url = `http://localhost:4000/products/view/${id}`;
+            const opt = {
+                method: "put",
+                body: JSON.stringify({ id: id }),
+                headers: { "Content-Type": "application/json" },
+            };
+            const res = await fetch(url, opt);
+            const responseData = await res.json();
+            console.log(responseData);
+        } catch (error) {
+            console.error("Lỗi khi tăng view: ", error);
+        }
+    };
     function HienSPTrongMotTrang({ spTrongTrang }) {
         return (
             <div className="home-product">
@@ -137,6 +153,9 @@ const Products = () => {
                                             <Link
                                                 to={`/product/${sp["id_pd"]}`}
                                                 className="products-social-link"
+                                                onClick={() =>
+                                                    HandleOnCLickView(sp)
+                                                }
                                             >
                                                 <i className="fas fa-search"></i>
                                             </Link>
