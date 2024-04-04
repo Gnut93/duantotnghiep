@@ -37,8 +37,8 @@ function App() {
           <Route path="/product/:id_pd" exact element={<ProductDetail />} />
           <Route path="/contact" exact element={<Contact />} />
           <Route path="/about" exact element={<About />} />
+          <Route path="/blogsdetails" exact element={<BlogDetails />} />
           <Route path="/blogs" exact element={<Blog />} />
-          <Route path="/blogsdetails" exact element={<BlogsDetails />} />
           <Route path="/checkout" exact element={<Checkout />} />
           <Route path="/follow-order" exact element={<FollowOrder />} />
           <Route path="/info-user" exact element={<InforUser />} />
