@@ -9,6 +9,8 @@ import UserApp from './user/App';
 import AdminApp from './admin/App';
 import LoginPage from './LoginPage'; // Giả sử bạn có một trang đăng nhập chung
 import RegisterPage from './RegisterPage'; // Giả sử bạn có một trang đăng ký chung
+import ForgotPassword from './ForgotPassword';
+import { useSelector } from 'react-redux';
 // import { ProtectedRoute } from './ProtectedRoute';
 
 // Giả sử bạn có một hàm để kiểm tra trạng thái đăng nhập và vai trò của người dùng
@@ -16,8 +18,9 @@ import RegisterPage from './RegisterPage'; // Giả sử bạn có một trang �
 // function getUserRole() {}
 
 const App = () => {
-  const userIsAuthenticated = true; // Kiểm tra xem người dùng có đăng nhập không
-  const userRole = '1'; // Lấy vai trò người dùng ('user' hoặc 'admin')
+  const userIsAuthenticated = useSelector(state => state.auth.daDangNhap);// Kiểm tra xem người dùng có đăng nhập không
+  const user = useSelector(state => state.auth.user) // Lấy vai trò người dùng ('user' hoặc 'admin')
+  const userRole = parseInt(user?.role);
 
   return (
     <Router>
@@ -31,9 +34,13 @@ const App = () => {
           element={<RegisterPage />}
         />
         <Route
+          path="/forgot-password"
+          element={<ForgotPassword />}
+        />
+        <Route
           path="/admin/*"
           element={
-            userIsAuthenticated && userRole === '1' ? (
+            userIsAuthenticated && userRole === 1 ? (
               <AdminApp />
             ) : (
               <Navigate

@@ -4,6 +4,7 @@ var db = require("../models/database");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const fs = require("fs");
+const mailForgotPassword = fs.readFileSync("./Mail/MailForgotPass/index.html" ,'utf8', 'rs');
 const PRIVATE_KEY = fs.readFileSync("./private-key.txt");
 const nodemailer = require("nodemailer");
 
@@ -171,11 +172,12 @@ router.post("/forgot-password", async (req, res) => {
     // cấu hình gửi mail
     var transporter = nodemailer.createTransport({
         service: "gmail",
-        auth: { user: "lesyhoan1803@gmail.com", pass: "sxalgmbxycxdusfa" }, //pass ứng dụng
+        auth: { user: "daleather.2024@gmail.com", pass: "erqccpsqpfrnybyw" }, //pass ứng dụng
         tls: { rejectUnauthorized: false },
     });
-    db.query(`SELECT * FROM user WHERE email=?`, email, function (err, result) {
-        if (err) throw err;
+
+    try {
+        const result = await db.query(`SELECT * FROM user WHERE email=?`, email);
         if (result.length == 0) {
             return res.sendStatus(401);
         } else {
@@ -197,28 +199,30 @@ router.post("/forgot-password", async (req, res) => {
                 const newpass = generateRandomPassword(8);
                 const salt = bcrypt.genSaltSync(10);
                 const pass_mahoa = bcrypt.hashSync(newpass, salt);
-                db.query(`UPDATE user SET password=? WHERE email=?`, [
+                await db.query(`UPDATE user SET password=? WHERE email=?`, [
                     pass_mahoa,
                     email,
                 ]);
                 var mailOptions = {
-                    from: "lesyhoan1803@gmail.com",
+                    from: "daleather.2024@gmail.com",
                     to: email,
                     subject: "Thư gửi về việc mật khẩu cấp lại mật khẩu mới",
-                    html: "Mật khẩu mới của bạn là: <b>" + newpass + "</b>", //gửi mật khẩu mới chưa mã hóa đến email
+                    html: "Mật khẩu mới của bạn là: <b>" + newpass + "</b>",
+                    // html: mailForgotPassword.replace("{{password}}", newpass),
                 };
             }
-            transporter.sendMail(mailOptions, function (error, info) {
-                if (error) console.log(error);
-                else console.log("Đã gửi mail: " + info.response);
-                return res.json({
-                    success:
-                        "Chúng tôi đã gửi thư đến email của bạn. Vui lòng kiểm tra email và đăng nhập lại",
-                });
+            await transporter.sendMail(mailOptions);
+            return res.json({
+                success:
+                    "Chúng tôi đã gửi thư đến email của bạn. Vui lòng kiểm tra email và đăng nhập lại",
             });
         }
-    });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Server error");
+    }
 });
+
 
 //Check email tồn tại
 router.get('/check-email/:email', (req, res) => {

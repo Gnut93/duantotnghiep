@@ -7,6 +7,8 @@ import logo from './logo.png';
 const Navbar = (props) => {
   const { backgroundColor = '#4A1F18' } = props;
   const cart = useSelector((state) => state.cart.listSP);
+  const user = useSelector((state) => state.auth.user);
+  const daDangNhap = useSelector((state) => state.auth.daDangNhap);
   let quantity = 0;
   cart.forEach((element) => {
     quantity += element.soluong;
@@ -63,11 +65,11 @@ const Navbar = (props) => {
           </ul>
           <ul className="menu-list icon">
             <li className="menu-item">
-              <Link
+              {daDangNhap === true ? <span className="menu-link">{user.name}</span> : <Link
                 to="/login"
                 className="menu-link">
                 <i className="fas fa-user"></i>
-              </Link>
+              </Link>}
             </li>
             <li className="menu-item">
               <a

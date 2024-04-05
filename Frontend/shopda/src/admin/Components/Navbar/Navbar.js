@@ -1,7 +1,12 @@
 import React from 'react';
 import './Navbar.css';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
+
+  const user = useSelector((state) => state.auth.user);
+  const daDangNhap = useSelector((state) => state.auth.daDangNhap);
+
   return (
     <div>
       <section className="content">
@@ -31,7 +36,7 @@ const Navbar = () => {
             <i className="bx bxs-bell"></i>
             <span className="num">8</span>
           </span>
-          <span className="profile">Admin</span>
+          {daDangNhap === true ? <span className="profile">{user.name}</span> : <span className="profile">Login</span>}
         </nav>
       </section>
     </div>

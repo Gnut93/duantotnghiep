@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { dalogin } from "./authSlice";
 import "./LoginPage.css";
@@ -8,6 +8,7 @@ const LoginPage = () => {
     const email = useRef();
     const password = useRef();
     const navigate = useNavigate();
+    const location = useLocation();
     const dispatch = useDispatch();
 
     const handleSubmit = async (e) => {
@@ -33,15 +34,15 @@ const LoginPage = () => {
             });
             const result = await response.json();
             if (response.ok) {
-                // The login request was successful
+                localStorage.setItem("token", result.idToken);
                 dispatch(dalogin(result));
                 if (parseInt(result.userInfo.role) === 1) {
                     navigate("/admin");
                 } else {
-                    navigate("/");
+                    console.log("Location: "+location.state?.from);
+                    navigate(location.state?.from || "/");
                 }
             } else {
-                // The login request failed
                 alert(result.thongbao);
             }
         } catch (error) {
@@ -68,7 +69,7 @@ const LoginPage = () => {
                         placeholder="Password"
                     />
                     <p className="page-link">
-                        <span className="page-link-label">Quên mật khẩu?</span>
+                        <Link to={"/forgot-password"} className="forgot-password-link">Quên mật khẩu?</Link>
                     </p>
                     <button className="form-btn">Đăng nhập</button>
                 </form>
