@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 import logo from './logo.png';
 
 const Navbar = (props) => {
-  const daDangNhap = useSelector((state) => state.auth.daDangNhap);
-
   const { backgroundColor = '#4A1F18' } = props;
   const cart = useSelector((state) => state.cart.listSP);
   let quantity = 0;
@@ -71,23 +69,13 @@ const Navbar = (props) => {
             </li>
           </ul>
           <ul className="menu-list icon">
-            {daDangNhap ? (
-              <li className="menu-item">
-                <Link
-                  to="/info-user"
-                  className="menu-link">
-                  <i className="fas fa-user"></i>
-                </Link>
-              </li>
-            ) : (
-              <li className="menu-item">
-                <Link
-                  to="/login"
-                  className="menu-link">
-                  <i className="fas fa-user"></i>
-                </Link>
-              </li>
-            )}
+            <li className="menu-item">
+              <Link
+                to="/login"
+                className="menu-link">
+                <i className="fas fa-user"></i>
+              </Link>
+            </li>
             <li className="menu-item">
               <a
                 href="/search"

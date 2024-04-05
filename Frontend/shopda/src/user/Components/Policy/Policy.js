@@ -12,7 +12,7 @@ const Policy = () => {
             <div className="policy-item">
               <div className="policy-content">
                 <h3 className="policy-title">BẢO HÀNH</h3>
-                <h4 className='  .policy-title-24'>QUY ĐỊNH BẢO HÀNH:</h4>
+                <h4 className='policy-title-24'>QUY ĐỊNH BẢO HÀNH:</h4>
                 <p className="policy-desc">
                   {' '}
                   Sản phẩm được bảo hành trong suốt quá trình sử dụng theo hình thức sau:
@@ -32,14 +32,14 @@ const Policy = () => {
                   </p>
                       
                 </p>
-                <h4 className='  .policy-title-24'>CÁC TRƯỜNG HỢP TỪ CHỐI BẢO HÀNH:</h4>
+                <h4 className='policy-title-24'>CÁC TRƯỜNG HỢP TỪ CHỐI BẢO HÀNH:</h4>
                 <p className="policy-desc">
                   {' '}
                   1. Sản phẩm <strong> không có logo DA</strong>  được dập chìm trên túi hoặc trên phụ kiện (trường hợp đặc biệt sẽ được xác nhận từ cấp quản lý) <br/>
                   2. Sản phẩm đã<strong> bị hư hỏng nặng</strong> , không thể sửa chữa/ thay thế.<br/>
                   3. Sản phẩm <strong> bị biến dạng</strong>, có mùi hôi nặng không thể khử.<br/>
                 </p>
-                <h4 className='  .policy-title-24'>HƯỚNG DẪN SỬ DỤNG:</h4>
+                <h4 className='policy-title-24'>HƯỚNG DẪN SỬ DỤNG:</h4>
                 <p className="policy-desc">
                   {' '}
                   - Không đựng vật quá nặng, vượt quá công năng, kích thước, trọng lượng cho phép của sản phẩm.<br/>
@@ -55,14 +55,14 @@ const Policy = () => {
               </div>
               <div className="policy-content">
                 <h3 className="policy-title">ĐỔI HÀNG</h3>
-                <h4 className='  .policy-title-24'>QUY ĐỊNH ĐỔI HÀNG:</h4>
+                <h4 className='policy-title-24'>QUY ĐỊNH ĐỔI HÀNG:</h4>
                 <p className="policy-desc">
                   {' '}
                   -<strong>01 lần</strong>  duy nhất trong vòng <strong>7 ngày</strong> sau khi xuất hóa đơn.<br/>
                   - Đổi tại chi nhánh đã mua nếu:<br/>
                   <p className='policy-desc-min'> ● Sản phẩm lỗi do nhà sản xuất. <br/>
                   ● Sản phẩm chưa qua sử dụng, còn nametag, không trầy xước, không biến dạng, không có mùi lạ.
-                  </p><br/>
+                  </p>
                  <strong>- Lưu ý:</strong> <br/>
                  <p className='policy-desc-min'>
                   ● Không hoàn lại tiền chênh lệch khi đổi lấy sản phẩm có giá trị thấp hơn.<br/>
@@ -81,11 +81,11 @@ const Policy = () => {
                 
                 <hr></hr>
                 <h5 className='policy-font-18'>Bài viết xem thêm</h5>
-                <ul className='policy-desc-min'>
-                  <li><Link to="#" className='policy-color-black'>● Hướng dẫn mua hàng</Link></li>
-                  <li><Link to="#" className='policy-color-black'>● Hướng dẫn đổi trả hàng</Link></li>
-                  <li><Link to="#" className='policy-color-black'>● Chính sách vận chuyển</Link></li>
-                  <li><Link to="#" className='policy-color-black'>● Câu hỏi thường gặp</Link></li>
+                <ul className='policy-ul'>
+                  <li><Link to="/shopguide" className='policy-color-black'>● Hướng dẫn mua hàng</Link></li>
+                  <li><Link to="/changegoods" className='policy-color-black'>● Hướng dẫn đổi trả hàng</Link></li>
+                  <li><Link to="/trans" className='policy-color-black'>● Chính sách vận chuyển</Link></li>
+                  <li><Link to="/quest" className='policy-color-black'>● Câu hỏi thường gặp</Link></li>
                 </ul>
               </div>
             </div>

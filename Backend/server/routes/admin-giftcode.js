@@ -44,6 +44,10 @@ router.get("/detail/:id", (req, res) => {
 router.post("/add", async (req, res) => {
     try {
         var { code, quantity, price, expiration_date } = req.body;
+
+        expiration_date = new Date(expiration_date);
+        expiration_date.setDate(expiration_date.getDate());
+
         var sql = `INSERT INTO gif_code (code, quantity, price, expiration_date) VALUES (?, ?, ?, ?)`;
         await queryDB(sql, [code, quantity, price, expiration_date]);
         res.json({ success: "Thêm giftcode thành công" });
@@ -61,6 +65,8 @@ router.put("/edit/:id", async (req, res) => {
     }
     try {
         var { code, quantity, price, expiration_date } = req.body;
+        expiration_date = new Date(expiration_date);
+        expiration_date.setDate(expiration_date.getDate());
         var sql = `UPDATE gif_code SET code=?, quantity=?, price=?, expiration_date=? WHERE id_gc=?`;
         await queryDB(sql, [code, quantity, price, expiration_date, id]);
         res.json({ success: "Sửa giftcode thành công" });
@@ -102,8 +108,9 @@ router.delete("/delete/:id", async (req, res) => {
 // Route để kiểm tra mã giảm giá và trả về giá giảm
 router.post("/check-discount", (req, res) => {
     const { discount } = req.body;
-    const sql = `SELECT id_gc, price, quantity FROM gif_code WHERE code = ?`;
-    db.query(sql, [discount], (err, result) => {
+    const currentDate = new Date().toISOString().slice(0, 10); // Lấy ngày hiện tại (VD: '2024-04-04')
+    const sql = `SELECT id_gc, price, quantity, expiration_date FROM gif_code WHERE code = ?  AND expiration_date >= ?`;
+    db.query(sql, [discount, currentDate, currentDate], (err, result) => {
         if (err) {
             throw err;
         }
@@ -114,7 +121,7 @@ router.post("/check-discount", (req, res) => {
         } else {
             res.send({
                 validDiscount: false,
-                error: "Mã giảm giá không tồn tại.",
+                error: "Mã giảm giá không tồn tại hoặc đã hết hạn.",
             });
         }
     });

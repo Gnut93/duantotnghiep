@@ -38,8 +38,8 @@ const NhapDiscout = () => {
     const form = useForm({
         defaultValues: {
             code: "",
-            quantity: 0,
-            price: 0,
+            quantity: "",
+            price: "",
             expiration_date: new Date(),
         },
         resolver: yupResolver(schema),

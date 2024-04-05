@@ -53,14 +53,27 @@ router.post("/add", (req, res) => {
 });
 
 //Thêm chi tiết đơn hàng
-router.post("/add-detail", (req, res) => {
-    var data = req.body;
-    var sql = `INSERT INTO bill_detail SET ?`;
-    db.query(sql, data, (err, result) => {
-        if (err)
-            res.json({ thongbao: "Lỗi truy vấn CSDL", error: err.message });
-        else res.json({ thongbao: "Thêm chi tiết đơn hàng thành công" });
-    });
+router.post("/add-detail", async (req, res) => {
+    try {
+        var data = req.body;
+        var values = data.map((item) => [
+            item.id_bill,
+            item.name,
+            item.price,
+            item.color,
+            item.quantity,
+            item.total_price,
+            item.id_pd,
+        ]);
+
+        var sql = `INSERT INTO bill_detail (id_bill, name, price, color, quantity, total_price, id_pd) VALUES ?`;
+
+        await db.query(sql, [values]);
+
+        res.json({ thongbao: "Thêm chi tiết đơn hàng thành công" });
+    } catch (err) {
+        res.json({ thongbao: "Lỗi truy vấn CSDL", error: err.message });
+    }
 });
 
 //Danh sách đơn hàng

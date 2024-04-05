@@ -14,7 +14,11 @@ export const authSlice = createSlice({
             state.expiresIn = param.payload.expiresIn;
             state.user = param.payload.userInfo;
             state.daDangNhap = true;
-            console.log("Đã ghi nhận state đăng nhập", state.user);
+            console.log(
+                "Đã ghi nhận state đăng nhập",
+                state.user,
+                state.daDangNhap
+            );
         },
     },
 });
