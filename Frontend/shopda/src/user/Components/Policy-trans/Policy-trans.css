@@ -1,0 +1,50 @@
+.trans-heading {
+    font-size: 42px;
+    text-align: left;
+    padding: 40px 0;
+  }
+  .trans-list {
+    display: flex;
+    gap: 100px;
+  }
+  .trans-item {
+    width: calc(100% - 50px);
+  }
+  .trans-title {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  .trans-title-24 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .trans-desc {
+    margin-bottom: 20px;
+  }
+  .trans-desc-min {
+    margin-left: 20px;
+  }
+  .trans-ul{
+    margin-bottom: 20px;
+    margin-left: 20px;
+  }
+  .trans-font-18 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .trans-desc-strong{
+    font-weight: 500;
+  }
+  .trans-color-black{
+    color: black;
+  }
+  .trans-a{
+    display: inline;
+    vertical-align: middle;
+  }
+  .trans-content {
+    margin-bottom: 10px;
+  }
+  

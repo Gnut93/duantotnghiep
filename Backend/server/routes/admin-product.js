@@ -139,11 +139,21 @@ router.put("/edit-quantity/:id", async (req, res) => {
         res.json({ error: "ID không hợp lệ" });
         return;
     }
+
+    const updateTasks = []; // Mảng chứa các promise update
+
     try {
-        const { quantity } = req.body;
-        const sql = `UPDATE color SET  quantity='${quantity}' WHERE id_color='${id_color}'`;
-        await queryDB(sql);
-        res.json({ success: "Cập nhật số lượng  sản phẩm thành công" });
+        const updates = req.body; // Dữ liệu cập nhật [{ id_color: 50, quantity: 50 }, { id_color: 51, quantity: 50 }]
+
+        updates.forEach(async (update) => {
+            const { id_color, quantity } = update;
+            const sql = `UPDATE color SET quantity='${quantity}' WHERE id_color='${id_color}'`;
+            updateTasks.push(queryDB(sql));
+        });
+
+        await Promise.all(updateTasks); // Chờ tất cả các promise update hoàn thành
+
+        res.json({ success: "Cập nhật số lượng sản phẩm thành công" });
     } catch (err) {
         res.json({ error: err.message });
     }

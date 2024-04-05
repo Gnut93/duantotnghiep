@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../Edit.css";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
@@ -6,33 +6,36 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useParams, useNavigate } from "react-router-dom";
 const schema = yup.object({
-    name: yup
-        .string()
-        .trim()
-        .required("Không được bỏ trống")
-        .min(2, "Tên loại hàng có tối thiểu 2 ký tự")
-        .max(20, "Tên loại hàng có tối đa 20 ký tự"),
+    role: yup.number(),
 });
 
 const EditRole = () => {
     let { id } = useParams();
     const navigate = useNavigate();
     const form = useForm({
-        defaultValues: async () => {
-            const reponse = await fetch(
-                `http://localhost:4000/users/role/${id}`
-            );
-            const data = await reponse.json();
-            console.log(data);
-            return {
-                name: data.role,
-            };
+        defaultValues: {
+            role: 0,
         },
         resolver: yupResolver(schema),
     });
-    const { register, handleSubmit, reset, control } = form;
+    const { register, handleSubmit, reset, control, setValue } = form;
 
-    const listRole = [{ role: "admin" }, { role: "Người Dùng" }];
+    useEffect(() => {
+        const fetchRole = async () => {
+            try {
+                const response = await fetch(
+                    `http://localhost:4000/users/role/${id}`
+                );
+                const data = await response.json();
+                setValue("role", data.role);
+            } catch (error) {
+                console.error("Error fetching role:", error);
+            }
+        };
+
+        fetchRole();
+    }, [id, setValue]);
+
     const handleSubmitRole = async (data) => {
         try {
             const confirmation = window.confirm(
@@ -81,17 +84,15 @@ const EditRole = () => {
                                         <div className="checkout-address-input">
                                             <label>Trạng Thái</label> <br />
                                             <select
+                                                {...register("role")}
                                                 className="option-cate"
-                                                {...register("name")}
                                             >
-                                                {listRole.map((role, i) => (
-                                                    <option
-                                                        key={i}
-                                                        value={role.status}
-                                                    >
-                                                        {role.status}
-                                                    </option>
-                                                ))}
+                                                <option value={1}>
+                                                    Quản Trị Viên
+                                                </option>
+                                                <option value={0}>
+                                                    Người Dùng
+                                                </option>
                                             </select>
                                         </div>
                                         <div className="checkout-address-input">

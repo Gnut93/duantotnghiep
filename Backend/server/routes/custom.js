@@ -1,6 +1,6 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-var db = require('../models/database');
+var db = require("../models/database");
 
 function queryDB(sql, params) {
     return new Promise((resolve, reject) => {
@@ -15,15 +15,32 @@ function queryDB(sql, params) {
 }
 
 //Thêm bảng custom
-router.post('/add', async (req, res) => {
+router.post("/add", async (req, res) => {
     try {
-        var { name, size, description, color, image, phone, email } = req.body;
-        var sql = `INSERT INTO custom (name, size, description, color, image, phone, email) VALUES (?, ?, ?, ?, ?, ?)`;
-        await queryDB(sql, [name, size, description, color, image, phone, email]);
-        res.json({ success: 'Thêm custom thành công' });
+        var { name, size, email, color, image, phone, description } = req.body;
+        var sql = `INSERT INTO custom (name, size, email, color, image, phone, description) VALUES (?, ?, ?, ?, ?, ?,?)`;
+        await queryDB(sql, [
+            name,
+            size,
+            email,
+            color,
+            image,
+            phone,
+            description,
+        ]);
+        res.json({ success: "Thêm custom thành công" });
     } catch (err) {
         res.json({ error: err.message });
     }
 });
-
+router.get("/list", (req, res) => {
+    var sql = `SELECT * FROM custom`;
+    db.query(sql, (err, result) => {
+        if (err) {
+            res.json({ error: "Khong tim thay don hang custom" });
+        } else {
+            res.json(result);
+        }
+    });
+});
 module.exports = router;

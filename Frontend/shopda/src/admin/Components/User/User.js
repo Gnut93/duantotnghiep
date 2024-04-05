@@ -60,11 +60,6 @@ const User = () => {
                                                 </span>
                                             </Link>
                                         </td>
-                                        <td>
-                                            <span className="delete-cate">
-                                                <i className="fas fa-trash-alt"></i>
-                                            </span>
-                                        </td>
                                     </tr>
                                 ))}
                             </tbody>

@@ -1,0 +1,98 @@
+.nav {
+  width: 100%;
+}
+
+.title__blog {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.blog__details {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.blog__details__icon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #555;
+}
+
+.blog__details__icon i {
+  margin-right: 5px;
+}
+
+.blog__details__title h1 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.blog__details__img img {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.blog__details__des p {
+  text-align: justify;
+  line-height: 1.6;
+}
+
+.blog__details__post {
+  margin-top: 30px;
+}
+
+.blog__details__post h1 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.blog__details__post__form input,
+.blog__details__post__form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.blog__details__post__form textarea {
+  resize: vertical;
+}
+
+.blog__details__post__form button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.blog__details__post__form button:hover {
+  background-color: #0056b3;
+}
+
+.baivietlienquan {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.blog_list {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.item_blog {
+  flex: 0 0 calc(33.33% - 10px); /* Chiếm 33.33% của không gian và trừ đi padding */
+  padding: 24px; /* Giảm khoảng cách giữa các item */
+  margin-bottom: 20px; /* Kho

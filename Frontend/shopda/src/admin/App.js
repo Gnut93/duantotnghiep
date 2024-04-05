@@ -20,6 +20,7 @@ import ColorDetail from "./Components/ColorDetail/ColorDetail";
 import EditStatus from "./Components/Edit/EditStatus/EditStatus";
 import ChiTietDonHang from "./Components/ChiTietDonHang/ChiTietDonHang";
 import EditRole from "./Components/Edit/EditRole/EditRole";
+import DonHangCustom from "./Components/DonHangCustom/DonHangCustom";
 
 function AppAdmin() {
     return (
@@ -31,6 +32,7 @@ function AppAdmin() {
                     <Route path="/" element={<Home />} />
                     <Route path="/loaihang" element={<LoaiHang />} />
                     <Route path="/donhang" element={<DonHang />} />
+                    <Route path="/donhangcustom" element={<DonHangCustom />} />
                     <Route
                         path="/donhangchitiet/:id"
                         element={<ChiTietDonHang />}

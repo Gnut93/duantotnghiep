@@ -1,0 +1,10 @@
+.container1 {
+  width: 100%;
+}
+.row1 {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px auto;
+}
