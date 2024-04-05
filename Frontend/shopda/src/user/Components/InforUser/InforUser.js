@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../Navbar/Navbar';
 import './InforUser.css';
+import { Link } from 'react-router-dom';
 
 const InfoUser = () => {
   return (
@@ -57,6 +58,14 @@ const InfoUser = () => {
               </div>
               <button className="infoUser-button">Thay đổi</button>
             </from>
+          </div>
+          <div className="infoUser-packlink">
+            <Link to="">
+              <p className="infoUser-link">Đổi mật khẩu</p>
+            </Link>
+            <Link to="/favorite">
+              <p className="infoUser-link">Sản phẩm yêu thích</p>
+            </Link>
           </div>
         </div>
       </div>

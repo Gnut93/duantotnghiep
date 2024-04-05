@@ -6,15 +6,32 @@
 }
 .infoUser-wrapper {
   display: flex;
-  gap: 50px;
+  gap: 60px;
+  margin-bottom: 100px;
 }
 .infoUser-image {
-  width: calc(30% - 25px);
+  width: calc(30% - 20px);
 }
 .infoUser-content {
-  width: calc(70% - 25px);
+  width: calc(50% - 20px);
   border: 1px solid #000000;
   border-radius: 20px;
+}
+.infoUser-packlink {
+  width: calc(20% - 20px);
+}
+.infoUser-link {
+  display: block;
+  font-size: 17px;
+  line-height: 1.4;
+  margin: 20px 0;
+  color: #000000;
+}
+.infoUser-link:first-child {
+  margin: 0 0 20px;
+}
+.infoUser-link:hover {
+  color: #4a1f18;
 }
 .infoUser-image img {
   width: 200px;
@@ -59,4 +76,16 @@
   padding: 12px;
   border-radius: 10px;
   border: 1px solid #000000;
+}
+.infoUser-button {
+  display: block;
+  padding: 12px 24px;
+  border-radius: 10px;
+  border: 1px solid #000000;
+  background-color: #4a1f18;
+  color: #ffffff;
+  font-size: 17px;
+  line-height: 1.4;
+  text-align: center;
+  margin: 20px 0 20px 20px;
 }
