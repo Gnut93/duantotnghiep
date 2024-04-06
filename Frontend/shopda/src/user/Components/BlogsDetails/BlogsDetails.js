@@ -15,7 +15,6 @@ const BlogsDetails = () => {
     };
     getBlogs();
   }, [id]);
-  console.log(blog);
 
   const [item, setItem] = useState([]);
   useEffect(() => {
@@ -32,9 +31,9 @@ const BlogsDetails = () => {
       <div className="nav">
         <Navbar />
       </div>
-      <div className="title__blog">
-        <h1>BlogsDetails</h1>
-      </div>
+      {/* <div className="title__blog">
+        <h1>Chi tiết bài viết</h1>
+      </div> */}
       <div className="blog__details">
         <div className="blog__details__icon">
           <i class="fa-solid fa-calendar"></i>
