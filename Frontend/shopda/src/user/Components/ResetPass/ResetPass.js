@@ -25,7 +25,7 @@ const ResetPass = () => {
         defaultValues: {
             oldpassword: "",
             newpassword: "",
-            cofirmpassword: "",
+            confirmpassword: "",
         },
         resolver: yupResolver(schema),
     });
