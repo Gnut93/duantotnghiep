@@ -77,7 +77,7 @@ function App() {
             element={<Blog />}
           />
           <Route
-            path="/blogsdetails"
+            path="/blogsdetails/:id"
             exact
             element={<BlogsDetails />}
           />

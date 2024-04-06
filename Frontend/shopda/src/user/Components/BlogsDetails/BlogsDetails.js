@@ -1,8 +1,22 @@
-import React from "react";
+import React, {useEffect, useState } from "react";
+import { useParams } from 'react-router-dom';
 import "./BlogsDetails.css";
 import Navbar from "../Navbar/Navbar";
 
 const BlogsDetails = () => {
+
+  const [blog, setBlogs] = useState([]);
+  let { id } = useParams();
+  useEffect(() => {
+    const getBlogs = async () => {
+      const response = await fetch(`http://localhost:4000/post/info/${id}`);
+      const data = await response.json();
+      setBlogs(data);
+    };
+    getBlogs();
+  }, []);
+  console.log(blog);
+
   return (
     <>
       <div className="nav">
@@ -21,24 +35,17 @@ const BlogsDetails = () => {
         <hr />
 
         <div className="blog__details__title">
-          <h1>Bạn muốn chăm sóc đồ da tốt nhất?</h1>
+          <h1>{blog.heading}</h1>
         </div>
         <div className="blog__details__img">
           <img
-            src="https://cdn.pixabay.com/photo/2021/09/15/17/31/leathercraft-6627431_1280.jpg"
+            src={blog.image}
             alt=""
           />
         </div>
         <div className="blog__details__des">
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-            doloremque, quae, quas, eaque voluptate atque quos doloribus
-            voluptatem quibusdam nemo dolorum. Quisquam doloremque, quae, quas,
-            eaque voluptate atque quos doloribus voluptatem quibusdam nemo
-            dolorum. Quisquam doloremque, quae, quas, eaque voluptate atque quos
-            doloribus voluptatem quibusdam nemo dolorum. Quisquam doloremque,
-            quae, quas, eaque voluptate atque quos doloribus voluptatem
-            quibusdam nemo dolorum.
+            {blog.description}
           </p>
         </div>
         <div className="blog__details__post">
