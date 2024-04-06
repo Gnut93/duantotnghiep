@@ -75,6 +75,7 @@ const BlogsDetails = () => {
       <div className="baivietlienquan">
         <h1>Bài viết mới nhất</h1>
       </div>
+      
       <div className="blog_main">
       <div className="blog">
         {item.map((items, index) => (

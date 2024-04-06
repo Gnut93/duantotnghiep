@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./BlogsDetails.css";
 import Navbar from "../Navbar/Navbar";
-import { Link } from "react-router-dom";
 
 const BlogsDetails = () => {
   const [blog, setBlogs] = useState([]);
@@ -75,24 +74,66 @@ const BlogsDetails = () => {
       <div className="baivietlienquan">
         <h1>Bài viết mới nhất</h1>
       </div>
-      <div className="blog_main">
-      <div className="blog">
-        {item.map((items, index) => (
-          <div className="item">
+      <div className="blog_list_main">
+        <div className="blog_list">
+          {item.map((it, index) => (
+          <div className="item_blog">
             <div className="blog__img">
-              <img src={items.image} alt="" />
+              <img
+                src="it.image"
+                alt=""
+              />
             </div>
             <div className="blog__title">
-              <h3>{items.heading}</h3>
+              <h1>{it.heading}</h1>
             </div>
-            <div className="blog__button">
-              <Link key={items.id_post} to={`/blogsdetails/${items.id_post}`}>
-                <h5>READ MORE</h5>
-              </Link>
+            <div className="blog_button">
+              <button>Read More</button>
             </div>
           </div>
-        ))}
-      </div>
+          <div className="item_blog">
+            <div className="blog__img">
+              <img
+                src="https://cdn.pixabay.com/photo/2018/10/06/14/48/leather-craft-3727997_1280.jpg"
+                alt=""
+              />
+            </div>
+            <div className="blog__title">
+              <h1>title</h1>
+            </div>
+            <div className="blog_button">
+              <button>Read More</button>
+            </div>
+          </div>
+          <div className="item_blog">
+            <div className="blog_img">
+              <img
+                src="https://cdn.pixabay.com/photo/2018/10/06/14/48/leather-craft-3727997_1280.jpg"
+                alt=""
+              />
+            </div>
+            <div className="blog_title">
+              <h1>title</h1>
+            </div>
+            <div className="blog_button">
+              <button>Read More</button>
+            </div>
+          </div>
+          <div className="item_blog">
+            <div className="blog__img">
+              <img
+                src="https://cdn.pixabay.com/photo/2018/10/06/14/48/leather-craft-3727997_1280.jpg"
+                alt=""
+              />
+            </div>
+            <div className="blog_title">
+              <h1>title</h1>
+            </div>
+            <div className="blog_button">
+              <button>Read More</button>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

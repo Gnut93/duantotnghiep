@@ -22,7 +22,7 @@ const Blog = () => {
         <Navbar />
       </div>
       <div className="title">
-        <h3>Bài Viết</h3>
+        <h3>Blogs</h3>
       </div>
       <div className="tong">
         <div className="main">
@@ -46,11 +46,11 @@ const Blog = () => {
                 <img src={blog.image} alt="" />
               </div>
               <div className="blog__title">
-                <h3>{blog.heading}</h3>
+                <h1>{blog.heading}</h1>
               </div>
               <div className="blog__button">
                 <Link key={blog.id_post} to={`/blogsdetails/${blog.id_post}`}>
-                  <h5>READ MORE</h5>
+                 <h6></h6>READ MORE
                 </Link>
               </div>
             </div>

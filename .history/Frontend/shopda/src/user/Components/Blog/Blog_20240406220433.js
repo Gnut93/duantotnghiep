@@ -22,7 +22,7 @@ const Blog = () => {
         <Navbar />
       </div>
       <div className="title">
-        <h3>Bài Viết</h3>
+        <h3>Blogs</h3>
       </div>
       <div className="tong">
         <div className="main">

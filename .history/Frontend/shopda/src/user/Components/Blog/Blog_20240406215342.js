@@ -4,6 +4,7 @@ import "./Blog.css";
 import { Link } from "react-router-dom";
 import ViewProduct from "../ViewProduct/ViewProduct";
 
+
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
 
@@ -22,7 +23,7 @@ const Blog = () => {
         <Navbar />
       </div>
       <div className="title">
-        <h3>Bài Viết</h3>
+        <h3>Blogs</h3>
       </div>
       <div className="tong">
         <div className="main">
@@ -36,25 +37,26 @@ const Blog = () => {
             <h1>Bạn muốn chăm sóc đồ da tốt nhất?</h1>
           </div>
           <div className="main__button">
-            <Link to="/blogsdetails/2">READ MORE</Link>
+            <Link to="/blogsdetails">READ MORE</Link>
           </div>
         </div>
         <div className="blog">
           {blogs.map((blog, index) => (
             <div className="item">
-              <div className="blog__img">
-                <img src={blog.image} alt="" />
-              </div>
-              <div className="blog__title">
-                <h3>{blog.heading}</h3>
-              </div>
-              <div className="blog__button">
-                <Link key={blog.id_post} to={`/blogsdetails/${blog.id_post}`}>
-                  <h5>READ MORE</h5>
-                </Link>
-              </div>
+            <div className="blog__img">
+              <img
+                src={blog.image}
+                alt=""
+              />
             </div>
-          ))}
+            <div className="blog__title">
+              <h1>{blog.heading}</h1>
+            </div>
+            <div className="blog__button">
+              <button>Read More</button>
+            </div>
+          </div>))}
+          
         </div>
         <ViewProduct />
       </div>

@@ -7,7 +7,7 @@
   margin: 0 auto;
 }
 .blog {
-  margin-top: 10px;
+  margin-top: 30px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap; /* Cho phép các item xuống dòng khi không đủ không gian */
@@ -61,34 +61,21 @@
   align-items: center;
 }
 .blog__img {
-  overflow: hidden;
-}
-.blog__img img {
   width: 100%;
-  height: 380px; /* Đặt chiều cao cố định cho tất cả các ảnh */
-  object-fit: cover; /* Đảm bảo tỷ lệ khung hình không bị biến đổi và ảnh được căn chỉnh */
-  transition: transform 1.5s ease; /* Thêm hiệu ứng transform */
+  height: 100%;
+  object-fit: cover; /* Hiển thị ảnh đầy đủ trong khung chứa */
 }
-.item:hover .blog__img img {
-  transform: scale(1.08);
-}
-.blog__button a {
-  display: inline-block; /* Đảm bảo nút có thể set width và height */
-  padding: 10px 20px; /* Padding cho nút */
-  border: 1px solid transparent; /* Đặt border */
-  border-radius: 5px; /* Bo tròn viền cho nút */
-  transition: all 0.3s ease; /* Thêm hiệu ứng transition */
+.blog__button button {
+  border: none; /* Loại bỏ viền của button */
+  text-decoration: none; /* Loại bỏ gạch chân mặc định */
+  background: transparent; /* Đặt màu nền của button là trong suốt */
+  font-size: 16px;
+  color: #090909; /* Màu chữ */
+  cursor: pointer; /* Biến con trỏ chuột thành hình bàn tay khi hover */
+  transition: all 0.3s; /* Thêm hiệu ứng transition cho thuộc tính text-decoration */
 }
 
-.blog__button a:hover {
-  background-color: #ffffff; /* Màu nền khi hover */
-  color: #090909; /* Màu chữ khi hover */
-  border-color: #090909; /* Màu viền khi hover */
-}
-.blog__title {
-  font-size: 16px;
-  font-weight: 500;
-  color: #090909;
-  margin: 20px 0px;
-  text-transform: uppercase;
+.blog__button button:hover {
+  text-decoration: underline; /* Thêm gạch chân khi hover vào button */
+  color: blue;
 }

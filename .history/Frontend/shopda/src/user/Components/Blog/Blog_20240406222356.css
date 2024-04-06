@@ -7,7 +7,7 @@
   margin: 0 auto;
 }
 .blog {
-  margin-top: 10px;
+  margin-top: 30px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap; /* Cho phép các item xuống dòng khi không đủ không gian */

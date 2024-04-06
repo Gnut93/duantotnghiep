@@ -4,7 +4,7 @@
 
 .title__blog {
   text-align: center;
-  margin: 20px;
+  margin-top: 20px;
 }
 
 .blog__details {
@@ -82,7 +82,7 @@
 }
 
 .baivietlienquan {
-  margin-top: 20px;
+  margin: 20px 0;
   text-align: center;
 }
 .blog_list_main {
@@ -120,5 +120,5 @@
   color: blue;
 }
 .blog_main {
-  padding: 0 36px;
+ padding: 0 20px;
 }
