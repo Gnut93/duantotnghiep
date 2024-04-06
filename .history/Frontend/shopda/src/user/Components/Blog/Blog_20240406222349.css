@@ -1,0 +1,95 @@
+.tong {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+}
+.blog {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Cho phép các item xuống dòng khi không đủ không gian */
+}
+
+.item {
+  flex: 0 0 calc(33.33% - 10px); /* Chiếm 33.33% của không gian và trừ đi padding */
+  padding: 24px; /* Giảm khoảng cách giữa các item */
+  margin-bottom: 20px; /* Khoảng cách giữa các hàng */
+  box-sizing: border-box;
+
+}
+
+.main {
+  position: relative; /* Thiết lập vị trí tương đối cho div main */
+}
+
+.main__img {
+  width: 100%;
+  position: relative;
+  /* Thiết lập vị trí tương đối cho ảnh */
+}
+
+.main__button,
+.main__title {
+  position: absolute; /* Thiết lập vị trí tuyệt đối cho title và button */
+  bottom: 50px; /* Đặt chúng ở phía dưới của div chứa ảnh */
+  left: 50px; /* Đặt chúng ở phía trái của div chứa ảnh */
+}
+
+.main__title {
+  padding-bottom: 60px;
+  color: #ffffff;
+  /* Thêm padding cho title */
+}
+.main__button > a {
+  padding: 12px 24px;
+  border: 1px solid #ffffff;
+  transition: all 0.2s linear;
+  color: #ffffff;
+  text-decoration: none; /* Loại bỏ gạch chân của link */
+}
+
+.main__button > a:hover {
+  background-color: #ffffff;
+  color: #090909;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.blog__img {
+  overflow: hidden;
+}
+.blog__img img {
+  width: 100%;
+  height: 380px; /* Đặt chiều cao cố định cho tất cả các ảnh */
+  object-fit: cover; /* Đảm bảo tỷ lệ khung hình không bị biến đổi và ảnh được căn chỉnh */
+  transition: transform 1.5s ease; /* Thêm hiệu ứng transform */
+}
+.item:hover .blog__img img {
+  transform: scale(1.08);
+}
+.blog__button a {
+  display: inline-block; /* Đảm bảo nút có thể set width và height */
+  padding: 10px 20px; /* Padding cho nút */
+  border: 1px solid transparent; /* Đặt border */
+  border-radius: 5px; /* Bo tròn viền cho nút */
+  transition: all 0.3s ease; /* Thêm hiệu ứng transition */
+}
+
+.blog__button a:hover {
+  background-color: #ffffff; /* Màu nền khi hover */
+  color: #090909; /* Màu chữ khi hover */
+  border-color: #090909; /* Màu viền khi hover */
+}
+.blog__title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #090909;
+  margin: 20px 0px;
+  text-transform: uppercase;
+}

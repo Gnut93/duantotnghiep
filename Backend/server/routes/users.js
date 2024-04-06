@@ -4,7 +4,11 @@ var db = require("../models/database");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const fs = require("fs");
-const mailForgotPassword = fs.readFileSync("./Mail/MailForgotPass/index.html" ,'utf8', 'rs');
+const mailForgotPassword = fs.readFileSync(
+    "./Mail/MailForgotPass/index.html",
+    "utf8",
+    "rs"
+);
 const PRIVATE_KEY = fs.readFileSync("./private-key.txt");
 const nodemailer = require("nodemailer");
 
@@ -177,7 +181,10 @@ router.post("/forgot-password", async (req, res) => {
     });
 
     try {
-        const result = await db.query(`SELECT * FROM user WHERE email=?`, email);
+        const result = await db.query(
+            `SELECT * FROM user WHERE email=?`,
+            email
+        );
         if (result.length == 0) {
             return res.sendStatus(401);
         } else {
@@ -223,7 +230,6 @@ router.post("/forgot-password", async (req, res) => {
     }
 });
 
-
 //Check email tồn tại
 router.get("/check-email/:email", (req, res) => {
     var email = req.params.email;
@@ -258,5 +264,21 @@ router.delete("/delete/:id", async (req, res) => {
         }
     });
 });
-
+//Cập nhật thông tin người dùng
+router.put("/update/:id", (req, res) => {
+    var id = req.params.id;
+    var name = req.body.name;
+    var email = req.body.email;
+    var phone = req.body.phone;
+    var avatar = req.body.image;
+    var sql = `UPDATE user SET name = '${name}', email = '${email}', phone = '${phone}', avatar = '${avatar}' WHERE id_user = '${id}'`;
+    db.query(sql, (err, result) => {
+        if (err) {
+            res.json({ error: err.message });
+        } else {
+            // console.log(result);
+            res.json({ success: "Cập nhật thông tin thành công" });
+        }
+    });
+});
 module.exports = router;

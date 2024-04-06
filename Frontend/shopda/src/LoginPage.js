@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { dalogin } from "./authSlice";
 import "./LoginPage.css";
@@ -8,7 +8,6 @@ const LoginPage = () => {
     const email = useRef();
     const password = useRef();
     const navigate = useNavigate();
-    const location = useLocation();
     const dispatch = useDispatch();
 
     const handleSubmit = async (e) => {
@@ -51,7 +50,6 @@ const LoginPage = () => {
             alert(error.message);
         }
     };
-    
 
     return (
         <div className="login-wrapper">
@@ -71,7 +69,12 @@ const LoginPage = () => {
                         placeholder="Password"
                     />
                     <p className="page-link">
-                        <Link to={"/forgot-password"} className="forgot-password-link">Quên mật khẩu?</Link>
+                        <Link
+                            to={"/forgot-password"}
+                            className="forgot-password-link"
+                        >
+                            Quên mật khẩu?
+                        </Link>
                     </p>
                     <button className="form-btn">Đăng nhập</button>
                 </form>
