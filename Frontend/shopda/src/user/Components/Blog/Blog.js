@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import "./Blog.css";
 import { Link } from "react-router-dom";
 import ViewProduct from "../ViewProduct/ViewProduct";
 
 const Blog = () => {
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    const getBlogs = async () => {
+      const response = await fetch("http://localhost:4000/post/list");
+      const data = await response.json();
+      setBlogs(data);
+    };
+    getBlogs();
+  }, []);
+
   return (
     <>
       <div className="nav">
@@ -29,62 +40,22 @@ const Blog = () => {
           </div>
         </div>
         <div className="blog">
-          <div className="item">
+          {blogs.map((blog, index) => (
+            <div className="item">
             <div className="blog__img">
               <img
-                src="https://cdn.pixabay.com/photo/2018/10/06/14/48/leather-craft-3727997_1280.jpg"
+                src={blog.image}
                 alt=""
               />
             </div>
             <div className="blog__title">
-              <h1>title</h1>
+              <h1>{blog.heading}</h1>
             </div>
             <div className="blog__button">
               <button>Read More</button>
             </div>
-          </div>
-          <div className="item">
-            <div className="blog__img">
-              <img
-                src="https://cdn.pixabay.com/photo/2018/10/06/14/48/leather-craft-3727997_1280.jpg"
-                alt=""
-              />
-            </div>
-            <div className="blog__title">
-              <h1>title</h1>
-            </div>
-            <div className="blog__button">
-              <button>Read More</button>
-            </div>
-          </div>
-          <div className="item">
-            <div className="blog__img">
-              <img
-                src="https://cdn.pixabay.com/photo/2018/10/06/14/48/leather-craft-3727997_1280.jpg"
-                alt=""
-              />
-            </div>
-            <div className="blog__title">
-              <h1>title</h1>
-            </div>
-            <div className="blog__button">
-              <button>Read More</button>
-            </div>
-          </div>
-          <div className="item">
-            <div className="blog__img">
-              <img
-                src="https://cdn.pixabay.com/photo/2018/10/06/14/48/leather-craft-3727997_1280.jpg"
-                alt=""
-              />
-            </div>
-            <div className="blog__title">
-              <h1>title</h1>
-            </div>
-            <div className="blog__button">
-              <button>Read More</button>
-            </div>
-          </div>
+          </div>))}
+          
         </div>
         <ViewProduct />
       </div>
