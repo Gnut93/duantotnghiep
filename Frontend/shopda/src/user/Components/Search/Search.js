@@ -5,6 +5,7 @@ import { themSP } from "../cartSlice";
 
 import "./Search.css";
 import "../Products/Products.css";
+import Navbar from "../Navbar/Navbar";
 
 function Search() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -43,6 +44,7 @@ function Search() {
 
   return (
     <div className="search">
+      <Navbar />
       <h4>Tìm kiếm sản phẩm của bạn....</h4>
       <form onSubmit={handleSubmit}>
         <input

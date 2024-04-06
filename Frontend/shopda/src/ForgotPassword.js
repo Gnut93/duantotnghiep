@@ -1,18 +1,21 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./LoginPage.css";
 
 const ForgotPassword = () => {
     const email = useRef();
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false); // Thêm biến trạng thái isLoading
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true); // Đặt isLoading thành true khi yêu cầu bắt đầu
         const data = {
             email: email.current.value
         };
         if (data.email === "") {
             alert("Vui lòng nhập email");
+            setIsLoading(false); // Đặt isLoading thành false nếu có lỗi
             return;
         }
         console.log(data);
@@ -25,10 +28,12 @@ const ForgotPassword = () => {
             const result = await response.json();
             alert(result.success);
             navigate("/login");
-          } catch (error) {
+        } catch (error) {
             console.log(error);
-          }
-        };
+        } finally {
+            setIsLoading(false); // Đặt isLoading thành false khi yêu cầu hoàn tất
+        }
+    };
 
     return (
         <div className="login-wrapper">
@@ -41,7 +46,7 @@ const ForgotPassword = () => {
                         className="input"
                         placeholder="Nhập email của bạn"
                     />
-                    <button className="form-btn">Nhận email khôi phục</button>
+                    <button className="form-btn" disabled={isLoading}>Nhận email khôi phục</button>
                 </form>
                 <p className="sign-up-label">
                     Bạn không có tài khoản?{" "}
