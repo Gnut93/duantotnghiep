@@ -13,7 +13,6 @@ import Checkout from './Components/Checkout/Checkout';
 import Search from './Components/Search/Search';
 import About from './Components/About/About';
 import Blog from './Components/Blog/Blog';
-import BlogDetails from './Components/BlogsDetails/BlogsDetails';
 import FollowOrder from './Components/FollowOrder/FollowOrder';
 import InforUser from './Components/InforUser/InforUser';
 import Policy from './Components/Policy/Policy';
@@ -23,6 +22,8 @@ import ChangeGoods from './Components/Change-goods/Change-goods';
 import ShopGuide from './Components/Shopping-guide/Shopping-guide';
 import BlogsDetails from './Components/BlogsDetails/BlogsDetails';
 import FavoritePage from './Components/FavoritePage/FavoritePage';
+import { ProtectedRoute } from '../ProtectedRoute';
+
 function App() {
   return (
     <div className="wapper">
@@ -90,11 +91,13 @@ function App() {
             exact
             element={<FollowOrder />}
           />
-          <Route
-            path="/info-user"
-            exact
-            element={<InforUser />}
-          />
+          <Route element={<ProtectedRoute />}>
+            <Route
+              path="/info-user"
+              exact
+              element={<InforUser />}
+            />
+          </Route>
           <Route
             path="/policy"
             exact

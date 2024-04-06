@@ -1,12 +1,23 @@
 import React from 'react';
 import Navbar from '../Navbar/Navbar';
 import './InforUser.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { thoat } from '../../../authSlice';
+import { useNavigate } from 'react-router-dom';
 
 const InfoUser = () => {
-
+  const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    // Xóa thông tin người dùng khỏi localStorage
+    localStorage.removeItem('result');
+    // Cập nhật Redux store
+    dispatch(thoat());
+    navigate('/')
+  };
 
   return (
     <section className="infoUser">
@@ -72,6 +83,9 @@ const InfoUser = () => {
             </Link>
             <Link to="/favorite">
               <p className="infoUser-link">Sản phẩm yêu thích</p>
+            </Link>
+            <Link to='/' onClick={handleLogout}>
+              <p className="infoUser-link">Đăng xuất</p>
             </Link>
           </div>
         </div>

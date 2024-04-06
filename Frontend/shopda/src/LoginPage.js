@@ -34,13 +34,14 @@ const LoginPage = () => {
             });
             const result = await response.json();
             if (response.ok) {
-                localStorage.setItem("token", result.idToken);
+                // Chuyển đổi result thành chuỗi JSON và lưu vào localStorage
+                console.log(result);
                 dispatch(dalogin(result));
+                localStorage.setItem("result", JSON.stringify(result));
                 if (parseInt(result.userInfo.role) === 1) {
                     navigate("/admin");
                 } else {
-                    console.log("Location: "+location.state?.from);
-                    navigate(location.state?.from || "/");
+                    navigate("/");
                 }
             } else {
                 alert(result.thongbao);
@@ -50,6 +51,7 @@ const LoginPage = () => {
             alert(error.message);
         }
     };
+    
 
     return (
         <div className="login-wrapper">

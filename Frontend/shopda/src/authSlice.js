@@ -19,7 +19,7 @@ export const authSlice = createSlice({
                 state.user,
                 state.daDangNhap
             );
-        },
+        }
     },
     dalogin: (state, param) => {
       state.token = param.payload.token;
