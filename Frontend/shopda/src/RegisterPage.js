@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { debounce } from "lodash";
 
 const RegisterPage = () => {
@@ -27,6 +27,19 @@ const RegisterPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const data = {
+      name: name.current.value,
+      email: email.current.value,
+      password: password.current.value,
+    };
+    if (data.name === "") {
+      alert("Họ tên không được để trống");
+      return;
+    }
+    if (data.email === "") {
+      alert("Email không được để trống");
+      return;
+    }
     if (isCheckingEmail) {
       alert("Đang kiểm tra email. Vui lòng đợi!");
       return;
@@ -35,21 +48,8 @@ const RegisterPage = () => {
       alert("Email đã tồn tại. Vui lòng sử dụng email khác!");
       return;
     }
-    const data = {
-      name: name.current.value,
-      email: email.current.value,
-      password: password.current.value,
-    };
-    if (data.name === "") {
-      alert("Vui lòng nhập họ và tên");
-      return;
-    }
-    if (data.email === "") {
-      alert("Vui lòng nhập email");
-      return;
-    }
     if (data.password === "") {
-      alert("Vui lòng nhập password");
+      alert("Email không được để trống");
       return;
     }
     try {
@@ -77,9 +77,9 @@ const RegisterPage = () => {
           <input ref={password} type="password" className="input" placeholder="Password" />
           <button className="form-btn">Đăng ký</button>
         </form>
-        <p className="sign-up-label">
+        <Link to="/login"><p className="sign-up-label">
           Bạn đã có tài khoản? <span className="sign-up-link">Đăng nhập</span>
-        </p>
+        </p></Link>
         <div className="buttons-container"></div>
       </div>
     </div>

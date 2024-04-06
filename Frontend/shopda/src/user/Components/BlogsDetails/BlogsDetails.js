@@ -14,7 +14,7 @@ const BlogsDetails = () => {
       setBlogs(data);
     };
     getBlogs();
-  }, []);
+  }, [id]);
   console.log(blog);
 
   return (
