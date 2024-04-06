@@ -1,92 +1,110 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import ReactPaginate from 'react-paginate';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const BlogList = () => {
-  function HienSPTrongMotTrang({ spTrongTrang }) {
-    return (
-      <table className="tab-content active">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Hình</th>
-            <th>Tiêu đề</th>
-            <th>Ngày viết</th>
-            <th>Ngày cặp nhật</th>
-            <th>Edit</th>
-            <th>Remove</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>HÌnh tao nè</td>
-            <td>Toàn viết bài</td>
-            <td>4/7/2024</td>
-            <td>4/7/2024</td>
-            <td>
-              <Link>
-                <span className="btn--show-modal">
-                  <i className="fas fa-tools"></i>
-                </span>
-              </Link>
-            </td>
-            <td>
-              <span className="delete-cate">
-                <i className="fas fa-trash-alt"></i>
-              </span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    );
-  }
-  function PhanTrang({ pageSize }) {
-    const [fromIndex, setfromIndex] = useState(0);
-    const toIndex = fromIndex + pageSize;
-    // const spTrong1Trang = filteredProducts.slice(fromIndex, toIndex);
-    // const tongSoTrang = Math.ceil(filteredProducts.length / pageSize);
-    const chuyenTrang = (event) => {
-      const newIndex =
-        // (event.selected * pageSize) % filteredProducts.length;
-        setfromIndex(newIndex);
+    const [listPost, setListPost] = useState([]);
+    useEffect(() => {
+        fetch("http://localhost:4000/post/list")
+            .then((res) => res.json())
+            .then(setListPost);
+    }, []);
+
+    const xoaPost = (id) => {
+        if (window.confirm("Xóa Bài Viết không?")) {
+            fetch(`http://localhost:4000/post/delete/${id}`, {
+                method: "DELETE",
+            })
+                .then((res) => res.json())
+                .then(() => {
+                    alert("Đã xóa Bài Viết thành công");
+                    fetch("http://localhost:4000/post/list")
+                        .then((res) => res.json())
+                        .then((data) => setListPost(data))
+                        .catch((error) =>
+                            console.error(
+                                "Lỗi cập nhật danh sách bài viết:",
+                                error
+                            )
+                        );
+                })
+                .catch((error) => console.error("Lỗi xóa bài viết:", error));
+        }
     };
     return (
-      <>
-        <HienSPTrongMotTrang spTrongTrang={`spTrong1Trang`} />
-        <ReactPaginate
-          nextLabel=">"
-          previousLabel="<"
-          // pageCount={tongSoTrang}
-          pageRangeDisplayed={3}
-          marginPagesDisplayed={2}
-          onPageChange={chuyenTrang}
-          renderOnZeroPageCount={null}
-          className="thanhphantrang1"
-          activeClassName="active"
-        />
-      </>
+        <section className="content">
+            <main>
+                <div className="head-title">
+                    <div className="left">
+                        <h1>Bài Viết</h1>
+                    </div>
+                </div>
+                <div className="table-data">
+                    <div className="order">
+                        <div className="head">
+                            <h3>Bài Viết Mới</h3>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Tiêu Đề</th>
+                                    <th>Hình Ảnh</th>
+                                    <th>Ngày Viết</th>
+                                    <th>Ngày Cập Nhật</th>
+                                    <th>Sửa Bài Viết</th>
+                                    <th>Xóa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {listPost.map((post, i) => (
+                                    <tr key={i}>
+                                        <td>
+                                            <p>{post.heading}</p>
+                                        </td>
+                                        <td>
+                                            <img src={post.image} alt="#" />
+                                        </td>
+                                        <td>
+                                            <p>
+                                                {new Date(
+                                                    post.created_date
+                                                ).toLocaleDateString("vi")}
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                {new Date(
+                                                    post.update_date
+                                                ).toLocaleDateString("vi")}
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <Link
+                                                to={`/admin/EditBaiViet/${post.id_post}`}
+                                            >
+                                                <span className="btn--show-modal">
+                                                    <i className="fas fa-tools"></i>
+                                                </span>
+                                            </Link>
+                                        </td>
+                                        <td>
+                                            <span
+                                                class="delete-cate"
+                                                onClick={() =>
+                                                    xoaPost(post.id_post)
+                                                }
+                                            >
+                                                <i class="fas fa-trash-alt"></i>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </section>
     );
-  }
-  return (
-    <section className="content">
-      <main>
-        <div className="head-title">
-          <div className="left">
-            <h1>Bài viết</h1>
-          </div>
-        </div>
-        <div className="table-data">
-          <div className="order">
-            <div className="head">
-              <h3>Danh sách bài viết</h3>
-            </div>
-            <PhanTrang pageSize={16} />
-          </div>
-        </div>
-      </main>
-    </section>
-  );
 };
 
 export default BlogList;
