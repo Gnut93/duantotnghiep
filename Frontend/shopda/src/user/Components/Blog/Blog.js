@@ -36,7 +36,7 @@ const Blog = () => {
             <h1>Bạn muốn chăm sóc đồ da tốt nhất?</h1>
           </div>
           <div className="main__button">
-            <Link to="/blogsdetails/2">READ MORE</Link>
+            <Link to="/blogsdetails/2">Xem bài viết</Link>
           </div>
         </div>
         <div className="blog">
@@ -50,7 +50,7 @@ const Blog = () => {
               </div>
               <div className="blog__button">
                 <Link key={blog.id_post} to={`/blogsdetails/${blog.id_post}`}>
-                  <h5>READ MORE</h5>
+                  <h5>Xem bài viết</h5>
                 </Link>
               </div>
             </div>

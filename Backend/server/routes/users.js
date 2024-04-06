@@ -153,6 +153,7 @@ router.post("/change-password", async (req, res) => {
     const email = req.body.email;
     const oldPassword = req.body.oldPassword;
     const newPassword = req.body.newPassword;
+    const confirmpassword = req.body.confirmpassword;
     if (await checkUserPass(email, oldPassword)) {
         const salt = bcrypt.genSaltSync(10);
         const hashPassword = bcrypt.hashSync(newPassword, salt);
@@ -214,8 +215,8 @@ router.post("/forgot-password", async (req, res) => {
                     from: "daleather.2024@gmail.com",
                     to: email,
                     subject: "Thư gửi về việc mật khẩu cấp lại mật khẩu mới",
-                    html: "Mật khẩu mới của bạn là: <b>" + newpass + "</b>",
-                    // html: mailForgotPassword.replace("{{password}}", newpass),
+                    // html: "Mật khẩu mới của bạn là: <b>" + newpass + "</b>",
+                    html: mailForgotPassword.replace("{{name}}", email).replace("{{password}}", newpass),
                 };
             }
             await transporter.sendMail(mailOptions);

@@ -10,12 +10,17 @@ import { useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 const schema = yup.object().shape({
-    oldpassword: yup.string().trim().required("Không được bỏ trống"),
-    newpassword: yup.string().trim().required("Không được bỏ trống"),
+    oldPassword: yup.string().trim().required("Không được bỏ trống"),
+    newPassword: yup.string().trim().required("Không được bỏ trống"),
     confirmpassword: yup
         .string()
         .required("Không được bỏ trống")
-        .oneOf([yup.ref("newpassword"), null], "Mật khẩu không trùng khớp"),
+        .oneOf([yup.ref("newPassword"), null], "Mật khẩu không trùng khớp"),
+    email: yup
+        .string()
+        .email('email có định dạng không hợp lệ')
+        .trim()
+        .required('Không được bỏ trống'),
 });
 const ResetPass = () => {
     const navigate = useNavigate();
@@ -23,8 +28,9 @@ const ResetPass = () => {
     const dispatch = useDispatch();
     const form = useForm({
         defaultValues: {
-            oldpassword: "",
-            newpassword: "",
+            email: user?.email,
+            oldPassword: "",
+            newPassword: "",
             confirmpassword: "",
         },
         resolver: yupResolver(schema),
@@ -32,7 +38,22 @@ const ResetPass = () => {
     const { register, handleSubmit, reset, formState, control } = form;
     const { errors, isSubmitSuccessful } = formState;
     const handleChangeRessPassword = async (data) => {
-        console.log(data);
+        try {
+            const response = await fetch(
+                `http://localhost:4000/users/change-password`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                }
+            );
+            const result = await response.json();
+            console.log(result);
+        }catch (error) {
+            console.error("Lỗi khi gửi form: ", error);
+        }
     };
     useEffect(() => {
         if (isSubmitSuccessful) {
@@ -69,17 +90,31 @@ const ResetPass = () => {
                                 Thay đổi mật khẩu
                             </h3>
                             <div className="infoUser-list">
+                            <div className="infoUser-item">
+                                    <label className="infoUser-text">
+                                        Email
+                                    </label>
+                                    <input
+                                        placeholder="Mật khẩu cũ"
+                                        type="email"
+                                        readOnly
+                                        {...register("email")}
+                                    />
+                                    <p className="err">
+                                        {errors.email?.message}
+                                    </p>
+                                </div>
                                 <div className="infoUser-item">
                                     <label className="infoUser-text">
                                         Mật khẩu cũ
                                     </label>
                                     <input
                                         placeholder="Mật khẩu cũ"
-                                        type="text"
-                                        {...register("oldpassword")}
+                                        type="password"
+                                        {...register("oldPassword")}
                                     />
                                     <p className="err">
-                                        {errors.oldpassword?.message}
+                                        {errors.oldPassword?.message}
                                     </p>
                                 </div>
                                 <div className="infoUser-item">
@@ -88,11 +123,11 @@ const ResetPass = () => {
                                     </label>
                                     <input
                                         placeholder="Mật khẩu mới"
-                                        type="text"
-                                        {...register("newpassword")}
+                                        type="password"
+                                        {...register("newPassword")}
                                     />
                                     <p className="err">
-                                        {errors.newpassword?.message}
+                                        {errors.newPassword?.message}
                                     </p>
                                 </div>
                                 <div className="infoUser-item">
@@ -101,7 +136,7 @@ const ResetPass = () => {
                                     </label>
                                     <input
                                         placeholder="Mật khẩu mới"
-                                        type="text"
+                                        type="password"
                                         {...register("confirmpassword")}
                                     />
                                     <p className="err">
