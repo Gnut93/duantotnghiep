@@ -23,6 +23,7 @@ import ShopGuide from './Components/Shopping-guide/Shopping-guide';
 import BlogsDetails from './Components/BlogsDetails/BlogsDetails';
 import FavoritePage from './Components/FavoritePage/FavoritePage';
 import { ProtectedRoute } from '../ProtectedRoute';
+import ResetPass from './Components/ResetPass/ResetPass';
 
 function App() {
   return (
@@ -97,6 +98,16 @@ function App() {
               exact
               element={<InforUser />}
             />
+            <Route
+              path="/favorite"
+              exact
+              element={<FavoritePage />}
+            />
+            <Route
+              path="/reset-pass"
+              exact
+              element={<ResetPass />}
+            />
           </Route>
           <Route
             path="/policy"
@@ -122,11 +133,6 @@ function App() {
             path="/changegoods"
             exact
             element={<ChangeGoods />}
-          />
-          <Route
-            path="/favorite"
-            exact
-            element={<FavoritePage />}
           />
         </Routes>
       </main>

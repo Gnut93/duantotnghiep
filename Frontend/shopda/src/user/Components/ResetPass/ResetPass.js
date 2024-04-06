@@ -1,12 +1,11 @@
 import React from 'react';
 import Navbar from '../Navbar/Navbar';
-import './InforUser.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { thoat } from '../../../authSlice';
 import { useNavigate } from 'react-router-dom';
 
-const InfoUser = () => {
+const ResetPass = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
@@ -36,10 +35,10 @@ const InfoUser = () => {
           </div>
           <div className="infoUser-content">
             <from>
-              <h3 className="infoUser-title">Thay đổi thông tin cá nhân</h3>
+              <h3 className="infoUser-title">Thay đổi mật khẩu</h3>
               <div className="infoUser-list">
                 <div className="infoUser-item">
-                  <label className="infoUser-text">Tên người dùng</label>
+                  <label className="infoUser-text">Mật khẩu củ</label>
                   <input
                     placeholder="Tên"
                     type="text"
@@ -48,7 +47,7 @@ const InfoUser = () => {
                   <p className="err"></p>
                 </div>
                 <div className="infoUser-item">
-                  <label className="infoUser-text">Số điện thoại</label>
+                  <label className="infoUser-text">Mật khẩu mới</label>
                   <input
                     placeholder="Số điện thoại"
                     defaultValue={user.phone}
@@ -57,19 +56,11 @@ const InfoUser = () => {
                   <p className="err"></p>
                 </div>
                 <div className="infoUser-item">
-                  <label className="infoUser-text">Email</label>
+                  <label className="infoUser-text">Nhặp lại mật khẩu mới</label>
                   <input
                     placeholder="Email"
                     defaultValue={user.email}
                     type="email"
-                  />
-                  <p className="err"></p>
-                </div>
-                <div className="infoUser-item">
-                  <label className="infoUser-text">avatar</label>
-                  <input
-                    placeholder="Tên"
-                    type="file"
                   />
                   <p className="err"></p>
                 </div>
@@ -78,8 +69,8 @@ const InfoUser = () => {
             </from>
           </div>
           <div className="infoUser-packlink">
-            <Link to="/reset-pass">
-              <p className="infoUser-link">Đổi mật khẩu</p>
+            <Link to="/info-user">
+              <p className="infoUser-link">Thông tin</p>
             </Link>
             <Link to="/favorite">
               <p className="infoUser-link">Sản phẩm yêu thích</p>
@@ -96,4 +87,4 @@ const InfoUser = () => {
   );
 };
 
-export default InfoUser;
+export default ResetPass;

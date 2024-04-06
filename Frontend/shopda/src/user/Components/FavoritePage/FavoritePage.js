@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { themSP } from '../cartSlice';
+import Navbar from '../Navbar/Navbar';
+import './Favorite.css';
 
 const FavoritePage = () => {
   const [products, setProducts] = useState([]);
@@ -127,85 +129,88 @@ const FavoritePage = () => {
     }
   };
   return (
-    <section className="view">
+    <section className="favorite">
+      <Navbar />
       <div className="container">
-        <h3 className="related-heading">Sản phẩm bạn đã thích</h3>
-        <div className="related-product">
-          {products.map((item, i) => (
-            <div
-              className="products-item"
-              key={i}>
-              <div className="products-main">
-                <div className="products-main-content">
-                  <img
-                    className="products-image"
-                    src={item.image}
-                    alt={item.name}
-                  />
-                  <div className="products-content">
-                    <ul className="products-social">
-                      <li className="products-social-item">
-                        <Link
-                          to={`/product/${item.id_pd}`}
-                          className="products-social-link"
-                          onClick={() => HandleOnCLickView(item)}>
-                          <i className="fas fa-search"></i>
-                        </Link>
-                      </li>
-                      <li className="products-social-item">
-                        <span
-                          className="products-social-link cart"
-                          onClick={() => handleAddToCart(item)}>
-                          <i className="fas fa-cart-plus"></i>
-                        </span>
-                      </li>
-                      <li className="products-social-item">
-                        <span
-                          className="products-social-link"
-                          onClick={() => HandleOnClickFavorite(item)}>
-                          <i className="fas fa-heart"></i>
-                        </span>
-                      </li>
-                    </ul>
+        <div className="favorite-main">
+          <h3 className="related-heading">Sản phẩm bạn đã thích</h3>
+          <div className="related-product">
+            {products.map((item, i) => (
+              <div
+                className="products-item"
+                key={i}>
+                <div className="products-main">
+                  <div className="products-main-content">
+                    <img
+                      className="products-image"
+                      src={item.image}
+                      alt={item.name}
+                    />
+                    <div className="products-content">
+                      <ul className="products-social">
+                        <li className="products-social-item">
+                          <Link
+                            to={`/product/${item.id_pd}`}
+                            className="products-social-link"
+                            onClick={() => HandleOnCLickView(item)}>
+                            <i className="fas fa-search"></i>
+                          </Link>
+                        </li>
+                        <li className="products-social-item">
+                          <span
+                            className="products-social-link cart"
+                            onClick={() => handleAddToCart(item)}>
+                            <i className="fas fa-cart-plus"></i>
+                          </span>
+                        </li>
+                        <li className="products-social-item">
+                          <span
+                            className="products-social-link"
+                            onClick={() => HandleOnClickFavorite(item)}>
+                            <i className="fas fa-heart"></i>
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
-                <div className="products-info">
-                  <h4 className="products-name">{item.name}</h4>
-                  <div className="products-color-list">
-                    {colors[item.id_pd]?.map((color) => (
-                      <div
-                        key={color.id_color}
-                        className={`products-color-item ${
-                          selectedColorIds[item.id_pd] === color.id_color
-                            ? 'active'
-                            : ''
-                        }`}
-                        style={{
-                          backgroundColor: color.code,
-                        }}
-                        onClick={() =>
-                          selectColor(item.id_pd, color.id_color)
-                        }></div>
-                    ))}
-                  </div>
-                  <div className="products-price">
-                    <span>
-                      {parseInt(item.price_sale).toLocaleString('vi-VN', {
-                        style: 'currency',
-                        currency: 'VND',
-                      })}
-                    </span>
-                    <del>
-                      {parseInt(item.price).toLocaleString('vi-VN', {
-                        style: 'currency',
-                        currency: 'VND',
-                      })}
-                    </del>
+                  <div className="products-info">
+                    <h4 className="products-name">{item.name}</h4>
+                    <div className="products-color-list">
+                      {colors[item.id_pd]?.map((color) => (
+                        <div
+                          key={color.id_color}
+                          className={`products-color-item ${
+                            selectedColorIds[item.id_pd] === color.id_color
+                              ? 'active'
+                              : ''
+                          }`}
+                          style={{
+                            backgroundColor: color.code,
+                          }}
+                          onClick={() =>
+                            selectColor(item.id_pd, color.id_color)
+                          }></div>
+                      ))}
+                    </div>
+                    <div className="products-price">
+                      <span>
+                        {parseInt(item.price_sale).toLocaleString('vi-VN', {
+                          style: 'currency',
+                          currency: 'VND',
+                        })}
+                      </span>
+                      <del>
+                        {parseInt(item.price).toLocaleString('vi-VN', {
+                          style: 'currency',
+                          currency: 'VND',
+                        })}
+                      </del>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

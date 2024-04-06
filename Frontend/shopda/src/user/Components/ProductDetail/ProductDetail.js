@@ -72,7 +72,11 @@ const ProductDetail = () => {
       (item) => item.id_color === selectedColorId
     );
     const totalQuantityAfterAdding = currentProductQuantity + quantity;
-    if (selectedColor && totalQuantityAfterAdding > selectedColor.quantity) {
+    if (selectedColor.quantity <= 0) {
+    } else if (
+      selectedColor &&
+      totalQuantityAfterAdding > selectedColor.quantity
+    ) {
       alert(
         `Không thể thêm, số lượng vượt quá tồn kho. Chỉ còn lại ${
           selectedColor.quantity - currentProductQuantity
