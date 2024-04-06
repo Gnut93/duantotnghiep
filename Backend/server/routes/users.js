@@ -258,5 +258,22 @@ router.delete("/delete/:id", async (req, res) => {
         }
     });
 });
-
+//Cập nhật thông tin người dùng
+router.put("/update/:id", (req, res) => {
+    var id = req.params.id;
+    var name = req.body.name;
+    var email = req.body.email;
+    var phone = req.body.phone;
+    var avatar = req.body.avatar;
+    var address = req.body.address;
+    var sql = `UPDATE user SET name = '${name}', email = '${email}', phone = '${phone}', avatar = '${avatar}', address = '${address}' WHERE id_user = '${id}'`;
+    db.query(sql, (err, result) => {
+        if (err) {
+            res.json({ error: err.message });
+        } else {
+            // console.log(result);
+            res.json({ success: "Cập nhật thông tin thành công" });
+        }
+    });
+});
 module.exports = router;
