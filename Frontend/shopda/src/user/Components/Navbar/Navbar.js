@@ -3,16 +3,28 @@ import './Navbar.css';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import logo from './logo.png';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { thoat } from '../../../authSlice';
 
 const Navbar = (props) => {
   const { backgroundColor = '#4A1F18' } = props;
   const cart = useSelector((state) => state.cart.listSP);
   const user = useSelector((state) => state.auth.user);
   const daDangNhap = useSelector((state) => state.auth.daDangNhap);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   let quantity = 0;
   cart.forEach((element) => {
     quantity += element.soluong;
   });
+  const handleLogout = () => {
+    // Xóa thông tin người dùng khỏi localStorage
+    localStorage.removeItem('result');
+    // Cập nhật Redux store
+    dispatch(thoat());
+    navigate('/');
+  };
   return (
     <div
       className="navbar"
@@ -95,7 +107,8 @@ const Navbar = (props) => {
                       Theo dõi đơn hàng
                     </Link>
                     <Link
-                      to="/logout"
+                      to="/"
+                      onClick={handleLogout}
                       className="menu-link">
                       Đăng xuất
                     </Link>
