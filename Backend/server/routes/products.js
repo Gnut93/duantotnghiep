@@ -20,6 +20,18 @@ router.get("/info/:id", (req, res) => {
     });
 });
 
+//Lấy 8 sản phẩm mới nhất
+router.get("/newest", (req, res) => {
+    var sql = `SELECT * FROM product ORDER BY id_pd DESC LIMIT 0, 8`;
+    db.query(sql, (err, result) => {
+        if (err) {
+            res.json({ error: "Khong tim thay san pham" });
+        } else {
+            res.json(result);
+        }
+    });
+});
+
 //Lấy danh sách sản phẩm
 router.get("/list", (req, res) => {
     var sql = `SELECT * FROM product`;
@@ -128,7 +140,7 @@ router.get("/color/list/:id", (req, res) => {
     });
 });
 
-//Lấy hình  1sản phẩm
+//Lấy hình 1 sản phẩm
 router.get("/image/:id", (req, res) => {
     var id = parseInt(req.params.id);
     if (isNaN(id) || id < 1) {

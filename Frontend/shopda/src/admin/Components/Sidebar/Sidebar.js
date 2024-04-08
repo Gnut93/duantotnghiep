@@ -1,8 +1,14 @@
 import React, { useEffect } from 'react';
 import './Sildebar.css';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { thoat } from '../../../authSlice';
+
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     const allSideMenu = document.querySelectorAll('.toggle-nav ');
 
@@ -17,6 +23,13 @@ const Sidebar = () => {
       });
     });
   }, []);
+  const handleLogout = () => {
+    // Xóa thông tin người dùng khỏi localStorage
+    localStorage.removeItem('result');
+    // Cập nhật Redux store
+    dispatch(thoat());
+    navigate('/');
+  };
   return (
     <section className="sidebar">
       <Link to={'/admin'}>
@@ -115,10 +128,12 @@ const Sidebar = () => {
       <span className="profile"></span>
       <ul className="side-menu">
         <li className="toggle-nav">
-          <span className="logout">
-            <i className="bx bxs-log-out-circle"></i>
-            <span className="text">Đăng xuất</span>
-          </span>
+          <Link to={'/'} onClick={handleLogout}>
+            <span className="logout">
+              <i className="bx bxs-log-out-circle"></i>
+              <span className="text">Đăng xuất</span>
+            </span>
+          </Link>
         </li>
       </ul>
     </section>
