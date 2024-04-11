@@ -140,5 +140,38 @@ router.post("/check-bill", (req, res) => {
         }
     });
 });
+// Route để gửi mail khi đặt hàng thành công
+router.post("/order-success", async (req, res) => {
+    const email = req.body.email;
+    console.log(email);
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/; //pattern email
+    // cấu hình gửi mail
+    var transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: { user: "daleather.2024@gmail.com", pass: "erqccpsqpfrnybyw" }, //pass ứng dụng
+        tls: { rejectUnauthorized: false },
+    });
+
+    try {
+            console.log(result[0]);
+            if (email != "" && emailPattern.test(email)) {
+                var mailOptions = {
+                    from: "daleather.2024@gmail.com",
+                    to: email,
+                    subject: "Thư xác nhận đặt hàng thành công",
+                    html: mailForgotPassword.replace("{{name}}", email).replace("{{password}}", newpass),
+                };
+            }
+            await transporter.sendMail(mailOptions);
+            return res.json({
+                success:
+                    "Chúng tôi đã gửi thư đến email của bạn. Vui lòng kiểm tra email và đăng nhập lại",
+            });
+        }
+        catch (err) {
+        console.error(err);
+        res.status(500).send("Server error");
+    }
+});
 
 module.exports = router;

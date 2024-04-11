@@ -2,9 +2,9 @@ var express = require("express");
 var router = express.Router();
 var db = require("../models/database");
 
-function queryDB(sql) {
+function queryDB(sql, values = null) {
     return new Promise((resolve, reject) => {
-        db.query(sql, (err, result) => {
+        db.query(sql, values, (err, result) => {
             if (err) {
                 reject(err);
             } else {
@@ -14,15 +14,32 @@ function queryDB(sql) {
     });
 }
 
-//Thêm sản phẩm
+// Thêm sản phẩm
 router.post("/add-product", async (req, res) => {
     try {
-        var { name, description, price, price_sale, image, id_cate } = req.body;
-        var sql = `INSERT INTO product (name, description, price, price_sale, image, id_cate) VALUES ('${name}', '${description}', '${price}', '${price_sale}', '${image}', '${id_cate}')`;
-        await queryDB(sql);
-        res.json({ success: "Thêm sản phẩm thành công" });
+        var data = req.body;
+        var sql = `INSERT into product (name, description,  price, price_sale, image, id_cate) VALUES (?, ?, ?, ?, ?, ?)`;
+        var values = [data.name, data.description, data.price, data.price_sale, data.image, data.id_cate];
+
+        // Lưu kết quả trả về từ hàm queryDB vào biến result
+        var result = await queryDB(sql, values);
+        res.json({ success: "Thêm sản phẩm thành công", id_pd: result.insertId });
     } catch (err) {
         res.json({ error: err.message });
+    }
+});
+
+//Thêm sản phẩm chi tiết
+router.post("/add-product-detail", async (req, res) => {
+    try {
+        var data = req.body;
+        var sql = `INSERT into product_detail (image, color, color_code, quantity, id_pd) VALUES (?, ?, ?, ?, ?)`;
+        var values = [data.image, data.color, data.color_code, data.quantity, data.id_pd];
+
+        await queryDB(sql, values);
+        res.json({ success: "Thêm sản phẩm chi tiết thành công" });
+    } catch (err) {
+        res.json({ error: "Loi them san pham chi tiet" });
     }
 });
 
