@@ -51,10 +51,26 @@ router.put("/edit/:id", async (req, res) => {
         return;
     }
     try {
-        var { name, description, price, price_sale, image, id_cate } = req.body;
-        var sql = `UPDATE product SET name='${name}', description='${description}', price='${price}', price_sale='${price_sale}', image='${image}', id_cate='${id_cate}' WHERE id_pd='${id_pd}'`;
+        var data = req.body;
+        var sql = `UPDATE product SET name='${data.name}', description='${data.description}', price='${data.price}', price_sale='${data.price_sale}', image='${data.image}', id_cate='${data.id_cate}' WHERE id_pd='${id_pd}'`;
         await queryDB(sql);
         res.json({ success: "Sửa sản phẩm thành công" });
+    } catch (err) {
+        res.json({ error: err.message });
+    }
+});
+//Sửa thông tin sản phẩm chi tiết
+router.put("/edit-detail/:id", async (req, res) => {
+    var id_pd = parseInt(req.params.id);
+    if (isNaN(id_pd) || id_pd < 1) {
+        res.json({ error: "ID không hợp lệ" });
+        return;
+    }
+    try {
+        var data = req.body;
+        var sql = `UPDATE product_detail SET image='${data.image}', color='${data.color}', color_code='${data.color_code}', quantity='${data.quantity}' WHERE id_pd='${id_pd}'`;
+        await queryDB(sql);
+        res.json({ success: "Sửa sản phẩm chi tiết thành công" });
     } catch (err) {
         res.json({ error: err.message });
     }
@@ -68,9 +84,8 @@ router.delete("/delete/:id", async (req, res) => {
         return;
     }
     try {
-        await queryDB(`DELETE FROM color WHERE id_pd='${id_pd}'`);
-        await queryDB(`DELETE FROM image WHERE id_pd='${id_pd}'`);
         await queryDB(`DELETE FROM product WHERE id_pd='${id_pd}'`);
+        await queryDB(`DELETE FROM product_detail WHERE id_pd='${id_pd}'`);
         res.json({ success: "Xóa sản phẩm thành công" });
     } catch (err) {
         res.json({ error: err.message });
