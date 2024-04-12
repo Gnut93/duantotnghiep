@@ -108,7 +108,7 @@ router.get("/color/:id", (req, res) => {
         return;
     }
 
-    var sql = `SELECT * FROM color where id_pd = '${id}'`;
+    var sql = `SELECT * FROM product_detail where id_pd = '${id}'`;
     db.query(sql, (err, result) => {
         if (err) {
             res.json({ error: "Khong tim thay mau san pham" });
@@ -171,7 +171,7 @@ router.get("/img/list", (req, res) => {
 });
 // Lấy list màu
 router.get("/col/list", (req, res) => {
-    var sql = `SELECT * FROM color`;
+    var sql = `SELECT * FROM product_detail`;
     db.query(sql, (err, result) => {
         if (err) {
             res.json({ error: "Khong tim thay color" });
@@ -187,7 +187,7 @@ router.get("/color/detail/:id", (req, res) => {
         res.json({ error: "ID không hợp lệ" });
         return;
     }
-    var sql = `SELECT * FROM color where id_color = '${id}'`;
+    var sql = `SELECT * FROM product_detail where id_pd_detail = '${id}'`;
     db.query(sql, (err, result) => {
         if (err) {
             res.json({ error: "Khong tim thay mau san pham" });

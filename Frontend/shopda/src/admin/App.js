@@ -10,19 +10,17 @@ import NhapLieu from "./Components/NhapLieu/NhapLieu";
 import User from "./Components/User/User";
 import DonHang from "./Components/DonHang/DonHang";
 import EditSP from "./Components/Edit/EditSP/EditSP";
-import EditMau from "./Components/Edit/EditMau/EditMau";
 import EditLoai from "./Components/Edit/EditLoai/EditLoai";
-import EditHinh from "./Components/Edit/EditHinh/EditHinh";
 import EditDiscout from "./Components/Edit/EditDiscout/EditDiscout";
 import Discout from "./Components/DisCout/Discout";
-import ImgDetail from "./Components/ImgDetail/ImgDetail";
-import ColorDetail from "./Components/ColorDetail/ColorDetail";
 import EditStatus from "./Components/Edit/EditStatus/EditStatus";
 import ChiTietDonHang from "./Components/ChiTietDonHang/ChiTietDonHang";
 import EditRole from "./Components/Edit/EditRole/EditRole";
 import DonHangCustom from "./Components/DonHangCustom/DonHangCustom";
 import BlogList from "./Components/BlogList/BlogList";
 import EditBaiViet from "./Components/Edit/EditBaiViet/EditBaiViet";
+import ChiTietSanPham from "./Components/ChiTietSanPham/ChiTietSanPham";
+import EditSanPhamChiTiet from "./Components/Edit/EditSanPhamChiTiet/EditSanPhamChiTiet";
 
 function AppAdmin() {
     return (
@@ -43,12 +41,16 @@ function AppAdmin() {
                     <Route path="/khohang" element={<Shop />} />
                     <Route path="/nhaplieu" element={<NhapLieu />} />
                     <Route path="/discout" element={<Discout />} />
-                    <Route path="/color" element={<ColorDetail />} />
-                    <Route path="/image" element={<ImgDetail />} />
+                    <Route
+                        path="/chitietsanpham"
+                        element={<ChiTietSanPham />}
+                    />
                     <Route path="/editSP/:id" element={<EditSP />} />
-                    <Route path="/editMau/:id" element={<EditMau />} />
+                    <Route
+                        path="/editChiTietSanPham/:id"
+                        element={<EditSanPhamChiTiet />}
+                    />
                     <Route path="/editLoai/:id" element={<EditLoai />} />
-                    <Route path="/editHinh/:id" element={<EditHinh />} />
                     <Route path="/editDiscout/:id" element={<EditDiscout />} />
                     <Route path="/editStatus/:id" element={<EditStatus />} />
                     <Route path="/editRole/:id" element={<EditRole />} />

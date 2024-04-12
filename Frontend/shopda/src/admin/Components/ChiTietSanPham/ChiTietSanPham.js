@@ -2,32 +2,31 @@ import React, { useEffect, useState, useCallback } from "react";
 import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
 
-const ImgDetail = () => {
+const ChiTietSanPham = () => {
     const [listsp, setListSP] = useState([]);
-    const [listImg, setListImg] = useState([]);
+    const [listColor, setListColor] = useState([]);
     const [selectedSP, setSelectedSP] = useState("");
-    // const navigate = useNavigate();
-
     useEffect(() => {
         fetch("http://localhost:4000/products/list")
             .then((res) => res.json())
             .then(setListSP);
-        fetch("http://localhost:4000/products/img/list")
+        fetch("http://localhost:4000/products/col/list")
             .then((res) => res.json())
-            .then(setListImg);
+            .then(setListColor);
     }, []);
 
-    const xoaHinh = (id) => {
-        if (window.confirm("Xóa hình sản phẩm không?")) {
-            fetch(`http://localhost:4000/admin-products/delete-image/${id}`, {
+    const xoaMau = (id) => {
+        if (window.confirm("Xóa sản phẩm không?")) {
+            fetch(`http://localhost:4000/admin-products/delete-color/${id}`, {
                 method: "DELETE",
             })
                 .then((res) => res.json())
                 .then((data) => {
-                    alert("Đã xóa  hình thành công");
-                    fetch("http://localhost:4000/products/img/list")
+                    alert("Đã xóa Màu thành công");
+
+                    fetch("http://localhost:4000/products/col/list")
                         .then((res) => res.json())
-                        .then((data) => setListImg(data))
+                        .then((data) => setListColor(data))
                         .catch((error) =>
                             console.error("Lỗi cập nhật danh sách Màu:", error)
                         );
@@ -41,11 +40,19 @@ const ImgDetail = () => {
     }, []);
 
     // Lọc danh sách sản phẩm theo loại sản phẩm đã chọn
+    const newListColor = listColor.map((color) => {
+        const { image, ...rest } = color;
+        return { image_detail: image, ...rest };
+    });
+    const listProduct = newListColor.map((color) => {
+        const sp = listsp.find((sp) => sp.id_pd === color.id_pd);
+        return { ...color, ...sp };
+    });
     const filteredProducts =
         selectedSP === ""
-            ? listImg
+            ? listProduct
             : // eslint-disable-next-line eqeqeq
-              listImg.filter((item) => item.id_pd == selectedSP);
+              listProduct.filter((item) => item.id_pd == selectedSP);
 
     function HienSPTrongMotTrang({ spTrongTrang }) {
         return (
@@ -54,7 +61,9 @@ const ImgDetail = () => {
                     <tr>
                         <th>ID</th>
                         <th>Hình</th>
-                        <th>Id_pd</th>
+                        <th>Màu</th>
+                        <th>Tên Sản Phẩm</th>
+                        <th>Quantity</th>
                         <th>Edit</th>
                         <th>Remove</th>
                     </tr>
@@ -63,14 +72,20 @@ const ImgDetail = () => {
                     {spTrongTrang.map((sp, i) => (
                         <tr key={i}>
                             <td>
-                                <p>{sp.id_img}</p>
+                                <p>{sp.id_pd_detail}</p>
                             </td>
                             <td>
-                                <img src={sp.name} alt="#" />
+                                <img src={sp.image_detail} alt="#" />
                             </td>
-                            <td>{sp.id_pd}</td>
                             <td>
-                                <Link to={`/admin/EditHinh/${sp.id_img}`}>
+                                <p>{sp.color}</p>
+                            </td>
+                            <td>{sp.name}</td>
+                            <td>{sp.quantity}</td>
+                            <td>
+                                <Link
+                                    to={`/admin/editChiTietSanPham/${sp.id_pd_detail}`}
+                                >
                                     <span className="btn--show-modal">
                                         <i className="fas fa-tools"></i>
                                     </span>
@@ -79,7 +94,7 @@ const ImgDetail = () => {
                             <td>
                                 <span
                                     className="delete-cate"
-                                    onClick={() => xoaHinh(sp.id_img)}
+                                    onClick={() => xoaMau(sp.id_color)}
                                 >
                                     <i className="fas fa-trash-alt"></i>
                                 </span>
@@ -123,7 +138,7 @@ const ImgDetail = () => {
             <main>
                 <div className="head-title">
                     <div className="left">
-                        <h1>Hình ảnh sản phẩm</h1>
+                        <h1>Màu Sản Phẩm</h1>
                     </div>
                     <div className="checkout-address-input">
                         <select
@@ -143,7 +158,7 @@ const ImgDetail = () => {
                 <div className="table-data">
                     <div className="order">
                         <div className="head">
-                            <h3>Hình Ảnh</h3>
+                            <h3>Màu Sản Phẩm</h3>
                         </div>
                         <PhanTrang pageSize={16} />
                     </div>
@@ -153,4 +168,4 @@ const ImgDetail = () => {
     );
 };
 
-export default ImgDetail;
+export default ChiTietSanPham;

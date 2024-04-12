@@ -29,7 +29,6 @@ const User = () => {
                                     <th>Email</th>
                                     <th>Role</th>
                                     <th>Phân quyền</th>
-                                    <th>Xóa</th>
                                 </tr>
                             </thead>
                             <tbody>

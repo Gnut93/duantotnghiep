@@ -2,10 +2,9 @@ import React, { useEffect } from "react";
 import "./NhapLieu.css";
 import NhapSP from "./NhapSP/NhapSP";
 import NhapLoai from "./NhapLoai/NhapLoai";
-import NhapMau from "./NhapMau/NhapMau";
-import NhapHinh from "./NhapHinh/NhapHinh";
 import NhapDiscout from "./NhapDiscout/NhapDiscout";
 import NhapBaiViet from "./NhapBaiViet/NhapBaiViet";
+import NhapSanPhamChiTiet from "./NhapSanPhamChiTiet/NhapSanPhamChiTiet";
 
 const NhapLieu = () => {
     useEffect(() => {
@@ -49,11 +48,8 @@ const NhapLieu = () => {
                             <div className="tab-block" data-tab="2">
                                 Thêm loại hàng
                             </div>
-                            <div className="tab-block" data-tab="3">
-                                Hình ảnh chi tiết
-                            </div>
                             <div className="tab-block" data-tab="4">
-                                Mã màu
+                                Thêm Chi Tiết Sản Phẩm
                             </div>
                             <div className="tab-block" data-tab="5">
                                 Mã giảm giá
@@ -71,10 +67,7 @@ const NhapLieu = () => {
                     <NhapLoai></NhapLoai>
                 </div>
                 <div className="tab-additional" data-tab="4">
-                    <NhapMau></NhapMau>
-                </div>
-                <div className="tab-additional" data-tab="3">
-                    <NhapHinh></NhapHinh>
+                    <NhapSanPhamChiTiet></NhapSanPhamChiTiet>
                 </div>
                 <div className="tab-additional" data-tab="5">
                     <NhapDiscout></NhapDiscout>

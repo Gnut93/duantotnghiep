@@ -26,11 +26,7 @@ const Home = () => {
             .then(setListUser);
     }, []);
 
-    const newListColor = listColor.map((color) => {
-        const { name, ...rest } = color;
-        return { name_color: name, ...rest };
-    });
-    const listProduct = newListColor.map((color) => {
+    const listProduct = listColor.map((color) => {
         const sp = listSp.find((sp) => sp.id_pd === color.id_pd);
         return { ...color, ...sp };
     });
@@ -238,7 +234,7 @@ const Home = () => {
                                                     <p>{product.name}</p>
                                                 </td>
                                                 <td>
-                                                    <p>{product.name_color}</p>
+                                                    <p>{product.color}</p>
                                                 </td>
                                                 <td>
                                                     <p>{product.quantity}</p>
