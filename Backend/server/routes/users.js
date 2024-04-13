@@ -16,10 +16,10 @@ const nodemailer = require("nodemailer");
 router.get("/info", (req, res) => {
     var email = req.body.email;
 
-    var sql = `SELECT * FROM user WHERE email = ?`;
+    var sql = `SELECT user.*, address.* FROM user INNER JOIN address ON user.id_user = address.id_user WHERE user.email = ?`;
     db.query(sql, [email], (err, result) => {
         if (err) {
-            res.json({ error: "Khong tim thay user" });
+            res.json({ error: "Không tìm thấy user" });
         } else {
             res.json(result[0]);
         }
@@ -45,7 +45,7 @@ router.get("/role/:id", (req, res) => {
 
 //Lấy toàn bộ user
 router.get("/list", (req, res) => {
-    var sql = `SELECT * FROM user`;
+    var sql = `SELECT user.*, address.* FROM user INNER JOIN address ON user.id_user = address.id_user`;
     db.query(sql, (err, result) => {
         if (err) {
             res.json({ error: "Khong tim thay user" });
