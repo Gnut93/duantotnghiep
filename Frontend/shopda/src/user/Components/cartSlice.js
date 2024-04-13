@@ -5,9 +5,9 @@ export const cartSlice = createSlice({
   initialState: { listSP: [] },
   reducers: {
     themSP: (state, action) => {
-      const { id_pd, id_color } = action.payload;
+      const { id_pd, id_pd_detail } = action.payload;
       const existingProductIndex = state.listSP.findIndex(
-        (sp) => sp.id_pd === id_pd && sp.id_color === id_color
+        (sp) => sp.id_pd === id_pd && sp.id_pd_detail === id_pd_detail
       );
 
       if (existingProductIndex >= 0) {
@@ -17,9 +17,9 @@ export const cartSlice = createSlice({
       }
     },
     themSPDetail: (state, action) => {
-      const { id_pd, id_color, soluong } = action.payload;
+      const { id_pd, id_pd_detail, soluong } = action.payload;
       const existingProductIndex = state.listSP.findIndex(
-        (sp) => sp.id_pd === id_pd && sp.id_color === id_color
+        (sp) => sp.id_pd === id_pd && sp.id_pd_detail === id_pd_detail
       );
 
       if (existingProductIndex >= 0) {
@@ -29,9 +29,9 @@ export const cartSlice = createSlice({
       }
     },
     suaSL: (state, { payload }) => {
-      const { id_pd, id_color, soluong } = payload;
+      const { id_pd, id_pd_detail, soluong } = payload;
       const index = state.listSP.findIndex(
-        (s) => s.id_pd === id_pd && s.id_color === id_color
+        (s) => s.id_pd === id_pd && s.id_pd_detail === id_pd_detail
       );
       const quantity = parseInt(soluong, 10);
 
@@ -46,7 +46,7 @@ export const cartSlice = createSlice({
     xoaSP: (state, { payload }) => {
       // Giả sử payload là { id_color: xxx }
       state.listSP = state.listSP.filter(
-        (s) => s.id_color !== payload.id_color
+        (s) => s.id_pd_detail !== payload.id_pd_detail
       );
     },
     xoaGH: (state) => {

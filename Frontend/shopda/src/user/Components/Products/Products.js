@@ -27,7 +27,9 @@ const Products = () => {
         setSP(data);
         const initialColorIds = {};
         const colorPromises = data.map((product) =>
-          fetch(`http://localhost:4000/products/color/${product.id_pd}`)
+          fetch(
+            `http://localhost:4000/products/product-detail/${product.id_pd}`
+          )
             .then((res) => res.json())
             .then((colorData) => {
               setColors((prevColors) => ({
@@ -38,7 +40,7 @@ const Products = () => {
                 })),
               }));
               if (colorData.length > 0) {
-                initialColorIds[product.id_pd] = colorData[0].id_color;
+                initialColorIds[product.id_pd] = colorData[0].id_pd_detail;
               }
             })
         );
@@ -52,15 +54,15 @@ const Products = () => {
       .then((data) => setLoai(data));
   }, [id_cate]);
   const handleAddToCart = (product) => {
-    const id_color = selectedColorIds[product.id_pd];
+    const id_pd_detail = selectedColorIds[product.id_pd];
     const nameColor = colors[product.id_pd].find(
-      (color) => color.id_color === id_color
-    ).name;
+      (color) => color.id_pd_detail === id_pd_detail
+    ).color;
     const maxQuantity = colors[product.id_pd].find(
-      (color) => color.id_color === id_color
+      (color) => color.id_pd_detail === id_pd_detail
     ).quantity;
     const colorInfo = colors[product.id_pd].find(
-      (color) => color.id_color === id_color
+      (color) => color.id_pd_detail === id_pd_detail
     );
 
     if (!colorInfo) {
@@ -69,7 +71,7 @@ const Products = () => {
     }
 
     const currentProductInCart = cart.find(
-      (p) => p.id_pd === product.id_pd && p.id_color === id_color
+      (p) => p.id_pd === product.id_pd && p.id_pd_detail === id_pd_detail
     );
     if (colorInfo.maxQuantity <= 0) {
       alert(`Sản phẩm đã hết hàng.`);
@@ -83,7 +85,7 @@ const Products = () => {
       dispatch(
         themSP({
           ...product,
-          id_color,
+          id_pd_detail,
           nameColor,
           maxQuantity,
           soluong: currentProductInCart ? currentProductInCart.soluong + 1 : 1,
@@ -91,6 +93,7 @@ const Products = () => {
       );
     }
   };
+
   const user = useSelector((state) => state.auth.user);
   const checkLogin = useSelector((state) => state.auth.daDangNhap);
   const idUser = user ? user.id_user : null;
@@ -141,11 +144,18 @@ const Products = () => {
             key={i}>
             <div className="products-main">
               <div className="products-main-content">
-                <img
-                  className="products-image"
-                  src={sp['image']}
-                  alt={sp['name']}
-                />
+                {colors[sp.id_pd]?.map((color) =>
+                  selectedColorIds[sp.id_pd] === color.id_pd_detail ? (
+                    <img
+                      key={color.id_pd_detail}
+                      src={color.image}
+                      alt={color.name}
+                      className="products-image"
+                    />
+                  ) : (
+                    ''
+                  )
+                )}
                 <div className="products-content">
                   <ul className="products-social">
                     <li className="products-social-item">
@@ -179,17 +189,17 @@ const Products = () => {
                 <div className="products-color-list">
                   {colors[sp.id_pd]?.map((color) => (
                     <div
-                      key={color.id_color}
+                      key={color.id_pd_detail}
                       className={`products-color-item ${
-                        selectedColorIds[sp.id_pd] === color.id_color
+                        selectedColorIds[sp.id_pd] === color.id_pd_detail
                           ? 'active'
                           : ''
                       }`}
                       style={{
-                        backgroundColor: color.code,
+                        backgroundColor: color.color_code,
                       }}
                       onClick={() =>
-                        selectColor(sp.id_pd, color.id_color)
+                        selectColor(sp.id_pd, color.id_pd_detail)
                       }></div>
                   ))}
                 </div>

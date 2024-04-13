@@ -88,7 +88,7 @@ const Navbar = (props) => {
           </ul>
           <ul className="menu-list icon">
             <li className="menu-item">
-              {daDangNhap === true ? (
+              {daDangNhap && daDangNhap === true ? (
                 <>
                   <Link
                     to=""
