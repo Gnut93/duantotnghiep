@@ -7,7 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import cloudinaryUpload from "../../../../service/uploads";
 const schema = yup.object({
-    name: yup
+    color: yup
         .string()
         .trim()
         .required("Không được bỏ trống")
@@ -16,7 +16,7 @@ const schema = yup.object({
         .test("no-numbers", "Không được nhập số", (value) => {
             return /^\D+$/.test(value);
         }),
-    code: yup
+    color_code: yup
         .string()
         .trim()
         .required("Không được bỏ trống")
@@ -38,8 +38,8 @@ const schema = yup.object({
 const NhapSanPhamChiTiet = () => {
     const form = useForm({
         defaultValues: {
-            name: "",
-            code: "",
+            color: "",
+            color_code: "",
         },
         resolver: yupResolver(schema),
     });
@@ -50,7 +50,7 @@ const NhapSanPhamChiTiet = () => {
         uploadData.append("file", e.target.files[0], "file");
         cloudinaryUpload(uploadData)
             .then((res) => {
-                form.setValue("name", res.secure_url);
+                form.setValue("image", res.secure_url);
             })
             .catch((err) => console.error(err));
     };
@@ -58,7 +58,8 @@ const NhapSanPhamChiTiet = () => {
         data.id_pd = parseInt(data.id_pd);
 
         try {
-            const url = "http://localhost:4000/admin-products/add-color";
+            const url =
+                "http://localhost:4000/admin-products/add-product-detail";
             const opt = {
                 method: "post",
                 body: JSON.stringify(data),
@@ -66,9 +67,9 @@ const NhapSanPhamChiTiet = () => {
             };
             const res = await fetch(url, opt);
             const responseData = await res.json();
-            alert("Đã thêm Màu Thành Công,", responseData);
+            alert("Đã thêm chi tiết sản phẩm thành công,", responseData);
         } catch (error) {
-            console.error("Lỗi khi thêm Màu: ", error);
+            console.error("Lỗi khi thêm chi tiết sản phẩm thành công: ", error);
         }
     };
 
@@ -104,9 +105,9 @@ const NhapSanPhamChiTiet = () => {
                                     type="text"
                                     id="avatar"
                                     accept="image/*"
-                                    {...register("name")}
+                                    {...register("color")}
                                 />
-                                <p className="err">{errors.name?.message}</p>
+                                <p className="err">{errors.color?.message}</p>
                             </div>
                             <div className="checkout-address-input">
                                 <label>Mã màu</label> <br />
@@ -114,9 +115,11 @@ const NhapSanPhamChiTiet = () => {
                                     type="text"
                                     id="avatar"
                                     accept="image/*"
-                                    {...register("code")}
+                                    {...register("color_code")}
                                 />
-                                <p className="err">{errors.code?.message}</p>
+                                <p className="err">
+                                    {errors.color_code?.message}
+                                </p>
                             </div>
                             <div className="checkout-address-input">
                                 <label>Số lượng</label> <br />
@@ -139,7 +142,7 @@ const NhapSanPhamChiTiet = () => {
                                     id="avatar"
                                     onChange={(e) => handleFileUpload(e)}
                                 />
-                                <p className="err">{errors.name?.message}</p>
+                                <p className="err">{errors.image?.message}</p>
                             </div>
                             <div className="checkout-address-input">
                                 <label>Mã Sản phẩm</label> <br />

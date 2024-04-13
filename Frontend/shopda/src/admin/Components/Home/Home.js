@@ -11,6 +11,7 @@ const Home = () => {
     const [listColor, setListColor] = useState([]);
     const [listBill, setListBill] = useState([]);
     const [listUser, setListUser] = useState([]);
+    console.log(listUser);
     useEffect(() => {
         fetch("http://localhost:4000/products/col/list")
             .then((res) => res.json())

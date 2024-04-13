@@ -16,10 +16,10 @@ const nodemailer = require("nodemailer");
 router.get("/info", (req, res) => {
     var email = req.body.email;
 
-    var sql = `SELECT user.*, address.* FROM user INNER JOIN address ON user.id_user = address.id_user WHERE user.email = ?`;
+    var sql = `SELECT * FROM user WHERE email = ?`;
     db.query(sql, [email], (err, result) => {
         if (err) {
-            res.json({ error: "Không tìm thấy user" });
+            res.json({ error: "Khong tim thay user" });
         } else {
             res.json(result[0]);
         }
@@ -45,7 +45,7 @@ router.get("/role/:id", (req, res) => {
 
 //Lấy toàn bộ user
 router.get("/list", (req, res) => {
-    var sql = `SELECT user.*, address.* FROM user INNER JOIN address ON user.id_user = address.id_user`;
+    var sql = `SELECT * FROM user`;
     db.query(sql, (err, result) => {
         if (err) {
             res.json({ error: "Khong tim thay user" });
@@ -216,7 +216,9 @@ router.post("/forgot-password", async (req, res) => {
                     to: email,
                     subject: "Thư gửi về việc mật khẩu cấp lại mật khẩu mới",
                     // html: "Mật khẩu mới của bạn là: <b>" + newpass + "</b>",
-                    html: mailForgotPassword.replace("{{name}}", email).replace("{{password}}", newpass),
+                    html: mailForgotPassword
+                        .replace("{{name}}", email)
+                        .replace("{{password}}", newpass),
                 };
             }
             await transporter.sendMail(mailOptions);
