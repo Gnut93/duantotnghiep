@@ -9,7 +9,7 @@ import * as yup from "yup";
 import { useParams, useNavigate } from "react-router-dom";
 import cloudinaryUpload from "../../../../service/uploads";
 const schema = yup.object({
-    name: yup
+    color: yup
         .string()
         .trim()
         .required("Không được bỏ trống")
@@ -18,7 +18,7 @@ const schema = yup.object({
         .test("no-numbers", "Không được nhập số", (value) => {
             return /^\D+$/.test(value);
         }),
-    code: yup
+    color_code: yup
         .string()
         .trim()
         .required("Không được bỏ trống")
@@ -48,8 +48,8 @@ const EditSanPhamChiTiet = () => {
             const data = await reponse.json();
             console.log(data);
             return {
-                name: data.color,
-                code: data.color_code,
+                color: data.color,
+                color_code: data.color_code,
                 quantity: data.quantity,
                 image: data.image,
                 id_pd: data.id_pd,
@@ -64,7 +64,7 @@ const EditSanPhamChiTiet = () => {
         uploadData.append("file", e.target.files[0], "file");
         cloudinaryUpload(uploadData)
             .then((res) => {
-                form.setValue("name", res.secure_url);
+                form.setValue("image", res.secure_url);
             })
             .catch((err) => console.error(err));
     };
@@ -78,7 +78,7 @@ const EditSanPhamChiTiet = () => {
             if (!confirmation) {
                 return;
             }
-            const url = `http://localhost:4000/admin-products/edit-color/${id}`;
+            const url = `http://localhost:4000/admin-products/edit-detail/${id}`;
             const opt = {
                 method: "PUT",
                 body: JSON.stringify(data),
@@ -86,10 +86,10 @@ const EditSanPhamChiTiet = () => {
             };
             const res = await fetch(url, opt);
             const responseData = await res.json();
-            alert("Đã Sửa Màu Thành Công,", responseData);
+            alert("Đã Sửa Chi Tiết Sản Phẩm,", responseData);
             navigate("/admin/chitietsanpham");
         } catch (error) {
-            console.error("Lỗi khi thêm Màu: ", error);
+            console.error("Lỗi khi sửa  chi tiết sản phẩm: ", error);
         }
     };
 
@@ -129,10 +129,10 @@ const EditSanPhamChiTiet = () => {
                                             type="text"
                                             id="avatar"
                                             accept="image/*"
-                                            {...register("name")}
+                                            {...register("color")}
                                         />
                                         <p className="err">
-                                            {errors.name?.message}
+                                            {errors.color?.message}
                                         </p>
                                     </div>
                                     <div className="checkout-address-input">
@@ -141,10 +141,10 @@ const EditSanPhamChiTiet = () => {
                                             type="text"
                                             id="avatar"
                                             accept="image/*"
-                                            {...register("code")}
+                                            {...register("color_code")}
                                         />
                                         <p className="err">
-                                            {errors.code?.message}
+                                            {errors.color_code?.message}
                                         </p>
                                     </div>
                                     <div className="checkout-address-input">
@@ -171,7 +171,7 @@ const EditSanPhamChiTiet = () => {
                                             }
                                         />
                                         <p className="err">
-                                            {errors.name?.message}
+                                            {errors.image?.message}
                                         </p>
                                     </div>
                                     <div className="checkout-address-input">
