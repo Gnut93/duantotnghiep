@@ -24,6 +24,7 @@ import BlogsDetails from './Components/BlogsDetails/BlogsDetails';
 import FavoritePage from './Components/FavoritePage/FavoritePage';
 import { ProtectedRoute } from '../ProtectedRoute';
 import ResetPass from './Components/ResetPass/ResetPass';
+import OrderDetail from './Components/OrderDetail/OrderDetail';
 
 function App() {
   return (
@@ -86,6 +87,11 @@ function App() {
             path="/checkout"
             exact
             element={<Checkout />}
+          />
+          <Route
+            path="/order-detail/:id"
+            exact
+            element={<OrderDetail />}
           />
           <Route
             path="/follow-order"

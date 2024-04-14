@@ -1,0 +1,12 @@
+.orderDetail-content {
+  padding: 60px 0;
+}
+.orderDetail-heading {
+  text-align: center;
+  font-size: 30px;
+}
+.orderDetail-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
