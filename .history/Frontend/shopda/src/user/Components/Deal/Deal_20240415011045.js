@@ -4,10 +4,14 @@ import img7 from "../../../assets/images/deal.png";
 import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
+
 const Deal = () => {
   useEffect(() => {
     AOS.init({ duration: 1000 });
-    AOS.refresh();
+
+    return () => {
+      AOS.refresh();
+    };
   }, []);
 
   return (

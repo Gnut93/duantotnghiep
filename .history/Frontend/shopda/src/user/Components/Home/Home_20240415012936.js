@@ -4,7 +4,6 @@ import ViewProduct from "../ViewProduct/ViewProduct";
 import Offer from "../Offer/Offer";
 import Trending from "../Trending/Trending";
 import Deal from "../Deal/Deal";
-import Recommend from "../Recommend/Recommend";
 // import BgHome from '../BgHome/BgHome';
 
 const Home = () => {
@@ -16,7 +15,7 @@ const Home = () => {
         <Trending></Trending>
         <ViewProduct></ViewProduct>
         <Deal></Deal>
-        <Recommend></Recommend>
+        <Re
       </div>
     </>
   );
