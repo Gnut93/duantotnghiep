@@ -60,13 +60,12 @@ router.post("/add-detail", async (req, res) => {
             item.id_bill,
             item.name,
             item.price,
-            item.color,
             item.quantity,
             item.total_price,
             item.id_pd,
         ]);
 
-        var sql = `INSERT INTO bill_detail (id_bill, name, price, color, quantity, total_price, id_pd) VALUES ?`;
+        var sql = `INSERT INTO bill_detail (id_bill, name, price, quantity, total_price, id_pd) VALUES ?`;
 
         await db.query(sql, [values]);
 
@@ -153,22 +152,23 @@ router.post("/order-success", async (req, res) => {
     });
 
     try {
-            console.log(result[0]);
-            if (email != "" && emailPattern.test(email)) {
-                var mailOptions = {
-                    from: "daleather.2024@gmail.com",
-                    to: email,
-                    subject: "Thư xác nhận đặt hàng thành công",
-                    html: mailForgotPassword.replace("{{name}}", email).replace("{{password}}", newpass),
-                };
-            }
-            await transporter.sendMail(mailOptions);
-            return res.json({
-                success:
-                    "Chúng tôi đã gửi thư đến email của bạn. Vui lòng kiểm tra email và đăng nhập lại",
-            });
+        console.log(result[0]);
+        if (email != "" && emailPattern.test(email)) {
+            var mailOptions = {
+                from: "daleather.2024@gmail.com",
+                to: email,
+                subject: "Thư xác nhận đặt hàng thành công",
+                html: mailForgotPassword
+                    .replace("{{name}}", email)
+                    .replace("{{password}}", newpass),
+            };
         }
-        catch (err) {
+        await transporter.sendMail(mailOptions);
+        return res.json({
+            success:
+                "Chúng tôi đã gửi thư đến email của bạn. Vui lòng kiểm tra email và đăng nhập lại",
+        });
+    } catch (err) {
         console.error(err);
         res.status(500).send("Server error");
     }

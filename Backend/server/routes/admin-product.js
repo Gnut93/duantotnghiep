@@ -107,4 +107,30 @@ router.delete("/delete/:id", async (req, res) => {
         res.json({ error: err.message });
     }
 });
+// cập nhật số lượng sản phẩm
+router.put("/edit-quantity/:id", async (req, res) => {
+    var id_pd_detail = parseInt(req.params.id);
+    if (isNaN(id_pd_detail) || id_pd_detail < 1) {
+        res.json({ error: "ID không hợp lệ" });
+        return;
+    }
+
+    const updateTasks = []; // Mảng chứa các promise update
+
+    try {
+        const updates = req.body; // Dữ liệu cập nhật [{ id_pd_detail: 50, quantity: 50 }, { id_pd_detail: 51, quantity: 50 }]
+
+        updates.forEach(async (update) => {
+            const { id_pd_detail, quantity } = update;
+            const sql = `UPDATE product_detail SET quantity='${quantity}' WHERE id_pd_detail='${id_pd_detail}'`;
+            updateTasks.push(queryDB(sql));
+        });
+
+        await Promise.all(updateTasks); // Chờ tất cả các promise update hoàn thành
+
+        res.json({ success: "Cập nhật số lượng sản phẩm thành công" });
+    } catch (err) {
+        res.json({ error: err.message });
+    }
+});
 module.exports = router;
