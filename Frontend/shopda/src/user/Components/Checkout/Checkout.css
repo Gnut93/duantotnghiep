@@ -6,9 +6,6 @@
   font-weight: 500;
   padding: 50px 0 20px;
 }
-.checkout-list {
-  position: relative;
-}
 .checkout-wrapper {
   display: flex;
   align-items: flex-start;
@@ -16,12 +13,17 @@
   gap: 20px;
 }
 .checkout-form-discout {
-  position: absolute;
   width: calc(30% - 10px);
   right: 0px;
-  bottom: 5px;
+  top: 105%;
   padding: 20px;
   border: 1px solid #000000;
+}
+.checkout-form-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 20px;
 }
 .checkout-left {
   width: calc(70% - 10px);

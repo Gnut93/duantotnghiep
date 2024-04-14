@@ -22,15 +22,15 @@ function Search() {
     }));
   }, []);
   const handleAddToCart = (product) => {
-    const id_color = selectedColorIds[product.id_pd];
+    const id_pd_detail = selectedColorIds[product.id_pd];
     const nameColor = colors[product.id_pd].find(
-      (color) => color.id_color === id_color
+      (color) => color.id_pd_detail === id_pd_detail
     ).name;
     const maxQuantity = colors[product.id_pd].find(
-      (color) => color.id_color === id_color
+      (color) => color.id_pd_detail === id_pd_detail
     ).quantity;
     const colorInfo = colors[product.id_pd].find(
-      (color) => color.id_color === id_color
+      (color) => color.id_pd_detail === id_pd_detail
     );
 
     if (!colorInfo) {
@@ -39,7 +39,7 @@ function Search() {
     }
 
     const currentProductInCart = cart.find(
-      (p) => p.id_pd === product.id_pd && p.id_color === id_color
+      (p) => p.id_pd === product.id_pd && p.id_pd_detail === id_pd_detail
     );
     if (colorInfo.maxQuantity <= 0) {
       alert(`Sản phẩm đã hết hàng.`);
@@ -53,7 +53,7 @@ function Search() {
       dispatch(
         themSP({
           ...product,
-          id_color,
+          id_pd_detail,
           nameColor,
           maxQuantity,
           soluong: currentProductInCart ? currentProductInCart.soluong + 1 : 1,
@@ -111,7 +111,9 @@ function Search() {
         setSearchResults(data);
         const initialColorIds = {};
         const colorPromises = data.map((product) =>
-          fetch(`http://localhost:4000/products/color/${product.id_pd}`)
+          fetch(
+            `http://localhost:4000/products/product-detail/${product.id_pd}`
+          )
             .then((res) => res.json())
             .then((colorData) => {
               setColors((prevColors) => ({
@@ -122,7 +124,7 @@ function Search() {
                 })),
               }));
               if (colorData.length > 0) {
-                initialColorIds[product.id_pd] = colorData[0].id_color;
+                initialColorIds[product.id_pd] = colorData[0].id_pd_detail;
               }
             })
         );
@@ -176,11 +178,18 @@ function Search() {
               key={index}>
               <div className="products-main">
                 <div className="products-main-content">
-                  <img
-                    className="products-image"
-                    src={product['image']}
-                    alt={product['name']}
-                  />
+                  {colors[product.id_pd]?.map((color) =>
+                    selectedColorIds[product.id_pd] === color.id_pd_detail ? (
+                      <img
+                        key={color.id_pd_detail}
+                        src={color.image}
+                        alt={color.name}
+                        className="products-image"
+                      />
+                    ) : (
+                      ''
+                    )
+                  )}
                   <div className="products-content">
                     <ul className="products-social">
                       <li className="products-social-item">
@@ -214,17 +223,17 @@ function Search() {
                   <div className="products-color-list">
                     {colors[product.id_pd]?.map((color) => (
                       <div
-                        key={color.id_color}
+                        key={color.id_pd_detail}
                         className={`products-color-item ${
-                          selectedColorIds[product.id_pd] === color.id_color
+                          selectedColorIds[product.id_pd] === color.id_pd_detail
                             ? 'active'
                             : ''
                         }`}
                         style={{
-                          backgroundColor: color.code,
+                          backgroundColor: color.color_code,
                         }}
                         onClick={() =>
-                          selectColor(product.id_pd, color.id_color)
+                          selectColor(product.id_pd, color.id_pd_detail)
                         }></div>
                     ))}
                   </div>

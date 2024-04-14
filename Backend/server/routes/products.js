@@ -197,25 +197,25 @@ router.get('/col/list', (req, res) => {
   });
 });
 // // lấy màu chi tiết sản phẩm
-// router.get('/color/detail/:id', (req, res) => {
-//   var id = parseInt(req.params.id);
-//   if (isNaN(id) || id < 1) {
-//     res.json({ error: 'ID không hợp lệ' });
-//     return;
-//   }
-//   var sql = `SELECT * FROM product_detail where id_pd_detail = '${id}'`;
-//   db.query(sql, (err, result) => {
-//     if (err) {
-//       res.json({ error: 'Khong tim thay mau san pham' });
-//     } else {
-//       if (result.length > 0) {
-//         res.json(result[0]);
-//       } else {
-//         res.json({ error: 'Khong tim thay mau san pham' });
-//       }
-//     }
-//   });
-// });
+router.get('/color/detail/:id', (req, res) => {
+  var id = parseInt(req.params.id);
+  if (isNaN(id) || id < 1) {
+    res.json({ error: 'ID không hợp lệ' });
+    return;
+  }
+  var sql = `SELECT * FROM product_detail where id_pd_detail = '${id}'`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      res.json({ error: 'Khong tim thay mau san pham' });
+    } else {
+      if (result.length > 0) {
+        res.json(result[0]);
+      } else {
+        res.json({ error: 'Khong tim thay mau san pham' });
+      }
+    }
+  });
+});
 
 //Lấy hình  1sản phẩm
 // router.get('/image/detail/:id', (req, res) => {

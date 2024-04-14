@@ -33,12 +33,9 @@ const ShowCar = () => {
   );
   const handleChangeQuantity = useCallback(
     (id, id_pd_detail, e) => {
-      console.log(
-        productColors.find((color) => color.id_pd_detail === id_pd_detail)
-      );
       const newQuantity = parseInt(e.target.value, 10) || 0;
       const colorInfo = productColors.find(
-        (color) => color.id_pd_detail === id_pd_detail
+        (color) => color.id_pd_detail === id
       ).quantity;
       if (newQuantity < 1) {
         dispatch(xoaSP({ id_pd_detail }));
@@ -75,11 +72,6 @@ const ShowCar = () => {
       <Navbar></Navbar>
       <div className="container">
         <h3 className="cart-heading">Giỏ Hàng</h3>
-        <Link
-          to="/shop"
-          className="cart-comback">
-          Tiếp tục mua hàng
-        </Link>
         <div className="cart-info">
           <table className="cart-table">
             <thead>
