@@ -6,24 +6,24 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 const Deal = () => {
-  useEffect(() => {
-    AOS.init({ duration: 1000 });
-  }, []);
+    useEffect(() => {
+        AOS.init({ duration: 1000 });
+    }, []);
 
-  return (
-    <>
-      <div className="deal-container" data-aos="fade-up">
-        <div className="deal-img">
-          <img src={img7} alt="img-deal" />
-        </div>
-        <div className="deal-button">
-          <Link to="/shop" className="btn-deal">
-            SHOP NOW
-          </Link>
-        </div>
-      </div>
-    </>
-  );
+    return (
+        <>
+            <div className="deal-container" data-aos="fade-up">
+                <div className="deal-img">
+                    <img src={img7} alt="img-deal" />
+                </div>
+                <div className="deal-button">
+                    <Link to="/shop" className="btn-deal">
+                        SHOP NOW
+                    </Link>
+                </div>
+            </div>
+        </>
+    );
 };
 
 export default Deal;
