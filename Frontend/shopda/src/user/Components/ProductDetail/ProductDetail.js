@@ -105,17 +105,17 @@ const ProductDetail = () => {
             ))}
           </div>
           <div className="detail-info">
-            <h3 className="detail-heading">{sp[0].name}</h3>
+            <h3 className="detail-heading">{sp[0]?.name}</h3>
             <div className="detail-price">
               <div className="detail-price-item">
                 <span>
-                  {parseInt(sp[0].price_sale).toLocaleString('vi-VN', {
+                  {parseInt(sp[0]?.price_sale).toLocaleString('vi-VN', {
                     style: 'currency',
                     currency: 'VND',
                   })}
                 </span>
                 <del>
-                  {parseInt(sp[0].price).toLocaleString('vi-VN', {
+                  {parseInt(sp[0]?.price).toLocaleString('vi-VN', {
                     style: 'currency',
                     currency: 'VND',
                   })}
