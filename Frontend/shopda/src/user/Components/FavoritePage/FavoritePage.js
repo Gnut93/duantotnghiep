@@ -140,6 +140,7 @@ const FavoritePage = () => {
             alert("Vui lòng đăng nhập để thực hiện thao tác này");
         }
     };
+    const HandleOnClickDeleteFavorite = async (item) => {};
     const HandleOnCLickView = async (item) => {
         const id_pd = item.id_pd;
         try {
@@ -211,16 +212,7 @@ const FavoritePage = () => {
                                                         )
                                                     }
                                                 >
-                                                    {item.id_fa ? (
-                                                        <i
-                                                            class="fa-sharp fa-solid fa-heart"
-                                                            style={{
-                                                                color: "#e31616",
-                                                            }}
-                                                        ></i>
-                                                    ) : (
-                                                        <i className="fas fa-heart"></i>
-                                                    )}
+                                                    <i className="fas fa-heart"></i>
                                                 </span>
                                             </li>
                                         </ul>
