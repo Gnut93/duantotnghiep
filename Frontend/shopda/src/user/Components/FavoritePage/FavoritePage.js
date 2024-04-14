@@ -94,23 +94,61 @@ const FavoritePage = () => {
         }));
     }, []);
 
+    const checkFavorite = async (id_pd, id_user) => {
+        try {
+            const url = "http://localhost:4000/favorite/check-favorite";
+            const opt = {
+                method: "post",
+                body: JSON.stringify({ id_pd: id_pd, id_user: id_user }),
+                headers: { "Content-Type": "application/json" },
+            };
+            const res = await fetch(url, opt);
+            const responseData = await res.json();
+            return responseData.exists; // Trả về true nếu sản phẩm đã được yêu thích, ngược lại trả về false
+        } catch (error) {
+            console.error("Lỗi khi kiểm tra sản phẩm yêu thích: ", error);
+            return false;
+        }
+    };
+
     const HandleOnClickFavorite = async (item) => {
         if (checkLogin === true) {
             const id_pd = item.id_pd;
             const id_user = idUser;
             console.log(id_pd, id_user);
             try {
-                const url = "http://localhost:4000/favorite/add";
-                const opt = {
+                // Kiểm tra xem sản phẩm đã được yêu thích hay chưa
+                const isFavorite = await checkFavorite(id_pd, id_user);
+                if (isFavorite) {
+                    // Nếu sản phẩm đã có trong danh sách yêu thích, gọi endpoint xóa
+                    const url = `http://localhost:4000/favorite/delete/${id_user}/${id_pd}`;
+                    const opt = {
+                        method: "DELETE",
+                        headers: { "Content-Type": "application/json" },
+                    };
+                    const res = await fetch(url, opt);
+                    const responseData = await res.json();
+                    alert(
+                        "Đã xóa sản phẩm khỏi danh sách yêu thích",
+                        responseData
+                    );
+                    return;
+                }
+                // Nếu sản phẩm chưa được yêu thích, thêm vào danh sách yêu thích
+                const addUrl = "http://localhost:4000/favorite/add";
+                const addOpt = {
                     method: "post",
                     body: JSON.stringify({ id_pd: id_pd, id_user: id_user }),
                     headers: { "Content-Type": "application/json" },
                 };
-                const res = await fetch(url, opt);
-                const responseData = await res.json();
-                alert("Đã thêm vào danh sách yêu thích", responseData);
+                const addRes = await fetch(addUrl, addOpt);
+                const addResponseData = await addRes.json();
+                alert("Đã thêm vào danh sách yêu thích", addResponseData);
             } catch (error) {
-                console.error("Lỗi khi thêm yêu thích sản phẩm: ", error);
+                console.error(
+                    "Lỗi khi thao tác với danh sách yêu thích sản phẩm: ",
+                    error
+                );
             }
         } else {
             alert("Vui lòng đăng nhập để thực hiện thao tác này");
