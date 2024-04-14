@@ -192,7 +192,7 @@ const RelatedProduct = ({ id = '' }) => {
                             : ''
                         }`}
                         style={{
-                          backgroundColor: color.code,
+                          backgroundColor: color.color_code,
                         }}
                         onClick={() =>
                           selectColor(item.id_pd, color.id_pd_detail)
