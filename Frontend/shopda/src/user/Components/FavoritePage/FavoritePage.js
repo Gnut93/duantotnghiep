@@ -12,7 +12,7 @@ const FavoritePage = () => {
   const cart = useSelector((state) => state.cart.listSP);
   const dispatch = useDispatch();
   useEffect(() => {
-    fetch(`http://localhost:4000/products/list/view/8`)
+    fetch(`http://localhost:4000/favorite/list/${idUser}`)
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
