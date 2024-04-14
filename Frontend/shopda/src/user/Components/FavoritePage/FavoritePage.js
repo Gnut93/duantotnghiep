@@ -115,7 +115,6 @@ const FavoritePage = () => {
         if (checkLogin === true) {
             const id_pd = item.id_pd;
             const id_user = idUser;
-            console.log(id_pd, id_user);
             try {
                 // Kiểm tra xem sản phẩm đã được yêu thích hay chưa
                 const isFavorite = await checkFavorite(id_pd, id_user);
