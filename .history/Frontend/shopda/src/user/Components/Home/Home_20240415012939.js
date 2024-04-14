@@ -16,7 +16,7 @@ const Home = () => {
         <Trending></Trending>
         <ViewProduct></ViewProduct>
         <Deal></Deal>
-        <Recommend></Recommend>
+        <Recommend
       </div>
     </>
   );

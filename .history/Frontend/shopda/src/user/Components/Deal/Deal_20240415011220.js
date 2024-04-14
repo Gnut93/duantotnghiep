@@ -6,8 +6,16 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 const Deal = () => {
   useEffect(() => {
+   
     AOS.init({ duration: 1000 });
+
+    // Làm mới AOS sau mỗi lần render
     AOS.refresh();
+
+    // Trả về hàm dọn dẹp (clean-up) để ngăn ngừa rò rỉ bộ nhớ
+    return () => {
+        AOS.refresh();
+    };
   }, []);
 
   return (

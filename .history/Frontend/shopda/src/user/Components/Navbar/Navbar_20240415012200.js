@@ -2,7 +2,7 @@ import React from "react";
 import "./Navbar.css";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import logo from "./logo.png";
+import logo from "./logo3.png";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { thoat } from "../../../authSlice";

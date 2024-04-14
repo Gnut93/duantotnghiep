@@ -7,7 +7,12 @@ import "aos/dist/aos.css";
 const Deal = () => {
   useEffect(() => {
     AOS.init({ duration: 1000 });
+
     AOS.refresh();
+
+    return () => {
+      AOS.refresh();
+    };
   }, []);
 
   return (
