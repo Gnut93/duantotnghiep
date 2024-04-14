@@ -13,6 +13,7 @@ const Deal = () => {
   return (
     <>
       <div className="deal-container" data-aos="fade-up">
+       
         <div className="deal-img">
           <img src={img7} alt="img-deal" />
         </div>

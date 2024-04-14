@@ -7,12 +7,13 @@ import "aos/dist/aos.css";
 
 const Deal = () => {
   useEffect(() => {
-    AOS.init({ duration: 1000 });
+    AOS.init({ duration: 1000 }); // Khởi tạo AOS với thời gian hoạt ảnh là 1000ms
   }, []);
 
   return (
     <>
       <div className="deal-container" data-aos="fade-up">
+       
         <div className="deal-img">
           <img src={img7} alt="img-deal" />
         </div>

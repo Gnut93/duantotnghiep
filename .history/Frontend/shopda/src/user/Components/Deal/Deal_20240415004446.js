@@ -6,10 +6,10 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 const Deal = () => {
-  useEffect(() => {
-    AOS.init({ duration: 1000 });
-  }, []);
-
+    useEffect(() => {
+        AOS.init({ duration: 2000 });
+    }, []);
+    
   return (
     <>
       <div className="deal-container" data-aos="fade-up">
