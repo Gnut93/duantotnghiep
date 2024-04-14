@@ -46,7 +46,7 @@ const FavoritePage = () => {
     const id_pd_detail = selectedColorIds[product.id_pd];
     const nameColor = colors[product.id_pd].find(
       (color) => color.id_pd_detail === id_pd_detail
-    ).name;
+    ).color;
     const maxQuantity = colors[product.id_pd].find(
       (color) => color.id_pd_detail === id_pd_detail
     ).quantity;
