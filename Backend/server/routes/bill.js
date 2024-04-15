@@ -60,12 +60,14 @@ router.post("/add-detail", async (req, res) => {
             item.id_bill,
             item.name,
             item.price,
+            item.color,
+            item.image,
             item.quantity,
             item.total_price,
             item.id_pd,
         ]);
 
-        var sql = `INSERT INTO bill_detail (id_bill, name, price, quantity, total_price, id_pd) VALUES ?`;
+        var sql = `INSERT INTO bill_detail (id_bill, name, price,color,image, quantity, total_price, id_pd) VALUES ?`;
 
         await db.query(sql, [values]);
 
