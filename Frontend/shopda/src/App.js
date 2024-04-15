@@ -14,6 +14,8 @@ import { useSelector } from 'react-redux';
 import { ProtectedRoute } from './ProtectedRoute';
 import { useDispatch } from 'react-redux';
 import { dalogin } from './authSlice';
+import { thoat } from './authSlice';
+import {jwtDecode} from 'jwt-decode';
 
 // Giả sử bạn có một hàm để kiểm tra trạng thái đăng nhập và vai trò của người dùng
 // function isAuthenticated() {}
@@ -25,14 +27,27 @@ const App = () => {
   const userRole = parseInt(user?.role);
   const dispatch = useDispatch();
 
-    useEffect(() => {
-        // Kiểm tra localStorage khi ứng dụng khởi động
-        const result = localStorage.getItem('result');
-        if (result) {
-            // Chuyển đổi chuỗi JSON trở lại thành đối tượng và đưa vào Redux store
-            dispatch(dalogin(JSON.parse(result)));
-        }
-    }, [dispatch]);
+  const checkToken = async () => {
+    const result = JSON.parse(localStorage.getItem('result'));
+    const token = result?.idToken;
+    if (token) {
+      const decoded = jwtDecode(token);
+      const currentTime = Date.now() / 1000;
+      // Tính thời điểm hết hạn thực sự của token
+      const expirationTime = decoded.exp;
+      const expires_time = expirationTime - currentTime;
+      if (expires_time < 0) {
+        localStorage.removeItem('result');
+        dispatch(thoat());
+      } else {
+        dispatch(dalogin(result));
+      }
+    }
+  }
+  
+  useEffect(() => {
+    checkToken();
+  }, []);
 
   return (
     <Router>

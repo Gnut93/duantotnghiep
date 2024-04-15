@@ -8,7 +8,11 @@ import { useDispatch } from 'react-redux';
 import { thoat } from '../../../authSlice';
 
 const Navbar = (props) => {
+<<<<<<< HEAD
   const { backgroundColor = '#4A1F18' } = props;
+=======
+  const { backgroundColor = "#753322ef" } = props;
+>>>>>>> 96a0901f17943ee13fda919e213e3514f74df7ee
   const cart = useSelector((state) => state.cart.listSP);
   const user = useSelector((state) => state.auth.user);
   const daDangNhap = useSelector((state) => state.auth.daDangNhap);

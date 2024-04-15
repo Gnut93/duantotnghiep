@@ -13,12 +13,7 @@ export const authSlice = createSlice({
             state.token = param.payload.token;
             state.expiresIn = param.payload.expiresIn;
             state.user = param.payload.userInfo;
-            state.daDangNhap = true;
-            console.log(
-                "Đã ghi nhận state đăng nhập",
-                state.user,
-                state.daDangNhap
-            );
+            state.daDangNhap = true;;
         }
     },
     dalogin: (state, param) => {
