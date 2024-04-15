@@ -265,6 +265,12 @@ router.post("/delivery", async (req, res) => {
     }
 
     // Xử lý sản phẩm
+    const imageProducts = Object.values(products)
+        .slice(0, -7)
+        .map((product) => {
+            return `<p>${product.image}</p>`;
+        })
+        .join("");
     const mailProducts = Object.values(products)
         .slice(0, -7)
         .map((product) => {
@@ -283,7 +289,7 @@ router.post("/delivery", async (req, res) => {
             return `<p>${product.price}</p>`;
         })
         .join("");
-
+    const currentDate = new Date().toLocaleDateString("en-GB");
     // cấu hình gửi mail
     var transporter = nodemailer.createTransport({
         service: "gmail",
@@ -296,11 +302,10 @@ router.post("/delivery", async (req, res) => {
         to: email, // Sử dụng email từ req.body
         subject: "Thư gửi về thông tin đơn hàng",
         html: mailDelivery
-            // .replace(
-            //     "{{NgayDatHang}}",
-            // )
             .replace("{{TenKhachHang}}", name)
+            .replace("{{NgayDatHang}}", currentDate)
             .replace("{{DiaChi}}", address)
+            .replace("{{HinhSanPham}}", imageProducts)
             .replace("{{TenSanPham}}", mailProducts)
             .replace("{{SoLuong}}", quantityProducts)
             .replace("{{Gia}}", priceProducts)
