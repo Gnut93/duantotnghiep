@@ -97,10 +97,10 @@ const ProductDetail = () => {
       <div className="container">
         <div className="detail-content">
           <div className="detael-image">
-            {image.map((item, i) => (
+            {sp.map((item, i) => (
               <img
                 key={i}
-                src={item.name}
+                src={item.image}
                 alt=""
               />
             ))}
@@ -110,13 +110,13 @@ const ProductDetail = () => {
             <div className="detail-price">
               <div className="detail-price-item">
                 <span>
-                  {parseInt(sp.price_sale).toLocaleString('vi-VN', {
+                  {parseInt(sp[0]?.price_sale).toLocaleString('vi-VN', {
                     style: 'currency',
                     currency: 'VND',
                   })}
                 </span>
                 <del>
-                  {parseInt(sp.price).toLocaleString('vi-VN', {
+                  {parseInt(sp[0]?.price).toLocaleString('vi-VN', {
                     style: 'currency',
                     currency: 'VND',
                   })}
