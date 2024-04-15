@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import "./Recommend.css";
-import user1 from "../../../assets/images/user1.jpg";
-import user2 from "../../../assets/images/user2.jpg";
-import user3 from "../../../assets/images/user3.jpg";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import React, { useEffect } from 'react';
+import './Recommend.css';
+import user1 from '../../../assets/images/user1.jpg';
+import user2 from '../../../assets/images/user2.jpg';
+import user3 from '../../../assets/images/user3.jpg';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const Recommend = () => {
   useEffect(() => {
     AOS.init({ duration: 1000 });
@@ -12,15 +12,16 @@ const Recommend = () => {
   }, []);
 
   return (
-    <>
+    <div className="container">
       <h3
         className="related-heading"
         data-aos="fade-up"
-        style={{ marginBottom: "30px", marginTop: "70px" }}
-      >
+        style={{ marginBottom: '30px', marginTop: '70px' }}>
         Khách Hàng Nói Gì Về Chúng Tôi?
       </h3>
-      <div className="testimonial" data-aos="fade-up">
+      <div
+        className="testimonial"
+        data-aos="fade-up">
         <div className="small-container">
           <div className="row">
             <div className="col-3">
@@ -31,7 +32,10 @@ const Recommend = () => {
                 iusto laboriosam eos maiores enim sit corrupti ipsa omnis
                 officiis quo!
               </p>
-              <img src={user1} alt="User 1" />
+              <img
+                src={user1}
+                alt="User 1"
+              />
               <h3>Andree right hand</h3>
             </div>
             <div className="col-3">
@@ -42,7 +46,10 @@ const Recommend = () => {
                 iusto laboriosam eos maiores enim sit corrupti ipsa omnis
                 officiis quo!
               </p>
-              <img src={user2} alt="User 2" />
+              <img
+                src={user2}
+                alt="User 2"
+              />
               <h3>C. Ronaldo</h3>
             </div>
             <div className="col-3">
@@ -53,13 +60,16 @@ const Recommend = () => {
                 iusto laboriosam eos maiores enim sit corrupti ipsa omnis
                 officiis quo!
               </p>
-              <img src={user3} alt="User 3" />
+              <img
+                src={user3}
+                alt="User 3"
+              />
               <h3>Lionel Messi</h3>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
