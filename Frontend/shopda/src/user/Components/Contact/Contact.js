@@ -49,14 +49,16 @@ const schema = yup.object({
         .max(2000, " Mô tả có tối đa 2000 ký tự"),
 });
 const Contact = () => {
+    const result = JSON.parse(localStorage.getItem('result'));
+    const user = result?.userInfo;
     const form = useForm({
         defaultValues: {
-            name: "",
+            name: user?.name,
             size: "",
             color: "",
             image: "",
-            email: "",
-            phone: "",
+            email: user?.email,
+            phone: user?.phone,
             description: "",
         },
         resolver: yupResolver(schema),
