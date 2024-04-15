@@ -1,0 +1,25 @@
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
+/* Đặt khoảng cách lề trái và phải của Slider là 60px */
+.slick-slider {
+  padding: 0 60px;
+}
+
+/* Đặt khoảng cách giữa các ảnh là 20px */
+.slick-slide {
+  margin-right: 20px;
+  box-sizing: border-box;
+}
+
+/* Căn chỉnh kích thước ảnh */
+.slick-slide img {
+  width: 100%; /* Đảm bảo ảnh chiếm toàn bộ chiều rộng của slide */
+  height: auto; /* Duy trì tỷ lệ kích thước ảnh */
+  display: block;
+}
+
+/* Xóa khoảng cách thừa ở slide cuối cùng */
+.slick-track {
+  margin-right: -20px;
+}
