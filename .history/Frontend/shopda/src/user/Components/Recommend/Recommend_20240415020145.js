@@ -19,7 +19,7 @@ const Recommend = () => {
       >
         Khách Hàng Nói Gì Về Chúng Tôi?
       </h3>
-      <div className="testimonial" data-aos="fade-up">
+      <div className="testimonial" dât>
         <div className="small-container">
           <div className="row">
             <div className="col-3">

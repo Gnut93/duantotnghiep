@@ -35,7 +35,7 @@
   color: #000;
 }
 .deal-content {
-  position: absolute;
-  top: 85%;
-  left: 68%;
+  width: 100%;
+  padding: 40px;
+  background-color: #f9f9f9;
 }

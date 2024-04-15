@@ -6,11 +6,8 @@ import user3 from "../../../assets/images/user3.jpg";
 import AOS from "aos";
 import "aos/dist/aos.css";
 const Recommend = () => {
-  useEffect(() => {
-    AOS.init({ duration: 1000 });
-    AOS.refresh();
-  }, []);
-
+    useEffect(() => {
+        
   return (
     <>
       <h3
@@ -19,7 +16,7 @@ const Recommend = () => {
       >
         Khách Hàng Nói Gì Về Chúng Tôi?
       </h3>
-      <div className="testimonial" data-aos="fade-up">
+      <div className="testimonial">
         <div className="small-container">
           <div className="row">
             <div className="col-3">
