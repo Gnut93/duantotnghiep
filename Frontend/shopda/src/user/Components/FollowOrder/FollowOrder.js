@@ -6,6 +6,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 const schema = yup.object({
     phone: yup
         .string()
@@ -77,6 +78,7 @@ const FollowOrder = () => {
                             <td>Trạng thái</td>
                             <td>Thanh toán</td>
                             <td>Ngày đặt hàng</td>
+                            <td>Chi tiết</td>
                         </tr>
                         <tbody>
                             {listBill.map((bill, i) => (
@@ -114,6 +116,15 @@ const FollowOrder = () => {
                                         {new Date(
                                             bill.created_date
                                         ).toLocaleDateString("vi")}
+                                    </td>
+                                    <td>
+                                        <Link
+                                            to={`/order-detail/${bill.id_bill}`}
+                                        >
+                                            <span className="btn--show-modal">
+                                                <i className="fas fa-search"></i>
+                                            </span>
+                                        </Link>
                                     </td>
                                 </tr>
                             ))}

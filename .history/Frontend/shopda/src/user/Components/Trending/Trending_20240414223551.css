@@ -1,0 +1,28 @@
+.trending {
+  padding: 60px 0;
+}
+.trending-heading {
+  text-align: center;
+  font-size: 56px;
+  margin-bottom: 50px;
+}
+.category-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Tạo 5 cột */
+  grid-template-rows: repeat(2, 1fr); /* Tạo 2 hàng */
+  gap: 10px; /* Khoảng cách giữa các ô lưới */
+}
+
+/* Quy tắc cho ảnh đầu tiên để chiếm diện tích 2 hàng */
+.category-list .category-item:first-child {
+  /* Ảnh đầu tiên chiếm 2 cột */
+  grid-column: span 2;
+  /* Ảnh đầu tiên chiếm 2 hàng */
+  grid-row: span 2;
+}
+
+/* Điều chỉnh kích thước các ảnh khác */
+.category-list .category-item img {
+  width: 100%;
+  height: 1000px im
+}

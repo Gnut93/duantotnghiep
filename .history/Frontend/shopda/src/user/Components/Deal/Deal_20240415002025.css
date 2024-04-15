@@ -1,0 +1,11 @@
+.deal-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 50px 0;
+  position: relative;
+}
+
+.deal-container .deal-img {
+  
+}

@@ -28,6 +28,7 @@ const ChiTietDonHang = () => {
                                     <th>Tên sản phẩm</th>
                                     <th>Giá sản phẩm</th>
                                     <th>Màu Sản Phẩm</th>
+                                    <th>Hình Sản Phẩm</th>
                                     <th>Số lượng</th>
                                     <th>Tổng tiền</th>
                                 </tr>
@@ -39,6 +40,12 @@ const ChiTietDonHang = () => {
                                         <td>{billDetail.name}</td>
                                         <td>{billDetail.price}</td>
                                         <td>{billDetail.color}</td>
+                                        <td>
+                                            <img
+                                                src={billDetail.image}
+                                                alt="#"
+                                            />
+                                        </td>
                                         <td>{billDetail.quantity}</td>
                                         <td>{billDetail.total_price}</td>
                                     </tr>

@@ -11,7 +11,7 @@ router.get("/list/:id", (req, res) => {
     }
 
     // var sql = `SELECT * FROM favorite where id_user = '${id}'`;
-    var sql = `SELECT product.id_pd, product.name, product.price, product.image, product.id_cate FROM product INNER JOIN favorite ON product.id_pd = favorite.id_pd WHERE favorite.id_user = '${id}'`;
+    var sql = `SELECT product.id_pd, product.name, product.price,product.price_sale, product.image, product.id_cate FROM product INNER JOIN favorite ON product.id_pd = favorite.id_pd WHERE favorite.id_user = '${id}'`;
     db.query(sql, (err, result) => {
         if (err) {
             res.json({ error: "Khong tim thay favorite" });
@@ -47,6 +47,26 @@ router.delete("/delete/:id_user/:id_pd", (req, res) => {
             res.json({ error: "Khong xoa duoc favorite" });
         } else {
             res.json({ success: "Xoa favorite thanh cong" });
+        }
+    });
+});
+
+router.post("/check-favorite", (req, res) => {
+    const { id_pd, id_user } = req.body;
+    const sql = `SELECT id_pd FROM favorite WHERE id_pd = ? AND id_user = ?`;
+    db.query(sql, [id_pd, id_user], (err, result) => {
+        if (err) {
+            console.error("Lỗi khi kiểm tra sản phẩm yêu thích: ", err);
+            res.status(500).send({
+                error: "Đã xảy ra lỗi khi kiểm tra sản phẩm yêu thích.",
+            });
+            return;
+        }
+
+        if (result.length > 0) {
+            res.send({ exists: true });
+        } else {
+            res.send({ exists: false });
         }
     });
 });

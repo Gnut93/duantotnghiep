@@ -140,15 +140,17 @@ const Checkout = () => {
         return billData;
     };
     const selectedProducts = cart.map((item) => {
-        const { name, nameColor, price, soluong, id_pd } = item;
-        return { name, nameColor, price, soluong, id_pd };
+        const { name, nameColor, price, image, soluong, id_pd } = item;
+        return { name, nameColor, price, image, soluong, id_pd };
     });
-
+    console.log(selectedProducts);
     const generateBillDetailData = (selectedProducts, id_bd) => {
         return selectedProducts.map((product) => ({
             id_bill: id_bd,
             name: product.name,
             price: product.price,
+            color: product.nameColor,
+            image: product.image,
             quantity: product.soluong,
             total_price: TotalPrice,
             id_pd: product.id_pd,
