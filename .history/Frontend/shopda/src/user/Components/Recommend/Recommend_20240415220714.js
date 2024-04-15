@@ -14,8 +14,7 @@ const Recommend = () => {
   return (
     <>
       <h3
-        className="related-heading"
-        data-aos="fade-up"
+        className="related-heading" data-aos="fade-up"
         style={{ marginBottom: "30px", marginTop: "70px" }}
       >
         Khách Hàng Nói Gì Về Chúng Tôi?

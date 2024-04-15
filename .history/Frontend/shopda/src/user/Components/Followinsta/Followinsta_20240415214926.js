@@ -39,7 +39,7 @@ const Followinsta = () => {
     infinite: true,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 2,
+    slidesToScroll: ra,
     beforeChange: () => setIsDragging(true),
     afterChange: () => setIsDragging(false),
   };

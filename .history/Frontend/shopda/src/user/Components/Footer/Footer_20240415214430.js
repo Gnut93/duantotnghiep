@@ -1,7 +1,7 @@
-import React from "react";
-import "./Footer.css";
-import { Link } from "react-router-dom";
-import logoSaleNoti from "../../../assets/images/logoSaleNoti.png";
+import React from 'react';
+import './Footer.css';
+import { Link } from 'react-router-dom';
+import logoSaleNoti from '../../../assets/images/logoSaleNoti.png';
 const Footer = () => {
   return (
     <footer className="footer">
@@ -86,9 +86,7 @@ const Footer = () => {
             <div>
               <img
                 src={logoSaleNoti}
-                alt=""
-                style={{ height: "60px", marginTop: "20px" }}
-              ></img>
+                alt="" style={{}}></img>
             </div>
           </div>
         </div>
