@@ -11,20 +11,22 @@ const ForgotPassword = () => {
         e.preventDefault();
         setIsLoading(true); // Đặt isLoading thành true khi yêu cầu bắt đầu
         const data = {
-            email: email.current.value
+            email: email.current.value,
         };
         if (data.email === "") {
             alert("Vui lòng nhập email");
             setIsLoading(false); // Đặt isLoading thành false nếu có lỗi
             return;
         }
-        console.log(data);
         try {
-            const response = await fetch("http://localhost:4000/users/forgot-password", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(data),
-            });
+            const response = await fetch(
+                "http://localhost:4000/users/forgot-password",
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data),
+                }
+            );
             const result = await response.json();
             alert(result.success);
             navigate("/login");
@@ -46,7 +48,9 @@ const ForgotPassword = () => {
                         className="input"
                         placeholder="Nhập email của bạn"
                     />
-                    <button className="form-btn" disabled={isLoading}>Nhận email khôi phục</button>
+                    <button className="form-btn" disabled={isLoading}>
+                        Nhận email khôi phục
+                    </button>
                 </form>
                 <p className="sign-up-label">
                     Bạn không có tài khoản?{" "}
@@ -54,8 +58,7 @@ const ForgotPassword = () => {
                         Đăng ký
                     </Link>
                 </p>
-                <div className="buttons-container">
-                </div>
+                <div className="buttons-container"></div>
             </div>
         </div>
     );

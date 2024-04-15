@@ -83,7 +83,6 @@ const Checkout = () => {
                 "http://localhost:4000/bill/add",
                 formBill
             );
-            console.log(billResponse);
             const id_bd = billResponse.id_dh;
             const formBillDetail = generateBillDetailData(
                 selectedProducts,
@@ -110,6 +109,11 @@ const Checkout = () => {
             await putQuantityDiscount(
                 `http://localhost:4000/admin-giftcode/edit-quantity/${idGc}`,
                 formQuantityDiscount
+            );
+            await sendMail(
+                `http://localhost:4000/users/delivery`,
+                formBill,
+                formBillDetail
             );
 
             alert("Thanh Toán thành công,", billResponse);
@@ -143,7 +147,6 @@ const Checkout = () => {
         const { name, nameColor, price, image, soluong, id_pd } = item;
         return { name, nameColor, price, image, soluong, id_pd };
     });
-    console.log(selectedProducts);
     const generateBillDetailData = (selectedProducts, id_bd) => {
         return selectedProducts.map((product) => ({
             id_bill: id_bd,
@@ -222,6 +225,17 @@ const Checkout = () => {
         const options = {
             method: "put",
             body: JSON.stringify(data),
+            headers: { "Content-Type": "application/json" },
+        };
+        const response = await fetch(url, options);
+        return await response.json();
+    };
+    const sendMail = async (url, formBill, formBillDetail) => {
+        const combinedData = { ...formBill, ...formBillDetail };
+
+        const options = {
+            method: "post",
+            body: JSON.stringify(combinedData),
             headers: { "Content-Type": "application/json" },
         };
         const response = await fetch(url, options);

@@ -9,11 +9,7 @@ const mailForgotPassword = fs.readFileSync(
     "utf8",
     "rs"
 );
-const mailDelivery = fs.readFileSync(
-    "./Mail/MailDelivery.html",
-    "utf8",
-    "rs"
-);
+const mailDelivery = fs.readFileSync("./Mail/MailDelivery.html", "utf8", "rs");
 const PRIVATE_KEY = fs.readFileSync("./private-key.txt");
 const nodemailer = require("nodemailer");
 
@@ -240,9 +236,53 @@ router.post("/forgot-password", async (req, res) => {
 
 //Mail giao hàng
 router.post("/delivery", async (req, res) => {
-    const email = req.body.email;
-    const name = req.body.name;
-    //Lấy thêm thông tin chèn vào mail
+    const {
+        address,
+        name,
+        phone,
+        email,
+        total_price,
+        status,
+        note,
+        payment_type,
+    } = req.body;
+    const products = req.body;
+
+    // Kiểm tra xem các trường thông tin có đầy đủ không
+    if (
+        !address ||
+        !name ||
+        !phone ||
+        !email ||
+        !total_price ||
+        !status ||
+        !note ||
+        !payment_type ||
+        !products ||
+        Object.keys(products).length === 0
+    ) {
+        return res.status(400).json({ error: "Thiếu thông tin đơn hàng" });
+    }
+
+    // Xử lý sản phẩm
+    const mailProducts = Object.values(products)
+        .slice(0, -7)
+        .map((product) => {
+            return `<p>${product.name}</p>`;
+        })
+        .join("");
+    const quantityProducts = Object.values(products)
+        .slice(0, -7)
+        .map((product) => {
+            return `<p>${product.quantity}</p>`;
+        })
+        .join("");
+    const priceProducts = Object.values(products)
+        .slice(0, -7)
+        .map((product) => {
+            return `<p>${product.price}</p>`;
+        })
+        .join("");
 
     // cấu hình gửi mail
     var transporter = nodemailer.createTransport({
@@ -250,30 +290,38 @@ router.post("/delivery", async (req, res) => {
         auth: { user: "daleather.2024@gmail.com", pass: "erqccpsqpfrnybyw" }, //pass ứng dụng
         tls: { rejectUnauthorized: false },
     });
+
     var mailOptions = {
         from: "daleather.2024@gmail.com",
-        to: email,
-        subject: "Thư gửi về việc mật khẩu cấp lại mật khẩu mới",
-        // html: "Mật khẩu mới của bạn là: <b>" + newpass + "</b>",
+        to: email, // Sử dụng email từ req.body
+        subject: "Thư gửi về thông tin đơn hàng",
         html: mailDelivery
+            // .replace(
+            //     "{{NgayDatHang}}",
+            // )
             .replace("{{TenKhachHang}}", name)
-            .replace("{{DiaChi}}", DiaChi)
-            .replace("{{Ward}}", Ward)
-            .replace("{{District}}", District)
-            .replace("{{Province}}", Province)
-            .replace("{{TenSanPham}}", ProductName)
-            .replace("{{SoLuong}}", Quantity)
-            .replace("{{Gia}}", Price)
-            .replace("{{TongTien}}", Total)
-            .replace("{{MaGiamGia}}", Discount)
-
+            .replace("{{DiaChi}}", address)
+            .replace("{{TenSanPham}}", mailProducts)
+            .replace("{{SoLuong}}", quantityProducts)
+            .replace("{{Gia}}", priceProducts)
+            .replace("{{TongTien}}", total_price)
+            .replace("{{TongGiaTri}}", total_price)
+            .replace("{{TongGiaTri}}", total_price),
     };
-    await transporter.sendMail(mailOptions);
-            return res.json({
-                success:
-                    "Cảm ơn bạn đã mua hàng của chúng tôi. Chúng tôi đã gửi thư xác nhận đến email của bạn. Vui lòng kiểm tra email của bạn để xem thông tin chi tiết đơn hàng của bạn",
-            });
+
+    // Gửi email và xử lý kết quả
+    try {
+        await transporter.sendMail(mailOptions);
+        return res.json({
+            success:
+                "Cảm ơn bạn đã mua hàng của chúng tôi. Chúng tôi đã gửi thư xác nhận đến email của bạn. Vui lòng kiểm tra email của bạn để xem thông tin chi tiết đơn hàng của bạn",
+        });
+    } catch (error) {
+        console.error("Lỗi khi gửi email:", error);
+        return res.status(500).json({ error: "Đã xảy ra lỗi khi gửi email" });
+    }
 });
+
 //Check email tồn tại
 router.get("/check-email/:email", (req, res) => {
     var email = req.params.email;
