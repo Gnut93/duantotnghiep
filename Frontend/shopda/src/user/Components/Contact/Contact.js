@@ -4,6 +4,7 @@ import Navbar from "../Navbar/Navbar";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { useEffect } from "react";
+import {useSelector} from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import cloudinaryUpload from "../../../user/service/uploads";
@@ -49,14 +50,16 @@ const schema = yup.object({
         .max(2000, " Mô tả có tối đa 2000 ký tự"),
 });
 const Contact = () => {
+    const user = useSelector((state) => state.auth.user);
+    // const idUser = user ? user.id_user : null;
     const form = useForm({
         defaultValues: {
-            name: "",
-            size: "",
+            name: user?.name,
+            loai: "",
             color: "",
             image: "",
-            email: "",
-            phone: "",
+            email: user?.email,
+            phone: user?.phone,
             description: "",
         },
         resolver: yupResolver(schema),
@@ -82,6 +85,7 @@ const Contact = () => {
             console.error("Lỗi khi gửi form: ", error);
         }
     };
+    
     const handleFileUpload = (e) => {
         const uploadData = new FormData();
         uploadData.append("file", e.target.files[0], "file");
@@ -138,23 +142,22 @@ const Contact = () => {
                                 <p className="err">{errors.name?.message}</p>
                             </div>
                             <div className="contact-form-gid-item">
-                                <input
-                                    class="email"
-                                    type="text"
-                                    id=""
-                                    placeholder="Size"
-                                    {...register("size")}
-                                />
-                                <p className="err">{errors.size?.message}</p>
+                            <select className="email" {...register("loai")} >
+                                    <option>Ví</option>
+                                    <option>Túi xách</option>
+                                    <option>Túi du lịch</option>
+                                    <option>Thắt lưng</option>
+                                    <option>Balo</option>
+                                </select>
+                                <p className="err">{errors.loai?.message}</p>
                             </div>
                             <div className="contact-form-gid-item">
-                                <input
-                                    class="name"
-                                    type="text"
-                                    id=""
-                                    placeholder="Màu da"
-                                    {...register("color")}
-                                />
+                            <select className="email" {...register("color")}>
+                                    <option>Màu đen</option>
+                                    <option>Màu nâu</option>
+                                    <option>Màu nâu bò</option>
+                                    <option>Màu lợt</option>
+                                </select>
                                 <p className="err">{errors.color?.message}</p>
                             </div>
                             <div className="contact-form-gid-item">
