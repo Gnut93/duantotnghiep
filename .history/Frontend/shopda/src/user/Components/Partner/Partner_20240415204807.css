@@ -1,0 +1,56 @@
+.partner-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 76px auto;
+  width: 100%;
+  align-items: center;
+}
+.icon-logo {
+  width: 200px; /* Increase this value */
+  min-height: 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 76px;
+  flex-direction: column;
+  transition: all 0.3s;
+  opacity: 1;
+}
+.icon-logo:hover {
+  transform: scale(1.1);
+
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.icon-logo h6 {
+  font-size: 14px;
+  font-weight: light;
+  color: #000;
+  white-space: nowrap; /* Add this line */
+}
+.icon-logo i {
+  font-size: 60px;
+  font-weight: light;
+  color: #000;
+}
+.icon-logo p {
+  color: #000;
+  font-size: 12px;
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.banner-button {
+  animation: fadeInUp 2.5s ease-in-out;
+}
