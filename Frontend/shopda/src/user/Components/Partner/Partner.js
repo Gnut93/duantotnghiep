@@ -1,11 +1,18 @@
 import React from "react";
 import "./Partner.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const Partner = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+    AOS.refresh();
+  }, []);
   return (
     <>
       <hr style={{ color: "gray", margin: "0px 220px" }} />
-      <div className="partner-container">
+      <div className="partner-container" data-aos="fade-up">
         <div className="icon-logo">
           <i class="ri-truck-line"></i>
           <h6 style={{ textAlign: "center" }}>FreeShip </h6>

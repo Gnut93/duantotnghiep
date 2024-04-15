@@ -10,10 +10,13 @@ import img4 from "./4.jpg";
 import img5 from "./5.jpg";
 import img6 from "./6.jpg";
 import img7 from "./7.jpg";
+import img8 from "./8.png";
+import img9 from "./9.jpg";
+import img10 from "./10.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 const Followinsta = () => {
   const [selectedImg, setSelectedImg] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -43,6 +46,9 @@ const Followinsta = () => {
     beforeChange: () => setIsDragging(true),
     afterChange: () => setIsDragging(false),
   };
+
+  const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10];
+
   return (
     <>
       <h3
@@ -55,62 +61,17 @@ const Followinsta = () => {
 
       <div className="slider-container" data-aos="fade-up">
         <Slider {...settings}>
-          <div
-            className="slick-slide-item"
-            onClick={() => handleImgClick(img1)}
-          >
-            <div className="img-container">
-              <img src={img1} alt="" />
+          {images.map((img, index) => (
+            <div
+              key={index}
+              className="slick-slide-item"
+              onClick={() => handleImgClick(img)}
+            >
+              <div className="img-container">
+                <img src={img} alt="" />
+              </div>
             </div>
-          </div>
-          <div
-            className="slick-slide-item"
-            onClick={() => handleImgClick(img2)}
-          >
-            <div className="img-container">
-              <img src={img2} alt="" />
-            </div>
-          </div>
-          <div
-            className="slick-slide-item"
-            onClick={() => handleImgClick(img3)}
-          >
-            <div className="img-container">
-              <img src={img3} alt="" />
-            </div>
-          </div>
-          <div
-            className="slick-slide-item"
-            onClick={() => handleImgClick(img4)}
-          >
-            <div className="img-container">
-              <img src={img4} alt="" />
-            </div>
-          </div>
-          <div
-            className="slick-slide-item"
-            onClick={() => handleImgClick(img5)}
-          >
-            <div className="img-container">
-              <img src={img5} alt="" />
-            </div>
-          </div>
-          <div
-            className="slick-slide-item"
-            onClick={() => handleImgClick(img6)}
-          >
-            <div className="img-container">
-              <img src={img6} alt="" />
-            </div>
-          </div>
-          <div
-            className="slick-slide-item"
-            onClick={() => handleImgClick(img7)}
-          >
-            <div className="img-container">
-              <img src={img7} alt="" />
-            </div>
-          </div>
+          ))}
         </Slider>
       </div>
       {isModalOpen && (
