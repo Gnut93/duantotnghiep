@@ -9,15 +9,20 @@ const mailForgotPassword = fs.readFileSync(
     "utf8",
     "rs"
 );
+const mailDelivery = fs.readFileSync(
+    "./Mail/MailDelivery.html",
+    "utf8",
+    "rs"
+);
 const PRIVATE_KEY = fs.readFileSync("./private-key.txt");
 const nodemailer = require("nodemailer");
 
 //Lấy thông tin 1 user
-router.get("/info", (req, res) => {
-    var email = req.body.email;
+router.get("/info/:id", (req, res) => {
+    var id = req.params.id;
 
-    var sql = `SELECT * FROM user WHERE email = ?`;
-    db.query(sql, [email], (err, result) => {
+    var sql = `SELECT * FROM user WHERE id_user = ?`;
+    db.query(sql, [id], (err, result) => {
         if (err) {
             res.json({ error: "Khong tim thay user" });
         } else {
@@ -98,13 +103,13 @@ router.post("/login", async (req, res) => {
         const userInfo = await getUserInfo(email);
         const jwtBearerToken = jwt.sign({}, PRIVATE_KEY, {
             algorithm: "RS256",
-            expiresIn: 3600,
+            expiresIn: 1800,
             subject: String(userInfo.id),
         });
         //res.cookie("SESSIONID", jwtBearerToken, {httpOnly:true, secure:false});
         res.status(200).json({
             idToken: jwtBearerToken,
-            expiresIn: 3600,
+            expiresIn: 1800,
             userInfo: userInfo,
             thongbao: "Đăng nhập thành công",
         });
@@ -172,7 +177,7 @@ router.post("/change-password", async (req, res) => {
 //Quên mật khẩu
 router.post("/forgot-password", async (req, res) => {
     const email = req.body.email;
-    console.log(email);
+    // console.log(email);
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/; //pattern email
     // cấu hình gửi mail
     var transporter = nodemailer.createTransport({
@@ -189,7 +194,7 @@ router.post("/forgot-password", async (req, res) => {
         if (result.length == 0) {
             return res.sendStatus(401);
         } else {
-            console.log(result[0]);
+            // console.log(result[0]);
             if (email != "" && emailPattern.test(email)) {
                 function generateRandomPassword(length) {
                     const charset =
@@ -233,6 +238,42 @@ router.post("/forgot-password", async (req, res) => {
     }
 });
 
+//Mail giao hàng
+router.post("/delivery", async (req, res) => {
+    const email = req.body.email;
+    const name = req.body.name;
+    //Lấy thêm thông tin chèn vào mail
+
+    // cấu hình gửi mail
+    var transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: { user: "daleather.2024@gmail.com", pass: "erqccpsqpfrnybyw" }, //pass ứng dụng
+        tls: { rejectUnauthorized: false },
+    });
+    var mailOptions = {
+        from: "daleather.2024@gmail.com",
+        to: email,
+        subject: "Thư gửi về việc mật khẩu cấp lại mật khẩu mới",
+        // html: "Mật khẩu mới của bạn là: <b>" + newpass + "</b>",
+        html: mailDelivery
+            .replace("{{TenKhachHang}}", name)
+            .replace("{{DiaChi}}", DiaChi)
+            .replace("{{Ward}}", Ward)
+            .replace("{{District}}", District)
+            .replace("{{Province}}", Province)
+            .replace("{{TenSanPham}}", ProductName)
+            .replace("{{SoLuong}}", Quantity)
+            .replace("{{Gia}}", Price)
+            .replace("{{TongTien}}", Total)
+            .replace("{{MaGiamGia}}", Discount)
+
+    };
+    await transporter.sendMail(mailOptions);
+            return res.json({
+                success:
+                    "Cảm ơn bạn đã mua hàng của chúng tôi. Chúng tôi đã gửi thư xác nhận đến email của bạn. Vui lòng kiểm tra email của bạn để xem thông tin chi tiết đơn hàng của bạn",
+            });
+});
 //Check email tồn tại
 router.get("/check-email/:email", (req, res) => {
     var email = req.params.email;

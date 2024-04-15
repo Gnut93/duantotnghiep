@@ -38,7 +38,7 @@ const schema = yup.object({
 
 const InfoUser = () => {
   const navigate = useNavigate();
-  const user = useSelector((state) => state.auth.user);
+  var user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const idUser = user ? user.id_user : null;
   const form = useForm({
@@ -80,9 +80,24 @@ const InfoUser = () => {
       console.error('Lỗi khi gửi form: ', error);
     }
   };
+  const getInforUser = async () => {
+    const id = idUser;
+    try {
+      const url = `http://localhost:4000/users/info/${id}`;
+      const res = await fetch(url);
+      const data = await res.json();
+      form.setValue('name', data.name);
+      form.setValue('phone', data.phone);
+      form.setValue('email', data.email);
+      form.setValue('image', data.avatar);
+    } catch (error) {
+      console.error('Lỗi khi lấy thông tin người dùng: ', error);
+    }
+  };
 
   useEffect(() => {
     if (isSubmitSuccessful) {
+      getInforUser();
       reset();
     }
   }, [isSubmitSuccessful, reset]);
