@@ -50,12 +50,12 @@ const schema = yup.object({
         .max(2000, " Mô tả có tối đa 2000 ký tự"),
 });
 const Contact = () => {
-    const user = useSelector((state) => state.auth.user);
-    // const idUser = user ? user.id_user : null;
+    const result = JSON.parse(localStorage.getItem('result'));
+    const user = result?.userInfo;
     const form = useForm({
         defaultValues: {
             name: user?.name,
-            loai: "",
+            size: "",
             color: "",
             image: "",
             email: user?.email,

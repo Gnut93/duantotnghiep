@@ -1,0 +1,35 @@
+.partner-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px auto;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 50px   ;
+}
+.icon-logo {
+  width: 200px; /* Increase this value */
+  min-height: 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 76px;
+  flex-direction: column;
+}
+
+.icon-logo h6 {
+  font-size: 14px;
+  font-weight: light;
+  color: gray;
+  white-space: nowrap; /* Add this line */
+}
+.icon-logo i {
+  font-size: 60px;
+  font-weight: light;
+  color: gray;
+}
+.icon-logo p {
+  color: gray;
+  font-size: 14px;
+}
