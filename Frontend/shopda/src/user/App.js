@@ -25,6 +25,7 @@ import FavoritePage from './Components/FavoritePage/FavoritePage';
 import { ProtectedRoute } from '../ProtectedRoute';
 import ResetPass from './Components/ResetPass/ResetPass';
 import OrderDetail from './Components/OrderDetail/OrderDetail';
+import FollowOrderUser from './Components/FollowOrderUser/FollowOrderUser';
 
 function App() {
   return (
@@ -113,6 +114,11 @@ function App() {
               path="/reset-pass"
               exact
               element={<ResetPass />}
+            />
+            <Route
+              path="/follow-order-user"
+              exact
+              element={<FollowOrderUser />}
             />
           </Route>
           <Route

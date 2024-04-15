@@ -11,11 +11,18 @@ const FavoritePage = () => {
   const [selectedColorIds, setSelectedColorIds] = useState({});
   const cart = useSelector((state) => state.cart.listSP);
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
+  const checkLogin = useSelector((state) => state.auth.daDangNhap);
+  const idUser = user ? user.id_user : null;
+  const [favorites, setFavorites] = useState(new Set());
   useEffect(() => {
     fetch(`http://localhost:4000/favorite/list/${idUser}`)
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
+        data.forEach((product) => {
+          checkFavorite(product.id_pd, idUser);
+        });
         const initialColorIds = {};
         const colorPromises = data.map((product) =>
           fetch(
@@ -40,7 +47,27 @@ const FavoritePage = () => {
           setSelectedColorIds(initialColorIds);
         });
       });
-  }, []);
+  });
+
+  const checkFavorite = async (id_pd, id_user) => {
+    try {
+      const url = 'http://localhost:4000/favorite/check-favorite';
+      const opt = {
+        method: 'post',
+        body: JSON.stringify({ id_pd: id_pd, id_user: id_user }),
+        headers: { 'Content-Type': 'application/json' },
+      };
+      const res = await fetch(url, opt);
+      const responseData = await res.json();
+      if (responseData.exists) {
+        setFavorites((prev) => new Set(prev.add(id_pd)));
+      }
+      return responseData.exists; // Trả về true nếu sản phẩm đã được yêu thích, ngược lại trả về false
+    } catch (error) {
+      console.error('Lỗi khi kiểm tra sản phẩm yêu thích: ', error);
+      return false;
+    }
+  };
 
   const handleAddToCart = (product) => {
     const id_pd_detail = selectedColorIds[product.id_pd];
@@ -89,9 +116,6 @@ const FavoritePage = () => {
     }));
   }, []);
 
-  const user = useSelector((state) => state.auth.user);
-  const checkLogin = useSelector((state) => state.auth.daDangNhap);
-  const idUser = user ? user.id_user : null;
   const HandleOnClickFavorite = async (item) => {
     if (checkLogin === true) {
       const id_pd = item.id_pd;
@@ -174,7 +198,9 @@ const FavoritePage = () => {
                         </li>
                         <li className="products-social-item">
                           <span
-                            className="products-social-link"
+                            className={`products-social-link cart ${
+                              favorites.has(item.id_pd) ? 'active' : ''
+                            }`}
                             onClick={() => HandleOnClickFavorite(item)}>
                             <i className="fas fa-heart"></i>
                           </span>

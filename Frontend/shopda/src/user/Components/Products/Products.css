@@ -70,6 +70,9 @@
   transition: all 0.25s ease;
   color: #ffffff;
 }
+.products-social-link.active {
+  color: #dc143c;
+}
 .products-social-link i {
   pointer-events: none;
 }

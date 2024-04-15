@@ -165,9 +165,6 @@ const InfoUser = () => {
             <Link to="/reset-pass">
               <p className="infoUser-link">Đổi mật khẩu</p>
             </Link>
-            <Link to="/favorite">
-              <p className="infoUser-link">Sản phẩm yêu thích</p>
-            </Link>
             <Link
               to="/"
               onClick={handleLogout}>
