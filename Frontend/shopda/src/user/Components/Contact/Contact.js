@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { useEffect } from "react";
 import {useSelector} from "react-redux";
+import Select from "react-select"
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import cloudinaryUpload from "../../../user/service/uploads";
@@ -55,7 +56,7 @@ const Contact = () => {
     const form = useForm({
         defaultValues: {
             name: user?.name,
-            size: "",
+            loai: "",
             color: "",
             image: "",
             email: user?.email,
@@ -95,7 +96,28 @@ const Contact = () => {
             })
             .catch((err) => console.error(err));
     };
-
+    const loai = [
+        { value: "Ví", label: "Ví" },
+        { value: "Túi xách", label: "Túi xách" },
+        { value: "Túi du lịch", label: "Túi du lịch" },
+        { value: "Thắt lưng", label: "Thắt lưng" },
+        { value: "Balo", label: "Balo" },
+      ]
+      const color = [
+        { value: "Màu đen", label: "Màu đen" },
+        { value: "Màu nâu", label: "Màu nâu" },
+        { value: "Màu nâu bò", label: "Màu nâu bò" },
+        { value: "Màu lợt", label: "Màu lợt" },
+      ]
+      const customStyles = {
+        control: (baseStyles, state) => ({
+          ...baseStyles,
+          backgroundColor: "rgba(231, 231, 231, 0.2)",
+          borderRadius: "10px",
+          border: '1px solid #7b88a8',
+          height: "52px",
+          color: "black"
+        })}
     useEffect(() => {
         if (isSubmitSuccessful) {
             reset();
@@ -108,20 +130,16 @@ const Contact = () => {
             <div className="container">
                 <h2 className="contact-heading">Dịch vụ theo yêu cầu</h2>
                 <p className="contact-desc">
-                    Dịch vụ thiết kế đồ da theo yêu cầu của chúng tôi cung cấp
-                    trải nghiệm cá nhân hóa tối ưu cho khách hàng, mang lại cơ
-                    hội sở hữu những sản phẩm da độc đáo, phản ánh đúng phong
-                    cách và nhu cầu cá nhân. Từ ví da, túi xách, đến các sản
-                    phẩm phụ kiện khác, mỗi món đồ được tạo ra với sự tỉ mỉ và
-                    chăm chút đến từng chi tiết. Khách hàng có thể tham gia trực
-                    tiếp vào quá trình thiết kế: lựa chọn loại da, màu sắc, kiểu
-                    dáng, cũng như thêm các chi tiết cá nhân hóa như khắc tên
-                    hoặc thông điệp ý nghĩa. Đội ngũ thiết kế và thợ thủ công
-                    của chúng tôi, với bề dày kinh nghiệm và tay nghề cao, cam
-                    kết mang lại sản phẩm tinh tế, chất lượng, đảm bảo sự hài
-                    lòng tuyệt đối cho khách hàng. Hãy để chúng tôi giúp bạn tạo
-                    nên những tác phẩm đồ da riêng biệt, phản ánh đẳng cấp và cá
-                    tính của bạn.
+                Dịch vụ thiết kế đồ da cá nhân hóa của chúng tôi tạo ra
+                 sản phẩm độc đáo, phản ánh phong cách và nhu cầu riêng
+                  của bạn. Từ ví, túi xách đến phụ kiện, mỗi sản phẩm được
+                   chăm chút từng chi tiết. Bạn có thể tham gia vào quá trình
+                    thiết kế, từ chọn da, màu sắc đến chi tiết cá nhân hóa. 
+                    Đội ngũ thiết kế và thợ thủ công kỳ công cam kết mang lại
+                     sản phẩm tinh tế, 
+                chất lượng và đảm bảo sự hài lòng tuyệt đối.
+                 Hãy để chúng tôi tạo nên những tác phẩm độc đáo, 
+                 phản ánh phong cách và cá tính của bạn.
                 </p>
                 <div className="contact-center">
                     <form
@@ -142,22 +160,13 @@ const Contact = () => {
                                 <p className="err">{errors.name?.message}</p>
                             </div>
                             <div className="contact-form-gid-item">
-                            <select className="email" {...register("loai")} >
-                                    <option>Ví</option>
-                                    <option>Túi xách</option>
-                                    <option>Túi du lịch</option>
-                                    <option>Thắt lưng</option>
-                                    <option>Balo</option>
-                                </select>
+                            <Select className="select" options={loai} placeholder="Loại sản phẩm" styles={customStyles} {...register("loai")}></Select>
                                 <p className="err">{errors.loai?.message}</p>
                             </div>
                             <div className="contact-form-gid-item">
-                            <select className="email" {...register("color")}>
-                                    <option>Màu đen</option>
-                                    <option>Màu nâu</option>
-                                    <option>Màu nâu bò</option>
-                                    <option>Màu lợt</option>
-                                </select>
+                            <Select className="select" placeholder="Màu da" styles={customStyles} options={color} {...register("color")}>
+                                   
+                                </Select>
                                 <p className="err">{errors.color?.message}</p>
                             </div>
                             <div className="contact-form-gid-item">
