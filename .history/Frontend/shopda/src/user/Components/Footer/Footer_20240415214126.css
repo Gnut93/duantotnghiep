@@ -20,8 +20,7 @@ ul {
   list-style: none;
 }
 .footer {
-  background: linear-gradient(to right, #753333ef, #3a0e0ef0);
-
+  background-color: #753232f0;
   padding: 70px 0;
 }
 .footer-col {

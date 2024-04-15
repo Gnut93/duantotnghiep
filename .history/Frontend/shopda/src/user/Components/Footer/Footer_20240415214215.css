@@ -20,8 +20,9 @@ ul {
   list-style: none;
 }
 .footer {
-  background: linear-gradient(to right, #753333ef, #3a0e0ef0);
-
+  /* back ground color cho tôi từ màu #753232 sang màu đậm hơn từ trái sang phải
+   */
+  background-color: #733434f0;
   padding: 70px 0;
 }
 .footer-col {

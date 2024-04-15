@@ -84,11 +84,7 @@ const Footer = () => {
               </Link>
             </div>
             <div>
-              <img
-                src={logoSaleNoti}
-                alt=""
-                style={{ height: "60px", marginTop: "20px" }}
-              ></img>
+              <img src={logoSaleNoti} alt="" style={{ height: "60px",mar }}></img>
             </div>
           </div>
         </div>

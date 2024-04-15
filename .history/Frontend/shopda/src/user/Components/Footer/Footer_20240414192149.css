@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 body {
   line-height: 1.5;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 * {
   margin: 0;
@@ -20,8 +20,7 @@ ul {
   list-style: none;
 }
 .footer {
-  background: linear-gradient(to right, #753333ef, #3a0e0ef0);
-
+  background-color: #4a1f18;
   padding: 70px 0;
 }
 .footer-col {
@@ -37,7 +36,7 @@ ul {
   position: relative;
 }
 .footer-col h4::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   bottom: -10px;

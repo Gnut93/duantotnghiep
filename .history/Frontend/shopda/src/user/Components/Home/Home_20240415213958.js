@@ -33,22 +33,6 @@ const Home = () => {
   useEffect(() => {
     window.addEventListener("scroll", toggleVisibility);
   }, []);
-  const styles = {
-    scrollButton: {
-      position: "fixed",
-      bottom: "30px",
-      right: "20px",
-      cursor: "pointer",
-      backgroundColor: "#753232",
-      color: "#fff",
-      border: "none",
-      padding: "12px",
-      borderRadius: "50%",
-      textAlign: "center",
-      fontSize: "18px",
-      zIndex: "1000",
-    },
-  };
 
   return (
     <>
@@ -72,3 +56,5 @@ const Home = () => {
 };
 
 export default Home;
+
+
