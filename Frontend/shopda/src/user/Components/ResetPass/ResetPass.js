@@ -18,9 +18,9 @@ const schema = yup.object().shape({
         .oneOf([yup.ref("newPassword"), null], "Mật khẩu không trùng khớp"),
     email: yup
         .string()
-        .email('email có định dạng không hợp lệ')
+        .email("email có định dạng không hợp lệ")
         .trim()
-        .required('Không được bỏ trống'),
+        .required("Không được bỏ trống"),
 });
 const ResetPass = () => {
     const navigate = useNavigate();
@@ -51,7 +51,7 @@ const ResetPass = () => {
             );
             const result = await response.json();
             console.log(result);
-        }catch (error) {
+        } catch (error) {
             console.error("Lỗi khi gửi form: ", error);
         }
     };
@@ -90,7 +90,7 @@ const ResetPass = () => {
                                 Thay đổi mật khẩu
                             </h3>
                             <div className="infoUser-list">
-                            <div className="infoUser-item">
+                                <div className="infoUser-item">
                                     <label className="infoUser-text">
                                         Email
                                     </label>
@@ -153,9 +153,6 @@ const ResetPass = () => {
                     <div className="infoUser-packlink">
                         <Link to="/info-user">
                             <p className="infoUser-link">Thông tin</p>
-                        </Link>
-                        <Link to="/favorite">
-                            <p className="infoUser-link">Sản phẩm yêu thích</p>
                         </Link>
                         <Link to="/" onClick={handleLogout}>
                             <p className="infoUser-link">Đăng xuất</p>
