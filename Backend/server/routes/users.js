@@ -236,16 +236,8 @@ router.post("/forgot-password", async (req, res) => {
 
 //Mail giao hàng
 router.post("/delivery", async (req, res) => {
-    const {
-        address,
-        name,
-        phone,
-        email,
-        total_price,
-        status,
-        note,
-        payment_type,
-    } = req.body;
+    const { address, name, phone, email, total_price, status, payment_type } =
+        req.body;
     const products = req.body;
 
     // Kiểm tra xem các trường thông tin có đầy đủ không
@@ -256,7 +248,6 @@ router.post("/delivery", async (req, res) => {
         !email ||
         !total_price ||
         !status ||
-        !note ||
         !payment_type ||
         !products ||
         Object.keys(products).length === 0
