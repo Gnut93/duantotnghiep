@@ -17,10 +17,10 @@ const Offer = () => {
     <section className="offer">
       <div className="container">
         <div className="offer-content">
-          <div className="offer-item" data-aos="fade-right">
+          <div className="offer-item">
             <img src="LEARNMORE.png" alt="" />
           </div>
-          <div className="offer-info" data-aos="fade-left">
+          <div className="offer-info">
             <h1 className="offer-heading">
               Được làm thủ công chỉ dành cho bạn.
             </h1>

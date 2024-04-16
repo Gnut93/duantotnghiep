@@ -16,14 +16,7 @@ const ViewProduct = () => {
   const user = useSelector((state) => state.auth.user);
   const checkLogin = useSelector((state) => state.auth.daDangNhap);
   const idUser = user ? user.id_user : null;
-  useEffect(() => {
-    AOS.init({ duration: 1000 });
-  }, []);
 
-  useEffect(() => {
-    AOS.refresh();
-  });
-  const [listLoai, setListLoai] = useState([]);
   useEffect(() => {
     fetch(`http://localhost:4000/products/list/view/8`)
       .then((res) => res.json())
@@ -190,7 +183,7 @@ const ViewProduct = () => {
     }
   };
   return (
-    <section className="view" data-aos="fade-up">
+    <section className="view">
       <div className="container">
         <h3 className="related-heading">Sản Phẩm Được Xem Nhiều</h3>
         <div className="related-product">

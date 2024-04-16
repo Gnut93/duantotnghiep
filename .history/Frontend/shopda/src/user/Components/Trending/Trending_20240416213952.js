@@ -4,7 +4,6 @@ import "./Trending.css";
 import img6 from "../../../assets/images/phukien.jpg";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
 const imgList = [
   {
     img: "https://product.hstatic.net/1000260559/product/clutch-cam-tay-dang-mong-sang-trong-lich-lam-4062575__5__da81c4ca22e54d788809e0b839ebced5_large.jpg",
@@ -27,13 +26,6 @@ const imgList = [
 ];
 
 const Shop = () => {
-  useEffect(() => {
-    AOS.init({ duration: 1000 });
-  }, []);
-
-  useEffect(() => {
-    AOS.refresh();
-  });
   const [listLoai, setListLoai] = useState([]);
 
   useEffect(() => {
@@ -47,7 +39,7 @@ const Shop = () => {
 
   return (
     <section className="trending">
-      <div className="container" data-aos="fade-up">
+      <div className="container">
         <h3 className="related-heading" style={{ marginBottom: "50px" }}>
           Xu Hướng Mua Sắm
         </h3>

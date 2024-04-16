@@ -47,7 +47,7 @@ const Shop = () => {
 
   return (
     <section className="trending">
-      <div className="container" data-aos="fade-up">
+      <div className="container">
         <h3 className="related-heading" style={{ marginBottom: "50px" }}>
           Xu Hướng Mua Sắm
         </h3>

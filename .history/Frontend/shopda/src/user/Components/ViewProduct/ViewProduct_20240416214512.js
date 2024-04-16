@@ -190,7 +190,7 @@ const ViewProduct = () => {
     }
   };
   return (
-    <section className="view" data-aos="fade-up">
+    <section className="view" data-aos="">
       <div className="container">
         <h3 className="related-heading">Sản Phẩm Được Xem Nhiều</h3>
         <div className="related-product">

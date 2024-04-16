@@ -20,7 +20,7 @@ const Offer = () => {
           <div className="offer-item" data-aos="fade-right">
             <img src="LEARNMORE.png" alt="" />
           </div>
-          <div className="offer-info" data-aos="fade-left">
+          <div className="offer-info" data>
             <h1 className="offer-heading">
               Được làm thủ công chỉ dành cho bạn.
             </h1>
