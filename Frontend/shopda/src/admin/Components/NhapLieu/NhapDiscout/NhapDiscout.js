@@ -32,7 +32,12 @@ const schema = yup.object({
         .required("Không được bỏ trống"),
     expiration_date: yup
         .date()
-        .min(minDate, "Ngày không được nhỏ hơn ngày hiện tại"),
+        .transform((value, originalValue) =>
+            originalValue === "" ? undefined : value
+        )
+        .min(minDate, "Ngày không được nhỏ hơn ngày hiện tại")
+        .nullable()
+        .required("Vui lòng chọn ngày hết hạn"),
 });
 const NhapDiscout = () => {
     const form = useForm({
@@ -40,7 +45,7 @@ const NhapDiscout = () => {
             code: "",
             quantity: "",
             price: "",
-            expiration_date: new Date(),
+            expiration_date: undefined,
         },
         resolver: yupResolver(schema),
     });

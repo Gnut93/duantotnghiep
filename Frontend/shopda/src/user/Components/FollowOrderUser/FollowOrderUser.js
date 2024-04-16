@@ -11,6 +11,7 @@ const FollowOrderUser = () => {
             .then((res) => res.json())
             .then(setListBill);
     }, [idUser]);
+
     return (
         <screen className="followOrder">
             <Navbar></Navbar>
@@ -30,6 +31,7 @@ const FollowOrderUser = () => {
                             <td>Thanh toán</td>
                             <td>Ngày đặt hàng</td>
                             <td>Chi tiết</td>
+                            <td>Thao Tác</td>
                         </tr>
                         <tbody>
                             {listBill.map((bill, i) => (
@@ -76,6 +78,9 @@ const FollowOrderUser = () => {
                                                 <i className="fas fa-search"></i>
                                             </span>
                                         </Link>
+                                    </td>
+                                    <td>
+                                        <p>Hủy Đơn Hàng</p>
                                     </td>
                                 </tr>
                             ))}

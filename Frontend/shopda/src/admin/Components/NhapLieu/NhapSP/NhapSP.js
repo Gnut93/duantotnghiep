@@ -24,7 +24,10 @@ const schema = yup.object({
         .typeError("Vui lòng nhập một số")
         .min(1, "Chưa đạt số lượng tối thiểu")
         .required("Không được bỏ trống"),
-
+    id_cate: yup
+        .string()
+        .notOneOf([""], "Vui lòng chọn sản phẩm")
+        .required("Vui lòng chọn sản phẩm"),
     image: yup.string().required("Không được bỏ trống"),
     avatar: yup.mixed().test("size", "Kích thước file quá lớn", (value) => {
         if (!value) return true; // Trường hợp không có file được chọn
@@ -46,6 +49,7 @@ const NhapSP = () => {
             price_sale: "",
             image: "",
             description: "",
+            id_cate: "",
         },
         resolver: yupResolver(schema),
     });
@@ -152,6 +156,7 @@ const NhapSP = () => {
                                         </option>
                                     ))}
                                 </select>
+                                <p className="err">{errors.id_cate?.message}</p>
                             </div>
                         </div>
                         <div className="checkout-address-item">

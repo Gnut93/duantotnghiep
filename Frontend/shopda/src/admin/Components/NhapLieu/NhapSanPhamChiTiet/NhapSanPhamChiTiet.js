@@ -28,6 +28,10 @@ const schema = yup.object({
         .required("Không được bỏ trống")
         .min(1, "Chưa đạt số lượng tối thiểu")
         .integer("Phải là số nguyên"),
+    id_pd: yup
+        .string()
+        .notOneOf([""], "Vui lòng chọn mã sản phẩm")
+        .required("Vui lòng chọn mã sản phẩm"),
     image: yup.string().required("Không được bỏ trống"),
     avatar: yup.mixed().test("size", "Kích thước file quá lớn", (value) => {
         if (!value) return true; // Trường hợp không có file được chọn
@@ -40,6 +44,7 @@ const NhapSanPhamChiTiet = () => {
         defaultValues: {
             color: "",
             color_code: "",
+            id_pd: "",
         },
         resolver: yupResolver(schema),
     });
@@ -151,7 +156,7 @@ const NhapSanPhamChiTiet = () => {
                                     className="option-cate"
                                 >
                                     <option value="" disabled selected>
-                                        Vui lòng chọn loại sản phẩm
+                                        Vui lòng chọn Mã sản phẩm
                                     </option>
                                     {listSanPham.map((sp, i) => (
                                         <option key={i} value={sp.id_pd}>
