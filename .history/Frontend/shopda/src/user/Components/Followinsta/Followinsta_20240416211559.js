@@ -37,10 +37,6 @@ const Followinsta = () => {
     AOS.init({ duration: 1000 });
   }, []);
 
-  useEffect(() => {
-    AOS.refresh();
-  });
-
   const settings = {
     dots: false,
     infinite: true,

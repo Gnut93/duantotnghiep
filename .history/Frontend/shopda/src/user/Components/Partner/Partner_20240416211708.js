@@ -7,11 +7,8 @@ import { useEffect } from "react";
 const Partner = () => {
   useEffect(() => {
     AOS.init({ duration: 1000 });
-  }, []);
-
-  useEffect(() => {
     AOS.refresh();
-  });
+  }, []);
   return (
     <>
       <hr style={{ color: "gray", margin: "0px 220px" }} />
@@ -27,21 +24,24 @@ const Partner = () => {
           <i class="ri-gift-line"></i>
           <h6 style={{ textAlign: "center" }}>Special Offers</h6>
           <p style={{ textAlign: "center" }}>
-            Nhiều ưu đãi và quà tặng đặc biệt từ chúng tôi
+            In ac hendrerit turpis. Aliquam ultrices dolor dolor, at commodo
+            diam
           </p>
         </div>
         <div className="icon-logo">
           <i class="ri-shield-check-line"></i>
           <h6 style={{ textAlign: "center" }}>Order Protection</h6>
           <p style={{ textAlign: "center" }}>
-            Đơn hàng được đảm bảo và uy tín, chất lượng sản phẩm.
+            In ac hendrerit turpis. Aliquam ultrices dolor dolor, at commodo
+            diam
           </p>
         </div>
         <div className="icon-logo">
           <i class="ri-customer-service-2-line"></i>
           <h6 style={{ textAlign: "center" }}>Support</h6>
           <p style={{ textAlign: "center" }}>
-            Dịch vụ hỗ trợ khách hàng 24/7, nhiệt tình và chuyên nghiệp.
+            In ac hendrerit turpis. Aliquam ultrices dolor dolor, at commodo
+            diam
           </p>
         </div>
       </div>

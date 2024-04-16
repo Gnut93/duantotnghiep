@@ -7,11 +7,8 @@ import { useEffect } from "react";
 const Partner = () => {
   useEffect(() => {
     AOS.init({ duration: 1000 });
-  }, []);
-
-  useEffect(() => {
     AOS.refresh();
-  });
+  }, []);
   return (
     <>
       <hr style={{ color: "gray", margin: "0px 220px" }} />

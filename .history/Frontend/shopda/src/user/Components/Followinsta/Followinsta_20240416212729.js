@@ -35,11 +35,9 @@ const Followinsta = () => {
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
-  }, []);
-
-  useEffect(() => {
+    // Refresh AOS when the DOM changes
     AOS.refresh();
-  });
+  }, [yourDependency]);
 
   const settings = {
     dots: false,

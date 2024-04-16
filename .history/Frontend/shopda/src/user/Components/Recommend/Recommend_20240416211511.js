@@ -8,11 +8,8 @@ import "aos/dist/aos.css";
 const Recommend = () => {
   useEffect(() => {
     AOS.init({ duration: 1000 });
-  }, []);
-
-  useEffect(() => {
     AOS.refresh();
-  });
+  }, []);
 
   return (
     <div className="container">
