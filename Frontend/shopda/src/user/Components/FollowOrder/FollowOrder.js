@@ -44,6 +44,36 @@ const FollowOrder = () => {
             console.error("Lỗi khi kiểm tra mã giảm giá:", error);
         }
     };
+
+    const HandleCancelOrder = async (id_bill, status) => {
+        try {
+            if (status !== "Chờ") {
+                alert(`Đơn hàng đang ở trạng thái ${status}  , không thể hủy.`);
+                return;
+            }
+
+            const confirmation = window.confirm(
+                "Bạn có chắc chắn muốn hủy đơn hàng này không ?"
+            );
+            if (!confirmation) {
+                return;
+            }
+            const url = `http://localhost:4000/bill/set-statusCancelOrder`;
+            const opt = {
+                method: "PUT",
+                body: JSON.stringify({ id: id_bill }),
+                headers: { "Content-Type": "application/json" },
+            };
+            const res = await fetch(url, opt);
+            const responseData = await res.json();
+            alert("Đã Sửa Trạng Thái Thành Công,", responseData);
+            fetch(`http://localhost:4000/bill/list`)
+                .then((res) => res.json())
+                .then(setBill);
+        } catch (error) {
+            console.error("Lỗi khi Sửa Trạng Thái: ", error);
+        }
+    };
     return (
         <screen className="followOrder">
             <Navbar></Navbar>
@@ -79,6 +109,8 @@ const FollowOrder = () => {
                             <td>Thanh toán</td>
                             <td>Ngày đặt hàng</td>
                             <td>Chi tiết</td>
+                            <td>Đổi địa chỉ đơn hàng</td>
+                            <td>Hủy Đơn Hàng</td>
                         </tr>
                         <tbody>
                             {listBill.map((bill, i) => (
@@ -125,6 +157,28 @@ const FollowOrder = () => {
                                                 <i className="fas fa-search"></i>
                                             </span>
                                         </Link>
+                                    </td>
+                                    <td>
+                                        <Link
+                                            to={`/changetheaddress/${bill.id_bill}`}
+                                        >
+                                            <span className="btn--show-modal">
+                                                <i className="fas fa-tools"></i>
+                                            </span>
+                                        </Link>
+                                    </td>
+                                    <td>
+                                        <span
+                                            className="btn--show-modal"
+                                            onClick={() =>
+                                                HandleCancelOrder(
+                                                    bill.id_bill,
+                                                    bill.status
+                                                )
+                                            }
+                                        >
+                                            <i class="fa-regular fa-rectangle-xmark"></i>
+                                        </span>
                                     </td>
                                 </tr>
                             ))}

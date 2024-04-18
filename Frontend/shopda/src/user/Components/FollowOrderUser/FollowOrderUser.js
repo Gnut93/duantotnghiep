@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
 const FollowOrderUser = () => {
     const [listBill, setListBill] = useState([]);
     const user = useSelector((state) => state.auth.user);
@@ -11,6 +12,37 @@ const FollowOrderUser = () => {
             .then((res) => res.json())
             .then(setListBill);
     }, [idUser]);
+
+    const HandleCancelOrder = async (id_bill, status) => {
+        try {
+            if (status !== "Chờ") {
+                alert(`Đơn hàng đang ở trạng thái ${status}  , không thể hủy.`);
+                return;
+            }
+
+            const confirmation = window.confirm(
+                "Bạn có chắc chắn muốn hủy đơn hàng này không ?"
+            );
+            if (!confirmation) {
+                return;
+            }
+            const url = `http://localhost:4000/bill/set-statusCancelOrder`;
+            const opt = {
+                method: "PUT",
+                body: JSON.stringify({ id: id_bill }),
+                headers: { "Content-Type": "application/json" },
+            };
+            const res = await fetch(url, opt);
+            const responseData = await res.json();
+
+            alert("Đã Sửa Trạng Thái Thành Công,", responseData);
+            fetch(`http://localhost:4000/bill/list/${idUser}`)
+                .then((res) => res.json())
+                .then(setListBill);
+        } catch (error) {
+            console.error("Lỗi khi Sửa Trạng Thái: ", error);
+        }
+    };
 
     return (
         <screen className="followOrder">
@@ -31,7 +63,8 @@ const FollowOrderUser = () => {
                             <td>Thanh toán</td>
                             <td>Ngày đặt hàng</td>
                             <td>Chi tiết</td>
-                            <td>Thao Tác</td>
+                            <td> Đổi Địa Chỉ</td>
+                            <td>Hủy Đơn Hàng</td>
                         </tr>
                         <tbody>
                             {listBill.map((bill, i) => (
@@ -80,7 +113,26 @@ const FollowOrderUser = () => {
                                         </Link>
                                     </td>
                                     <td>
-                                        <p>Hủy Đơn Hàng</p>
+                                        <Link
+                                            to={`/changetheaddress/${bill.id_bill}`}
+                                        >
+                                            <span className="btn--show-modal">
+                                                <i className="fas fa-tools"></i>
+                                            </span>
+                                        </Link>
+                                    </td>
+                                    <td>
+                                        <span
+                                            className="btn--show-modal"
+                                            onClick={() =>
+                                                HandleCancelOrder(
+                                                    bill.id_bill,
+                                                    bill.status
+                                                )
+                                            }
+                                        >
+                                            <i class="fa-regular fa-rectangle-xmark"></i>
+                                        </span>
                                     </td>
                                 </tr>
                             ))}

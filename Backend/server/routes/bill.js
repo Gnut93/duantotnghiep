@@ -110,13 +110,39 @@ router.get("/detail/:id", (req, res) => {
 router.put("/set-status/:id", (req, res) => {
     var id = req.params.id;
     var status = req.body.status;
-    console.log(status);
     var sql = `UPDATE bill SET status = '${status}' WHERE id_bill = '${id}'`;
     db.query(sql, (err, result) => {
         if (err) {
             res.json({ error: err.message });
         } else {
             res.json({ success: "Set trạng thái đơn hàng thành công" });
+        }
+    });
+});
+//set trạng thái hủy đơn hàng
+router.put("/set-statusCancelOrder", (req, res) => {
+    var id = req.body.id;
+    console.log(id);
+    var sql = `UPDATE bill SET status = 'Đã Hủy' WHERE id_bill = '${id}'`;
+    db.query(sql, (err, result) => {
+        if (err) {
+            res.json({ error: err.message });
+        } else {
+            res.json({ success: "Set trạng thái đơn hàng thành công" });
+        }
+    });
+});
+// thay đổi địa chỉ đơn hàng
+router.put("/set-address/:id", (req, res) => {
+    var id = req.params.id;
+    var data = req.body.newaddress;
+    console.log(data);
+    var sql = `UPDATE bill SET address = '${data}' WHERE id_bill = '${id}'`;
+    db.query(sql, (err, result) => {
+        if (err) {
+            res.json({ error: err.message });
+        } else {
+            res.json({ success: "Thay đổi địa chỉ đơn hàng thành công" });
         }
     });
 });

@@ -115,10 +115,10 @@ router.put("/edit-quantity/:id", async (req, res) => {
         return;
     }
 
-    const updateTasks = []; // Mảng chứa các promise update
+    const updateTasks = [];
 
     try {
-        const updates = req.body; // Dữ liệu cập nhật [{ id_pd_detail: 50, quantity: 50 }, { id_pd_detail: 51, quantity: 50 }]
+        const updates = req.body;
 
         updates.forEach(async (update) => {
             const { id_pd_detail, quantity } = update;
@@ -126,11 +126,41 @@ router.put("/edit-quantity/:id", async (req, res) => {
             updateTasks.push(queryDB(sql));
         });
 
-        await Promise.all(updateTasks); // Chờ tất cả các promise update hoàn thành
+        await Promise.all(updateTasks);
 
         res.json({ success: "Cập nhật số lượng sản phẩm thành công" });
     } catch (err) {
         res.json({ error: err.message });
     }
 });
+// cập nhật lại số lượng sản phẩm khi hủy đơn
+router.put("/edit-quantity", async (req, res) => {
+    try {
+        const updates = req.body;
+
+        if (!updates || !Array.isArray(updates) || updates.length === 0) {
+            res.json({ error: "Dữ liệu không hợp lệ" });
+            return;
+        }
+
+        const updateTasks = [];
+
+        updates.forEach(async (update) => {
+            const { color, quantity } = update;
+            const sqlGetQuantity = `SELECT quantity FROM product_detail WHERE color ='${color}'`;
+            const currentQuantity = await queryDB(sqlGetQuantity);
+            const newQuantity = currentQuantity + quantity;
+
+            const sqlUpdateQuantity = `UPDATE product_detail SET quantity='${newQuantity}' WHERE color ='${color}'`;
+            updateTasks.push(queryDB(sqlUpdateQuantity));
+        });
+
+        await Promise.all(updateTasks);
+
+        res.json({ success: "Cập nhật số lượng sản phẩm thành công" });
+    } catch (err) {
+        res.json({ error: err.message });
+    }
+});
+
 module.exports = router;

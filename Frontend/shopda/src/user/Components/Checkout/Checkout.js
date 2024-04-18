@@ -110,15 +110,14 @@ const Checkout = () => {
                 `http://localhost:4000/admin-giftcode/edit-quantity/${idGc}`,
                 formQuantityDiscount
             );
+            alert("Thanh Toán thành công,", billResponse);
+            dispatch(xoaGH());
+            navigate("/");
             await sendMail(
                 `http://localhost:4000/users/delivery`,
                 formBill,
                 formBillDetail
             );
-
-            alert("Thanh Toán thành công,", billResponse);
-            dispatch(xoaGH());
-            navigate("/");
         } catch (error) {
             handleError(error);
         }
