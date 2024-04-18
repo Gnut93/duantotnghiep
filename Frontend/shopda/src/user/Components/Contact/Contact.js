@@ -235,7 +235,7 @@ const Contact = () => {
                             <i class="fa-solid fa-envelope fa-xl"></i>
                             <div class="contact-text">
                                 <h4>Email</h4>
-                                <p>dashop2024@gmail.com</p>
+                                <p>daleather.2024@gmail.com</p>
                             </div>
                         </div>
                     </div>

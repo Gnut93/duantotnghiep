@@ -48,7 +48,7 @@ const FollowOrder = () => {
         <screen className="followOrder">
             <Navbar></Navbar>
             <div className="container">
-                <h3 className="followOrder-heading">Theo dõi đơn hàng</h3>
+                <h3 className="followOrder-heading">Tra cứu đơn hàng</h3>
                 <form
                     className="followOrder-form"
                     onSubmit={handleSubmit(handCheckPhone)}
@@ -65,7 +65,7 @@ const FollowOrder = () => {
                     <p className="err">{errors.phone?.message}</p>
                 </form>
                 <DevTool control={control} />
-                <h3 className="followOrder-title">Thông tin đơn hàng</h3>
+                <h3 className="followOrder-title">Lịch sử mua hàng</h3>
                 <div className="followOrder-table">
                     <table>
                         <tr>

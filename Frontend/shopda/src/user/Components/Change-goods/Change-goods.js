@@ -53,7 +53,7 @@ const ChangeGoods = () => {
                     </p>
                   <h4 className='cg-title-24'>LIÊN HỆ CHĂM SÓC KHÁCH HÀNG</h4>
                   <p className='cg-desc-min'>
-                        ● Email: dashop2024@gmail.com <br/>
+                        ● Email: daleather.2024@gmail.com <br/>
                         ● Phone: (+84) 901.379.586<br/>
                         ● Hỗ trợ online : m.me/dashop<br/>
                         ● Giờ làm việc:<br/>

@@ -51,7 +51,7 @@ const RegisterPage = () => {
       return;
     }
     if (data.password === '') {
-      alert('Email không được để trống');
+      alert('Mật khẩu không được để trống');
       return;
     }
     try {

@@ -81,7 +81,7 @@ const Navbar = (props) => {
                 <Link
                   to="/follow-order"
                   className="menu-link">
-                  Theo dõi đơn hàng
+                  Kiểm tra đơn hàng
                 </Link>
               </li>
             )}

@@ -164,7 +164,7 @@ router.post("/change-password", async (req, res) => {
                 res.json({ error: err.message });
             } else {
                 console.log(result);
-                res.json({ success: "Đổi mật khẩu thành công" });
+                res.json({ thongbao: "Đổi mật khẩu thành công" });
             }
         });
     } else res.status(401).json({ thongbao: "Sai mật khẩu cũ" }); // send status 401 Unauthorized

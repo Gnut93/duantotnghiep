@@ -17,7 +17,7 @@ const FollowOrderUser = () => {
             <Navbar></Navbar>
             <div className="container">
                 <h3 className="followOrder-heading">Theo dõi đơn hàng</h3>
-                <h3 className="followOrder-title">Thông tin đơn hàng</h3>
+                <h3 className="followOrder-title">Lịch sử mua hàng</h3>
                 <div className="followOrder-table">
                     <table>
                         <tr>

@@ -13,16 +13,12 @@ export const authSlice = createSlice({
             state.token = param.payload.token;
             state.expiresIn = param.payload.expiresIn;
             state.user = param.payload.userInfo;
-            state.daDangNhap = true;;
-        }
+            state.daDangNhap = true;
+        },
+        capnhatUserInfo: (state, param) => {
+            state.user = param.payload.userInfo;
+        },
     },
-    dalogin: (state, param) => {
-      state.token = param.payload.token;
-      state.expiresIn = param.payload.expiresIn;
-      state.user = param.payload.userInfo;
-      state.daDangNhap = true;
-    },
-  },
-);
-export const { dalogin, thoat } = authSlice.actions;
+});
+export const { dalogin, thoat, capnhatUserInfo } = authSlice.actions;
 export default authSlice.reducer;

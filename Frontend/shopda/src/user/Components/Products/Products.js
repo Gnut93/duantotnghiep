@@ -69,8 +69,10 @@ const Products = () => {
         let sortedProducts = [...sp];
         if (sortOption === "date") {
             sortedProducts.sort((a, b) => new Date(b.date) - new Date(a.date));
-        } else if (sortOption === "price") {
+        } else if (sortOption === "price_asc") {
             sortedProducts.sort((a, b) => a.price_sale - b.price_sale);
+        } else if (sortOption === "price_desc") {
+            sortedProducts.sort((a, b) => b.price_sale - a.price_sale);
         } else if (sortOption === "views") {
             sortedProducts.sort((a, b) => b.views - a.views);
         }
@@ -215,7 +217,8 @@ const Products = () => {
                         <select value={sortOption} onChange={handleSortChange}>
                             <option value="default">Mặc định</option>
                             <option value="date">Ngày tháng</option>
-                            <option value="price">Giá</option>
+                            <option value="price_asc">Giá tăng dần</option>
+                            <option value="price_desc">Giá giảm dần</option>
                             <option value="views">Lượt xem</option>
                         </select>
                     </div>

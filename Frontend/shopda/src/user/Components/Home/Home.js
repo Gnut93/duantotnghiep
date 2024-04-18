@@ -35,6 +35,8 @@ const Home = () => {
   }, []);
   const styles = {
     scrollButton: {
+      height: "50px",
+      width: "50px",
       position: "fixed",
       bottom: "30px",
       right: "20px",

@@ -3,7 +3,7 @@ import Navbar from '../Navbar/Navbar';
 import './InforUser.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { thoat } from '../../../authSlice';
+import { thoat, capnhatUserInfo } from '../../../authSlice';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
@@ -86,10 +86,7 @@ const InfoUser = () => {
       const url = `http://localhost:4000/users/info/${id}`;
       const res = await fetch(url);
       const data = await res.json();
-      form.setValue('name', data.name);
-      form.setValue('phone', data.phone);
-      form.setValue('email', data.email);
-      form.setValue('image', data.avatar);
+      dispatch(capnhatUserInfo({ userInfo: data }));
     } catch (error) {
       console.error('Lỗi khi lấy thông tin người dùng: ', error);
     }
@@ -159,7 +156,7 @@ const InfoUser = () => {
                   <p className="err">{errors.email?.message}</p>
                 </div>
                 <div className="infoUser-item">
-                  <label className="infoUser-text">avatar</label>
+                  <label className="infoUser-text">Ảnh đại diện</label>
                   <input
                     type="file"
                     id="avatar"
