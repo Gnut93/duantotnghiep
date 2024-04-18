@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react";
-import "./ViewProduct.css";
+import "./NewProduct.css";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { themSP } from "../cartSlice";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-const ViewProduct = () => {
+const NewProduct = () => {
     const [products, setProducts] = useState([]);
     const [colors, setColors] = useState({});
     const [selectedColorIds, setSelectedColorIds] = useState({});
@@ -24,7 +24,7 @@ const ViewProduct = () => {
         AOS.refresh();
     });
     useEffect(() => {
-        fetch(`http://localhost:4000/products/list/view/4`)
+        fetch(`http://localhost:4000/products/newest`)
             .then((res) => res.json())
             .then((data) => {
                 setProducts(data);
@@ -194,7 +194,7 @@ const ViewProduct = () => {
     return (
         <section className="view" data-aos="fade-up">
             <div className="container">
-                <h3 className="related-heading">Sản Phẩm Được Xem Nhiều</h3>
+                <h3 className="related-heading">Sản Phẩm Mới</h3>
                 <div className="related-product">
                     {products.map((item, i) => (
                         <div className="products-item" key={i}>
@@ -313,4 +313,4 @@ const ViewProduct = () => {
     );
 };
 
-export default ViewProduct;
+export default NewProduct;

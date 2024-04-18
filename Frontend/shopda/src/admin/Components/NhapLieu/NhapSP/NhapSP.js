@@ -38,7 +38,7 @@ const schema = yup.object({
         .trim()
         .required("Không được bỏ trống")
         .min(2, "Mô tả có tối thiểu 10 ký tự")
-        .max(200, " Mô tả có tối đa 200 ký tự"),
+        .max(2000, " Mô tả có tối đa 200 ký tự"),
 });
 
 const NhapSP = () => {
