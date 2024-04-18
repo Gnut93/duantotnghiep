@@ -6,7 +6,7 @@ import { DevTool } from "@hookform/devtools";
 import { useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-
+import { useSelector } from "react-redux";
 const schema = yup.object().shape({
     address: yup.string().trim().required("Không được bỏ trống"),
     newaddress: yup.string().trim().required("Không được bỏ trống"),
@@ -14,7 +14,7 @@ const schema = yup.object().shape({
 const ChangeTheAddress = () => {
     const navigate = useNavigate();
     let { id } = useParams();
-
+    const user = useSelector((state) => state.auth.user);
     const form = useForm({
         defaultValues: async () => {
             const reponse = await fetch(
@@ -48,11 +48,11 @@ const ChangeTheAddress = () => {
             const responseData = await res.json();
             alert("Đã cập nhật địa chỉ giao hàng thành công,", responseData);
 
-            // if () {
-            navigate("/follow-order-user");
-            // } else {
-            //     navigate("/follow-order");
-            // }
+            if (user === null) {
+                navigate("/follow-order");
+            } else {
+                navigate("/follow-order-user");
+            }
         } catch (error) {
             console.error("Lỗi khi Sửa Trạng Thái: ", error);
         }

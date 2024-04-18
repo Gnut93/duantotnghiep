@@ -53,6 +53,11 @@ function App() {
                         exact
                         element={<BlogsDetails />}
                     />
+                    <Route
+                        path="/changetheaddress/:id"
+                        exact
+                        element={<ChangeTheAddress />}
+                    />
                     <Route path="/checkout" exact element={<Checkout />} />
                     <Route
                         path="/order-detail/:id"
@@ -80,11 +85,7 @@ function App() {
                             exact
                             element={<ResetPass />}
                         />
-                        <Route
-                            path="/changetheaddress/:id"
-                            exact
-                            element={<ChangeTheAddress />}
-                        />
+
                         <Route
                             path="/follow-order-user"
                             exact
