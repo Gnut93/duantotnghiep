@@ -65,7 +65,6 @@ router.put("/set-role/:id", (req, res) => {
         if (err) {
             res.json({ error: err.message });
         } else {
-            // console.log(result);
             res.json({ success: "Set role thành công" });
         }
     });
@@ -85,7 +84,6 @@ router.post("/register", (req, res) => {
         if (err) {
             res.json({ error: err.message });
         } else {
-            console.log(result);
             res.json({ success: "Đăng ký thành công" });
         }
     });
@@ -163,7 +161,6 @@ router.post("/change-password", async (req, res) => {
             if (err) {
                 res.json({ error: err.message });
             } else {
-                console.log(result);
                 res.json({ thongbao: "Đổi mật khẩu thành công" });
             }
         });
@@ -173,7 +170,6 @@ router.post("/change-password", async (req, res) => {
 //Quên mật khẩu
 router.post("/forgot-password", async (req, res) => {
     const email = req.body.email;
-    // console.log(email);
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/; //pattern email
     // cấu hình gửi mail
     var transporter = nodemailer.createTransport({
@@ -190,7 +186,6 @@ router.post("/forgot-password", async (req, res) => {
         if (result.length == 0) {
             return res.sendStatus(401);
         } else {
-            // console.log(result[0]);
             if (email != "" && emailPattern.test(email)) {
                 function generateRandomPassword(length) {
                     const charset =
@@ -347,7 +342,6 @@ router.delete("/delete/:id", async (req, res) => {
         if (err) {
             res.json({ error: err.message });
         } else {
-            // console.log(result);
             res.json({ success: "xóa người dùng thành công" });
         }
     });
@@ -364,7 +358,6 @@ router.put("/update/:id", (req, res) => {
         if (err) {
             res.json({ error: err.message });
         } else {
-            // console.log(result);
             res.json({ success: "Cập nhật thông tin thành công" });
         }
     });

@@ -64,10 +64,10 @@ router.post("/add-detail", async (req, res) => {
             item.image,
             item.quantity,
             item.total_price,
-            item.id_pd,
+            item.id_pd_detail,
         ]);
 
-        var sql = `INSERT INTO bill_detail (id_bill, name, price,color,image, quantity, total_price, id_pd) VALUES ?`;
+        var sql = `INSERT INTO bill_detail (id_bill, name, price,color,image, quantity, total_price, id_pd_detail) VALUES ?`;
 
         await db.query(sql, [values]);
 
@@ -122,7 +122,6 @@ router.put("/set-status/:id", (req, res) => {
 //set trạng thái hủy đơn hàng
 router.put("/set-statusCancelOrder", (req, res) => {
     var id = req.body.id;
-    console.log(id);
     var sql = `UPDATE bill SET status = 'Đã Hủy' WHERE id_bill = '${id}'`;
     db.query(sql, (err, result) => {
         if (err) {
@@ -136,7 +135,6 @@ router.put("/set-statusCancelOrder", (req, res) => {
 router.put("/set-address/:id", (req, res) => {
     var id = req.params.id;
     var data = req.body.newaddress;
-    console.log(data);
     var sql = `UPDATE bill SET address = '${data}' WHERE id_bill = '${id}'`;
     db.query(sql, (err, result) => {
         if (err) {

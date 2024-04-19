@@ -15,6 +15,12 @@ const schema = yup.object({
 });
 const FollowOrder = () => {
     const [listBill, setBill] = useState([]);
+    const [listBilDetail, setListBillDetail] = useState([]);
+    const quantityArray = listBilDetail.map((item) => ({
+        id_pd_detail: item.id_pd_detail,
+        quantity: item.quantity,
+    }));
+    console.log(quantityArray);
     const form = useForm({
         resolver: yupResolver(schema),
     });
@@ -44,7 +50,6 @@ const FollowOrder = () => {
             console.error("Lỗi khi kiểm tra mã giảm giá:", error);
         }
     };
-
     const HandleCancelOrder = async (id_bill, status) => {
         try {
             if (status !== "Chờ") {
@@ -58,22 +63,42 @@ const FollowOrder = () => {
             if (!confirmation) {
                 return;
             }
-            const url = `http://localhost:4000/bill/set-statusCancelOrder`;
-            const opt = {
+
+            const cancelOrderUrl = `http://localhost:4000/bill/set-statusCancelOrder`;
+            const cancelOrderOpt = {
                 method: "PUT",
                 body: JSON.stringify({ id: id_bill }),
                 headers: { "Content-Type": "application/json" },
             };
-            const res = await fetch(url, opt);
-            const responseData = await res.json();
-            alert("Đã Sửa Trạng Thái Thành Công,", responseData);
+            await fetch(cancelOrderUrl, cancelOrderOpt);
+
+            const response = await fetch(
+                `http://localhost:4000/bill/detailbill/${id_bill}`
+            );
+            const billDetailData = await response.json();
+            setListBillDetail(billDetailData);
+
+            const updateQuantityUrl = `http://localhost:4000/admin-products/update-quantity`;
+            const updateQuantityOpt = {
+                method: "put",
+                body: JSON.stringify(quantityArray),
+                headers: { "Content-Type": "application/json" },
+            };
+            await fetch(updateQuantityUrl, updateQuantityOpt);
+
+            alert("Đã Hủy Đơn Hàng Thành Công");
+
             fetch(`http://localhost:4000/bill/list`)
                 .then((res) => res.json())
                 .then(setBill);
         } catch (error) {
-            console.error("Lỗi khi Sửa Trạng Thái: ", error);
+            console.error(
+                "Lỗi khi thực hiện hủy đơn hàng hoặc cập nhật số lượng: ",
+                error
+            );
         }
     };
+
     return (
         <screen className="followOrder">
             <Navbar></Navbar>

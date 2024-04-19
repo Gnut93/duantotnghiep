@@ -65,7 +65,6 @@ router.put("/edit/:id", async (req, res) => {
     }
     try {
         var data = req.body;
-        console.log(data);
         var sql = `UPDATE product SET name='${data.name}', description='${data.description}', price='${data.price}', price_sale='${data.price_sale}', image='${data.image}', id_cate='${data.id_cate}' WHERE id_pd='${id_pd}'`;
         await queryDB(sql);
         res.json({ success: "Sửa sản phẩm thành công" });
@@ -83,7 +82,6 @@ router.put("/edit-detail/:id", async (req, res) => {
     }
     try {
         var data = req.body;
-        console.log(data);
         var sql = `UPDATE product_detail SET image='${data.image}', color='${data.color}', color_code='${data.color_code}', quantity='${data.quantity}' WHERE id_pd='${id_pd}'`;
         await queryDB(sql);
         res.json({ success: "Sửa sản phẩm chi tiết thành công" });
@@ -134,27 +132,22 @@ router.put("/edit-quantity/:id", async (req, res) => {
     }
 });
 // cập nhật lại số lượng sản phẩm khi hủy đơn
-router.put("/edit-quantity", async (req, res) => {
+
+router.put("/update-quantity", async (req, res) => {
     try {
         const updates = req.body;
-
-        if (!updates || !Array.isArray(updates) || updates.length === 0) {
-            res.json({ error: "Dữ liệu không hợp lệ" });
-            return;
-        }
-
+        console.log(updates);
         const updateTasks = [];
-
-        updates.forEach(async (update) => {
-            const { color, quantity } = update;
-            const sqlGetQuantity = `SELECT quantity FROM product_detail WHERE color ='${color}'`;
-            const currentQuantity = await queryDB(sqlGetQuantity);
-            const newQuantity = currentQuantity + quantity;
-
-            const sqlUpdateQuantity = `UPDATE product_detail SET quantity='${newQuantity}' WHERE color ='${color}'`;
-            updateTasks.push(queryDB(sqlUpdateQuantity));
+        console.log(updateTasks);
+        // Lặp qua mỗi cập nhật
+        updates.forEach((update) => {
+            const { id_pd_detail, quantity } = update;
+            // Tạo promise cho mỗi câu lệnh SQL cập nhật
+            const sql = `UPDATE product_detail SET quantity = quantity + ${quantity} WHERE id_pd_detail = '${id_pd_detail}'`;
+            updateTasks.push(queryDB(sql));
         });
 
+        // Chờ cho tất cả các promise cập nhật hoàn thành
         await Promise.all(updateTasks);
 
         res.json({ success: "Cập nhật số lượng sản phẩm thành công" });

@@ -143,8 +143,8 @@ const Checkout = () => {
         return billData;
     };
     const selectedProducts = cart.map((item) => {
-        const { name, nameColor, price, image, soluong, id_pd } = item;
-        return { name, nameColor, price, image, soluong, id_pd };
+        const { name, nameColor, price, image, soluong, id_pd_detail } = item;
+        return { name, nameColor, price, image, soluong, id_pd_detail };
     });
     const generateBillDetailData = (selectedProducts, id_bd) => {
         return selectedProducts.map((product) => ({
@@ -155,7 +155,7 @@ const Checkout = () => {
             image: product.image,
             quantity: product.soluong,
             total_price: TotalPrice,
-            id_pd: product.id_pd,
+            id_pd_detail: product.id_pd_detail,
         }));
     };
     const updateQuantityDiscount = (id_gc) => {

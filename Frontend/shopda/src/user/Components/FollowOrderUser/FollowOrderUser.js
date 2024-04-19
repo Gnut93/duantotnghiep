@@ -35,7 +35,7 @@ const FollowOrderUser = () => {
             const res = await fetch(url, opt);
             const responseData = await res.json();
 
-            alert("Đã Sửa Trạng Thái Thành Công,", responseData);
+            alert("Đã  Hủy Đơn Hàng Thành Công,", responseData);
             fetch(`http://localhost:4000/bill/list/${idUser}`)
                 .then((res) => res.json())
                 .then(setListBill);
