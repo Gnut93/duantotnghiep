@@ -113,13 +113,15 @@ const FollowOrderUser = () => {
                                         </Link>
                                     </td>
                                     <td>
-                                        <Link
-                                            to={`/changetheaddress/${bill.id_bill}`}
-                                        >
-                                            <span className="btn--show-modal">
-                                                <i className="fas fa-tools"></i>
-                                            </span>
-                                        </Link>
+                                        {bill.status === "Chờ" && (
+                                            <Link
+                                                to={`/changetheaddress/${bill.id_bill}`}
+                                            >
+                                                <span className="btn--show-modal">
+                                                    <i className="fas fa-tools"></i>
+                                                </span>
+                                            </Link>
+                                        )}
                                     </td>
                                     <td>
                                         <span
