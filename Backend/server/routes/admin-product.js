@@ -136,9 +136,8 @@ router.put("/edit-quantity/:id", async (req, res) => {
 router.put("/update-quantity", async (req, res) => {
     try {
         const updates = req.body;
-        console.log(updates);
         const updateTasks = [];
-        console.log(updateTasks);
+
         // Lặp qua mỗi cập nhật
         updates.forEach((update) => {
             const { id_pd_detail, quantity } = update;

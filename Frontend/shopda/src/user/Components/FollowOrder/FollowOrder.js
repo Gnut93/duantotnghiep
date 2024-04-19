@@ -15,12 +15,7 @@ const schema = yup.object({
 });
 const FollowOrder = () => {
     const [listBill, setBill] = useState([]);
-    const [listBilDetail, setListBillDetail] = useState([]);
-    const quantityArray = listBilDetail.map((item) => ({
-        id_pd_detail: item.id_pd_detail,
-        quantity: item.quantity,
-    }));
-    console.log(quantityArray);
+
     const form = useForm({
         resolver: yupResolver(schema),
     });
@@ -76,8 +71,11 @@ const FollowOrder = () => {
                 `http://localhost:4000/bill/detailbill/${id_bill}`
             );
             const billDetailData = await response.json();
-            setListBillDetail(billDetailData);
-
+            console.log(billDetailData);
+            const quantityArray = billDetailData.map((item) => ({
+                id_pd_detail: item.id_pd_detail,
+                quantity: item.quantity,
+            }));
             const updateQuantityUrl = `http://localhost:4000/admin-products/update-quantity`;
             const updateQuantityOpt = {
                 method: "put",
