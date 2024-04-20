@@ -24,7 +24,6 @@ const LoginPage = () => {
             alert("Vui lòng nhập password");
             return;
         }
-        console.log(data);
         try {
             const response = await fetch("http://localhost:4000/users/login", {
                 method: "POST",
@@ -34,7 +33,6 @@ const LoginPage = () => {
             const result = await response.json();
             if (response.ok) {
                 // Chuyển đổi result thành chuỗi JSON và lưu vào localStorage
-                console.log(result);
                 dispatch(dalogin(result));
                 localStorage.setItem("result", JSON.stringify(result));
                 if (parseInt(result.userInfo.role) === 1) {

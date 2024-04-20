@@ -26,21 +26,42 @@ const FollowOrderUser = () => {
             if (!confirmation) {
                 return;
             }
-            const url = `http://localhost:4000/bill/set-statusCancelOrder`;
-            const opt = {
+
+            const cancelOrderUrl = `http://localhost:4000/bill/set-statusCancelOrder`;
+            const cancelOrderOpt = {
                 method: "PUT",
                 body: JSON.stringify({ id: id_bill }),
                 headers: { "Content-Type": "application/json" },
             };
-            const res = await fetch(url, opt);
-            const responseData = await res.json();
+            await fetch(cancelOrderUrl, cancelOrderOpt);
 
-            alert("Đã  Hủy Đơn Hàng Thành Công,", responseData);
+            const response = await fetch(
+                `http://localhost:4000/bill/detailbill/${id_bill}`
+            );
+            const billDetailData = await response.json();
+            console.log(billDetailData);
+            const quantityArray = billDetailData.map((item) => ({
+                id_pd_detail: item.id_pd_detail,
+                quantity: item.quantity,
+            }));
+            const updateQuantityUrl = `http://localhost:4000/admin-products/update-quantity`;
+            const updateQuantityOpt = {
+                method: "put",
+                body: JSON.stringify(quantityArray),
+                headers: { "Content-Type": "application/json" },
+            };
+            await fetch(updateQuantityUrl, updateQuantityOpt);
+
+            alert("Đã Hủy Đơn Hàng Thành Công");
+
             fetch(`http://localhost:4000/bill/list/${idUser}`)
                 .then((res) => res.json())
                 .then(setListBill);
         } catch (error) {
-            console.error("Lỗi khi Sửa Trạng Thái: ", error);
+            console.error(
+                "Lỗi khi thực hiện hủy đơn hàng hoặc cập nhật số lượng: ",
+                error
+            );
         }
     };
 
