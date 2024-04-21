@@ -19,6 +19,23 @@ router.get("/list/:id", (req, res) => {
         }
     });
 });
+// lấy bill theo tháng
+router.get("/listmonth/:month", (req, res) => {
+    var month = parseInt(req.params.month);
+    if (isNaN(month) || month < 1 || month > 12) {
+        res.json({ error: "Tháng không hợp lệ" });
+        return;
+    }
+
+    var sql = `SELECT * FROM bill WHERE MONTH(created_date) = ${month}`;
+    db.query(sql, (err, result) => {
+        if (err) {
+            res.json({ error: "Không tìm thấy lịch sử mua hàng" });
+        } else {
+            res.json(result);
+        }
+    });
+});
 
 //Chi tiết 1 đơn hàng
 router.get("/detailbill/:id", (req, res) => {

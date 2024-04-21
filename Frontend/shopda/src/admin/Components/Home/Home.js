@@ -11,7 +11,9 @@ const Home = () => {
     const [listColor, setListColor] = useState([]);
     const [listBill, setListBill] = useState([]);
     const [listUser, setListUser] = useState([]);
-    console.log(listUser);
+    const [monthlyRevenue, setMonthlyRevenue] = useState([]);
+    const [totalNumber, setTotalNumber] = useState([]);
+    const [sales, setSales] = useState(0);
     useEffect(() => {
         fetch("http://localhost:4000/products/col/list")
             .then((res) => res.json())
@@ -26,6 +28,36 @@ const Home = () => {
             .then((res) => res.json())
             .then(setListUser);
     }, []);
+    //tổng doanh thu
+    useEffect(() => {
+        let totalSales = 0;
+
+        listBill.forEach((bill) => {
+            totalSales += bill.total_price;
+        });
+
+        setSales(totalSales);
+    }, [listBill]);
+    //tổng doanh thu từng tháng
+    useEffect(() => {
+        const revenueByMonth = Array(12).fill(0);
+
+        listBill.forEach((bill) => {
+            const month = new Date(bill.created_date).getMonth();
+            revenueByMonth[month] += bill.total_price;
+        });
+        setMonthlyRevenue(revenueByMonth);
+    }, [listBill]);
+    //tổng số người đăng ký
+    useEffect(() => {
+        const signUpCountByMonth = Array(12).fill(0);
+        listUser.forEach((user) => {
+            const month = new Date(user.created_date).getMonth();
+            signUpCountByMonth[month]++;
+        });
+
+        setTotalNumber(signUpCountByMonth);
+    }, [listUser]);
 
     const listProduct = listColor.map((color) => {
         const sp = listSp.find((sp) => sp.id_pd === color.id_pd);
@@ -82,10 +114,26 @@ const Home = () => {
     }, []);
 
     const toggleDropdown = () => setIsOpen(!isOpen);
-
+    const fetchDataByMonth = (month) => {
+        const monthNumber = parseInt(month.match(/\d+/));
+        fetch(`http://localhost:4000/bill/listmonth/${monthNumber}`)
+            .then((response) => response.json())
+            .then((data) => {
+                setListBill(data);
+            });
+        fetch(`http://localhost:4000/users/listmonth/${monthNumber}`)
+            .then((response) => response.json())
+            .then((data) => {
+                setListUser(data);
+            })
+            .catch((error) => {
+                console.error("Lỗi khi lấy dữ liệu:", error);
+            });
+    };
     const handleSelect = (value) => {
         setSelected(value);
         setIsOpen(false);
+        fetchDataByMonth(value);
     };
 
     return (
@@ -151,7 +199,12 @@ const Home = () => {
                         <div className="box-info-item">
                             <i className="bx bxs-dollar-circle"></i>
                             <span className="text">
-                                <h3>0</h3>
+                                <h3>
+                                    {parseInt(sales).toLocaleString("vi-VN", {
+                                        style: "currency",
+                                        currency: "VND",
+                                    })}
+                                </h3>
                                 <p>Doanh thu</p>
                             </span>
                         </div>
@@ -168,7 +221,6 @@ const Home = () => {
                                         <th>Người Dùng</th>
                                         <th>Trạng Thái</th>
                                         <th>Tổng tiền</th>
-                                        <th>Thanh toán</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -191,11 +243,6 @@ const Home = () => {
                                                         style: "currency",
                                                         currency: "VND",
                                                     })}
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span className="status waiting">
-                                                    {bill.payment_type}
                                                 </span>
                                             </td>
                                         </tr>
@@ -328,10 +375,7 @@ const Home = () => {
                                             "#3e95cd",
                                             "#8e5ea2",
                                         ],
-                                        data: [
-                                            2478, 5267, 734, 784, 433, 10000,
-                                            5000, 4000, 3000, 2500, 50, 500,
-                                        ],
+                                        data: monthlyRevenue,
                                     },
                                 ],
                             }}
@@ -377,10 +421,7 @@ const Home = () => {
                                             "#3e95cd",
                                             "#8e5ea2",
                                         ],
-                                        data: [
-                                            50, 10, 100, 1, 5, 25, 100, 125, 30,
-                                            80, 90, 100,
-                                        ],
+                                        data: totalNumber,
                                     },
                                 ],
                             }}

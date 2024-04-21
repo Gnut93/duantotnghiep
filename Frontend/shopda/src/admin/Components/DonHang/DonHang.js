@@ -57,10 +57,25 @@ const DonHang = () => {
             document.removeEventListener("mousedown", handleClickOutside);
     }, []);
     const toggleDropdown = () => setIsOpen(!isOpen);
+
+    const fetchDataByMonth = (month) => {
+        const monthNumber = parseInt(month.match(/\d+/));
+        fetch(`http://localhost:4000/bill/listmonth/${monthNumber}`)
+            .then((response) => response.json())
+            .then((data) => {
+                setListBill(data);
+            })
+            .catch((error) => {
+                console.error("Lỗi khi lấy dữ liệu:", error);
+            });
+    };
+
     const handleSelect = (value) => {
         setSelected(value);
         setIsOpen(false);
+        fetchDataByMonth(value);
     };
+
     return (
         <section className="content">
             <main>

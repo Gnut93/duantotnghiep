@@ -362,4 +362,21 @@ router.put("/update/:id", (req, res) => {
         }
     });
 });
+//danh sách người dùng theo tháng
+router.get("/listmonth/:month", (req, res) => {
+    var month = parseInt(req.params.month);
+    if (isNaN(month) || month < 1 || month > 12) {
+        res.json({ error: "Tháng không hợp lệ" });
+        return;
+    }
+
+    var sql = `SELECT * FROM user WHERE MONTH(created_date) = ${month}`;
+    db.query(sql, (err, result) => {
+        if (err) {
+            res.json({ error: "Không tìm thấy lịch sử mua hàng" });
+        } else {
+            res.json(result);
+        }
+    });
+});
 module.exports = router;
