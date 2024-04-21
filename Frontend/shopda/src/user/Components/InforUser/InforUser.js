@@ -28,7 +28,9 @@ const schema = yup.object({
         .typeError("Vui lòng nhập một số")
         .min(10, "Chưa đạt số lượng tối thiểu")
         .required("Không được bỏ trống"),
-
+    address: yup
+        .string()
+        .required("Không được bỏ trống"),
     image: yup.string(),
     avatar: yup.mixed().test("size", "Kích thước file quá lớn", (value) => {
         if (!value) return true; // Trường hợp không có file được chọn
@@ -165,6 +167,19 @@ const InfoUser = () => {
                                     />
                                     <p className="err">
                                         {errors.email?.message}
+                                    </p>
+                                </div>
+                                <div className="infoUser-item">
+                                    <label className="infoUser-text">
+                                        Địa chỉ
+                                    </label>
+                                    <input
+                                        placeholder="Địa chỉ"
+                                        type="text"
+                                        {...register("address")}
+                                    />
+                                    <p className="err">
+                                        {errors.address?.message}
                                     </p>
                                 </div>
                                 <div className="infoUser-item">
