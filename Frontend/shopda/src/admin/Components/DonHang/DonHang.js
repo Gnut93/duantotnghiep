@@ -126,7 +126,6 @@ const DonHang = () => {
                                 <tr>
                                     <th>Người Dùng</th>
                                     <th>số điện thoại</th>
-                                    <th>Email</th>
                                     <th>địa chỉ</th>
                                     <th>Ngày Đặt</th>
                                     <th>Trạng Thái</th>
@@ -145,9 +144,7 @@ const DonHang = () => {
                                         <td>
                                             <p>{bill.phone}</p>
                                         </td>
-                                        <td>
-                                            <p>{bill.email}</p>
-                                        </td>
+
                                         <td>
                                             <p>{bill.address}</p>
                                         </td>

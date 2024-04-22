@@ -33,18 +33,23 @@ const Home = () => {
         let totalSales = 0;
 
         listBill.forEach((bill) => {
-            totalSales += bill.total_price;
+            if (bill.status === "Hoàn Thành") {
+                totalSales += bill.total_price;
+            }
         });
 
         setSales(totalSales);
     }, [listBill]);
+
     //tổng doanh thu từng tháng
     useEffect(() => {
         const revenueByMonth = Array(12).fill(0);
 
         listBill.forEach((bill) => {
             const month = new Date(bill.created_date).getMonth();
-            revenueByMonth[month] += bill.total_price;
+            if (bill.status === "Hoàn Thành") {
+                revenueByMonth[month] += bill.total_price;
+            }
         });
         setMonthlyRevenue(revenueByMonth);
     }, [listBill]);

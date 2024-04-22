@@ -36,7 +36,7 @@ const ChiTietDonHang = () => {
                             <tbody>
                                 {listBillDetail.map((billDetail, i) => (
                                     <tr key={i}>
-                                        <td>{billDetail.id_pd}</td>
+                                        <td>{i + 1}</td>
                                         <td>{billDetail.name}</td>
                                         <td>{billDetail.price}</td>
                                         <td>{billDetail.color}</td>
