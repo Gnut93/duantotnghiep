@@ -36,9 +36,9 @@ const BlogsDetails = () => {
       </div> */}
       <div className="blog__details">
         <div className="blog__details__icon">
-          <i class="fa-solid fa-calendar"></i>
+          <i className="fa-solid fa-calendar"></i>
           <span>Ngày 15/09/2024</span>
-          <i class="fa-solid fa-house"></i>
+          <i className="fa-solid fa-house"></i>
           <span>Da Shop</span>
         </div>
         <hr />

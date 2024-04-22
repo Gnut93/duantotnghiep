@@ -17,15 +17,25 @@ const nodemailer = require("nodemailer");
 router.get("/info/:id", (req, res) => {
     var id = req.params.id;
 
-    var sql = `SELECT * FROM user WHERE id_user = ?`;
+    var sql = `SELECT * FROM user 
+    JOIN address ON user.id_user = address.id_user 
+    WHERE user.id_user = ? 
+    ORDER BY address.id_address DESC
+    LIMIT 1
+    `;
     db.query(sql, [id], (err, result) => {
         if (err) {
             res.json({ error: "Khong tim thay user" });
         } else {
-            res.json(result[0]);
+            var user = result[0];
+            // Nối lại địa chỉ
+            user.address = [user.address, user.ward, user.district, user.province].join(', ');
+            res.json(user);
         }
     });
 });
+
+
 //Lấy thông tin 1 user
 router.get("/role/:id", (req, res) => {
     var id = parseInt(req.params.id);
@@ -137,7 +147,26 @@ getUserInfo = async (email) => {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve(result[0]);
+                    const user = result[0];
+                    db.query(
+                        `SELECT * FROM address WHERE id_user=? ORDER BY id_address DESC LIMIT 1`,
+                        [user.id_user],
+                        function (err, result) {
+                            if (err) {
+                                reject(err);
+                            } else {
+                                const address = result[0];
+                                // Nối thông tin địa chỉ thành một chuỗi hoàn chỉnh
+                                const fullAddress = [address.address, address.ward, address.district, address.province].join(', ');
+                                // Nối thông tin địa chỉ vào object user
+                                const userInfo = {
+                                    ...user,
+                                    address: fullAddress
+                                };
+                                resolve(userInfo);
+                            }
+                        }
+                    );
                 }
             }
         );
@@ -146,6 +175,8 @@ getUserInfo = async (email) => {
         return { error: "Lỗi lấy thông tin user" };
     });
 };
+
+
 
 //Đổi mật khẩu
 router.post("/change-password", async (req, res) => {
@@ -346,22 +377,40 @@ router.delete("/delete/:id", async (req, res) => {
         }
     });
 });
-//Cập nhật thông tin người dùng
 router.put("/update/:id", (req, res) => {
     var id = req.params.id;
     var name = req.body.name;
     var email = req.body.email;
     var phone = req.body.phone;
     var avatar = req.body.image;
+    var fullAddress = req.body.address;
+
+    // Tách địa chỉ ra thành các phần
+    var addressParts = fullAddress.split(',').map(part => part.trim());
+    var address = addressParts[0];
+    var ward = addressParts[1];
+    var district = addressParts[2];
+    var province = addressParts[3];
+
     var sql = `UPDATE user SET name = '${name}', email = '${email}', phone = '${phone}', avatar = '${avatar}' WHERE id_user = '${id}'`;
+    var sql_address = `INSERT INTO address (id_user, address, ward, district, province) VALUES ('${id}', '${address}', '${ward}', '${district}', '${province}') 
+                        ON DUPLICATE KEY UPDATE address = '${address}', ward = '${ward}', district = '${district}', province = '${province}'`;
+
     db.query(sql, (err, result) => {
         if (err) {
             res.json({ error: err.message });
         } else {
-            res.json({ success: "Cập nhật thông tin thành công" });
+            db.query(sql_address, (err, result) => {
+                if (err) {
+                    res.json({ error: err.message });
+                } else {
+                    res.json({ success: "Cập nhật thông tin thành công" });
+                }
+            });
         }
     });
 });
+
 //danh sách người dùng theo tháng
 router.get("/listmonth/:month", (req, res) => {
     var month = parseInt(req.params.month);

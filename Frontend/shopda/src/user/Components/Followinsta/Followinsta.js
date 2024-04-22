@@ -61,7 +61,7 @@ const Followinsta = () => {
         className="related-heading"
         style={{ marginBottom: "60px", marginTop: "70px" }}
       >
-        Theo dõi chúng tôi trên instagram <i class="ri-instagram-fill"></i>
+        Theo dõi chúng tôi trên instagram <i className="ri-instagram-fill"></i>
       </h3>
 
       <div className="slider-container" data-aos="fade-up">

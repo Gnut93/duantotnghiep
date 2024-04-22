@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../Navbar/Navbar";
 import "./InforUser.css";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { thoat, capnhatUserInfo } from "../../../authSlice";
 import { useNavigate } from "react-router-dom";
@@ -40,7 +40,9 @@ const schema = yup.object({
 
 const InfoUser = () => {
     const navigate = useNavigate();
-    var user = useSelector((state) => state.auth.user);
+    const result = JSON.parse(localStorage.getItem('result'));
+    var user = result?.userInfo
+    console.log(user);
     const dispatch = useDispatch();
     const idUser = user ? user.id_user : null;
     const form = useForm({
@@ -48,11 +50,12 @@ const InfoUser = () => {
             name: user?.name,
             phone: user?.phone,
             email: user?.email,
-            image: user?.image,
+            image: user?.avatar,
+            address: user?.address,
         },
         resolver: yupResolver(schema),
     });
-    const { register, handleSubmit, reset, formState, control } = form;
+    const { register, handleSubmit, formState, control } = form;
     const { errors, isSubmitSuccessful } = formState;
 
     const handleFileUpload = (e) => {
@@ -90,6 +93,7 @@ const InfoUser = () => {
                 const res = await fetch(url);
                 const data = await res.json();
                 dispatch(capnhatUserInfo({ userInfo: data }));
+                localStorage.setItem('result', JSON.stringify({ expiresIn: result.expiresIn, idToken: result.idToken, userInfo: data }));
             } catch (error) {
                 console.error("Lỗi khi lấy thông tin người dùng: ", error);
             }
@@ -97,9 +101,8 @@ const InfoUser = () => {
 
         if (isSubmitSuccessful) {
             getInforUser();
-            reset();
         }
-    }, [isSubmitSuccessful, reset, idUser, dispatch]);
+    }, [isSubmitSuccessful, idUser, dispatch]);
 
     const handleLogout = () => {
         // Xóa thông tin người dùng khỏi localStorage
@@ -174,7 +177,7 @@ const InfoUser = () => {
                                         Địa chỉ
                                     </label>
                                     <input
-                                        placeholder="Địa chỉ"
+                                        placeholder="Địa chỉ, Xã/Phường, Quận/Huyện, Tỉnh/Thành Phố"
                                         type="text"
                                         {...register("address")}
                                     />

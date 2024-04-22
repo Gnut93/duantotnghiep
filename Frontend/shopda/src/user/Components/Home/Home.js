@@ -67,7 +67,7 @@ const Home = () => {
                 <Partner></Partner>
                 {isVisible && (
                     <div onClick={scrollToTop} style={styles.scrollButton}>
-                        <i class="ri-arrow-up-line"></i>
+                        <i className="ri-arrow-up-line"></i>
                     </div>
                 )}
             </div>
