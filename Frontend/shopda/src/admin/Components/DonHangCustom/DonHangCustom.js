@@ -109,8 +109,8 @@ const DonHangCustom = () => {
                         <table>
                             <thead>
                                 <tr>
-                                    <th>tên Sản Phẩm</th>
-                                    <th>Size</th>
+                                    <th>Tên Người Đặt</th>
+                                    <th>Loại</th>
                                     <th>Email</th>
                                     <th>Màu Sản Phẩm</th>
                                     <th>Hình</th>
@@ -126,7 +126,7 @@ const DonHangCustom = () => {
                                             <p>{bill.name}</p>
                                         </td>
                                         <td>
-                                            <p>{bill.size}</p>
+                                            <p>{bill.loai}</p>
                                         </td>
                                         <td>
                                             <p>{bill.email}</p>
