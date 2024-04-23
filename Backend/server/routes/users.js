@@ -29,12 +29,16 @@ router.get("/info/:id", (req, res) => {
         } else {
             var user = result[0];
             // Nối lại địa chỉ
-            user.address = [user.address, user.ward, user.district, user.province].join(', ');
+            user.address = [
+                user.address,
+                user.ward,
+                user.district,
+                user.province,
+            ].join(", ");
             res.json(user);
         }
     });
 });
-
 
 //Lấy thông tin 1 user
 router.get("/role/:id", (req, res) => {
@@ -179,9 +183,6 @@ getUserInfo = async (email) => {
         return { error: "Lỗi lấy thông tin user" };
     });
 };
-
-
-
 
 //Đổi mật khẩu
 router.post("/change-password", async (req, res) => {
@@ -391,7 +392,7 @@ router.put("/update/:id", (req, res) => {
     var fullAddress = req.body.address;
 
     // Tách địa chỉ ra thành các phần
-    var addressParts = fullAddress.split(',').map(part => part.trim());
+    var addressParts = fullAddress.split(",").map((part) => part.trim());
     var address = addressParts[0];
     var ward = addressParts[1];
     var district = addressParts[2];
