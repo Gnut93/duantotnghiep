@@ -29,12 +29,16 @@ router.get("/info/:id", (req, res) => {
         } else {
             var user = result[0];
             // Nối lại địa chỉ
-            user.address = [user.address, user.ward, user.district, user.province].join(', ');
+            user.address = [
+                user.address,
+                user.ward,
+                user.district,
+                user.province,
+            ].join(", ");
             res.json(user);
         }
     });
 });
-
 
 //Lấy thông tin 1 user
 router.get("/role/:id", (req, res) => {
@@ -157,11 +161,16 @@ getUserInfo = async (email) => {
                             } else {
                                 const address = result[0];
                                 // Nối thông tin địa chỉ thành một chuỗi hoàn chỉnh
-                                const fullAddress = [address.address, address.ward, address.district, address.province].join(', ');
+                                const fullAddress = [
+                                    address.address,
+                                    address.ward,
+                                    address.district,
+                                    address.province,
+                                ].join(", ");
                                 // Nối thông tin địa chỉ vào object user
                                 const userInfo = {
                                     ...user,
-                                    address: fullAddress
+                                    address: fullAddress,
                                 };
                                 resolve(userInfo);
                             }
@@ -175,8 +184,6 @@ getUserInfo = async (email) => {
         return { error: "Lỗi lấy thông tin user" };
     });
 };
-
-
 
 //Đổi mật khẩu
 router.post("/change-password", async (req, res) => {
@@ -386,7 +393,7 @@ router.put("/update/:id", (req, res) => {
     var fullAddress = req.body.address;
 
     // Tách địa chỉ ra thành các phần
-    var addressParts = fullAddress.split(',').map(part => part.trim());
+    var addressParts = fullAddress.split(",").map((part) => part.trim());
     var address = addressParts[0];
     var ward = addressParts[1];
     var district = addressParts[2];

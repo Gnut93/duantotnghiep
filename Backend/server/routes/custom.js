@@ -17,11 +17,11 @@ function queryDB(sql, params) {
 //Thêm bảng custom
 router.post("/add", async (req, res) => {
     try {
-        var { name, size, email, color, image, phone, description } = req.body;
-        var sql = `INSERT INTO custom (name, size, email, color, image, phone, description) VALUES (?, ?, ?, ?, ?, ?,?)`;
+        var { name, loai, email, color, image, phone, description } = req.body;
+        var sql = `INSERT INTO custom (name, loai, email, color, image, phone, description) VALUES (?, ?, ?, ?, ?, ?,?)`;
         await queryDB(sql, [
             name,
-            size,
+            loai,
             email,
             color,
             image,
