@@ -195,3 +195,14 @@ header nav ul li {
 .banner-main {
   animation: fadeInUp 2.6s ease-in-out;
 }
+@media screen and (max-width: 767px) {
+  .banner-heading {
+    font-size: 40px;
+  }
+  .banner-desc {
+    font-size: 14px;
+  }
+  .banner-button {
+    padding: 10px 20px;
+  }
+}

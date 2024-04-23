@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Navbar.css';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -12,12 +12,17 @@ const Navbar = (props) => {
   const cart = useSelector((state) => state.cart.listSP);
   const user = useSelector((state) => state.auth.user);
   const daDangNhap = useSelector((state) => state.auth.daDangNhap);
+  const [isOpen, setIsOpen] = useState(false);
+  const headerRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let quantity = 0;
   cart.forEach((element) => {
     quantity += element.soluong;
   });
+  const toggleMenu = () => {
+    setIsOpen((prevIsOpen) => !prevIsOpen);
+  };
   const handleLogout = () => {
     // Xóa thông tin người dùng khỏi localStorage
     localStorage.removeItem('result');
@@ -25,12 +30,31 @@ const Navbar = (props) => {
     dispatch(thoat());
     navigate('/');
   };
+
+  useEffect(() => {
+    // Attaching the click listener to the whole window and only toggling if outside
+    const handleWindowClick = (event) => {
+      if (headerRef.current && !headerRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener('click', handleWindowClick);
+
+    // Return function to cleanup the event listener
+    return () => {
+      window.removeEventListener('click', handleWindowClick);
+    };
+  }, []);
+
   return (
     <div
       className="navbar"
       style={{ backgroundColor }}>
       <div className="container">
-        <nav className="menu">
+        <nav
+          className="menu"
+          ref={headerRef}>
           <Link
             to="/"
             className="menu-logo">
@@ -38,7 +62,8 @@ const Navbar = (props) => {
               src={logo}
               alt=""></img>
           </Link>
-          <ul className="menu-list">
+
+          <ul className={`menu-list toggle ${isOpen ? 'is-active' : ''}`}>
             <li className="menu-item">
               <Link
                 to="/"
@@ -141,6 +166,11 @@ const Navbar = (props) => {
                 <i className="fas fa-shopping-cart"></i>
                 <sup>({quantity})</sup>
               </Link>
+            </li>
+            <li
+              className="menu-toggle"
+              onClick={toggleMenu}>
+              <i className="fas fa-bars"></i>
             </li>
           </ul>
         </nav>

@@ -5,7 +5,6 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap; /* Đảm bảo rằng các mục vẫn trên cùng một hàng */
-  padding: 0 60px; /* Tạo khoảng cách giữa các item và lề */
 }
 .testimonial .col-3 {
   flex: 1; /* Chia đều các mục trên hàng */
@@ -51,4 +50,9 @@
 }
 .col-5 img:hover {
   opacity: 0.6;
+}
+@media screen and (max-width: 1279px) {
+  .testimonial .row {
+    flex-direction: column;
+  }
 }

@@ -9,12 +9,31 @@
 .related-product {
   display: grid;
   grid-template-columns: repeat(4, 2fr);
-  grid-column-gap: 40px;
+  grid-column-gap: 10px;
   grid-row-gap: 40px;
   margin-top: 20px;
   padding: 20px 0;
 }
 .related-product img {
-  max-width: 280px;
-  height: 320px;
+  width: 100%;
+  height: auto;
+}
+@media screen and (max-width: 1023px) {
+  .related-product {
+    grid-template-columns: repeat(2, 2fr);
+  }
+  .related-product img {
+    width: 100%;
+    height: auto;
+  }
+}
+@media screen and (max-width: 767px) {
+  .related-product {
+    grid-template-columns: repeat(1, 2fr);
+    padding: 0 10px;
+  }
+  .related-product img {
+    width: 100%;
+    height: auto;
+  }
 }

@@ -58,3 +58,31 @@
 .dropdown-content .menu-link:hover {
   color: #ff9f1c;
 }
+.menu-toggle {
+  display: none;
+}
+@media screen and (max-width: 1279px) {
+  .menu-toggle {
+    display: block;
+    font-size: 26px;
+    cursor: pointer;
+    color: #ffffff;
+  }
+  .menu-list.toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 75%;
+    height: 100vh;
+    z-index: 1000;
+    background-color: #4a1f18;
+    transform: translateX(100%);
+    transition: all 0.3s linear;
+  }
+  .menu-list.toggle.is-active {
+    transform: translateX(0);
+  }
+}
