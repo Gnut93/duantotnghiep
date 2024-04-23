@@ -28,9 +28,7 @@ const schema = yup.object({
         .typeError("Vui lòng nhập một số")
         .min(10, "Chưa đạt số lượng tối thiểu")
         .required("Không được bỏ trống"),
-    address: yup
-        .string()
-        .required("Không được bỏ trống"),
+    address: yup.string().required("Không được bỏ trống"),
     image: yup.string(),
     avatar: yup.mixed().test("size", "Kích thước file quá lớn", (value) => {
         if (!value) return true; // Trường hợp không có file được chọn
@@ -40,9 +38,8 @@ const schema = yup.object({
 
 const InfoUser = () => {
     const navigate = useNavigate();
-    const result = JSON.parse(localStorage.getItem('result'));
-    var user = result?.userInfo
-    console.log(user);
+    const result = JSON.parse(localStorage.getItem("result"));
+    var user = result?.userInfo;
     const dispatch = useDispatch();
     const idUser = user ? user.id_user : null;
     const form = useForm({
@@ -93,7 +90,14 @@ const InfoUser = () => {
                 const res = await fetch(url);
                 const data = await res.json();
                 dispatch(capnhatUserInfo({ userInfo: data }));
-                localStorage.setItem('result', JSON.stringify({ expiresIn: result.expiresIn, idToken: result.idToken, userInfo: data }));
+                localStorage.setItem(
+                    "result",
+                    JSON.stringify({
+                        expiresIn: result.expiresIn,
+                        idToken: result.idToken,
+                        userInfo: data,
+                    })
+                );
             } catch (error) {
                 console.error("Lỗi khi lấy thông tin người dùng: ", error);
             }
@@ -102,7 +106,13 @@ const InfoUser = () => {
         if (isSubmitSuccessful) {
             getInforUser();
         }
-    }, [isSubmitSuccessful, idUser, dispatch]);
+    }, [
+        isSubmitSuccessful,
+        idUser,
+        dispatch,
+        result.expiresIn,
+        result.idToken,
+    ]);
 
     const handleLogout = () => {
         // Xóa thông tin người dùng khỏi localStorage
@@ -119,7 +129,14 @@ const InfoUser = () => {
                 <h1 className="infoUer-heading">Thông tin cá nhân</h1>
                 <div className="infoUser-wrapper">
                     <div className="infoUser-image">
-                        <img src={user.avatar ? user?.avatar : "https://www.shutterstock.com/image-vector/blank-avatar-photo-icon-design-600nw-1682415103.jpg"} alt="avatar-user" />
+                        <img
+                            src={
+                                user.avatar
+                                    ? user?.avatar
+                                    : "https://www.shutterstock.com/image-vector/blank-avatar-photo-icon-design-600nw-1682415103.jpg"
+                            }
+                            alt="avatar-user"
+                        />
                         <p className="infoUser-name">{user?.name}</p>
                         <p className="infoUser-info">{user?.phone}</p>
                         <p className="infoUser-info">{user?.email}</p>

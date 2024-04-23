@@ -164,11 +164,16 @@ getUserInfo = async (email) => {
                                 if (result[0]) {
                                     const address = result[0];
                                     // Nối thông tin địa chỉ thành một chuỗi hoàn chỉnh
-                                    const fullAddress = [address.address, address.ward, address.district, address.province].join(', ');
+                                    const fullAddress = [
+                                        address.address,
+                                        address.ward,
+                                        address.district,
+                                        address.province,
+                                    ].join(", ");
                                     // Nối thông tin địa chỉ vào object user
                                     userInfo = {
                                         ...userInfo,
-                                        address: fullAddress
+                                        address: fullAddress,
                                     };
                                 }
                                 resolve(userInfo);
@@ -389,6 +394,7 @@ router.put("/update/:id", (req, res) => {
     var email = req.body.email;
     var phone = req.body.phone;
     var avatar = req.body.image;
+    console.log(avatar);
     var fullAddress = req.body.address;
 
     // Tách địa chỉ ra thành các phần
