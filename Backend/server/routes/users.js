@@ -155,14 +155,18 @@ getUserInfo = async (email) => {
                             if (err) {
                                 reject(err);
                             } else {
-                                const address = result[0];
-                                // Nối thông tin địa chỉ thành một chuỗi hoàn chỉnh
-                                const fullAddress = [address.address, address.ward, address.district, address.province].join(', ');
-                                // Nối thông tin địa chỉ vào object user
-                                const userInfo = {
-                                    ...user,
-                                    address: fullAddress
-                                };
+                                let userInfo = { ...user };
+                                // Kiểm tra xem kết quả truy vấn địa chỉ có tồn tại hay không
+                                if (result[0]) {
+                                    const address = result[0];
+                                    // Nối thông tin địa chỉ thành một chuỗi hoàn chỉnh
+                                    const fullAddress = [address.address, address.ward, address.district, address.province].join(', ');
+                                    // Nối thông tin địa chỉ vào object user
+                                    userInfo = {
+                                        ...userInfo,
+                                        address: fullAddress
+                                    };
+                                }
                                 resolve(userInfo);
                             }
                         }
@@ -175,6 +179,7 @@ getUserInfo = async (email) => {
         return { error: "Lỗi lấy thông tin user" };
     });
 };
+
 
 
 
