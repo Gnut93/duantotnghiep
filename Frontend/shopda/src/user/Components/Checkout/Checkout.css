@@ -82,3 +82,33 @@
 .form-discout-text {
   margin-bottom: 10px;
 }
+@media screen and (max-width: 1200px) {
+  .checkout-wrapper {
+    flex-direction: column;
+  }
+  .checkout-form-discout {
+    width: 100%;
+  }
+  .checkout-left {
+    width: 100%;
+  }
+  .checkout-right {
+    width: 100%;
+  }
+  .checkout-pay-note {
+    width: 61vw;
+  }
+}
+@media screen and (max-width: 1023px) {
+  .checkout-pay-note {
+    width: 58vw;
+  }
+}
+@media screen and (max-width: 767px) {
+  .checkout-address-form {
+    display: block;
+  }
+  .checkout-pay-note {
+    width: 100%;
+  }
+}

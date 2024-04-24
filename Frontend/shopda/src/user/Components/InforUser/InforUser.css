@@ -89,3 +89,56 @@
   text-align: center;
   margin: 20px 0 20px 20px;
 }
+@media screen and (max-width: 1023px) {
+  .infoUser-wrapper {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .infoUser-content {
+    width: 100%;
+    padding: 20px;
+  }
+  .infoUser-packlink {
+    width: 100%;
+  }
+  .infoUser-title {
+    margin: 20px 0;
+  }
+  .infoUser-list {
+    margin: 0;
+  }
+  .infoUser-button {
+    margin: 20px 0;
+  }
+  .infoUser-image {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .infoUser-heading {
+    font-size: 30px;
+  }
+  .infoUser-image img {
+    width: 150px;
+    height: 150px;
+  }
+  .infoUser-name {
+    font-size: 20px;
+  }
+  .infoUser-info {
+    font-size: 15px;
+  }
+  .infoUser-title {
+    font-size: 20px;
+  }
+  .infoUser-text {
+    font-size: 15px;
+  }
+  .infoUser-item input {
+    padding: 10px;
+  }
+  .infoUser-button {
+    padding: 10px 20px;
+    font-size: 15px;
+  }
+}

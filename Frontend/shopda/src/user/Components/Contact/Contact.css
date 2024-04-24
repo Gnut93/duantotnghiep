@@ -131,3 +131,55 @@ button {
   font-style: 8px;
   margin-top: 5px;
 }
+@media screen and (max-width: 1200px) {
+  .contact-center {
+    padding: 20px 0;
+    flex-direction: column;
+    display: block;
+    margin: 0 auto;
+  }
+  .contact-form::after {
+    display: none;
+  }
+  .contact-form {
+    padding-right: 0;
+  }
+  .contact-form button {
+    grid-column: 1;
+  }
+  .contact-item {
+    padding-top: 0;
+  }
+  .contact-center {
+    padding: 20px 0;
+  }
+  .contact-detail {
+    padding-left: 0;
+  }
+  .contact-heading {
+    font-size: 24px;
+  }
+  .name,
+  .subject,
+  .email,
+  .phone {
+    width: 100%;
+  }
+  .message {
+    height: 200px;
+  }
+  .message,
+  button {
+    grid-column: 1 / 2;
+  }
+  .contact-detail {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 767px) {
+  .contact-form-gid {
+    grid-template-columns: repeat(1, 3fr);
+  }
+}

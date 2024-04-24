@@ -156,3 +156,161 @@
   margin-top: 30px;
   border-radius: 8px;
 }
+@media screen and (max-width: 1200px) {
+  .cart-table {
+    width: 100%;
+  }
+  .cart-pay {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 1023px) {
+  .cart-heading {
+    font-size: 24px;
+    padding-top: 40px;
+  }
+  .cart-comback {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .cart-table thead tr td {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+  .cart-table tbody tr td {
+    padding: 8px;
+  }
+  .cart-table tbody tr td:nth-child(3) {
+    font-size: 16px;
+  }
+  .cart-table tbody tr td img {
+    max-width: 60px;
+  }
+  .cart-table tbody tr td .icon {
+    font-size: 20px;
+  }
+  .cart-table tbody tr td:nth-child(4),
+  .cart-table tbody tr td:nth-child(6) {
+    font-size: 16px;
+  }
+  .cart-table tbody tr td input {
+    max-width: 40px;
+    min-height: 20px;
+  }
+  .cart-info {
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px 0 30px;
+  }
+  .cart-table {
+    width: 100%;
+    overflow-x: auto;
+  }
+  .cart-pay {
+    width: 100%;
+  }
+  .cart-pay-item {
+    padding: 10px;
+  }
+  .cart-pay-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .cart-pay-total,
+  .cart-pay-discout,
+  .cart-pay-ship,
+  .cart-pay-sub {
+    margin-bottom: 8px;
+  }
+  .cart-discout {
+    margin: 20px 0 10px;
+  }
+  .pay-code {
+    padding: 6px 12px 6px 4px;
+    width: 70%;
+    margin-right: 8px;
+  }
+  .pay-add {
+    padding: 6px 10px;
+  }
+  .cart-pay-next {
+    padding: 10px 16px;
+    margin-top: 20px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .cart-heading {
+    font-size: 20px;
+    padding-top: 30px;
+  }
+  .cart-comback {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .cart-table thead tr td {
+    padding: 10px 15px;
+    font-size: 12px;
+  }
+  .cart-table tbody tr td {
+    padding: 8px;
+  }
+  .cart-table tbody tr td:nth-child(3) {
+    font-size: 14px;
+  }
+  .cart-table tbody tr td img {
+    max-width: 50px;
+  }
+  .cart-table tbody tr td .icon {
+    font-size: 18px;
+  }
+  .cart-table tbody tr td:nth-child(4),
+  .cart-table tbody tr td:nth-child(6) {
+    font-size: 14px;
+  }
+  .cart-table tbody tr td input {
+    max-width: 30px;
+    min-height: 20px;
+  }
+  .cart-info {
+    margin-bottom: 10px;
+    padding: 10px 0 20px;
+    display: block;
+    overflow-x: auto;
+  }
+  .cart-table {
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 10px;
+  }
+  .cart-pay {
+    width: 100%;
+  }
+  .cart-pay-item {
+    padding: 10px;
+  }
+  .cart-pay-title {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .cart-pay-total,
+  .cart-pay-discout,
+  .cart-pay-ship,
+  .cart-pay-sub {
+    margin-bottom: 6px;
+  }
+  .cart-discout {
+    margin: 10px 0 10px;
+  }
+  .pay-code {
+    padding: 6px 10px 6px 4px;
+    width: 70%;
+    margin-right: 6px;
+  }
+  .pay-add {
+    padding: 6px 8px;
+  }
+  .cart-pay-next {
+    padding: 8px 14px;
+    margin-top: 10px;
+  }
+}

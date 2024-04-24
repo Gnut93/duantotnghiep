@@ -113,3 +113,11 @@
 .blog__button a {
   color: #0056b3;
 }
+@media screen and (max-width: 1023px) {
+  .blog_list {
+    flex-direction: column;
+  }
+  .item_blog {
+    width: 100%;
+  }
+}

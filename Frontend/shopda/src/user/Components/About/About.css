@@ -31,3 +31,19 @@
 .about-content {
   margin-bottom: 50px;
 }
+@media screen and (max-width: 1023px) {
+  .about-list {
+    flex-direction: column;
+    gap: 50px;
+  }
+  .about-item {
+    width: 100%;
+  }
+  .about-image-item {
+    height: 300px;
+    margin-bottom: 50px;
+  }
+  .about-image img {
+    height: 300px;
+  }
+}
