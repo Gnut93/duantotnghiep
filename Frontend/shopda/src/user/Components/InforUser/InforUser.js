@@ -114,8 +114,8 @@ const InfoUser = () => {
         isSubmitSuccessful,
         idUser,
         dispatch,
-        result.expiresIn,
-        result.idToken,
+        // result.expiresIn,
+        // result.idToken,
     ]);
 
     const handleLogout = () => {

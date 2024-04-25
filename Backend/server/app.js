@@ -19,6 +19,8 @@ var adminCategory = require("./routes/admin-category");
 var adminGiftCode = require("./routes/admin-giftcode");
 var customRouter = require("./routes/custom");
 var uploadImage = require("./routes/upload-image");
+var momoRouter = require("./routes/momo");
+var zaloPayRouter = require("./routes/zaloPay");
 
 var app = express();
 
@@ -46,6 +48,8 @@ app.use("/admin-category", adminCategory);
 app.use("/admin-giftcode", adminGiftCode);
 app.use("/custom", customRouter);
 app.use("/upload-image", uploadImage);
+app.use("/momo", momoRouter);
+app.use("/zalo-pay", zaloPayRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

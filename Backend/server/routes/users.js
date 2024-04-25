@@ -30,10 +30,10 @@ router.get("/info/:id", (req, res) => {
             var user = result[0];
             // Nối lại địa chỉ
             user.address = [
-                user.address,
-                user.ward,
-                user.district,
-                user.province,
+                user.address || "",
+                user.ward || "",
+                user.district || "",
+                user.province || "",
             ].join(", ");
             res.json(user);
         }
