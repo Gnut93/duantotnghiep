@@ -28,7 +28,11 @@ const schema = yup.object({
         .typeError("Vui lòng nhập một số")
         .min(10, "Chưa đạt số lượng tối thiểu")
         .required("Không được bỏ trống"),
-    address: yup.string().required("Không được bỏ trống"),
+        address: yup.string()
+        .required("Không được bỏ trống")
+        .test('has-comma', 'Địa chỉ phải được ngăn cách bởi dấu phẩy', value => {
+            return value.includes(',');
+        }),
     image: yup.string(),
     avatar: yup.mixed().test("size", "Kích thước file quá lớn", (value) => {
         if (!value) return true; // Trường hợp không có file được chọn
