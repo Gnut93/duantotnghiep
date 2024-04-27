@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "./Shop.css";
 import { Link } from "react-router-dom";
-import Navbar from "../Navbar/Navbar";
+import "./Trending.css";
 import img6 from "../../../assets/images/phukien.jpg";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 const imgList = [
   {
     img: "https://product.hstatic.net/1000260559/product/clutch-cam-tay-dang-mong-sang-trong-lich-lam-4062575__5__da81c4ca22e54d788809e0b839ebced5_large.jpg",
@@ -11,7 +13,7 @@ const imgList = [
     img: "https://laforce.vn/wp-content/uploads/2016/07/tui-dung-ipad-nam-da-bo-tron-tla8051-d-1-1.jpg",
   },
   {
-    img: "https://www.velisa.vn/wp-content/uploads/2021/03/tui-da-du-lich-h10041.jpg",
+    img: "https://myphamnga.org/wp-content/uploads/2019/01/tui-xach-du-lich-tx051-3.jpg",
   },
   {
     img: "https://laforce.vn/wp-content/uploads/2021/05/day-lung-quan-tay-mat-kim-d690-a202001b-3.jpg",
@@ -25,6 +27,13 @@ const imgList = [
 ];
 
 const Shop = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
+
+  useEffect(() => {
+    AOS.refresh();
+  });
   const [listLoai, setListLoai] = useState([]);
 
   useEffect(() => {
@@ -37,14 +46,10 @@ const Shop = () => {
   }, []);
 
   return (
-    <section className="category">
-      <Navbar></Navbar>
-      <div className="container">
-        <h3
-          className="related-heading"
-          style={{ marginBottom: "60px", marginTop: "60px" }}
-        >
-          Danh Mục Sản Phẩm
+    <section className="trending">
+      <div className="container" data-aos="fade-up">
+        <h3 className="related-heading" style={{ marginBottom: "50px" }}>
+          Xu Hướng Mua Sắm
         </h3>
         <div className="category-list">
           {listLoai.map((item, index) => (
