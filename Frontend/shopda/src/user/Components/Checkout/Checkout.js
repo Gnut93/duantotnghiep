@@ -69,18 +69,19 @@ const Checkout = () => {
     }, [idUser, user]);
     useEffect(() => {
         if (user) {
-            let street = user.address.trim().split(",")[0];
-            let ward = user.address.trim().split(",")[1];
-            let address = street + ", " + ward;
-            let district = user.address.trim().split(",")[2];
-            let city = user.address.trim().split(",")[3];
-            console.log(street);
+            if (user.address) {
+                let street = user.address.trim().split(",")[0];
+                let ward = user.address.trim().split(",")[1];
+                let address = street + ", " + ward;
+                let district = user.address.trim().split(",")[2];
+                let city = user.address.trim().split(",")[3];
+                setValue("street", address);
+                setValue("district", district);
+                setValue("city", city);
+            }
             setValue("name", user.name);
             setValue("email", user.email);
             setValue("phone", user.phone);
-            setValue("street", address);
-            setValue("district", district);
-            setValue("city", city);
         }
     }, [user, setValue]);
 
