@@ -296,25 +296,25 @@ router.post("/delivery", async (req, res) => {
     const imageProducts = Object.values(products)
         .slice(0, -7)
         .map((product) => {
-            return `<p>${product.image}</p>`;
+            return `${product.image}`;
         })
         .join("");
     const mailProducts = Object.values(products)
         .slice(0, -7)
         .map((product) => {
-            return `<p>${product.name}</p>`;
+            return `${product.name}`;
         })
         .join("");
     const quantityProducts = Object.values(products)
         .slice(0, -7)
         .map((product) => {
-            return `<p>${product.quantity}</p>`;
+            return `${product.quantity}`;
         })
         .join("");
     const priceProducts = Object.values(products)
         .slice(0, -7)
         .map((product) => {
-            return `<p>${product.price}</p>`;
+            return `${product.price}`;
         })
         .join("");
     const currentDate = new Date().toLocaleDateString("en-GB");
@@ -399,10 +399,10 @@ router.put("/update/:id", (req, res) => {
 
     // Tách địa chỉ ra thành các phần
     var addressParts = fullAddress.split(",").map((part) => part.trim());
-    var address = addressParts[0];
-    var ward = addressParts[1];
-    var district = addressParts[2];
-    var province = addressParts[3];
+    var address = addressParts[0] || null;
+    var ward = addressParts[1] || null;
+    var district = addressParts[2] || null;
+    var province = addressParts[3] || null;
 
     var sql = `UPDATE user SET name = '${name}', email = '${email}', phone = '${phone}', avatar = '${avatar}' WHERE id_user = '${id}'`;
     var sql_address = `INSERT INTO address (id_user, address, ward, district, province) VALUES ('${id}', '${address}', '${ward}', '${district}', '${province}') 
