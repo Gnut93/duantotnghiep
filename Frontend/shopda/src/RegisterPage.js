@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { debounce } from 'lodash';
+import './RegisterPage.css';
 
 const RegisterPage = () => {
   const name = useRef();
@@ -8,6 +9,9 @@ const RegisterPage = () => {
   const password = useRef();
   const navigate = useNavigate();
   const [isExistingEmail, setIsExistingEmail] = useState(false);
+  const [isCheckName, setIsCheckName] = useState(false);
+  const [isCheckEmail, setIsCheckEmail] = useState(false);
+  const [isCheckPassword, setIsCheckPassword] = useState(false);
   const [isCheckingEmail, setIsCheckingEmail] = useState(false);
 
   const checkEmail = debounce(async () => {
@@ -35,11 +39,11 @@ const RegisterPage = () => {
       password: password.current.value,
     };
     if (data.name === '') {
-      alert('Họ tên không được để trống');
+      setIsCheckName(true);
       return;
     }
     if (data.email === '') {
-      alert('Email không được để trống');
+      setIsCheckEmail(true);
       return;
     }
     if (isCheckingEmail) {
@@ -51,7 +55,7 @@ const RegisterPage = () => {
       return;
     }
     if (data.password === '') {
-      alert('Mật khẩu không được để trống');
+      setIsCheckPassword(true);
       return;
     }
     try {
@@ -68,6 +72,16 @@ const RegisterPage = () => {
     }
   };
 
+  const handleInputChange = (ref) => {
+    if (ref.current.value) {
+      // Clear error message when user starts typing
+      setIsCheckName(false);
+      setIsCheckEmail(false);
+      setIsCheckPassword(false);
+      // setIsExistingEmail(false);
+    }
+  };
+
   return (
     <div className="login-wrapper">
       <div className="form-container">
@@ -81,23 +95,34 @@ const RegisterPage = () => {
             type="text"
             className="input"
             placeholder="Họ tên"
+            onChange={() => handleInputChange(name)}
           />
+          {isCheckName && (
+            <p className="error-message">Họ tên không được bỏ trống!</p>
+          )}
           <input
             ref={email}
             type="email"
             className="input"
             placeholder="Email"
-            onChange={checkEmail}
+            onChange={() => handleInputChange(email)}
           />
           {isExistingEmail && (
             <p className="error-message">Email đã tồn tại!</p>
+          )}
+          {isCheckEmail && (
+            <p className="error-message">Email không được bỏ trống!!</p>
           )}
           <input
             ref={password}
             type="password"
             className="input"
             placeholder="Password"
+            onChange={() => handleInputChange(password)}
           />
+          {isCheckPassword && (
+            <p className="error-message">Mật khẩu không được bỏ trống!</p>
+          )}
           <button className="form-btn">Đăng ký</button>
         </form>
         <Link to="/login">
