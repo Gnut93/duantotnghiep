@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { dalogin } from "./authSlice";
@@ -9,6 +9,8 @@ const LoginPage = () => {
     const password = useRef();
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [isCheckEmail, setIsCheckEmail] = useState(false);
+    const [isCheckPassword, setIsCheckPassword] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -17,11 +19,11 @@ const LoginPage = () => {
             password: password.current.value,
         };
         if (data.email === "") {
-            alert("Vui lòng nhập email");
+            setIsCheckEmail(true);
             return;
         }
         if (data.password === "") {
-            alert("Vui lòng nhập password");
+            setIsCheckPassword(true);
             return;
         }
         try {
@@ -48,6 +50,12 @@ const LoginPage = () => {
             alert(error.message);
         }
     };
+    const handleInputChange = (ref) => {
+        if (ref.current.value) {
+          setIsCheckEmail(false);
+          setIsCheckPassword(false);
+        }
+      };
 
     return (
         <div className="login-wrapper">
@@ -59,13 +67,21 @@ const LoginPage = () => {
                         type="email"
                         className="input"
                         placeholder="Email"
+                        onChange={() => handleInputChange(email)}
                     />
+                    {isCheckEmail && (
+                        <p className="error-message">Vui lòng nhập email</p>
+                    )}
                     <input
                         ref={password}
                         type="password"
                         className="input"
                         placeholder="Password"
+                        onChange={() => handleInputChange(password)}
                     />
+                    {isCheckPassword && (
+                        <p className="error-message">Vui lòng nhập mật khẩu</p>
+                    )}
                     <p className="page-link">
                         <Link
                             to={"/forgot-password"}
