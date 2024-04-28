@@ -29,10 +29,6 @@
   margin-top: 30px;
 }
 .followOrder-list {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
   margin: 20px 0 50px 0;
 }
 
@@ -40,14 +36,68 @@
   padding: 12px 20px;
   text-align: center;
   font-size: 17px;
-  width: 120px;
   margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
-
-.followOrder-item img {
+.followOrder-table {
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow-x: auto;
+}
+.followOrder-table table {
   width: 100%;
+  border-collapse: collapse;
+  overflow-x: auto;
+}
+.followOrder-table table thead tr th {
+  padding: 10px;
+  border: 1px solid #000000;
+  background-color: #4a1f18;
+  color: #ffffff;
+}
+.followOrder-table table tbody tr td {
+  padding: 10px;
+  border: 1px solid #000000;
+}
+.followOrder-table table tbody tr td:first-child {
+  width: 100px;
+}
+.followOrder-table table tbody tr td:nth-child(2) {
+  width: 200px;
+}
+.followOrder-table table tbody tr td:nth-child(3) {
+  width: 100px;
+}
+.followOrder-table table tbody tr td:nth-child(4) {
+  width: 100px;
+}
+.followOrder-table table tbody tr td:nth-child(5) {
+  width: 100px;
+}
+.followOrder-table table tbody tr td:nth-child(6) {
+  width: 100px;
+}
+.followOrder-table table tbody tr td:nth-child(7) {
+  width: 100px;
+}
+.followOrder-table table tbody tr td img {
+  width: 100px;
   height: auto;
+  border-radius: 10px;
   object-fit: cover;
+}
+.followOrder-item a {
+  color: #000000;
+  text-decoration: none;
+}
+.followOrder-item a:hover {
+  color: #4a1f18;
 }
 @media screen and (max-width: 1023px) {
   .followOrder-heading {
@@ -59,7 +109,6 @@
   .followOrder-item {
     font-size: 15px;
     padding: 10px;
-    width: 100px;
   }
 }
 @media screen and (max-width: 767px) {
@@ -72,6 +121,17 @@
   .followOrder-item {
     font-size: 12px;
     padding: 8px;
-    width: 80px;
+  }
+  .followOrder-table table tbody tr td:nth-child(5) {
+    display: none;
+  }
+  .followOrder-table table thead tr th:nth-child(5) {
+    display: none;
+  }
+  .followOrder-table table tbody tr td:nth-child(1) {
+    display: none;
+  }
+  .followOrder-table table thead tr th:nth-child(1) {
+    display: none;
   }
 }

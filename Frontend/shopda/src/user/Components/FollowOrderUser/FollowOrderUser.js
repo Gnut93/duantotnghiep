@@ -76,7 +76,7 @@ const FollowOrderUser = () => {
             <div
               key={i}
               className="followOrder-item">
-              <p>TT: {bill.id_bill}</p>
+              <p>TT: {i + 1}</p>
               <p>Tên: {bill.name}</p>
               <p>Địa chỉ: {bill.address}</p>
               <p>Số điện thoại: {bill.phone}</p>

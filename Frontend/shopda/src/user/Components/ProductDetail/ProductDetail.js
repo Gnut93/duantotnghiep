@@ -69,6 +69,7 @@ const ProductDetail = () => {
       (item) => item.id_pd_detail === selectedColorId
     );
     const totalQuantityAfterAdding = currentProductQuantity + quantity;
+
     if (selectedColor.quantity <= 0) {
     } else if (
       selectedColor &&
@@ -85,8 +86,10 @@ const ProductDetail = () => {
           ...sp,
           id_pd_detail: selectedColorId,
           soluong: quantity,
+          nameColor: selectedColor.color,
         })
       );
+      console.log(selectedColor);
       setQuantity(1);
     }
   };
