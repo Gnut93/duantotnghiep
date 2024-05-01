@@ -32,7 +32,7 @@ const OrderDetail = () => {
               <tbody>
                 {listBillDetail.map((billDetail, i) => (
                   <tr key={i}>
-                    <td>{i + 1}</td>
+                    <td style={{textAlign: 'center'}}>{i + 1}</td>
                     <td>{billDetail.name}</td>
                     <td>{billDetail.price}</td>
                     <td>{billDetail.color}</td>

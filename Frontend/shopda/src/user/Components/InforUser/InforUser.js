@@ -7,7 +7,7 @@ import { thoat, capnhatUserInfo } from "../../../authSlice";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import cloudinaryUpload from "../../../user/service/uploads";
@@ -62,17 +62,21 @@ const InfoUser = () => {
     });
     const { register, handleSubmit, formState, control } = form;
     const { errors, isSubmitSuccessful } = formState;
+    const [uploading, setUploading] = useState(false);
 
     const handleFileUpload = (e) => {
+        setUploading(true);
         const uploadData = new FormData();
         uploadData.append("file", e.target.files[0], "file");
-        console.log(e.target.files[0]);
         cloudinaryUpload(uploadData)
             .then((res) => {
-                console.log(res.secure_url);
                 form.setValue("image", res.secure_url);
+                setUploading(false);
             })
-            .catch((err) => console.error(err));
+            .catch((err) => {
+                console.error(err);
+                setUploading(false);
+            });
     };
     const handleSubmitInForUser = async (data) => {
         const id = idUser;
@@ -224,7 +228,7 @@ const InfoUser = () => {
                                     </p>
                                 </div>
                             </div>
-                            <button className="infoUser-button" type="submit">
+                            <button className="infoUser-button" type="submit" disabled={uploading}>
                                 Thay đổi
                             </button>
                         </form>

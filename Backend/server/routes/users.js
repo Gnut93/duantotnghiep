@@ -9,7 +9,7 @@ const mailForgotPassword = fs.readFileSync(
     "utf8",
     "rs"
 );
-const mailDelivery = fs.readFileSync("./Mail/MailDelivery.html", "utf8", "rs");
+const mailDelivery = fs.readFileSync("./Mail/Maildelivery/index.html", "utf8", "rs");
 const PRIVATE_KEY = fs.readFileSync("./private-key.txt");
 const nodemailer = require("nodemailer");
 
@@ -276,6 +276,7 @@ router.post("/delivery", async (req, res) => {
     const { address, name, phone, email, total_price, status, payment_type } =
         req.body;
     const products = req.body;
+    console.log(products);
 
     // Kiểm tra xem các trường thông tin có đầy đủ không
     if (
@@ -293,31 +294,316 @@ router.post("/delivery", async (req, res) => {
     }
 
     // Xử lý sản phẩm
-    const imageProducts = Object.values(products)
-        .slice(0, -7)
-        .map((product) => {
-            return `${product.image}`;
-        })
-        .join("");
-    const mailProducts = Object.values(products)
-        .slice(0, -7)
-        .map((product) => {
-            return `${product.name}`;
-        })
-        .join("");
-    const quantityProducts = Object.values(products)
-        .slice(0, -7)
-        .map((product) => {
-            return `${product.quantity}`;
-        })
-        .join("");
-    const priceProducts = Object.values(products)
-        .slice(0, -7)
-        .map((product) => {
-            return `${product.price}`;
-        })
-        .join("");
-    const currentDate = new Date().toLocaleDateString("en-GB");
+    const productHTML = Object.values(products)
+    .slice(0, -7)
+    .filter(product => product && product.image)
+    .map((product) => {
+        const formattedPrice = product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+        const totalPrice = product.price * product.quantity;
+        const formattedTotalPrice = totalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+
+        return `
+        <div
+              class="u-row-container"
+              style="padding: 0px; background-color: transparent"
+            >
+              <div
+                class="u-row"
+                style="
+                  margin: 0 auto;
+                  min-width: 320px;
+                  max-width: 600px;
+                  overflow-wrap: break-word;
+                  word-wrap: break-word;
+                  word-break: break-word;
+                  background-color: #ffffff;
+                "
+              >
+                <div
+                  style="
+                    border-collapse: collapse;
+                    display: table;
+                    width: 100%;
+                    height: 100%;
+                    background-color: transparent;
+                  "
+                >
+                  <div
+                    class="u-col u-col-50p"
+                    style="
+                      max-width: 320px;
+                      min-width: 200px;
+                      display: table-cell;
+                      vertical-align: top;
+                    "
+                  >
+                    <div style="height: 100%; width: 100% !important">
+                      <div
+                        style="
+                          box-sizing: border-box;
+                          height: 100%;
+                          padding: 0px;
+                          border-top: 0px solid transparent;
+                          border-left: 0px solid transparent;
+                          border-right: 0px solid transparent;
+                          border-bottom: 0px solid transparent;
+                        "
+                      >
+                        <table
+                          style="font-family: 'Lato', sans-serif"
+                          role="presentation"
+                          cellpadding="0"
+                          cellspacing="0"
+                          width="100%"
+                          border="0"
+                        >
+                          <tbody>
+                            <tr>
+                              <td
+                                class="v-container-padding-padding"
+                                style="
+                                  overflow-wrap: break-word;
+                                  word-break: break-word;
+                                  padding: 10px;
+                                  font-family: 'Lato', sans-serif;
+                                "
+                                align="left"
+                              >
+                                <table
+                                  width="100%"
+                                  cellpadding="0"
+                                  cellspacing="0"
+                                  border="0"
+                                >
+                                  <tr>
+                                    <td
+                                      class="v-text-align"
+                                      style="
+                                        padding-right: 0px;
+                                        padding-left: 0px;
+                                      "
+                                      align="center"
+                                    >
+                                      <img
+                                        align="center"
+                                        border="0"
+                                        src="${product.image}"
+                                        alt="${product.name}"
+                                        title="${product.name}"
+                                        style="
+                                          outline: none;
+                                          text-decoration: none;
+                                          -ms-interpolation-mode: bicubic;
+                                          clear: both;
+                                          display: inline-block !important;
+                                          border: none;
+                                          height: auto;
+                                          float: none;
+                                          width: 100%;
+                                          max-width: 180px;
+                                        "
+                                        width="180"
+                                        class="v-src-width v-src-max-width"
+                                      />
+                                    </td>
+                                  </tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="u-col u-col-50p"
+                    style="
+                      max-width: 320px;
+                      min-width: 400px;
+                      display: table-cell;
+                      vertical-align: top;
+                    "
+                  >
+                    <div style="height: 100%; width: 100% !important">
+                      <div
+                        style="
+                          box-sizing: border-box;
+                          height: 100%;
+                          padding: 0px;
+                          border-top: 0px solid transparent;
+                          border-left: 0px solid transparent;
+                          border-right: 0px solid transparent;
+                          border-bottom: 0px solid transparent;
+                        "
+                      >
+                        <table
+                          style="font-family: 'Lato', sans-serif"
+                          role="presentation"
+                          cellpadding="0"
+                          cellspacing="0"
+                          width="100%"
+                          border="0"
+                        >
+                          <tbody>
+                            <tr>
+                              <td
+                                class="v-container-padding-padding"
+                                style="
+                                  overflow-wrap: break-word;
+                                  word-break: break-word;
+                                  padding: 10px;
+                                  font-family: 'Lato', sans-serif;
+                                "
+                                align="left"
+                              >
+                                <h3
+                                  class="v-text-align v-font-size"
+                                  style="
+                                    margin: 0px;
+                                    color: #333333;
+                                    line-height: 140%;
+                                    text-align: left;
+                                    word-wrap: break-word;
+                                    font-family: comic sans ms, sans-serif;
+                                    font-size: 18px;
+                                    font-weight: 400;
+                                  "
+                                >
+                                  <strong>${product.name}</strong>
+                                </h3>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+                        <table
+                          style="font-family: 'Lato', sans-serif"
+                          role="presentation"
+                          cellpadding="0"
+                          cellspacing="0"
+                          width="100%"
+                          border="0"
+                        >
+                          <tbody>
+                            <tr>
+                              <td
+                                class="v-container-padding-padding"
+                                style="
+                                  overflow-wrap: break-word;
+                                  word-break: break-word;
+                                  padding: 0px 10px 5px;
+                                  font-family: 'Lato', sans-serif;
+                                "
+                                align="left"
+                              >
+                                <h3
+                                  class="v-text-align v-font-size"
+                                  style="
+                                    margin: 0px;
+                                    color: #333333;
+                                    line-height: 140%;
+                                    text-align: left;
+                                    word-wrap: break-word;
+                                    font-family: 'Lato', sans-serif;
+                                    font-size: 18px;
+                                    font-weight: 400;
+                                  "
+                                >
+                                  Số lượng: ${product.quantity}
+                                </h3>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+                        <table
+                          style="font-family: 'Lato', sans-serif"
+                          role="presentation"
+                          cellpadding="0"
+                          cellspacing="0"
+                          width="100%"
+                          border="0"
+                        >
+                          <tbody>
+                            <tr>
+                              <td
+                                class="v-container-padding-padding"
+                                style="
+                                  overflow-wrap: break-word;
+                                  word-break: break-word;
+                                  padding: 0px 10px;
+                                  font-family: 'Lato', sans-serif;
+                                "
+                                align="left"
+                              >
+                                <h3
+                                  class="v-text-align v-font-size"
+                                  style="
+                                    margin: 0px;
+                                    color: #333333;
+                                    line-height: 140%;
+                                    text-align: left;
+                                    word-wrap: break-word;
+                                    font-family: 'Lato', sans-serif;
+                                    font-size: 18px;
+                                    font-weight: 400;
+                                  "
+                                >
+                                  Giá: ${formattedPrice}
+                                </h3>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+                        <table
+                          style="font-family: 'Lato', sans-serif"
+                          role="presentation"
+                          cellpadding="0"
+                          cellspacing="0"
+                          width="100%"
+                          border="0"
+                        >
+                          <tbody>
+                            <tr>
+                              <td
+                                class="v-container-padding-padding"
+                                style="
+                                  overflow-wrap: break-word;
+                                  word-break: break-word;
+                                  padding: 0px 10px 10px;
+                                  font-family: 'Lato', sans-serif;
+                                "
+                                align="left"
+                              >
+                                <h3
+                                  class="v-text-align v-font-size"
+                                  style="
+                                    margin: 0px;
+                                    color: #333333;
+                                    line-height: 140%;
+                                    text-align: left;
+                                    word-wrap: break-word;
+                                    font-family: 'Lato', sans-serif;
+                                    font-size: 18px;
+                                    font-weight: 400;
+                                  "
+                                >
+                                  Thành tiền : ${formattedTotalPrice}
+                                </h3>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        `
+    }).join("");
+
     // cấu hình gửi mail
     var transporter = nodemailer.createTransport({
         service: "gmail",
@@ -331,15 +617,13 @@ router.post("/delivery", async (req, res) => {
         subject: "Thư gửi về thông tin đơn hàng",
         html: mailDelivery
             .replace("{{TenKhachHang}}", name)
-            .replace("{{NgayDatHang}}", currentDate)
             .replace("{{DiaChi}}", address)
-            .replace("{{HinhSanPham}}", imageProducts)
-            .replace("{{TenSanPham}}", mailProducts)
-            .replace("{{SoLuong}}", quantityProducts)
-            .replace("{{Gia}}", priceProducts)
-            .replace("{{TongTien}}", total_price)
-            .replace("{{TongGiaTri}}", total_price)
-            .replace("{{TongGiaTri}}", total_price),
+            .replace("{{SanPham}}", productHTML)
+            // .replace("{{TenSanPham}}", mailProducts)
+    //         .replace("{{SoLuong}}", quantityProducts)
+    //         .replace("{{Gia}}", priceProducts)
+    //         .replace("{{ThanhTien}}", total_price)
+    //         .replace("{{TongGiaTri}}", total_price)
     };
 
     // Gửi email và xử lý kết quả

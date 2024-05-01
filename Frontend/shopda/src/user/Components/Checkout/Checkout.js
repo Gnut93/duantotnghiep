@@ -469,7 +469,7 @@ const Checkout = () => {
                             </div>
                             <div className="cart-pay-ship">
                                 <p className="cart-pay-info">Phí vận chuyển</p>
-                                <p className="cart-pay-price">Chưa có</p>
+                                <p className="cart-pay-price">Miễn phí</p>
                             </div>
                             <div className="cart-pay-sub">
                                 <p className="cart-pay-info">Thành tiền</p>
