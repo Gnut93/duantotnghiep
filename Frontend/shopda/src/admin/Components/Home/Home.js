@@ -80,6 +80,20 @@ const Home = () => {
                 return <span className="status delivering">Đang giao</span>;
             case "đã hủy":
                 return <span className="status cancelled">Đã Hủy</span>;
+            case "chờ thanh toán":
+                return <span className="status waiting">Chờ thanh toán</span>;
+            case "thanh toán thành công":
+                return (
+                    <span className="status success">
+                        Thanh toán thành công
+                    </span>
+                );
+            case "thanh toán thất bại":
+                return (
+                    <span className="status cancelled">
+                        Thanh toán thất bại
+                    </span>
+                );
             default:
                 return <span className="status">Không xác định</span>;
         }

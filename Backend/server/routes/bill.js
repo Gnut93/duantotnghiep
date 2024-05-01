@@ -96,7 +96,7 @@ router.post("/add-detail", async (req, res) => {
 
 //Danh sách đơn hàng
 router.get("/list", (req, res) => {
-    var sql = `SELECT * FROM bill`;
+    var sql = `SELECT * FROM bill ORDER BY created_date	 DESC `;
     db.query(sql, (err, result) => {
         if (err) {
             res.json({ error: "Khong tim thay don hang" });
@@ -105,6 +105,7 @@ router.get("/list", (req, res) => {
         }
     });
 });
+
 //trang đơn hàng
 router.get("/detail/:id", (req, res) => {
     var id = parseInt(req.params.id);

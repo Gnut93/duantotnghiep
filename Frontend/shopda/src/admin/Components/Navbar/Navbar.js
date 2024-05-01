@@ -15,10 +15,6 @@ const Navbar = () => {
                     <form action="#">
                         <div className="form-input"></div>
                     </form>
-                    <span href="#" className="notification">
-                        <i className="bx bxs-bell"></i>
-                        <span className="num">8</span>
-                    </span>
                     {daDangNhap === true ? (
                         <span className="profile">{user.name}</span>
                     ) : (
