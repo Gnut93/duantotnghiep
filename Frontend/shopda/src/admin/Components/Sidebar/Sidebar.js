@@ -52,6 +52,14 @@ const Sidebar = () => {
                     </Link>
                 </li>
                 <li className="toggle-nav">
+                    <Link to={"/admin/chitietsanpham"}>
+                        <span>
+                            <i className="bx bxs-cylinder"></i>
+                            <span className="text">Chi Tiết Sản Phẩm</span>
+                        </span>
+                    </Link>
+                </li>
+                <li className="toggle-nav">
                     <Link to={"/admin/loaihang"}>
                         <span>
                             <i className="bx bxs-doughnut-chart"></i>
@@ -88,14 +96,6 @@ const Sidebar = () => {
                         <span>
                             <i className="bx bxs-cylinder"></i>
                             <span className="text">Nhập Liệu</span>
-                        </span>
-                    </Link>
-                </li>
-                <li className="toggle-nav">
-                    <Link to={"/admin/chitietsanpham"}>
-                        <span>
-                            <i className="bx bxs-cylinder"></i>
-                            <span className="text">Chi Tiết Sản Phẩm</span>
                         </span>
                     </Link>
                 </li>
