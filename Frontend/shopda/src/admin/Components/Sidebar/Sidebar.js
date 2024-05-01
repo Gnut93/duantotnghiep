@@ -32,7 +32,7 @@ const Sidebar = () => {
     return (
         <section className="sidebar">
             <Link to={"/admin"}>
-                <h4 className="brand">D/A</h4>
+                <h4 className="brand">DA Admin</h4>
             </Link>
             <ul className="side-menu top">
                 <li className="toggle-nav active">
