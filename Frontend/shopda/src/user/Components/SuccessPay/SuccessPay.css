@@ -1,0 +1,25 @@
+.successPay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 85vh;
+}
+.successPay-heading {
+  font-size: 40px;
+  margin-bottom: 20px;
+  color: #099c4b;
+}
+.successPay-text {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.successPay-heading-err {
+  font-size: 40px;
+  margin-bottom: 20px;
+  color: red;
+}
+.successPay-text-err {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
