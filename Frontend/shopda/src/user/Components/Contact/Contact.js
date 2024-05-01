@@ -36,19 +36,12 @@ const schema = yup.object({
         .trim()
         .required("Không được bỏ trống"),
     phone: yup
-        .number()
-        .typeError("Vui lòng nhập một số")
-        .min(10, "Chưa đạt số lượng tối thiểu")
-        .required("Không được bỏ trống"),
-    description: yup
         .string()
-        .trim()
-        .required("Không được bỏ trống")
-        .min(2, "Mô tả có tối thiểu 10 ký tự")
-        .max(2000, " Mô tả có tối đa 2000 ký tự"),
+        .matches(/^[0-9]{10}$/, "Số điện thoại phải có đúng 10 chữ số")
+        .required("Không được bỏ trống"),
 });
 const Contact = () => {
-    const result = JSON.parse(localStorage.getItem('result'));
+    const result = JSON.parse(localStorage.getItem("result"));
     const user = result?.userInfo;
     const form = useForm({
         defaultValues: {
@@ -112,23 +105,22 @@ const Contact = () => {
             .then((res) => res.json())
             .then(setListColor);
     }, []);
-    const uniqueColors = [...new Set(listColor.map(color => color.color))];
+    const uniqueColors = [...new Set(listColor.map((color) => color.color))];
     return (
         <section className="contact">
             <Navbar></Navbar>
             <div className="container">
                 <h2 className="contact-heading">Dịch vụ theo yêu cầu</h2>
                 <p className="contact-desc">
-                    Dịch vụ thiết kế đồ da cá nhân hóa của chúng tôi tạo ra
-                    sản phẩm độc đáo, phản ánh phong cách và nhu cầu riêng
-                    của bạn. Từ ví, túi xách đến phụ kiện, mỗi sản phẩm được
-                    chăm chút từng chi tiết. Bạn có thể tham gia vào quá trình
-                    thiết kế, từ chọn da, màu sắc đến chi tiết cá nhân hóa.
-                    Đội ngũ thiết kế và thợ thủ công kỳ công cam kết mang lại
-                    sản phẩm tinh tế,
-                    chất lượng và đảm bảo sự hài lòng tuyệt đối.
-                    Hãy để chúng tôi tạo nên những tác phẩm độc đáo,
-                    phản ánh phong cách và cá tính của bạn.
+                    Dịch vụ thiết kế đồ da cá nhân hóa của chúng tôi tạo ra sản
+                    phẩm độc đáo, phản ánh phong cách và nhu cầu riêng của bạn.
+                    Từ ví, túi xách đến phụ kiện, mỗi sản phẩm được chăm chút
+                    từng chi tiết. Bạn có thể tham gia vào quá trình thiết kế,
+                    từ chọn da, màu sắc đến chi tiết cá nhân hóa. Đội ngũ thiết
+                    kế và thợ thủ công kỳ công cam kết mang lại sản phẩm tinh
+                    tế, chất lượng và đảm bảo sự hài lòng tuyệt đối. Hãy để
+                    chúng tôi tạo nên những tác phẩm độc đáo, phản ánh phong
+                    cách và cá tính của bạn.
                 </p>
                 <div className="contact-center">
                     <form
@@ -161,15 +153,18 @@ const Contact = () => {
                                 </select>
                                 <p className="err">{errors.loai?.message}</p>
                             </div>
-                            <div className="contact-form-gid-item" >
-                            <select className="email" {...register("color")}>
+                            <div className="contact-form-gid-item">
+                                <select
+                                    className="email"
+                                    {...register("color")}
+                                >
                                     <option value="" disabled selected>
                                         Vui lòng chọn Màu sản phẩm
                                     </option>
                                     {uniqueColors.map((color, index) => (
                                         <option key={index} value={color}>
-                                        {color}
-                                    </option>
+                                            {color}
+                                        </option>
                                     ))}
                                 </select>
                                 <p className="err">{errors.color?.message}</p>

@@ -46,7 +46,6 @@ const EditSanPhamChiTiet = () => {
                 `http://localhost:4000/products/color/detail/${id}`
             );
             const data = await reponse.json();
-            console.log(data);
             return {
                 color: data.color,
                 color_code: data.color_code,

@@ -9,12 +9,12 @@ router.get("/info/:id", (req, res) => {
         res.json({ error: "ID không hợp lệ" });
         return;
     }
-    var sql = `SELECT product.*, product_detail.* FROM product INNER JOIN product_detail ON product.id_pd = product_detail.id_pd WHERE product.id_pd = ?`;
+    var sql = `SELECT * FROM product  WHERE id_pd = ?`;
     db.query(sql, [id], (err, result) => {
         if (err) {
             res.json({ error: "Khong tim thay san pham" });
         } else {
-            res.json(result);
+            res.json(result[0]);
         }
     });
 });

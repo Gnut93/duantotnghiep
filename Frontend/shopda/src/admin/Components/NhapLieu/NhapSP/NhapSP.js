@@ -16,13 +16,13 @@ const schema = yup.object({
     price: yup
         .number()
         .typeError("Vui lòng nhập một số")
-        .min(1, "Chưa đạt số lượng tối thiểu")
+        .min(1, "Chưa đạt giá trị tối thiểu là 1đ")
         .required("Không được bỏ trống"),
 
     price_sale: yup
         .number()
         .typeError("Vui lòng nhập một số")
-        .min(1, "Chưa đạt số lượng tối thiểu")
+        .min(1, "Chưa đạt giá trị  tối thiểu là 1đ")
         .required("Không được bỏ trống"),
     id_cate: yup
         .string()

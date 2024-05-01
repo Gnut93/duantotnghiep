@@ -25,14 +25,18 @@ const schema = yup.object({
         .required("Không được bỏ trống"),
     phone: yup
         .string()
-        .typeError("Vui lòng nhập một số")
-        .min(10, "Chưa đạt số lượng tối thiểu")
+        .matches(/^[0-9]{10}$/, "Số điện thoại phải có đúng 10 chữ số")
         .required("Không được bỏ trống"),
-        address: yup.string()
+    address: yup
+        .string()
         .required("Không được bỏ trống")
-        .test('has-comma', 'Địa chỉ phải được ngăn cách bởi dấu phẩy', value => {
-            return value.includes(',');
-        }),
+        .test(
+            "has-comma",
+            "Địa chỉ phải được ngăn cách bởi dấu phẩy",
+            (value) => {
+                return value.includes(",");
+            }
+        ),
     image: yup.string(),
     avatar: yup.mixed().test("size", "Kích thước file quá lớn", (value) => {
         if (!value) return true; // Trường hợp không có file được chọn
