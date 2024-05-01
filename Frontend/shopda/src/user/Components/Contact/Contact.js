@@ -69,7 +69,7 @@ const Contact = () => {
             const res = await fetch(url, opt);
             const reponseData = await res.json();
             alert(
-                "Đã gửi yêu cầu sản phẩm chúng tôi sẽ liên hệ lại sau",
+                "Đã gửi yêu cầu sản phẩm chúng tôi sẽ liên hệ lại trong thời gian sớm nhất",
                 reponseData
             );
         } catch (error) {

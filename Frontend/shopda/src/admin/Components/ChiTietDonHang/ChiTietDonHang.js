@@ -8,6 +8,7 @@ const ChiTietDonHang = () => {
             .then((res) => res.json())
             .then(setListBillDetail);
     }, [id]);
+    // console.log(listBillDetail);
     return (
         <section className="content">
             <main>

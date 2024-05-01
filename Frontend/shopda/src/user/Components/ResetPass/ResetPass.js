@@ -77,7 +77,14 @@ const ResetPass = () => {
         <h1 className="infoUer-heading">Thông tin cá nhân</h1>
         <div className="infoUser-wrapper">
           <div className="infoUser-image">
-            <img src={user?.avatar} alt="avatar-user" />
+            <img
+              src={
+                user.avatar
+                  ? user?.avatar
+                  : "https://www.shutterstock.com/image-vector/blank-avatar-photo-icon-design-600nw-1682415103.jpg"
+              }
+              alt="avatar-user"
+            />
             <p className="infoUser-name">{user?.name}</p>
             <p className="infoUser-info">{user?.phone}</p>
             <p className="infoUser-info">{user?.email}</p>

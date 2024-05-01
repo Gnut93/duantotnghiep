@@ -25,7 +25,7 @@ const RegisterPage = () => {
       setIsExistingEmail(data);
       setIsCheckingEmail(false);
     }
-  }, 1000);
+  }, 2000);
 
   useEffect(() => {
     checkEmail();
